@@ -1,0 +1,31 @@
+version: '3.7'
+
+volumes:
+  postgres_data:
+    driver: local
+
+services:
+  spring:
+    build: .
+    ports:
+      - ${SPRING_EXTERNAL_PORT}:8080
+    container_name: ${SPRING_CONTAINER_NAME}
+    environment:
+      SPRING_DATASOURCE_URL: ${SPRING_DATASOURCE_URL}
+      SPRING_DATASOURCE_USERNAME: ${SPRING_DATASOURCE_USERNAME}
+      SPRING_DATASOURCE_PASSWORD: ${SPRING_DATASOURCE_PASSWORD}
+    restart: unless-stopped
+    depends_on: 
+      - postgres
+  postgres:
+    build: ./postgres
+    container_name: ${POSTGRES_CONTAINER_NAME}
+    ports:
+      - ${POSTGRES_EXTERNAL_PORT}:5432
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    volumes:
+      - ${POSTGRES_DATA}
+    restart: unless-stopped

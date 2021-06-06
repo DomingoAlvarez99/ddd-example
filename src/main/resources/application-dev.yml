@@ -1,0 +1,29 @@
+# Spring config
+spring:
+    jpa:
+        show-sql: true
+        hibernate:
+            ddl-auto: none
+    datasource:
+        host: localhost
+        port: 5555
+        name: shop_core
+        username: shop_admin
+        password: admin
+    cache:
+        type: none
+    # Graffiti
+    banner:
+        location: classpath:/static/banner.txt
+# Server config
+
+server:
+    servlet:
+        contextPath: /api/v0
+
+# Logging config
+logging:
+    pattern:
+        console: "%clr(%d{yyyy-MM-dd HH:mm:ss}){blue} %clr(%5p) %clr(18971){magenta} %clr(---){faint} %clr([%15.15t]){faint} %clr(%-40.40logger{39}){cyan} %clr(:){faint} %m%n%wEx"
+    level:
+        root: info
