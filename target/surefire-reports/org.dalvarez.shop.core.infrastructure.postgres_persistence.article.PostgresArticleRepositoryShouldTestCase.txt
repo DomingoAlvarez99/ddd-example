@@ -1,9 +1,0 @@
--------------------------------------------------------------------------------
-Test set: org.dalvarez.shop.core.infrastructure.postgres_persistence.article.PostgresArticleRepositoryShouldTestCase
--------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.053 s <<< FAILURE! - in org.dalvarez.shop.core.infrastructure.postgres_persistence.article.PostgresArticleRepositoryShouldTestCase
-org.dalvarez.shop.core.infrastructure.postgres_persistence.article.PostgresArticleRepositoryShouldTestCase  Time elapsed: 0.053 s  <<< ERROR!
-java.lang.IllegalStateException: Failed to load ApplicationContext
-Caused by: org.springframework.beans.factory.BeanDefinitionStoreException: Failed to parse configuration class [org.dalvarez.shop.core.Application]; nested exception is org.springframework.context.annotation.ConflictingBeanDefinitionException: Annotation-specified bean name 'articleRepositoryConfig' for bean class [org.dalvarez.shop.core.infrastructure.postgres_persistence.article.ArticleRepositoryConfig] conflicts with existing, non-compatible bean definition of same name and class [org.dalvarez.shop.core.infrastructure.hibernate_persistence.article.ArticleRepositoryConfig]
-Caused by: org.springframework.context.annotation.ConflictingBeanDefinitionException: Annotation-specified bean name 'articleRepositoryConfig' for bean class [org.dalvarez.shop.core.infrastructure.postgres_persistence.article.ArticleRepositoryConfig] conflicts with existing, non-compatible bean definition of same name and class [org.dalvarez.shop.core.infrastructure.hibernate_persistence.article.ArticleRepositoryConfig]
-

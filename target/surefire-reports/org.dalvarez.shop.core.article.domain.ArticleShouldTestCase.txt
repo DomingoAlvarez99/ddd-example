@@ -1,8 +1,0 @@
--------------------------------------------------------------------------------
-Test set: org.dalvarez.shop.core.article.domain.ArticleShouldTestCase
--------------------------------------------------------------------------------
-Tests run: 2, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.022 s <<< FAILURE! - in org.dalvarez.shop.core.article.domain.ArticleShouldTestCase
-shouldNotCreateAnArticleCause  Time elapsed: 0.013 s  <<< FAILURE!
-org.opentest4j.AssertionFailedError: Expected org.dalvarez.shop.core.shared.domain.validation.InvalidObjectException to be thrown, but nothing was thrown.
-	at org.dalvarez.shop.core.article.domain.ArticleShouldTestCase.shouldNotCreateAnArticleCause(ArticleShouldTestCase.java:56)
-

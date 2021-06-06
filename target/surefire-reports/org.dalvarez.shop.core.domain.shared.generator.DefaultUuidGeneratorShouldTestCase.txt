@@ -1,4 +1,0 @@
--------------------------------------------------------------------------------
-Test set: org.dalvarez.shop.core.domain.shared.generator.DefaultUuidGeneratorShouldTestCase
--------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 s - in org.dalvarez.shop.core.domain.shared.generator.DefaultUuidGeneratorShouldTestCase

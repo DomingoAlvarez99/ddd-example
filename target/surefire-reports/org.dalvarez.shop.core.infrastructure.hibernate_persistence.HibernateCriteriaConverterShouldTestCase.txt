@@ -1,8 +1,0 @@
--------------------------------------------------------------------------------
-Test set: org.dalvarez.shop.core.infrastructure.hibernate_persistence.HibernateCriteriaConverterShouldTestCase
--------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.015 s <<< FAILURE! - in org.dalvarez.shop.core.infrastructure.hibernate_persistence.HibernateCriteriaConverterShouldTestCase
-shouldHasDescendingOrder  Time elapsed: 0.013 s  <<< ERROR!
-java.lang.NoSuchMethodError: 'org.dalvarez.shop.core.domain.shared.criteria.Criteria$Builder org.dalvarez.shop.core.domain.shared.criteria.Criteria$Builder.withOrder(org.dalvarez.shop.core.domain.shared.criteria.Order)'
-	at org.dalvarez.shop.core.infrastructure.hibernate_persistence.HibernateCriteriaConverterShouldTestCase.shouldHasDescendingOrder(HibernateCriteriaConverterShouldTestCase.java:39)
-
