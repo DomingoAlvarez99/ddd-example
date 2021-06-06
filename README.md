@@ -226,6 +226,8 @@ Las pruebas de software ayudan a detectar errores. Un producto probado correctam
 - La [cobertura de código](https://dzone.com/articles/unit-testing-best-practices-how-to-get-the-most-ou) es una medida de la cantidad de código cubierto por pruebas automatizadas. Estas métricas se pueden generar con librerías como (JaCoCo)[https://www.eclemma.org/jacoco/] y se pueden visualizar con herramientas como (SonarQube)[https://www.sonarqube.org/]. Hay que tener en cuenta que aunque un código tenga una alta cobertura no tiene por qué funcionar correctamente.
 - Los [mocks](https://en.wikipedia.org/wiki/Mock_object) hacen que las pruebas sean independientes y más rápidas.
 
+Fichero de ejemplo usando mocks [ApplicationModuleTestCase.java](src/test/java/org/dalvarez/shop/core/shared/application/ApplicationModuleTestCase.java)
+
 ### Configuración
 
 - Almacenar variables de configuración que dependen del entorno en distintos ficheros de configuración.

@@ -12,9 +12,8 @@ spring:
         password: admin
     cache:
         type: none
-    # Graffiti
     banner:
-        location: classpath:/static/banner.txt
+        location: classpath:/static/banner.txt # Graffiti
 # Server config
 
 server:
