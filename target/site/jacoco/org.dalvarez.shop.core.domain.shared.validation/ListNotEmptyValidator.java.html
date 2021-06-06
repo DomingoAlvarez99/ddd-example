@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ListNotEmptyValidator.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">shop-core</a> &gt; <a href="index.source.html" class="el_package">org.dalvarez.shop.core.domain.shared.validation</a> &gt; <span class="el_source">ListNotEmptyValidator.java</span></div><h1>ListNotEmptyValidator.java</h1><pre class="source lang-java linenums">package org.dalvarez.shop.core.domain.shared.validation;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
+<span class="fc" id="L7">public final class ListNotEmptyValidator extends NotEmptyValidator {</span>
+
+    private static final String CAUSE_MESSAGE = &quot;list is null or empty&quot;;
+
+<span class="fc" id="L11">    private static final List&lt;FieldValidator&gt; validators = List.of(</span>
+            new NotNullValidator()
+    );
+
+    @Override
+    public void validate(String fieldName, Object fieldValue) throws ValidationNotPassedException {
+<span class="fc bfc" id="L17" title="All 2 branches covered.">        for (FieldValidator validator : validators) {</span>
+<span class="fc" id="L18">            validator.validate(fieldName, fieldValue);</span>
+<span class="fc" id="L19">        }</span>
+
+<span class="fc" id="L21">        List&lt;?&gt; list = mapToList(fieldValue);</span>
+
+<span class="fc bfc" id="L23" title="All 2 branches covered.">        if (list.isEmpty()) {</span>
+<span class="fc" id="L24">            throw new ValidationNotPassedException(fieldName, fieldValue, CAUSE_MESSAGE, this.getClass());</span>
+        }
+<span class="fc" id="L26">    }</span>
+
+    private List&lt;?&gt; mapToList(Object obj) {
+<span class="pc bpc" id="L29" title="1 of 2 branches missed.">        if (isCollection(obj))</span>
+<span class="fc" id="L30">            return new ArrayList&lt;&gt;((Collection&lt;?&gt;) obj);</span>
+
+<span class="nc" id="L32">        throw new IllegalCastingException(obj, Collection.class);</span>
+    }
+
+    private boolean isCollection(Object obj) {
+<span class="fc" id="L36">        return obj instanceof Collection;</span>
+    }
+
+    @Override
+    public String getCause() {
+<span class="fc" id="L41">        return CAUSE_MESSAGE;</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

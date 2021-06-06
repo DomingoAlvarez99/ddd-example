@@ -1,0 +1,32 @@
+# Shared config
+spring:
+    profiles:
+        active: dev
+    jpa:
+        database: postgresql
+        properties:
+            hibernate:
+                jdbc:
+                    lob:
+                        non_contextual_creation: true
+        open-in-view: false
+    datasource:
+        url: jdbc:postgresql://${spring.datasource.host}:${spring.datasource.port}/${spring.datasource.name}
+    database:
+        platform: postgres
+        driverClassname: org.postgresql.Driver
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    output:
+        ansi:
+            enabled: always
+# Doc
+springdoc:
+    swagger-ui:
+        path: /swagger-ui.html
+# App info
+info:
+    app:
+        name: org.dalvarez.shop.shop-core
+        description: Shop core
+        version: 1.0-SNAPSHOT
+        artifactId: shop-core

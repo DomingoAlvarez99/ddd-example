@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: org.dalvarez.shop.core.article.infrastructure.hibernate_persistence.HibernateArticleRepositoryShouldItTestCase
+-------------------------------------------------------------------------------
+Tests run: 9, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.238 s - in org.dalvarez.shop.core.article.infrastructure.hibernate_persistence.HibernateArticleRepositoryShouldItTestCase

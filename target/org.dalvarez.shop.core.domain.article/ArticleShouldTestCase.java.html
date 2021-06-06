@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ArticleShouldTestCase.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">jacoco.exec</a> &gt; <a href="index.source.html" class="el_package">org.dalvarez.shop.core.domain.article</a> &gt; <span class="el_source">ArticleShouldTestCase.java</span></div><h1>ArticleShouldTestCase.java</h1><pre class="source lang-java linenums">package org.dalvarez.shop.core.domain.article;
+
+import org.dalvarez.shop.core.domain.shared.generator.DefaultUuidGenerator;
+import org.dalvarez.shop.core.domain.shared.validation.InvalidObjectException;
+import org.dalvarez.shop.core.domain.util.StringUtils;
+import org.dalvarez.shop.core.shared.TestConfig;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+@TestConfig
+<span class="fc" id="L15">final class ArticleShouldTestCase {</span>
+
+<span class="fc" id="L17">    private static final Long ID = 10L;</span>
+
+<span class="fc" id="L19">    private static final String UUID = new DefaultUuidGenerator().generate();</span>
+
+<span class="fc" id="L21">    private static final Integer STOCK = 100;</span>
+
+<span class="fc" id="L23">    private static final Double PRICE = 2.25;</span>
+
+    private static final String NAME = &quot;Dark souls 3&quot;;
+
+    private static final String DESCRIPTION = &quot;Desc 1&quot;;
+
+    @Test
+    void shouldCreateAnArticle() throws InvalidObjectException {
+<span class="fc" id="L31">        Article article = Article.create(</span>
+                ID,
+                UUID,
+                STOCK,
+                PRICE,
+                NAME,
+                DESCRIPTION
+        );
+
+<span class="fc" id="L40">        assertEquals(ID, article.getId());</span>
+<span class="fc" id="L41">        assertEquals(UUID, article.getUuid());</span>
+<span class="fc" id="L42">        assertEquals(STOCK, article.getStock());</span>
+<span class="fc" id="L43">        assertEquals(PRICE, article.getPrice());</span>
+<span class="fc" id="L44">        assertEquals(NAME, article.getName());</span>
+<span class="fc" id="L45">        assertEquals(DESCRIPTION, article.getDescription());</span>
+<span class="fc" id="L46">    }</span>
+
+
+    @Test
+    void shouldNotCreateAnArticleCause() {
+<span class="fc" id="L51">        InvalidObjectException exception = Assertions.assertThrows(InvalidObjectException.class, () -&gt;</span>
+<span class="pc" id="L52">                Article.create(</span>
+<span class="fc" id="L53">                        0L,</span>
+                        null,
+<span class="fc" id="L55">                        -1,</span>
+<span class="fc" id="L56">                        333333.25,</span>
+                        StringUtils.EMPTY,
+                        null
+                ));
+
+<span class="fc" id="L61">        List&lt;String&gt; errors = InvalidObjectException.asListOfErrors(exception.getMessage());</span>
+
+<span class="fc" id="L63">        List&lt;String&gt; expectedErrors = List.of(</span>
+                &quot;Field &lt;id=0&gt; has not passed the validator &lt;IdValidator&gt; cause the value is out of range &lt;minValue=1.00&gt;, &lt;maxValue=179769313486231570000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000.00&gt;&quot;,
+                &quot;Field &lt;uuid=null&gt; has not passed the validator &lt;NotNullValidator&gt; cause value is null&quot;,
+                &quot;Field &lt;name=&gt; has not passed the validator &lt;GenericNotEmptyValidator&gt; cause value is empty&quot;,
+                &quot;Field &lt;stock=-1&gt; has not passed the validator &lt;InRangeValidator&gt; cause the value is out of range &lt;minValue=1.00&gt;, &lt;maxValue=100.00&gt;&quot;,
+                &quot;Field &lt;description=null&gt; has not passed the validator &lt;NotNullValidator&gt; cause value is null&quot;,
+                &quot;Field &lt;price=333333.25&gt; has not passed the validator &lt;InRangeValidator&gt; cause the value is out of range &lt;minValue=0.00&gt;, &lt;maxValue=1000.00&gt;&quot;
+        );
+
+<span class="fc" id="L72">        Assertions.assertEquals(expectedErrors.size(), errors.size());</span>
+
+<span class="fc" id="L74">        Assertions.assertTrue(errors.containsAll(expectedErrors));</span>
+<span class="fc" id="L75">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

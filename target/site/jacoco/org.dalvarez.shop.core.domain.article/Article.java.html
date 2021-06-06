@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Article.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">shop-core</a> &gt; <a href="index.source.html" class="el_package">org.dalvarez.shop.core.domain.article</a> &gt; <span class="el_source">Article.java</span></div><h1>Article.java</h1><pre class="source lang-java linenums">package org.dalvarez.shop.core.domain.article;
+
+import org.dalvarez.shop.core.domain.shared.validation.FieldValidator;
+import org.dalvarez.shop.core.domain.shared.validation.GenericNotEmptyValidator;
+import org.dalvarez.shop.core.domain.shared.validation.IdValidator;
+import org.dalvarez.shop.core.domain.shared.validation.InRangeValidator;
+import org.dalvarez.shop.core.domain.shared.validation.InvalidObjectException;
+import org.dalvarez.shop.core.domain.shared.validation.UuidValidator;
+import org.dalvarez.shop.core.domain.shared.validation.Validator;
+
+import java.util.Map;
+import java.util.Objects;
+
+public final class Article extends Validator&lt;Article&gt; {
+
+<span class="fc" id="L16">    private static final Integer MIN_STOCK = 1;</span>
+
+<span class="fc" id="L18">    private static final Integer MAX_STOCK = 100;</span>
+
+<span class="fc" id="L20">    private static final Double MIN_PRICE = 0d;</span>
+
+<span class="fc" id="L22">    private static final Double MAX_PRICE = 1000d;</span>
+
+    private final Long id;
+
+    private final String uuid;
+
+    private final Integer stock;
+
+    private final Double price;
+
+    private final String name;
+
+    private final String description;
+
+<span class="fc" id="L36">    private static final Map&lt;String, FieldValidator&gt; fieldValidators = Map.of(</span>
+            &quot;id&quot;, new IdValidator(),
+            &quot;uuid&quot;, new UuidValidator(),
+            &quot;stock&quot;, new InRangeValidator(MIN_STOCK, MAX_STOCK),
+            &quot;price&quot;, new InRangeValidator(MIN_PRICE, MAX_PRICE),
+            &quot;name&quot;, new GenericNotEmptyValidator(),
+            &quot;description&quot;, new GenericNotEmptyValidator()
+    );
+
+    private Article(Long id, String uuid, Integer stock, Double price, String name, String description) throws InvalidObjectException {
+<span class="fc" id="L46">        super(fieldValidators);</span>
+
+<span class="fc" id="L48">        this.id = id;</span>
+<span class="fc" id="L49">        this.uuid = uuid;</span>
+<span class="fc" id="L50">        this.stock = stock;</span>
+<span class="fc" id="L51">        this.price = price;</span>
+<span class="fc" id="L52">        this.name = name;</span>
+<span class="fc" id="L53">        this.description = description;</span>
+
+<span class="fc" id="L55">        validate(this);</span>
+<span class="fc" id="L56">    }</span>
+
+    public static Article create(Long id, String uuid, Integer stock, Double price, String name, String description) throws InvalidObjectException {
+<span class="fc" id="L59">        return new Article(id, uuid, stock, price, name, description);</span>
+    }
+
+    public Long getId() {
+<span class="fc" id="L63">        return id;</span>
+    }
+
+    public String getUuid() {
+<span class="fc" id="L67">        return uuid;</span>
+    }
+
+    public Integer getStock() {
+<span class="fc" id="L71">        return stock;</span>
+    }
+
+    public Double getPrice() {
+<span class="fc" id="L75">        return price;</span>
+    }
+
+    public String getName() {
+<span class="fc" id="L79">        return name;</span>
+    }
+
+    public String getDescription() {
+<span class="fc" id="L83">        return description;</span>
+    }
+
+    @Override
+    public boolean equals(Object o) {
+<span class="nc bnc" id="L88" title="All 2 branches missed.">        if (this == o)</span>
+<span class="nc" id="L89">            return true;</span>
+
+<span class="nc bnc" id="L91" title="All 4 branches missed.">        if (o == null || getClass() != o.getClass())</span>
+<span class="nc" id="L92">            return false;</span>
+
+<span class="nc" id="L94">        Article article = (Article) o;</span>
+
+<span class="nc" id="L96">        return Objects.equals(id, article.id);</span>
+    }
+
+    @Override
+    public int hashCode() {
+<span class="nc" id="L101">        return Objects.hash(id);</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

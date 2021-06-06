@@ -1,0 +1,7 @@
+-------------------------------------------------------------------------------
+Test set: org.dalvarez.shop.core.domain.shared.validation.InRangeBaseValidatorTestCase
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0 s <<< FAILURE! - in org.dalvarez.shop.core.domain.shared.validation.InRangeBaseValidatorTestCase
+shouldNotPassTheValidationCauseIsNull  Time elapsed: 0 s  <<< ERROR!
+org.junit.jupiter.api.extension.ParameterResolutionException: No ParameterResolver registered for parameter [T minValue] in constructor [org.dalvarez.shop.core.domain.shared.validation.InRangeBaseValidatorTestCase(T,T)].
+

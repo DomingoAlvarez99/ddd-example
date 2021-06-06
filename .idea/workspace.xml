@@ -1,0 +1,392 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="a61f6f60-76e5-4404-ac68-82f5a7a7869f" name="Default Changelist" comment="Convert parameters to final">
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ChangesViewManager" show_ignored="true" />
+  <component name="ExportToHTMLSettings">
+    <option name="OUTPUT_DIRECTORY" value="C:\Develop\FullStack\shop\shop-core\target" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="AnnotationType" />
+        <option value="Interface" />
+        <option value="Class" />
+        <option value="Enum" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1pIydnYOeST8ICzD0PYVZ9nYnB0" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="EditorConfig" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/test/java/org/dalvarez/shop/core/article/infrastructure/rest_api/put" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="settings.editor.selected.configurable" value="preferences.sourceCode.Java" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Develop\FullStack\shop\shop-core\src\test\java\org\dalvarez\shop\core\article\infrastructure\rest_api\put" />
+      <recent name="C:\Develop\FullStack\shop\shop-core\src\main\java\org\dalvarez\shop\core\article\infrastructure\rest_api\controller\get\sum\by_stock" />
+      <recent name="C:\Develop\FullStack\shop\shop-core\src\main\java\org\dalvarez\shop\core\article\infrastructure\rest_api\controller\get\sum\by_price" />
+      <recent name="C:\Develop\FullStack\shop\shop-core\src\main\java\org\dalvarez\shop\core\article\application\sum\by_price" />
+      <recent name="C:\Develop\FullStack\shop\shop-core\src\main\java\org\dalvarez\shop\core\article\application\sum" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Develop\FullStack\shop\shop-core\src" />
+      <recent name="C:\Develop\FullStack\shop\shop-core\src\main\java" />
+      <recent name="C:\Develop\FullStack\shop\shop-core" />
+      <recent name="C:\Develop\FullStack\shop\shop-core\src\test\resources" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="org.dalvarez.shop.core.shared.infrastructure.rest_api" />
+      <recent name="org.dalvarez.shop.core.shared.infrastructure" />
+      <recent name="org.dalvarez.shop.core.article.application.create" />
+      <recent name="org.dalvarez.shop.core.article.application" />
+      <recent name="org.dalvarez.shop.core.shared.domain" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="org.dalvarez.shop.core.article.infrastructure.rest_api.delete" />
+      <recent name="org.dalvarez.shop.core.article.infrastructure.rest_api.get.by_criteria" />
+      <recent name="org.dalvarez.shop.core.article.infrastructure.rest_api.get.by_uuid" />
+      <recent name="org.dalvarez.shop.core.article.infrastructure.rest_api.get.by_id" />
+      <recent name="org.dalvarez.shop.core.shared.infrastructure.rest_api" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.Application">
+    <configuration name="Application" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.dalvarez.shop.core.Application" />
+      <module name="shop-core" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.dalvarez.shop.core.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ArticleDeleteByIdControllerShouldItTestCase" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="shop-core" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.dalvarez.shop.core.article.infrastructure.rest_api.delete.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="org.dalvarez.shop.core.article.infrastructure.rest_api.delete" />
+      <option name="MAIN_CLASS_NAME" value="org.dalvarez.shop.core.article.infrastructure.rest_api.delete.ArticleDeleteByIdControllerShouldItTestCase" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ArticleDeleteByIdControllerShouldItTestCase.shouldDeleteById" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="shop-core" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.dalvarez.shop.core.article.infrastructure.rest_api.delete.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="org.dalvarez.shop.core.article.infrastructure.rest_api.delete" />
+      <option name="MAIN_CLASS_NAME" value="org.dalvarez.shop.core.article.infrastructure.rest_api.delete.ArticleDeleteByIdControllerShouldItTestCase" />
+      <option name="METHOD_NAME" value="shouldDeleteById" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ArticleGetByCriteriaControllerShouldItTestCase" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="shop-core" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.dalvarez.shop.core.article.infrastructure.rest_api.get.by_criteria.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="org.dalvarez.shop.core.article.infrastructure.rest_api.get.by_criteria" />
+      <option name="MAIN_CLASS_NAME" value="org.dalvarez.shop.core.article.infrastructure.rest_api.get.by_criteria.ArticleGetByCriteriaControllerShouldItTestCase" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ArticlePutControllerShouldItTestCase" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="shop-core" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.dalvarez.shop.core.article.infrastructure.rest_api.put.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="org.dalvarez.shop.core.article.infrastructure.rest_api.put" />
+      <option name="MAIN_CLASS_NAME" value="org.dalvarez.shop.core.article.infrastructure.rest_api.put.ArticlePutControllerShouldItTestCase" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="shop-core [test]" type="MavenRunConfiguration" factoryName="Maven" nameIsGenerated="true">
+      <MavenSettings>
+        <option name="myGeneralSettings" />
+        <option name="myRunnerSettings" />
+        <option name="myRunnerParameters">
+          <MavenRunnerParameters>
+            <option name="profiles">
+              <set />
+            </option>
+            <option name="goals">
+              <list>
+                <option value="test" />
+              </list>
+            </option>
+            <option name="pomFileName" />
+            <option name="profilesMap">
+              <map />
+            </option>
+            <option name="resolveToWorkspace" value="false" />
+            <option name="workingDirPath" value="$PROJECT_DIR$" />
+          </MavenRunnerParameters>
+        </option>
+      </MavenSettings>
+      <method v="2" />
+    </configuration>
+    <configuration name="Db" type="docker-deploy" factoryName="docker-compose.yml" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="services">
+            <list>
+              <option value="postgres" />
+            </list>
+          </option>
+          <option name="sourceFilePath" value="docker-compose.yml" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Application.Application" />
+      <item itemvalue="Docker.Db" />
+      <item itemvalue="JUnit.ArticleGetByCriteriaControllerShouldItTestCase" />
+      <item itemvalue="JUnit.ArticleDeleteByIdControllerShouldItTestCase" />
+      <item itemvalue="JUnit.ArticleDeleteByIdControllerShouldItTestCase.shouldDeleteById" />
+      <item itemvalue="JUnit.ArticlePutControllerShouldItTestCase" />
+      <item itemvalue="Maven.shop-core [test]" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Application" />
+        <item itemvalue="JUnit.ArticlePutControllerShouldItTestCase" />
+        <item itemvalue="JUnit.ArticleDeleteByIdControllerShouldItTestCase.shouldDeleteById" />
+        <item itemvalue="JUnit.ArticleDeleteByIdControllerShouldItTestCase" />
+        <item itemvalue="JUnit.ArticleGetByCriteriaControllerShouldItTestCase" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="a61f6f60-76e5-4404-ac68-82f5a7a7869f" name="Default Changelist" comment="" />
+      <created>1614884990802</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1614884990802</updated>
+    </task>
+    <task id="LOCAL-00001" summary="Move class">
+      <created>1622710567586</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1622710567586</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Upgrade tests">
+      <created>1622715572204</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1622715572204</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Upgrade persistence and seeder, and add api tests">
+      <created>1622738115447</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1622738115447</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Add domain events">
+      <created>1622826002465</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1622826002465</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Update">
+      <created>1622829297360</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1622829297360</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Move api exception handler and update readme">
+      <created>1622840878005</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1622840878005</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Update readme">
+      <created>1622840949266</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1622840949266</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Update readme">
+      <created>1622841105686</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1622841105686</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Update readme">
+      <created>1622841282886</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1622841282886</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Update readme">
+      <created>1622841317385</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1622841317385</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Update readme and rename persitence package">
+      <created>1622843293471</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1622843293471</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Add code styles and format code">
+      <created>1622855164681</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1622855164681</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Update readme">
+      <created>1622855409920</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1622855409920</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Add domain events tests in the application module and update readme">
+      <created>1622885364673</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1622885364673</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Upgrade tests and add delete by criteria">
+      <created>1622910221799</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1622910221799</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Update readme">
+      <created>1622910284318</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1622910284318</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Add rest api tests">
+      <created>1622918794711</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1622918794711</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Upgrade put test and exception handler">
+      <created>1622937033176</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1622937033176</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Convert parameters to final">
+      <created>1622937206419</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1622937206419</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Move class" />
+    <MESSAGE value="Upgrade tests" />
+    <MESSAGE value="Upgrade persistence and seeder, and add api tests" />
+    <MESSAGE value="Add domain events" />
+    <MESSAGE value="Update" />
+    <MESSAGE value="Move api exception handler and update readme" />
+    <MESSAGE value="Update readme and rename persitence package" />
+    <MESSAGE value="Add code styles and format code" />
+    <MESSAGE value="Add domain events tests in the application module and update readme" />
+    <MESSAGE value="Upgrade tests and add delete by criteria" />
+    <MESSAGE value="Update readme" />
+    <MESSAGE value="Add rest api tests" />
+    <MESSAGE value="Upgrade put test and exception handler" />
+    <MESSAGE value="Convert parameters to final" />
+    <option name="LAST_COMMIT_MESSAGE" value="Convert parameters to final" />
+    <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
+    <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="../../../../../../Program Files/JetBrains/IntelliJ IDEA Community Edition 2020.3/jbr/bin/../../../../../../Program Files/JetBrains/IntelliJ IDEA Community Edition 2020.3/jbr/bin/../../../../../../Program Files/JetBrains/IntelliJ IDEA Community Edition 2020.3/jbr/bin/../../../../../../Program Files/JetBrains/IntelliJ IDEA Community Edition 2020.3/jbr/bin/../../../../../../Program Files/JetBrains/IntelliJ IDEA Community Edition 2020.3/jbr/bin/../../../../../../Program Files/JetBrains/IntelliJ IDEA Community Edition 2020.3/jbr/bin/../../../../../../Program Files/JetBrains/IntelliJ IDEA Community Edition 2020.3/jbr/bin/../../../../../../Program Files/JetBrains/IntelliJ IDEA Community Edition 2020.3/jbr/bin/../../../../../../Program Files/JetBrains/IntelliJ IDEA Community Edition 2020.3/jbr/bin/../../../../../../Program Files/JetBrains/IntelliJ IDEA Community Edition 2020.3/jbr/bin/../../../../../../Program Files/JetBrains/IntelliJ IDEA Community Edition 2020.3/jbr/bin/../../../../../../Program Files/JetBrains/IntelliJ IDEA Community Edition 2020.3/jbr/bin/../../../../../../Program Files/JetBrains/IntelliJ IDEA Community Edition 2020.3/jbr/bin/../../../../../../Program Files/JetBrains/IntelliJ IDEA Community Edition 2020.3/jbr/bin/../../../../../../Program Files/JetBrains/IntelliJ IDEA Community Edition 2020.3/jbr/bin/../../../../../../Program Files/JetBrains/IntelliJ IDEA Community Edition 2020.3/jbr/bin/../../../../../../Program Files/JetBrains/IntelliJ IDEA Community Edition 2020.3/jbr/bin/../../../../../../Program Files/JetBrains/IntelliJ IDEA Community Edition 2020.3/jbr/bin/../../../../../../Program Files/JetBrains/IntelliJ IDEA Community Edition 2020.3/jbr/bin/../../../../../../Program Files/JetBrains/IntelliJ IDEA Community Edition 2020.3/jbr/bin/../../../../../../Program Files/JetBrains/IntelliJ IDEA Community Edition 2020.3/jbr/bin/../../../../../../Program Files/JetBrains/IntelliJ IDEA Community Edition 2020.3/jbr/bin/../../../../../../Program Files/JetBrains/IntelliJ IDEA Community Edition 2020.3/jbr/bin/../../../../../../Program Files/JetBrains/IntelliJ IDEA Community Edition 2020.3/jbr/bin/../../../../../../Program Files/JetBrains/IntelliJ IDEA Community Edition 2020.3/jbr/bin/../../../../../../Develop/FullStack/shop/shop-core/target/jacoco.exec" NAME="jacoco.exec" MODIFIED="1621072198124" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="jacoco" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+  </component>
+</project>

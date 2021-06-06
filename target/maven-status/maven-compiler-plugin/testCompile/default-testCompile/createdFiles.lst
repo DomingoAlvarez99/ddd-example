@@ -1,0 +1,12 @@
+org\dalvarez\shop\core\shared\domain\validation\BaseValidatorTestCase.class
+org\dalvarez\shop\core\shared\domain\generator\DefaultUuidGeneratorShouldTestCase.class
+org\dalvarez\shop\core\article\application\find\by_id\ArticleByIdFinderShouldTestCase.class
+org\dalvarez\shop\core\shared\domain\validation\ListNotEmptyValidatorShouldTestCase.class
+org\dalvarez\shop\core\shared\ContextTestCase.class
+org\dalvarez\shop\core\shared\domain\validation\IdValidatorShouldTestCase.class
+org\dalvarez\shop\core\shared\TestConfig.class
+org\dalvarez\shop\core\shared\domain\validation\InRangeValidatorShouldTestCase.class
+org\dalvarez\shop\core\shared\domain\validation\UuidValidatorShouldTestCase.class
+org\dalvarez\shop\core\shared\domain\generator\UuidGeneratorConfigurationTestCase.class
+org\dalvarez\shop\core\shared\domain\validation\InRangeBaseValidatorTestCase.class
+org\dalvarez\shop\core\article\application\find\by_uuid\ArticleByUuidFinderShouldTestCase.class

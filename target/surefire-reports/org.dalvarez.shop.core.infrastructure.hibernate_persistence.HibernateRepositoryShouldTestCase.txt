@@ -1,0 +1,8 @@
+-------------------------------------------------------------------------------
+Test set: org.dalvarez.shop.core.infrastructure.hibernate_persistence.HibernateRepositoryShouldTestCase
+-------------------------------------------------------------------------------
+Tests run: 2, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.019 s <<< FAILURE! - in org.dalvarez.shop.core.infrastructure.hibernate_persistence.HibernateRepositoryShouldTestCase
+shouldGetFirst2  Time elapsed: 0.002 s  <<< ERROR!
+java.lang.NoSuchMethodError: 'org.dalvarez.shop.core.domain.shared.criteria.Criteria$Builder org.dalvarez.shop.core.domain.shared.criteria.Criteria$Builder.withLimit(java.lang.Long)'
+	at org.dalvarez.shop.core.infrastructure.hibernate_persistence.HibernateRepositoryShouldTestCase.shouldGetFirst2(HibernateRepositoryShouldTestCase.java:46)
+
