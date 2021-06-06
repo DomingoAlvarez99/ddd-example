@@ -5,7 +5,6 @@ _**Este repositorio se está desarrollando**_
 # Tabla de contenidos
 
 - [Arquitectura](#Arquitectura)
-
    - [Diagrama](#Diagrama)
    - [Módulos](#Módulos)
    - [Capa de Dominio](#Capa-de-Dominio)
@@ -33,7 +32,8 @@ _**Este repositorio se está desarrollando**_
       - [Hacer que la aplicación sea fácil de configurar](#Hacer-que-la-aplicación-sea-fácil-de-configurar)
       - [Evitar cadenas de herencia masivas](#Evitar-cadenas-de-herencia-masivas)
       - [Criteria](#Criteria)
-
+- [Configuración](#Configuración)
+- [Ejecución](#Ejecución)
 # Arquitectura
 
 Principalmente basada en:
@@ -223,7 +223,7 @@ Las pruebas de software ayudan a detectar errores. Un producto probado correctam
 - Deben de usar bases de datos embebidas. Por ejemplo, [h2](https://www.h2database.com/html/main.html).
 - Deben de aislarse.
 - Deben de automatizarse.
-- La [cobertura de código](https://dzone.com/articles/unit-testing-best-practices-how-to-get-the-most-ou) es una medida de la cantidad de código cubierto por pruebas automatizadas. Puede llegar a ser últil, aunque un código con una alta cobertura no tiene por qué funcionar correctamente.
+- La [cobertura de código](https://dzone.com/articles/unit-testing-best-practices-how-to-get-the-most-ou) es una medida de la cantidad de código cubierto por pruebas automatizadas. Estas métricas se pueden generar con librerías como (JaCoCo)[https://www.eclemma.org/jacoco/] y se pueden visualizar con herramientas como (SonarQube)[https://www.sonarqube.org/]. Hay que tener en cuenta que aunque un código tenga una alta cobertura no tiene por qué funcionar correctamente.
 - Los [mocks](https://en.wikipedia.org/wiki/Mock_object) hacen que las pruebas sean independientes y más rápidas.
 
 ### Configuración
@@ -283,28 +283,32 @@ Criteria es un patrón de diseño que permite filtrar, ordenar y paginar un conj
 
 Paquete de ejemplo: [criteria](src/main/java/org/dalvarez/shop/core/shared/domain/criteria)
 
-<!--
-### Tecnologías necesarias
-`Java` `Maven`
+# Configuración
 
-### :gear: Instalación del proyecto
-1. Clonar el repositorio en tu equipo:
-```sh
-> cd <folder path>
-> git clone https://github.com/DomingoAlvarez99/shop
-```
-2. Importar el proyecto mediante **IntelliJ IDEA**
-   1. **Import Project**, y seleccionar la carpeta del proyecto.
-   1. Marcar **Create Project from external model**, elegir **Maven**.  
+Ficheros:
 
-### :rocket: Ejecución
-1. Desplegar el proyecto localmente: `> mvn clean install`
-2. Arrancar el proyecto: `> mvn spring-boot:run`
+- [postgres](src/main/resources/postgres) Lanzar las sentencias para crear las bases de datos, usuarios, tablas..
+- [.env](.env) Editar las variables de entorno declaradas.
+- [pom.xml](pom.xml) Editar las propiedades del perfil de sonar(Antes de esto hay que crear un proyecto en sonar).
 
-### :heavy_check_mark: Testing
-1. Ejecutar tests unitarios: `> mvn test`
-2. Ejecutar tests IT: `> mvn failsafe:integration-test`
-3. Perfil para omitir tests: `>-Pno-tests`
-4. Generar coverage: `mvn verify`
+# Ejecución
 
--->
+- Arrancar la base de datos: `> docker-compose up -d postgres`
+- Arrancar la aplicación en un un contenedor: `> docker-compose up -d spring`
+- Arrancar el proyecto en local: 
+   - `> mvn clean install`
+   - `> mvn spring-boot:run`
+
+## Testing
+
+- Ejecutar tests: `> mvn test`
+- Generar métricas: `> mvn verify`
+- Enviar las métricas a SonarQube: 
+   - `> mvn sonar:sonar` (Las propiedades se deben de haber añadido previamente en el perfil de sonar del [pom.xml](pom.xml))
+   - ```bash
+     mvn sonar:sonar \
+             -Dsonar.projectKey=${KEY} \
+             -Dsonar.host.url=${HOST} \
+             -Dsonar.login=${TOKEN}
+     ```
+- Realizar las 2 cosas: `> mvn verify sonar:sonar`
