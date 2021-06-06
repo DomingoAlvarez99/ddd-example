@@ -1,9 +1,5 @@
 version: '3.7'
 
-volumes:
-  postgres_data:
-    driver: local
-
 services:
   spring:
     build: .
@@ -22,10 +18,46 @@ services:
     container_name: ${POSTGRES_CONTAINER_NAME}
     ports:
       - ${POSTGRES_EXTERNAL_PORT}:5432
+    networks:
+      - sonarnet
     environment:
       POSTGRES_DB: ${POSTGRES_DB}
       POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     volumes:
-      - ${POSTGRES_DATA}
+      - postgres_data:${POSTGRES_DATA}
     restart: unless-stopped
+  sonarqube:
+      image: sonarqube:8.2-community
+      container_name: ${SONARQUBE_CONTAINER_NAME}
+      ports:
+        - ${SONARQUBE_EXTERNAL_PORT}:9000
+      networks:
+        - sonarnet
+      environment:
+        SONARQUBE_JDBC_URL: jdbc:postgresql://postgres:5432/${SONARQUBE_DB}
+        SONARQUBE_JDBC_USERNAME: ${SONARQUBE_USER}
+        SONARQUBE_JDBC_PASSWORD: ${SONARQUBE_PASSWORD}
+      volumes:
+        - sonarqube_conf:${SONARQUBE_CONF}
+        - sonarqube_data:${SONARQUBE_DATA}
+        - sonarqube_extensions:${SONARQUBE_EXTENSIONS}
+        - sonarqube_plugins:${SONARQUBE_PLUGINS}
+      restart: unless-stopped
+      depends_on:
+        - postgres
+
+networks:
+  sonarnet:
+
+volumes:
+  postgres_data:
+    driver: local
+  sonarqube_conf:
+    driver: local
+  sonarqube_data:
+    driver: local
+  sonarqube_extensions:
+    driver: local
+  sonarqube_plugins:
+    driver: local

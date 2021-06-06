@@ -24,8 +24,11 @@
         <jacoco.version>0.8.5</jacoco.version>
         <!-- Swagger -->
         <open-api.version>1.5.9</open-api.version>
-        <!-- Reflections -->
-        <reflections.version>0.9.12</reflections.version>
+        <!-- Sonarqube -->
+        <sonarqube.version>3.2</sonarqube.version>
+        <sonarqube.projectKey>shop-core-key</sonarqube.projectKey>
+        <sonarqube.host.url>http://localhost:9000</sonarqube.host.url>
+        <sonarqube.login>ce5b1e3f8e952772b05f77bb39e48dc763bd672b</sonarqube.login>
     </properties>
 
     <dependencies>
@@ -68,11 +71,11 @@
             <version>${open-api.version}</version>
         </dependency>
 
-        <!-- Reflections -->
+        <!-- Sonarqube -->
         <dependency>
-            <groupId>org.reflections</groupId>
-            <artifactId>reflections</artifactId>
-            <version>${reflections.version}</version>
+            <groupId>org.sonarsource.scanner.maven</groupId>
+            <artifactId>sonar-maven-plugin</artifactId>
+            <version>${sonarqube.version}</version>
         </dependency>
 
         <!-- Spring test -->
@@ -120,5 +123,19 @@
             </plugin>
         </plugins>
     </build>
+
+    <profiles>
+        <profile>
+            <id>sonar</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <sonar.projectKey>${sonarqube.projectKey}</sonar.projectKey>
+                <sonar.host.url>${sonarqube.host.url}</sonar.host.url>
+                <sonar.login>${sonarqube.login}</sonar.login>
+            </properties>
+        </profile>
+    </profiles>
 
 </project>

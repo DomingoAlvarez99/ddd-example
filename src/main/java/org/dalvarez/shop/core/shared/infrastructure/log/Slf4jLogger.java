@@ -5,7 +5,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.InjectionPoint;
 import org.springframework.core.MethodParameter;
 
-import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.Optional;
 
@@ -14,15 +13,14 @@ public final class Slf4jLogger implements Logger {
     private final org.slf4j.Logger logger;
 
     public Slf4jLogger(final InjectionPoint ip) {
-        this.logger = LoggerFactory.getLogger(
-                Optional.ofNullable(getMethodOrElseNull(ip.getMethodParameter()))
-                        .<Class<?>>map(Method::getReturnType)
-                        .orElseGet(() ->
-                                           Optional.ofNullable(ip.getMethodParameter())
-                                                   .map(MethodParameter::getDeclaringClass)
-                                                   .orElseThrow(IllegalArgumentException::new)
-                        )
-        );
+        this.logger = LoggerFactory.getLogger(getClassName(ip));
+    }
+
+    private String getClassName(final InjectionPoint ip) {
+        return Optional.ofNullable(getMethodOrElseNull(ip.getMethodParameter()))
+                       .map(m -> m.getReturnType()
+                                  .getName())
+                       .orElseGet(() -> getMethodParameterDeclaredClass(ip));
     }
 
     private Method getMethodOrElseNull(final MethodParameter methodParameter) {
@@ -31,6 +29,20 @@ public final class Slf4jLogger implements Logger {
         } catch (Exception e) {
             return null;
         }
+    }
+
+    private String getMethodParameterDeclaredClass(final InjectionPoint ip) {
+        return Optional.ofNullable(ip.getMethodParameter())
+                       .map(mp -> mp.getDeclaringClass()
+                                    .getName())
+                       .orElseGet(() -> getFieldParameterDeclaredClass(ip));
+    }
+
+    private String getFieldParameterDeclaredClass(final InjectionPoint ip) {
+        return Optional.ofNullable(ip.getField())
+                       .map(f -> f.getDeclaringClass()
+                                  .getName())
+                       .orElseThrow(IllegalArgumentException::new);
     }
 
     @Override
