@@ -47,4 +47,6 @@ public abstract class DomainEvent<T> {
         return Objects.hash(value);
     }
 
+
+
 }

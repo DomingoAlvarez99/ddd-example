@@ -1,6 +1,7 @@
 package org.dalvarez.shop.core.shared.infrastructure.rest_api.exception_handler;
 
 import org.dalvarez.shop.core.shared.domain.exception.BadRequestException;
+import org.dalvarez.shop.core.shared.domain.exception.NonUniqueResultException;
 import org.dalvarez.shop.core.shared.domain.log.Logger;
 import org.dalvarez.shop.core.shared.infrastructure.hibernate_persistence.ConflictException;
 import org.dalvarez.shop.core.shared.infrastructure.hibernate_persistence.NotFoundException;
@@ -46,7 +47,8 @@ public class ApiExceptionHandler {
 
     @ExceptionHandler({
             ConflictException.class,
-            PersistenceException.class
+            PersistenceException.class,
+            NonUniqueResultException.class
     })
     @ResponseStatus(HttpStatus.CONFLICT)
     public ResponseEntity<ErrorResponse> handleConflictException(final Exception ex) {

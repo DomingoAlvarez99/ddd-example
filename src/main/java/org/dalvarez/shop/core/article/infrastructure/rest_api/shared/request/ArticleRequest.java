@@ -78,11 +78,11 @@ public abstract class ArticleRequest extends Validator<ArticleRequest> {
         );
     }
 
-    public Long getId() {
+    protected Long getId() {
         return id;
     }
 
-    public String getUuid() {
+    protected String getUuid() {
         return uuid;
     }
 

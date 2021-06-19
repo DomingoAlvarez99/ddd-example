@@ -287,16 +287,22 @@ Paquete de ejemplo: [criteria](src/main/java/org/dalvarez/shop/core/shared/domai
 
 # Configuración
 
-Ficheros:
+- [db](src/main/resources/postgres) Lanzar las sentencias para crear las bases de datos, usuarios, tablas..
 
-- [postgres](src/main/resources/postgres) Lanzar las sentencias para crear las bases de datos, usuarios, tablas..
-- [.env](.env) Editar las variables de entorno declaradas.
-- [pom.xml](pom.xml) Editar las propiedades del perfil de sonar(Antes de esto hay que crear un proyecto en sonar).
+## Sonarqube
+
+- Crear proyecto en sonarqube.
+  1. Iniciar sesión
+        - Username: admin
+        - Password: admin
+  2. [Crear proyecto](http://localhost:9000/projects/create) 
+- [pom.xml](pom.xml) Editar las propiedades del perfil de sonar.
 
 # Ejecución
 
 - Arrancar la base de datos: `> docker-compose up -d postgres`
-- Arrancar la aplicación en un un contenedor: `> docker-compose up -d spring`
+- Arrancar sonarqube: `> docker-compose up -d sonarqube`
+- Arrancar la aplicación en un contenedor: `> docker-compose up -d spring`
 - Arrancar el proyecto en local: 
    - `> mvn clean install`
    - `> mvn spring-boot:run`
@@ -314,3 +320,9 @@ Ficheros:
              -Dsonar.login=${TOKEN}
      ```
 - Realizar las 2 cosas: `> mvn verify sonar:sonar`
+
+
+# Urls
+- [Api](http://localhost:8080/api/v0)
+- [Api doc](http://localhost:8080/api/v0/swagger-ui.html)
+- [Sonar](http://http://localhost:9000/projects)

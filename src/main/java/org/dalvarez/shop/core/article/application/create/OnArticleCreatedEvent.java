@@ -15,7 +15,7 @@ public final class OnArticleCreatedEvent {
     @EventListener
     public void on(final ArticleCreatedDomainEvent event) {
         log.info(
-                "Event: {}, id: {}, on {}",
+                "Event <name={}>, <id={}>, <date={}>",
                 event.eventName(),
                 event.getValue()
                      .getId(),

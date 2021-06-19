@@ -3,7 +3,7 @@ create role shop_admin login password 'admin';
 create database shop_core;
 grant create on database shop_core TO shop_admin;
 
-\c sonarqube
+--\c shop_core
 
 create schema shop;
 

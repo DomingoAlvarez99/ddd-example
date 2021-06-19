@@ -54,7 +54,7 @@ public abstract class HibernateRepository<T> {
     }
 
     protected T findById(final Long id) {
-        return findFirstBy(
+        return findOneBy(
                 FieldNames.ID,
                 id,
                 NotFoundException.getIdMessage(aggregateClass, id)
@@ -62,23 +62,23 @@ public abstract class HibernateRepository<T> {
     }
 
     protected T findByUuid(final String uuid) {
-        return findFirstBy(
+        return findOneBy(
                 FieldNames.UUID,
                 uuid,
                 NotFoundException.getUuidMessage(aggregateClass, uuid)
         );
     }
 
-    protected <V> T findFirstBy(final String field,
+    protected <V> T findOneBy(final String field,
                                 final V value) {
-        return findFirstBy(
+        return findOneBy(
                 field,
                 value,
                 NotFoundException.getDefaultMessage(aggregateClass)
         );
     }
 
-    protected <V> T findFirstBy(final String field,
+    protected <V> T findOneBy(final String field,
                                 final V value,
                                 final String errorMessage) {
         return findByCriteria(
@@ -87,8 +87,7 @@ public abstract class HibernateRepository<T> {
                         .build(),
                 errorMessage
         )
-                .getResult()
-                .get(0);
+                .getSingleResult();
     }
 
     protected void removeById(final Long id) {

@@ -10,17 +10,14 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class OpenApiConfig {
 
-    @Value("${info.app.name}")
+    @Value("${app.name}")
     private String appName;
 
-    @Value("${info.app.description}")
+    @Value("${app.description}")
     private String appDescription;
 
-    @Value("${info.app.version}")
+    @Value("${app.version}")
     private String appVersion;
-
-    @Value("${info.app.artifactId}")
-    private String appArtifactId;
 
     @Bean
     public OpenAPI customOpenAPI() {

@@ -1,5 +1,8 @@
 package org.dalvarez.shop.core.shared.domain.query_result;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.dalvarez.shop.core.shared.domain.exception.NonUniqueResultException;
+
 import java.util.Collections;
 import java.util.List;
 
@@ -42,6 +45,14 @@ public final class QueryResult<T> {
 
     public List<T> getResult() {
         return result;
+    }
+
+    @JsonIgnore
+    public T getSingleResult() {
+        if (result.size() > 1)
+            throw new NonUniqueResultException();
+
+        return result.get(0);
     }
 
 }

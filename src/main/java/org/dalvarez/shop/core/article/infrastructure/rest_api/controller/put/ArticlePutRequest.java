@@ -40,4 +40,12 @@ public class ArticlePutRequest extends ArticleRequest {
         );
     }
 
+    public Long getId() {
+        return super.getId();
+    }
+
+    public String getUuid() {
+        return super.getUuid();
+    }
+
 }

@@ -3,6 +3,8 @@ create role sonarqube_admin login password 'admin';
 create database sonarqube;
 grant create on database sonarqube TO sonarqube_admin;
 
+--\c sonarqube
+
 create schema sonar;
 alter schema sonar owner to sonarqube_admin;
 
