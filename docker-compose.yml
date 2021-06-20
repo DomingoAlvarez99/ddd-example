@@ -13,19 +13,21 @@ services:
     restart: unless-stopped
     depends_on: 
       - postgres
+      - elasticsearch
+      - sonarqube
   postgres:
-    build: ./postgres
+    image: postgres:13.3
     container_name: ${POSTGRES_CONTAINER_NAME}
-    ports:
-      - ${POSTGRES_EXTERNAL_PORT}:5432
-    networks:
-      - sonarnet
     environment:
       POSTGRES_DB: ${POSTGRES_DB}
       POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    ports:
+      - ${POSTGRES_EXTERNAL_PORT}:${POSTGRES_INTERNAL_PORT}
+    networks:
+      - sonarnet
     volumes:
-      - postgres_data:${POSTGRES_DATA}
+      - ${POSTGRES_DATA}:/var/lib/postgresql/data
     restart: unless-stopped
   sonarqube:
       image: sonarqube:8.2-community
@@ -35,7 +37,7 @@ services:
       networks:
         - sonarnet
       environment:
-        SONARQUBE_JDBC_URL: jdbc:postgresql://postgres:5432/${SONARQUBE_DB}
+        SONARQUBE_JDBC_URL: jdbc:postgresql://postgres:${POSTGRES_INTERNAL_PORT}/${SONARQUBE_DB}
         SONARQUBE_JDBC_USERNAME: ${SONARQUBE_USER}
         SONARQUBE_JDBC_PASSWORD: ${SONARQUBE_PASSWORD}
       volumes:
@@ -46,9 +48,50 @@ services:
       restart: unless-stopped
       depends_on:
         - postgres
+  elasticsearch:
+    image: elasticsearch:7.10.1
+    container_name: ${ELASTICSEARCH_CONTAINER_NAME}
+    environment:
+      - discovery.type=single-node
+    volumes:
+      - elasticsearch_data:${ELASTICSEARCH_DATA}
+    restart: unless-stopped
+    ports:
+      - ${ELASTICSEARCH_EXTERNAL_PORT}:${ELASTICSEARCH_INTERNAL_PORT}
+    networks:
+      - elknet
+  logstash:
+    image: logstash:7.10.1
+    container_name: ${LOGSTASH_CONTAINER_NAME}
+    volumes:
+      - ${LOGSTASH_DATA}:/etc/logstash/conf.d/logstash.conf
+    command: 'logstash -f /etc/logstash/conf.d/logstash.conf --config.reload.automatic'
+    ports:
+      - ${LOGSTASH_EXTERNAL_PORT}:5000
+      - 5044:5044
+      - 9600:9600
+    networks:
+      - elknet
+    restart: unless-stopped
+    depends_on:
+      - elasticsearch
+  kibana:
+    image: kibana:7.10.1
+    container_name: ${KIBANA_CONTAINER_NAME}
+    environment:
+      - 'ELASTICSEARCH_URL:${ELASTICSEARCH_DOCKER_URL}:${ELASTICSEARCH_INTERNAL_PORT}'
+    ports:
+      - ${KIBANA_EXTERNAL_PORT}:5601
+    networks:
+      - elknet
+    depends_on:
+      - elasticsearch
+      - logstash
+    restart: unless-stopped
 
 networks:
   sonarnet:
+  elknet:
 
 volumes:
   postgres_data:
@@ -60,4 +103,6 @@ volumes:
   sonarqube_extensions:
     driver: local
   sonarqube_plugins:
+    driver: local
+  elasticsearch_data:
     driver: local

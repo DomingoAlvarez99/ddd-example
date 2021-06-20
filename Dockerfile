@@ -1,9 +1,11 @@
-FROM maven:3.6.3-ibmjava-8-alpine as builder
+FROM maven:3.6.3-adoptopenjdk-11 as builder
 
 WORKDIR /app
 COPY pom.xml .
 RUN mvn -e -B dependency:resolve
 COPY src ./src
+
+RUN mvn verify sonar:sonar
 RUN mvn package -DskipTests
 
 FROM tomcat:9.0.10-jre8-alpine

@@ -23,3 +23,7 @@ app:
     description: @project.description@
     version: @project.version@
     artifactId: @project.artifactId@
+# Logging
+logstash:
+    host: localhost
+    port: 5000

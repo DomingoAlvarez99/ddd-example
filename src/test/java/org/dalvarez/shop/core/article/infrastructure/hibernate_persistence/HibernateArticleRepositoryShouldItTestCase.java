@@ -149,35 +149,6 @@ public final class HibernateArticleRepositoryShouldItTestCase extends Seeder<Art
     }
 
     @Test
-    void shouldGetFirst2() {
-        final Criteria criteria = Criteria.builder()
-                                          .withPage(new Page(0L, 2L))
-                                          .build();
-
-        final QueryResult<Article> queryResult = articleRepository.getByCriteria(criteria);
-
-        final List<Article> actualArticles = queryResult.getResult();
-
-        final int expectedSize = 2;
-
-        assertEquals(expectedSize, actualArticles.size());
-
-        final long expectedFirstId = 1L;
-
-        assertEquals(expectedFirstId, queryResult.getResult()
-                                                 .get(0)
-                                                 .getId()
-        );
-
-        final long expectedSecondId = 2L;
-
-        assertEquals(expectedSecondId, queryResult.getResult()
-                                                  .get(1)
-                                                  .getId()
-        );
-    }
-
-    @Test
     void shouldGetByCriteriaOrderedByNameDesc() {
         final Article expected = data.get(3);
 

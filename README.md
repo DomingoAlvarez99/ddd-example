@@ -34,6 +34,9 @@ _**Este repositorio se está desarrollando**_
       - [Criteria](#Criteria)
 - [Configuración](#Configuración)
 - [Ejecución](#Ejecución)
+- [Testing](#Testing)
+- [Urls](#Urls)
+
 # Arquitectura
 
 Principalmente basada en:
@@ -298,16 +301,22 @@ Paquete de ejemplo: [criteria](src/main/java/org/dalvarez/shop/core/shared/domai
   2. [Crear proyecto](http://localhost:9000/projects/create) 
 - [pom.xml](pom.xml) Editar las propiedades del perfil de sonar.
 
+## Kibana
+
+- Añadir el índice declarado en [logstash.conf](logstash/logstash.conf) en la [configuración de kibana](http://localhost:5601/app/logs/settings).
+  ![Index](src/main/resources/static/kibana_idx.png)
+
 # Ejecución
 
 - Arrancar la base de datos: `> docker-compose up -d postgres`
 - Arrancar sonarqube: `> docker-compose up -d sonarqube`
+- Arrancar elk: `> docker-compose up -d elasticsearch logstash kibana`
 - Arrancar la aplicación en un contenedor: `> docker-compose up -d spring`
 - Arrancar el proyecto en local: 
    - `> mvn clean install`
    - `> mvn spring-boot:run`
 
-## Testing
+# Testing
 
 - Ejecutar tests: `> mvn test`
 - Generar métricas: `> mvn verify`
@@ -325,4 +334,5 @@ Paquete de ejemplo: [criteria](src/main/java/org/dalvarez/shop/core/shared/domai
 # Urls
 - [Api](http://localhost:8080/api/v0)
 - [Api doc](http://localhost:8080/api/v0/swagger-ui.html)
-- [Sonar](http://http://localhost:9000/projects)
+- [Sonar](http://localhost:9000/projects)
+- [Kibana](http://localhost:5601/)
