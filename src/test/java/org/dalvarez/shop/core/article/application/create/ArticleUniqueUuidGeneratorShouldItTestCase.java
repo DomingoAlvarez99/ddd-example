@@ -5,7 +5,7 @@ import org.dalvarez.shop.core.shared.ContextTestCase;
 import org.dalvarez.shop.core.shared.application.GeneratorUniqueUuid;
 import org.dalvarez.shop.core.shared.domain.generator.UuidGenerator;
 import org.dalvarez.shop.core.shared.domain.log.Logger;
-import org.dalvarez.shop.core.shared.infrastructure.hibernate_persistence.NotFoundException;
+import org.dalvarez.shop.core.shared.infrastructure.hibernate_persistence.exception.NotFoundException;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 

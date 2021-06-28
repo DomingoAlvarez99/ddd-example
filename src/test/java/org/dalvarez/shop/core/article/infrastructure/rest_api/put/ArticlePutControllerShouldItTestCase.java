@@ -35,7 +35,6 @@ final class ArticlePutControllerShouldItTestCase extends ArticleInfrastructureRe
         final Article article = data.get(1);
 
         final ArticlePutRequest request = new ArticlePutRequest(
-                article.getUuid(),
                 STOCK,
                 PRICE,
                 NAME,
@@ -46,14 +45,16 @@ final class ArticlePutControllerShouldItTestCase extends ArticleInfrastructureRe
 
         final ArticleResponse actual = shouldGetById(expected.getId(), ArticleResponse.class);
 
-        assertEquals(expected, actual);
+        assertEquals(expected.getId(), actual.getId());
+        assertEquals(expected.getDescription(), actual.getDescription());
+        assertEquals(expected.getStock(), actual.getStock());
+        assertEquals(expected.getPrice(), actual.getPrice());
+        assertEquals(expected.getName(), actual.getName());
     }
 
     @Test
     void shouldNotPutAnArticleCauseNotExist() throws Exception {
         final ArticlePutRequest request = new ArticlePutRequest(
-                ArticleMother.random()
-                             .getUuid(),
                 STOCK,
                 PRICE,
                 NAME,
@@ -62,24 +63,22 @@ final class ArticlePutControllerShouldItTestCase extends ArticleInfrastructureRe
 
         final Long id = 100000L;
 
-        shouldNotPutCauseNoExist(request, id);
+        shouldNotPutCauseNotExist(request, id);
     }
 
 
     @Test
-    void shouldNotPutAnArticleCauseAlreadyExist() throws Exception {
-        final Article article = data.get(1);
-        final Article other = data.get(2);
-
+    void shouldNotUpdateAnUuidCauseIsNotUpdatable() throws Exception {
         final ArticlePutRequest request = new ArticlePutRequest(
-                other.getUuid(),
                 STOCK,
                 PRICE,
                 NAME,
                 DESCRIPTION
         );
 
-        shouldNotPutCauseAlreadyExist(request, article.getId());
+        log.info("Request {}", request.toString());
+
+        shouldNotPutCauseNotExist(request, 100000000L);
     }
 
 }

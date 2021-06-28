@@ -14,7 +14,8 @@ import org.dalvarez.shop.core.shared.domain.criteria.page.Page;
 import org.dalvarez.shop.core.shared.domain.log.Logger;
 import org.dalvarez.shop.core.shared.domain.query_result.QueryResult;
 import org.dalvarez.shop.core.shared.infrastructure.Seeder;
-import org.dalvarez.shop.core.shared.infrastructure.hibernate_persistence.NotFoundException;
+import org.dalvarez.shop.core.shared.infrastructure.hibernate_persistence.BaseEntity;
+import org.dalvarez.shop.core.shared.infrastructure.hibernate_persistence.exception.NotFoundException;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
@@ -128,7 +129,7 @@ public final class HibernateArticleRepositoryShouldItTestCase extends Seeder<Art
     void shouldGetNotGetAnything() {
         final Criteria criteria = Criteria.builder()
                                           .withFilter(new Filter<>(
-                                                  Article.FieldNames.NAME,
+                                                  ArticleEntity.FieldNames.NAME,
                                                   FilterOperator.EQUAL,
                                                   "unknown"
                                           ))
@@ -154,22 +155,22 @@ public final class HibernateArticleRepositoryShouldItTestCase extends Seeder<Art
 
         final Criteria criteria = Criteria.builder()
                                           .withPage(new Page(0L, 1L))
-                                          .withOrder(new Order(Article.FieldNames.NAME, OrderType.DESC))
+                                          .withOrder(new Order(ArticleEntity.FieldNames.NAME, OrderType.DESC))
                                           .withFilters(
                                                   new Filters(
                                                           FiltersBooleanOperator.AND,
                                                           new Filter<>(
-                                                                  Article.FieldNames.ID,
+                                                                  BaseEntity.FieldNames.ID,
                                                                   FilterOperator.EQUAL,
                                                                   expected.getId()
                                                           ),
                                                           new Filter<>(
-                                                                  Article.FieldNames.NAME,
+                                                                  ArticleEntity.FieldNames.NAME,
                                                                   FilterOperator.EQUAL,
                                                                   expected.getName()
                                                           ),
                                                           new Filter<>(
-                                                                  Article.FieldNames.PRICE,
+                                                                  ArticleEntity.FieldNames.PRICE,
                                                                   FilterOperator.GREATER_THAN,
                                                                   expected.getPrice() - 1
                                                           )

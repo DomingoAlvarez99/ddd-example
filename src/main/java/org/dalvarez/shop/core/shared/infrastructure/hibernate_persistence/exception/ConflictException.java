@@ -1,4 +1,4 @@
-package org.dalvarez.shop.core.shared.infrastructure.hibernate_persistence;
+package org.dalvarez.shop.core.shared.infrastructure.hibernate_persistence.exception;
 
 import org.dalvarez.shop.core.shared.domain.util.StringUtils;
 

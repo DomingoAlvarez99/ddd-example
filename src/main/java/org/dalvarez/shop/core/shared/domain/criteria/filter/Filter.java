@@ -1,35 +1,38 @@
 package org.dalvarez.shop.core.shared.domain.criteria.filter;
 
-import org.dalvarez.shop.core.shared.domain.exception.BadRequestException;
-import org.dalvarez.shop.core.shared.domain.exception.UnknownFieldNameException;
-import org.dalvarez.shop.core.shared.domain.validation.Field;
-import org.dalvarez.shop.core.shared.domain.validation.FieldValidator;
-import org.dalvarez.shop.core.shared.domain.validation.InvalidObjectException;
-import org.dalvarez.shop.core.shared.domain.validation.NotNullValidator;
-import org.dalvarez.shop.core.shared.domain.validation.ValidationNotPassedException;
+import org.dalvarez.shop.core.shared.domain.exception.WrongFilterException;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
-import java.util.Map;
-import java.util.Objects;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public final class Filter<T> {
 
-    private static final FieldValidator notNullValidator = NotNullValidator.getInstance();
+    private static final int FIELD_IDX = 1;
 
-    private static final String QUERY_ATTRIBUTE_DELIMITER = "&";
+    private static final int OPERATOR_IDX = 2;
 
-    private static final String QUERY_VALUE_DELIMITER = "=";
+    private static final int VALUE_IDX = 3;
 
-    private static final Integer KEY_VALUE_EXPECTED_LENGTH = 2;
+    private static final int EXPECTED_FILTER_PARTS = List.of(FIELD_IDX, OPERATOR_IDX, VALUE_IDX)
+                                                         .size();
+
+    public static final String FILTER_REGEX = "(.*)~(.*)=(.*)";
+
+    private static final String INNER_FIELDS_DELIMITER = ".";
+
+    private static final String INNER_FIELDS_DELIMITER_RE = "\\" + INNER_FIELDS_DELIMITER;
 
     private final String field;
+
+    private final List<String> fieldPath;
 
     private final FilterOperator operator;
 
     private final T value;
-
 
     public Filter(final String field,
                   final FilterOperator operator,
@@ -37,6 +40,7 @@ public final class Filter<T> {
         this.field = field;
         this.operator = operator;
         this.value = value;
+        fieldPath = calculateFieldPath();
     }
 
     public String getField() {
@@ -52,32 +56,39 @@ public final class Filter<T> {
     }
 
     public static Filter<?> fromQuery(final String filter) {
-        final Map<String, String> attributes = Arrays.stream(filter.split(QUERY_ATTRIBUTE_DELIMITER))
-                                                     .map(a -> a.split(QUERY_VALUE_DELIMITER))
-                                                     .filter(a -> a.length == KEY_VALUE_EXPECTED_LENGTH)
-                                                     .filter(a -> Objects.nonNull(a[0]))
-                                                     .collect(Collectors.toMap(a -> a[0], a -> a[1]));
+        final Pattern regex = Pattern.compile(FILTER_REGEX);
+        final Matcher matcher = regex.matcher(filter);
 
-        if (!attributes.containsKey(FieldNames.FIELD))
-            throw new UnknownFieldNameException(Filter.class, FieldNames.FIELD);
+        if (!matcher.find() || matcher.groupCount() != EXPECTED_FILTER_PARTS)
+            throw new WrongFilterException(filter);
 
-        final String field = attributes.get(FieldNames.FIELD);
+        final String field = matcher.group(FIELD_IDX);
+        final String operator = matcher.group(OPERATOR_IDX);
+        final String value = matcher.group(VALUE_IDX);
 
-        try {
-            notNullValidator.validate(new Field<>(FieldNames.FIELD, field));
-        } catch (ValidationNotPassedException e) {
-            throw new BadRequestException(new InvalidObjectException(Filter.class, List.of(e.getMessage())));
-        }
-
-        final FilterOperator filterOperator = FilterOperator.fromValue(attributes.get(FieldNames.OPERATOR));
-
-        final String value = attributes.get(FieldNames.VALUE);
+        final FilterOperator filterOperator = FilterOperator.fromValue(operator);
 
         return new Filter<>(
                 field,
                 filterOperator,
                 value
         );
+    }
+
+    private List<String> calculateFieldPath() {
+        if (!field.contains(INNER_FIELDS_DELIMITER))
+            return Collections.singletonList(field);
+
+        return Arrays.stream(field.split(INNER_FIELDS_DELIMITER_RE))
+                     .collect(Collectors.toList());
+    }
+
+    public List<String> getFieldPath() {
+        return fieldPath;
+    }
+
+    public String getLastFieldPath() {
+        return fieldPath.get(getFieldPath().size() - 1);
     }
 
     @Override
@@ -87,16 +98,6 @@ public final class Filter<T> {
                 ", operator=" + operator +
                 ", value=" + value +
                 '}';
-    }
-
-    private static class FieldNames {
-
-        private static final String FIELD = "field";
-
-        private static final String OPERATOR = "operator";
-
-        private static final String VALUE = "value";
-
     }
 
 }

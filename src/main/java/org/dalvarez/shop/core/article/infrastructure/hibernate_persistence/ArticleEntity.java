@@ -1,6 +1,7 @@
 package org.dalvarez.shop.core.article.infrastructure.hibernate_persistence;
 
 import org.dalvarez.shop.core.article.domain.Article;
+import org.dalvarez.shop.core.shared.infrastructure.hibernate_persistence.BaseEntity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,7 +13,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = ArticleEntity.TABLE_NAME)
-public final class ArticleEntity {
+public final class ArticleEntity extends BaseEntity {
 
     static final String TABLE_NAME = "article";
 
@@ -30,9 +31,6 @@ public final class ArticleEntity {
             allocationSize = SEQUENCE_ALLOCATION_SIZE
     )
     private Long id;
-
-    @Column(nullable = false, unique = true, length = 36)
-    private String uuid;
 
     @Column(nullable = false)
     private Integer stock;
@@ -84,6 +82,18 @@ public final class ArticleEntity {
                 article.getName(),
                 article.getDescription()
         );
+    }
+
+    public static final class FieldNames {
+
+        public static final String STOCK = "stock";
+
+        public static final String PRICE = "price";
+
+        public static final String NAME = "name";
+
+        public static final String DESCRIPTION = "description";
+
     }
 
 }

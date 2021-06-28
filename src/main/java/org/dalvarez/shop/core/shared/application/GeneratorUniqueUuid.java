@@ -6,7 +6,7 @@ import org.dalvarez.shop.core.shared.domain.validation.Field;
 import org.dalvarez.shop.core.shared.domain.validation.FieldValidator;
 import org.dalvarez.shop.core.shared.domain.validation.UuidValidator;
 import org.dalvarez.shop.core.shared.domain.validation.ValidationNotPassedException;
-import org.dalvarez.shop.core.shared.infrastructure.hibernate_persistence.NotFoundException;
+import org.dalvarez.shop.core.shared.infrastructure.hibernate_persistence.exception.NotFoundException;
 
 public class GeneratorUniqueUuid {
 

@@ -260,21 +260,11 @@ public abstract class InfrastructureRestApiModuleTestCase<T, R extends GenericRe
         return contextPath + requestPath + String.join(StringUtils.EMPTY, paths);
     }
 
-    protected <REQ> void shouldNotPutCauseNoExist(final REQ request,
-                                                  final Long id) throws Exception {
+    protected <REQ> void shouldNotPutCauseNotExist(final REQ request,
+                                                   final Long id) throws Exception {
         put(
                 request,
                 HttpStatus.NOT_FOUND.value(),
-                ErrorResponse.class,
-                id
-        );
-    }
-
-    protected <REQ> void shouldNotPutCauseAlreadyExist(final REQ request,
-                                                       final Long id) throws Exception {
-        put(
-                request,
-                HttpStatus.CONFLICT.value(),
                 ErrorResponse.class,
                 id
         );

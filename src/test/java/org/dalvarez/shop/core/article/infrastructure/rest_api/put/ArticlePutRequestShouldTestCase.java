@@ -2,7 +2,6 @@ package org.dalvarez.shop.core.article.infrastructure.rest_api.put;
 
 import org.dalvarez.shop.core.article.infrastructure.rest_api.controller.put.ArticlePutRequest;
 import org.dalvarez.shop.core.shared.ContextTestCase;
-import org.dalvarez.shop.core.shared.domain.UuidMother;
 import org.dalvarez.shop.core.shared.domain.exception.BadRequestException;
 import org.dalvarez.shop.core.shared.domain.log.Logger;
 import org.dalvarez.shop.core.shared.domain.util.StringUtils;
@@ -21,8 +20,6 @@ final class ArticlePutRequestShouldTestCase extends ContextTestCase {
 
     private static final Long ID = 1L;
 
-    private static final String UUID = UuidMother.randomPick();
-
     private static final Integer STOCK = 100;
 
     private static final Double PRICE = 2.25;
@@ -37,7 +34,6 @@ final class ArticlePutRequestShouldTestCase extends ContextTestCase {
     @Test
     void shouldCreateAPutRequestArticle() {
         new ArticlePutRequest(
-                UUID,
                 STOCK,
                 PRICE,
                 NAME,
@@ -50,7 +46,6 @@ final class ArticlePutRequestShouldTestCase extends ContextTestCase {
         final BadRequestException exception = Assertions.assertThrows(
                 BadRequestException.class,
                 () -> new ArticlePutRequest(
-                        "kekw",
                         -1,
                         333333.25,
                         StringUtils.EMPTY,
@@ -62,7 +57,6 @@ final class ArticlePutRequestShouldTestCase extends ContextTestCase {
 
         final List<String> expectedErrors = List.of(
                 "Field <id=-100> has not passed the validator <IdValidator> cause the value is out of range <minValue=1.00>, <maxValue=179769313486231570000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000.00>",
-                "Field <uuid=kekw> has not passed the validator <UuidValidator> cause uuid not have a valid format ^0-9a-f{8}-0-9a-f{4}-0-9a-f{4}-0-9a-f{4}-0-9a-f{12}$",
                 "Field <name=> has not passed the validator <GenericNotEmptyValidator> cause value is empty",
                 "Field <stock=-1> has not passed the validator <InRangeValidator> cause the value is out of range <minValue=1.00>, <maxValue=100.00>",
                 "Field <description=null> has not passed the validator <NotNullValidator> cause value is null",

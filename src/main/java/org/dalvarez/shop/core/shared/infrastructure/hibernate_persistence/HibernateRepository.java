@@ -6,6 +6,7 @@ import org.dalvarez.shop.core.shared.domain.criteria.filter.Filter;
 import org.dalvarez.shop.core.shared.domain.criteria.filter.FilterOperator;
 import org.dalvarez.shop.core.shared.domain.query_result.QueryResult;
 import org.dalvarez.shop.core.shared.domain.util.CollectionUtils;
+import org.dalvarez.shop.core.shared.infrastructure.hibernate_persistence.exception.NotFoundException;
 
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
@@ -70,7 +71,7 @@ public abstract class HibernateRepository<T> {
     }
 
     protected <V> T findOneBy(final String field,
-                                final V value) {
+                              final V value) {
         return findOneBy(
                 field,
                 value,
@@ -79,8 +80,8 @@ public abstract class HibernateRepository<T> {
     }
 
     protected <V> T findOneBy(final String field,
-                                final V value,
-                                final String errorMessage) {
+                              final V value,
+                              final String errorMessage) {
         return findByCriteria(
                 Criteria.builder()
                         .withFilter(new Filter<>(field, FilterOperator.EQUAL, value))

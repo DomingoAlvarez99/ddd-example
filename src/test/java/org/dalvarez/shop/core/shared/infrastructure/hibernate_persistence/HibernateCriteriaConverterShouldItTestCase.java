@@ -10,6 +10,7 @@ import org.dalvarez.shop.core.shared.domain.criteria.filter.Filters;
 import org.dalvarez.shop.core.shared.domain.criteria.order.Order;
 import org.dalvarez.shop.core.shared.domain.criteria.order.OrderType;
 import org.dalvarez.shop.core.shared.domain.criteria.page.Page;
+import org.dalvarez.shop.core.shared.infrastructure.hibernate_persistence.criteria.HibernateCriteriaConverter;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,18 +31,18 @@ final class HibernateCriteriaConverterShouldItTestCase extends ContextTestCase {
                                           .withFilters(
                                                   new Filters(
                                                           new Filter<>(
-                                                                  Article.FieldNames.ID,
+                                                                  BaseEntity.FieldNames.ID,
                                                                   FilterOperator.GREATER_THAN,
                                                                   3L
                                                           ),
                                                           new Filter<>(
-                                                                  Article.FieldNames.ID,
+                                                                  BaseEntity.FieldNames.ID,
                                                                   FilterOperator.LESS_THAN,
                                                                   5L
                                                           )
                                                   )
                                           )
-                                          .withOrder(new Order(Article.FieldNames.UUID, OrderType.DESC))
+                                          .withOrder(new Order(BaseEntity.FieldNames.UUID, OrderType.DESC))
                                           .withPage(new Page(2L, 2L))
                                           .build();
 

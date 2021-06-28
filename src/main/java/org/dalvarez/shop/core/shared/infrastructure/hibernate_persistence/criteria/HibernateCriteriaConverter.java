@@ -1,4 +1,4 @@
-package org.dalvarez.shop.core.shared.infrastructure.hibernate_persistence;
+package org.dalvarez.shop.core.shared.infrastructure.hibernate_persistence.criteria;
 
 import org.dalvarez.shop.core.shared.domain.criteria.Criteria;
 import org.dalvarez.shop.core.shared.domain.criteria.CriteriaConverter;
@@ -10,21 +10,24 @@ import org.dalvarez.shop.core.shared.domain.criteria.order.OrderType;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaDelete;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Expression;
 import javax.persistence.criteria.Order;
 import javax.persistence.criteria.Path;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.atomic.AtomicReference;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public final class HibernateCriteriaConverter<T> implements CriteriaConverter<T> {
 
     private final CriteriaBuilder builder;
 
-    private final Map<FilterOperator, BiFunction<Filter<?>, Root<T>, Predicate>> predicateTransformers = Map.of(
+    private final Map<FilterOperator, BiFunction<Expression<String>, Filter<?>, Predicate>> predicateTransformers = Map.of(
             FilterOperator.EQUAL, this::equalsPredicateTransformer,
             FilterOperator.NOT_EQUAL, this::notEqualsPredicateTransformer,
             FilterOperator.GREATER_THAN, this::greaterThanPredicateTransformer,
@@ -180,55 +183,80 @@ public final class HibernateCriteriaConverter<T> implements CriteriaConverter<T>
                       .toArray(Predicate[]::new);
     }
 
+    private Expression<String> navigateTo(final Filter<?> filter,
+                                          final Root<T> root) {
+        if (filter.getFieldPath()
+                  .size() == 1)
+            return root.get(filter.getLastFieldPath());
+
+        final AtomicReference<Path<?>> path = new AtomicReference<>();
+
+        path.set(root);
+
+        IntStream.range(
+                0,
+                filter.getFieldPath()
+                      .size() - 1
+        )
+                 .boxed()
+                 .forEach(position -> path.set(path.get()
+                                                   .get((filter.getFieldPath()
+                                                               .get(position)))));
+
+        return path.get()
+                   .get(filter.getLastFieldPath());
+    }
+
     private Predicate formatPredicate(final Filter<?> filter,
                                       final Root<T> root) {
-        final BiFunction<Filter<?>, Root<T>, Predicate> transformer = predicateTransformers.get(filter.getOperator());
+        final BiFunction<Expression<String>, Filter<?>, Predicate> transformer = predicateTransformers.get(
+                filter.getOperator());
 
         return transformer.apply(
-                filter,
-                root
+                navigateTo(filter, root),
+                filter
         );
     }
 
-    private Predicate equalsPredicateTransformer(final Filter<?> filter,
-                                                 final Root<T> root) {
+    private Predicate equalsPredicateTransformer(final Expression<String> filter,
+                                                 final Filter<?> value) {
         return builder.equal(
-                root.get(filter.getField()),
-                filter.getValue()
+                filter,
+                value.getValue()
         );
     }
 
-    private Predicate notEqualsPredicateTransformer(final Filter<?> filter,
-                                                    final Root<T> root) {
+    private Predicate notEqualsPredicateTransformer(final Expression<String> filter,
+                                                    final Filter<?> value) {
         return builder.notEqual(
-                root.get(filter.getField()),
-                filter.getValue()
+                filter,
+                value.getValue()
         );
     }
 
-    private Predicate greaterThanPredicateTransformer(final Filter<?> filter,
-                                                      final Root<T> root) {
-        return builder.greaterThan(root.get(filter.getField()), (Comparable) filter.getValue());
+    private Predicate greaterThanPredicateTransformer(final Expression<String> filterExpression,
+                                                      final Filter<?> filter) {
+        return builder.greaterThan((Expression<? extends Comparable>) filterExpression, (Comparable) filter.getValue());
     }
 
-    private Predicate lowerThanPredicateTransformer(final Filter<?> filter,
-                                                    final Root<T> root) {
-        return builder.lessThan(root.get(filter.getField()), (Comparable) filter.getValue());
+    private Predicate lowerThanPredicateTransformer(final Expression<String> filterExpression,
+                                                    final Filter<?> filter) {
+        return builder.lessThan((Expression<? extends Comparable>) filterExpression, (Comparable) filter.getValue());
     }
 
-    private Predicate containsPredicateTransformer(final Filter<?> filter,
-                                                   final Root<T> root) {
+    private Predicate containsPredicateTransformer(final Expression<String> filter,
+                                                   final Filter<?> value) {
         return builder.like(
-                root.get(filter.getField()),
-                String.format("%%%s%%", filter.getValue())
+                filter,
+                String.format("%%%s%%", value.getValue())
         );
     }
 
-    private Predicate notContainsPredicateTransformer(final Filter<?> filter,
-                                                      final Root<T> root) {
+    private Predicate notContainsPredicateTransformer(final Expression<String> filter,
+                                                      final Filter<?> value) {
         return builder.notLike(
-                root.get(filter.getField()),
-                String.format("%%%s%%", filter.getValue())
+                filter,
+                String.format("%%%s%%", value.getValue())
         );
     }
 

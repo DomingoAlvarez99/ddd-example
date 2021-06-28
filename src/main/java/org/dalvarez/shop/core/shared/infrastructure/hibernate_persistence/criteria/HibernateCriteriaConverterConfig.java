@@ -1,4 +1,4 @@
-package org.dalvarez.shop.core.shared.infrastructure.hibernate_persistence;
+package org.dalvarez.shop.core.shared.infrastructure.hibernate_persistence.criteria;
 
 import org.dalvarez.shop.core.shared.domain.criteria.CriteriaConverter;
 import org.springframework.context.annotation.Bean;

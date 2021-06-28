@@ -19,3 +19,4 @@ spring:
 server:
     servlet:
         contextPath: /api/v0
+    port: 8080

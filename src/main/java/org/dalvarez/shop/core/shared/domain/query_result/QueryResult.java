@@ -55,4 +55,9 @@ public final class QueryResult<T> {
         return result.get(0);
     }
 
+    @JsonIgnore
+    public T getFirstResult() {
+        return result.get(0);
+    }
+
 }

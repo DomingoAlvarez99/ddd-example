@@ -67,7 +67,7 @@ public class HibernateArticleRepository extends HibernateRepository<ArticleEntit
     public Integer sumStockByCriteria(final Criteria criteria) {
         return sumByCriteria(
                 criteria,
-                Article.FieldNames.STOCK,
+                ArticleEntity.FieldNames.STOCK,
                 Integer.class
         );
     }
@@ -76,7 +76,7 @@ public class HibernateArticleRepository extends HibernateRepository<ArticleEntit
     public Double sumPriceByCriteria(final Criteria criteria) {
         return sumByCriteria(
                 criteria,
-                Article.FieldNames.PRICE,
+                ArticleEntity.FieldNames.PRICE,
                 Double.class
         );
     }

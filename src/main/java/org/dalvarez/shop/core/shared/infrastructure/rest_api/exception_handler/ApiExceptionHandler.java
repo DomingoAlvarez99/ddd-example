@@ -2,9 +2,10 @@ package org.dalvarez.shop.core.shared.infrastructure.rest_api.exception_handler;
 
 import org.dalvarez.shop.core.shared.domain.exception.BadRequestException;
 import org.dalvarez.shop.core.shared.domain.exception.NonUniqueResultException;
+import org.dalvarez.shop.core.shared.domain.exception.WrongFilterException;
 import org.dalvarez.shop.core.shared.domain.log.Logger;
-import org.dalvarez.shop.core.shared.infrastructure.hibernate_persistence.ConflictException;
-import org.dalvarez.shop.core.shared.infrastructure.hibernate_persistence.NotFoundException;
+import org.dalvarez.shop.core.shared.infrastructure.hibernate_persistence.exception.ConflictException;
+import org.dalvarez.shop.core.shared.infrastructure.hibernate_persistence.exception.NotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
@@ -38,7 +39,8 @@ public class ApiExceptionHandler {
             IllegalArgumentException.class,
             HttpRequestMethodNotSupportedException.class,
             MethodArgumentNotValidException.class,
-            HttpMessageNotReadableException.class
+            HttpMessageNotReadableException.class,
+            WrongFilterException.class
     })
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ResponseEntity<ErrorResponse> handleBadRequestException(final Exception ex) {

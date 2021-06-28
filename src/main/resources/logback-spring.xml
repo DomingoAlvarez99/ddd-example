@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
-    <include resource="org/springframework/boot/logging/logback/defaults.xml" />
-    <springProperty scope="context" name="appName" source="app.name" defaultValue="Unknown" />
-    <springProperty scope="context" name="logstashHost" source="logstash.host" />
-    <springProperty scope="context" name="logstashPort" source="logstash.port" />
+    <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
+    <springProperty scope="context" name="appName" source="app.name" defaultValue="Unknown"/>
+    <springProperty scope="context" name="logstashHost" source="logstash.host"/>
+    <springProperty scope="context" name="logstashPort" source="logstash.port"/>
 
     <appender name="LOGSTASH"
               class="net.logstash.logback.appender.LogstashTcpSocketAppender">
@@ -12,9 +12,9 @@
         <port>${logstashPort}</port>
         <reconnectionDelay>5 second</reconnectionDelay>
         <encoder class="net.logstash.logback.encoder.LogstashEncoder">
-           <customFields>
+            <customFields>
                 {
-                    "appName": "${appName}"
+                "appName": "${appName}"
                 }
             </customFields>
         </encoder>
@@ -22,13 +22,15 @@
 
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
-            <pattern>%clr(%d{yyyy-MM-dd HH:mm:ss}){blue} %clr(%5p) %clr(18971){magenta} %clr(---){faint} %clr([%15.15t]){faint} %clr(%-40.40logger{39}){cyan} %clr(:){faint} %m%n%wEx</pattern>
+            <pattern>%clr(%d{yyyy-MM-dd HH:mm:ss}){blue} %clr(%5p) %clr(18971){magenta} %clr(---){faint}
+                %clr([%15.15t]){faint} %clr(%-40.40logger{39}){cyan} %clr(:){faint} %m%n%wEx
+            </pattern>
         </encoder>
     </appender>
 
     <root level="INFO">
-        <appender-ref ref="STDOUT" />
-        <appender-ref ref="LOGSTASH" />
+        <appender-ref ref="STDOUT"/>
+        <appender-ref ref="LOGSTASH"/>
     </root>
 
 </configuration>
