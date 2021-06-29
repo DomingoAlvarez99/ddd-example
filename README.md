@@ -35,7 +35,8 @@ _**Este repositorio se está desarrollando**_
 - [Configuración](#Configuración)
 - [Ejecución](#Ejecución)
 - [Testing](#Testing)
-- [Urls](#Urls)
+- [Doc](#Doc)
+   - [Urls](#Urls)
 
 # Arquitectura
 
@@ -331,7 +332,63 @@ Paquete de ejemplo: [criteria](src/main/java/org/dalvarez/shop/core/shared/domai
 - Realizar las 2 cosas: `> mvn verify sonar:sonar`
 
 
-# Urls
+# Doc
+
+## Errores
+
+Cualquier búsqueda que no obtenga un resultado devolverá un error 404.
+
+```json
+{
+  "httpStatus": 404,
+  "type": "NOT_FOUND",
+  "message": "ArticleEntity not found"
+}
+```
+
+## Criteria
+
+### Request
+- Campo de orden: **nombre_campo**
+- Tipo de orden: **ASC|DESC**
+- Operador booleano: **AND|OR**
+- Formato del filtro: **<nombre_propiedad_entidad(.nombre_propiedad_entidad~operador)=valor>** (Ej: *name~eq=string*)
+    - La parte entre paréntesis es opcional. Solo se debe de usar para crear filtros sobre propiedades anidadas. Se pueden crear todas las anidaciones que se requieran. (Ej: *article.name~eq=string*)
+    - Para indicar varios filtros se debe de añadir una ',' (Ej: *name~eq=string,id~eq=12*)
+- Índice de la página
+- Tamaño de la página
+
+### Response
+- Elementos totales
+- Primer elemento
+- Lista de resultados
+
+```json
+{
+  "totalElements": 2,
+  "firstElement": 0,
+  "result": [
+    {
+      "id": 6500,
+      "uuid": "19efe4d8-b707-46b2-8bef-1d87318262f9",
+      "stock": 11,
+      "price": 10,
+      "name": "string",
+      "description": "string"
+    },
+    {
+      "id": 6600,
+      "uuid": "df09574c-552d-43b5-950b-6bfd270ea0b1",
+      "stock": 11,
+      "price": 11,
+      "name": "string 11",
+      "description": "string 11"
+    }
+  ]
+}
+```
+## Urls
+
 - [Api](http://localhost:8080/api/v0)
 - [Api doc](http://localhost:8080/api/v0/swagger-ui.html)
 - [Sonar](http://localhost:9000/projects)
