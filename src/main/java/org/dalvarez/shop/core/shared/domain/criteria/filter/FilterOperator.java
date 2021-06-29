@@ -23,7 +23,7 @@ public enum FilterOperator {
 
     private static final String I_EQUAL_VALUE = "IEQ";
 
-    private static final String NOT_EQUAL_VALUE = "NE";
+    private static final String NOT_EQUAL_VALUE = "NEQ";
 
     private static final String GREATER_THAN_VALUE = "GT";
 
@@ -39,7 +39,7 @@ public enum FilterOperator {
 
     private static final String I_CONTAINS_VALUE = "ICO";
 
-    private static final String NOT_CONTAINS_VALUE = "NC";
+    private static final String NOT_CONTAINS_VALUE = "NCO";
 
     private final String operator;
 
