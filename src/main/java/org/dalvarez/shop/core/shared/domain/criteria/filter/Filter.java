@@ -2,9 +2,14 @@ package org.dalvarez.shop.core.shared.domain.criteria.filter;
 
 import org.dalvarez.shop.core.shared.domain.exception.WrongFilterException;
 
+import javax.print.DocFlavor;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
@@ -26,6 +31,10 @@ public final class Filter<T> {
 
     private static final String INNER_FIELDS_DELIMITER_RE = "\\" + INNER_FIELDS_DELIMITER;
 
+    private static final String MULTIPLE_VALUES_DELIMITER = "|";
+
+    private static final String MULTIPLE_VALUES_DELIMITER_RE = "\\" + MULTIPLE_VALUES_DELIMITER;
+
     private final String field;
 
     private final List<String> fieldPath;
@@ -34,6 +43,8 @@ public final class Filter<T> {
 
     private final T value;
 
+    private final Set<String> values;
+
     public Filter(final String field,
                   final FilterOperator operator,
                   final T value) {
@@ -41,6 +52,7 @@ public final class Filter<T> {
         this.operator = operator;
         this.value = value;
         fieldPath = calculateFieldPath();
+        values = calculateValues();
     }
 
     public String getField() {
@@ -53,6 +65,23 @@ public final class Filter<T> {
 
     public T getValue() {
         return value;
+    }
+
+    public Set<String> calculateValues() {
+        if (value == null)
+            return new HashSet<>();
+
+        if (!value.toString().contains(MULTIPLE_VALUES_DELIMITER))
+            return new HashSet<>(Collections.singletonList(value.toString()));
+
+            return Arrays.stream(value.toString()
+                        .split(MULTIPLE_VALUES_DELIMITER_RE))
+                         .filter(Objects::nonNull)
+                    .collect(Collectors.toSet());
+    }
+
+    public Set<String> getValues() {
+        return values;
     }
 
     public static Filter<?> fromQuery(final String filter) {

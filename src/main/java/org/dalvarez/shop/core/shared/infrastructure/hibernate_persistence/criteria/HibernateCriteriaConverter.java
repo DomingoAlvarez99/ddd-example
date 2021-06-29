@@ -25,15 +25,22 @@ import java.util.stream.IntStream;
 
 public final class HibernateCriteriaConverter<T> implements CriteriaConverter<T> {
 
+    private static final String CONTAINS_FORMAT = "%%%s%%";
+
     private final CriteriaBuilder builder;
 
-    private final Map<FilterOperator, BiFunction<Expression<String>, Filter<?>, Predicate>> predicateTransformers = Map.of(
-            FilterOperator.EQUAL, this::equalsPredicateTransformer,
-            FilterOperator.NOT_EQUAL, this::notEqualsPredicateTransformer,
-            FilterOperator.GREATER_THAN, this::greaterThanPredicateTransformer,
-            FilterOperator.LESS_THAN, this::lowerThanPredicateTransformer,
-            FilterOperator.CONTAINS, this::containsPredicateTransformer,
-            FilterOperator.NOT_CONTAINS, this::notContainsPredicateTransformer
+    private final Map<FilterOperator, BiFunction<Expression<String>, Filter<?>, Predicate>> predicateTransformers = Map.ofEntries(
+            Map.entry(FilterOperator.EQUAL, this::equalsPredicateTransformer),
+            Map.entry(FilterOperator.I_EQUAL, this::iEqualsPredicateTransformer),
+            Map.entry(FilterOperator.NOT_EQUAL, this::notEqualsPredicateTransformer),
+            Map.entry(FilterOperator.IN, this::inPredicateTransformer),
+            Map.entry(FilterOperator.CONTAINS, this::containsPredicateTransformer),
+            Map.entry(FilterOperator.I_CONTAINS, this::iContainsPredicateTransformer),
+            Map.entry(FilterOperator.NOT_CONTAINS, this::notContainsPredicateTransformer),
+            Map.entry(FilterOperator.GREATER_THAN, this::greaterThanPredicateTransformer),
+            Map.entry(FilterOperator.GREATER_OR_EQUAL_THAN, this::greaterOrEqualThanPredicateTransformer),
+            Map.entry(FilterOperator.LESS_THAN, this::lowerThanPredicateTransformer),
+            Map.entry(FilterOperator.LESS_OR_EQUAL_THAN, this::lowerOrEqualThanPredicateTransformer)
     );
 
     private final Map<OrderType, Function<Path<Object>, Order>> orderTransformers = Map.of(
@@ -226,6 +233,15 @@ public final class HibernateCriteriaConverter<T> implements CriteriaConverter<T>
         );
     }
 
+    private Predicate iEqualsPredicateTransformer(final Expression<String> filter,
+                                                  final Filter<?> value) {
+        return builder.equal(
+                builder.upper(filter),
+                builder.upper(builder.literal(value.getValue()
+                                                   .toString()))
+        );
+    }
+
     private Predicate notEqualsPredicateTransformer(final Expression<String> filter,
                                                     final Filter<?> value) {
         return builder.notEqual(
@@ -239,16 +255,46 @@ public final class HibernateCriteriaConverter<T> implements CriteriaConverter<T>
         return builder.greaterThan((Expression<? extends Comparable>) filterExpression, (Comparable) filter.getValue());
     }
 
+    private Predicate greaterOrEqualThanPredicateTransformer(final Expression<String> filterExpression,
+                                                             final Filter<?> filter) {
+        return builder.greaterThanOrEqualTo(
+                (Expression<? extends Comparable>) filterExpression,
+                (Comparable) filter.getValue()
+        );
+    }
+
     private Predicate lowerThanPredicateTransformer(final Expression<String> filterExpression,
                                                     final Filter<?> filter) {
         return builder.lessThan((Expression<? extends Comparable>) filterExpression, (Comparable) filter.getValue());
+    }
+
+    private Predicate lowerOrEqualThanPredicateTransformer(final Expression<String> filterExpression,
+                                                           final Filter<?> filter) {
+        return builder.lessThanOrEqualTo(
+                (Expression<? extends Comparable>) filterExpression,
+                (Comparable) filter.getValue()
+        );
+    }
+
+    private Predicate inPredicateTransformer(final Expression<String> filter,
+                                             final Filter<?> value) {
+        return filter.in(value.getValues());
     }
 
     private Predicate containsPredicateTransformer(final Expression<String> filter,
                                                    final Filter<?> value) {
         return builder.like(
                 filter,
-                String.format("%%%s%%", value.getValue())
+                String.format(CONTAINS_FORMAT, value.getValue())
+        );
+    }
+
+    private Predicate iContainsPredicateTransformer(final Expression<String> filter,
+                                                    final Filter<?> value) {
+        return builder.like(
+                builder.upper(filter),
+                builder.upper(builder.literal(String.format(CONTAINS_FORMAT, value.getValue()
+                                                                                  .toString())))
         );
     }
 
@@ -256,7 +302,7 @@ public final class HibernateCriteriaConverter<T> implements CriteriaConverter<T>
                                                       final Filter<?> value) {
         return builder.notLike(
                 filter,
-                String.format("%%%s%%", value.getValue())
+                String.format(CONTAINS_FORMAT, value.getValue())
         );
     }
 
