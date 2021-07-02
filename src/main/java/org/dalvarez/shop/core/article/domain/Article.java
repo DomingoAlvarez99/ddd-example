@@ -2,7 +2,7 @@ package org.dalvarez.shop.core.article.domain;
 
 import java.util.Objects;
 
-public final class Article {
+public class Article {
 
     public static final Integer MIN_STOCK = 1;
 
@@ -12,19 +12,28 @@ public final class Article {
 
     public static final Double MAX_PRICE = 1000D;
 
-    private final Long id;
+    protected final Long id;
 
-    private final String uuid;
+    protected final String uuid;
 
-    private final Integer stock;
+    protected final Integer stock;
 
-    private final Double price;
+    protected final Double price;
 
-    private final String name;
+    protected final String name;
 
-    private final String description;
+    protected final String description;
 
-    private Article(final Long id,
+    protected Article() {
+        this.id = null;
+        this.uuid = null;
+        this.stock = null;
+        this.price = null;
+        this.name = null;
+        this.description = null;
+    }
+
+    protected Article(final Long id,
                     final String uuid,
                     final Integer stock,
                     final Double price,
