@@ -34,7 +34,6 @@ public final class HibernateArticleCategoryRepositoryShouldItTestCase extends Se
 
     private final ArticleRepository articleRepository;
 
-
     private final Logger log;
 
     public HibernateArticleCategoryRepositoryShouldItTestCase(@Autowired ArticleCategoryRepository articleCategoryRepository,
