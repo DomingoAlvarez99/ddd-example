@@ -40,7 +40,7 @@ final class ArticleGetByCriteriaControllerShouldItTestCase extends ArticleInfras
     @Test
     void shouldNotGetByCriteriaCauseFiltersNotMatchAnything() throws Exception {
         final Map<String, List<String>> params = Map.of(
-                "filtersValues", Collections.singletonList("field=id&operator=gt&value=10000")
+                "filtersValues", Collections.singletonList("id~gt=10000")
         );
 
         shouldNotGetByCriteriaCauseFiltersNotMatchAnything(params);
