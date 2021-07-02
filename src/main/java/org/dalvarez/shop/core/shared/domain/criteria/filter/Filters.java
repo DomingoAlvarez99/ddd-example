@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 
 public final class Filters {
 
-    private static final String QUERY_VALUE_DELIMITER = ",";
+    private static final String QUERY_VALUE_DELIMITER = "&";
 
     private final List<Filter<?>> values;
 
