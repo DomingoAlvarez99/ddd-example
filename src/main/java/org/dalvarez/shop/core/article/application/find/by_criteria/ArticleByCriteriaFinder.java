@@ -18,10 +18,11 @@ public final class ArticleByCriteriaFinder {
     }
 
     public QueryResultResponse<ArticleResponse> find(final Criteria criteria) {
-        QueryResult<Article> queryResult = articleRepository.getByCriteria(criteria);
+        final QueryResult<Article> queryResult = articleRepository.getByCriteria(criteria);
 
         return new QueryResultResponse<>(
                 queryResult.getTotalElements(),
+                queryResult.getFirstElement(),
                 queryResult.getResult()
                            .stream()
                            .map(ArticleResponse::fromArticle)

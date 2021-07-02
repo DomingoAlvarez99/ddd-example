@@ -1,18 +1,17 @@
 package org.dalvarez.shop.core.shared.domain.query_result;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.dalvarez.shop.core.shared.domain.exception.NonUniqueResultException;
 
 import java.util.Collections;
 import java.util.List;
 
-public final class QueryResult<T> {
+public class QueryResult<T> {
 
-    private final Long totalElements;
+    protected final Long totalElements;
 
-    private final Long firstElement;
+    protected final Long firstElement;
 
-    private final List<T> result;
+    protected final List<T> result;
 
     public QueryResult() {
         totalElements = 0L;
@@ -47,7 +46,6 @@ public final class QueryResult<T> {
         return result;
     }
 
-    @JsonIgnore
     public T getSingleResult() {
         if (result.size() > 1)
             throw new NonUniqueResultException();
@@ -55,7 +53,6 @@ public final class QueryResult<T> {
         return result.get(0);
     }
 
-    @JsonIgnore
     public T getFirstResult() {
         return result.get(0);
     }
