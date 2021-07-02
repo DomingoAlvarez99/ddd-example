@@ -31,11 +31,11 @@ public final class HibernateCriteriaConverter<T> implements CriteriaConverter<T>
 
     private final Map<FilterOperator, BiFunction<Expression<String>, Filter<?>, Predicate>> predicateTransformers = Map.ofEntries(
             Map.entry(FilterOperator.EQUAL, this::equalsPredicateTransformer),
-            Map.entry(FilterOperator.I_EQUAL, this::iEqualsPredicateTransformer),
+            Map.entry(FilterOperator.I_EQUAL, this::equalsIgnoreCasePredicateTransformer),
             Map.entry(FilterOperator.NOT_EQUAL, this::notEqualsPredicateTransformer),
             Map.entry(FilterOperator.IN, this::inPredicateTransformer),
             Map.entry(FilterOperator.CONTAINS, this::containsPredicateTransformer),
-            Map.entry(FilterOperator.I_CONTAINS, this::iContainsPredicateTransformer),
+            Map.entry(FilterOperator.I_CONTAINS, this::containsIgnoreCasePredicateTransformer),
             Map.entry(FilterOperator.NOT_CONTAINS, this::notContainsPredicateTransformer),
             Map.entry(FilterOperator.GREATER_THAN, this::greaterThanPredicateTransformer),
             Map.entry(FilterOperator.GREATER_OR_EQUAL_THAN, this::greaterOrEqualThanPredicateTransformer),
@@ -233,7 +233,7 @@ public final class HibernateCriteriaConverter<T> implements CriteriaConverter<T>
         );
     }
 
-    private Predicate iEqualsPredicateTransformer(final Expression<String> filter,
+    private Predicate equalsIgnoreCasePredicateTransformer(final Expression<String> filter,
                                                   final Filter<?> value) {
         return builder.equal(
                 builder.upper(filter),
@@ -289,7 +289,7 @@ public final class HibernateCriteriaConverter<T> implements CriteriaConverter<T>
         );
     }
 
-    private Predicate iContainsPredicateTransformer(final Expression<String> filter,
+    private Predicate containsIgnoreCasePredicateTransformer(final Expression<String> filter,
                                                     final Filter<?> value) {
         return builder.like(
                 builder.upper(filter),

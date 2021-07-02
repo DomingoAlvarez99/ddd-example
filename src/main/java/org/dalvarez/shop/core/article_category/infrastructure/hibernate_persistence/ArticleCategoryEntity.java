@@ -6,6 +6,7 @@ import org.dalvarez.shop.core.category.infrastructure.hibernate_persistence.Cate
 import org.dalvarez.shop.core.shared.infrastructure.hibernate_persistence.BaseEntity;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -35,11 +36,11 @@ public final class ArticleCategoryEntity extends BaseEntity {
     )
     private Long id;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "article_id", referencedColumnName = "id")
     private ArticleEntity article;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id", referencedColumnName = "id")
     private CategoryEntity category;
 
