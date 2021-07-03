@@ -352,16 +352,13 @@ Cualquier búsqueda que no obtenga un resultado devolverá un error 404.
 - Campo de orden: **nombre_campo**
 - Tipo de orden: **ASC|DESC**
 - Operador booleano: **AND|OR**
-- Formato del filtro: **<nombre_propiedad_entidad(.nombre_propiedad_entidad~operador)=valor>** (Ej: *name~eq=string*)
-    - La parte entre paréntesis es opcional. Solo se debe de usar para crear filtros sobre propiedades anidadas. Se pueden crear todas las anidaciones que se requieran. (Ej: *article.name~eq=string*)
-    - Para indicar varios filtros se debe de añadir una ',' (Ej: *name~eq=string,id~eq=12*)
+- Formato del filtro: **<nombre_propiedad_entidad(.nombre_propiedad_entidad~operador)=valor>** (Ej: *article.name~eq=string*)
+    - La parte previa al punto solo se debe de usar para crear filtros sobre propiedades anidadas. Se pueden crear todas las anidaciones que se requieran. (Ej: *article.name~eq=string*)
+    - Para indicar varios filtros se debe de añadir un '&' (Ej: *name~eq=string&id~eq=12*)
 - Índice de la página
 - Tamaño de la página
 
 ### Response
-- Elementos totales
-- Primer elemento
-- Lista de resultados
 
 ```json
 {
