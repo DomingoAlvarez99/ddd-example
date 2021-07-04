@@ -234,7 +234,7 @@ public final class HibernateCriteriaConverter<T> implements CriteriaConverter<T>
     }
 
     private Predicate equalsIgnoreCasePredicateTransformer(final Expression<String> filter,
-                                                  final Filter<?> value) {
+                                                           final Filter<?> value) {
         return builder.equal(
                 builder.upper(filter),
                 builder.upper(builder.literal(value.getValue()
@@ -290,7 +290,7 @@ public final class HibernateCriteriaConverter<T> implements CriteriaConverter<T>
     }
 
     private Predicate containsIgnoreCasePredicateTransformer(final Expression<String> filter,
-                                                    final Filter<?> value) {
+                                                             final Filter<?> value) {
         return builder.like(
                 builder.upper(filter),
                 builder.upper(builder.literal(String.format(CONTAINS_FORMAT, value.getValue()

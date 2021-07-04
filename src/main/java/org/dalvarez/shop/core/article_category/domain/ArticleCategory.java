@@ -5,20 +5,27 @@ import org.dalvarez.shop.core.category.domain.Category;
 
 import java.util.Objects;
 
-public final class ArticleCategory {
+public class ArticleCategory {
 
-    private final Long id;
+    protected final Long id;
 
-    private final Article article;
+    protected final Article article;
 
-    private final Category category;
+    protected final Category category;
 
-    private final String uuid;
+    protected final String uuid;
 
-    private ArticleCategory(final Long id,
-                            final String uuid,
-                            final Article article,
-                            final Category category) {
+    public ArticleCategory() {
+        this.id = null;
+        this.article = null;
+        this.category = null;
+        this.uuid = null;
+    }
+
+    protected ArticleCategory(final Long id,
+                              final String uuid,
+                              final Article article,
+                              final Category category) {
         this.id = id;
         this.uuid = uuid;
         this.article = article;
@@ -41,6 +48,17 @@ public final class ArticleCategory {
                                          final Article article,
                                          final Category category) {
         return create(
+                null,
+                uuid,
+                article,
+                category
+        );
+    }
+
+    public static ArticleCategory fromRequest(final String uuid,
+                                              final Category category,
+                                              final Article article) {
+        return new ArticleCategory(
                 null,
                 uuid,
                 article,

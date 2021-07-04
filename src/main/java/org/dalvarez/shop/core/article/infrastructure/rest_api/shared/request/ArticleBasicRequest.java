@@ -1,10 +1,8 @@
 package org.dalvarez.shop.core.article.infrastructure.rest_api.shared.request;
 
 import org.dalvarez.shop.core.article.domain.Article;
-import org.dalvarez.shop.core.shared.domain.exception.BadRequestException;
 import org.dalvarez.shop.core.shared.domain.validation.Field;
 import org.dalvarez.shop.core.shared.domain.validation.FieldValidator;
-import org.dalvarez.shop.core.shared.domain.validation.InvalidObjectException;
 import org.dalvarez.shop.core.shared.domain.validation.Validator;
 
 import java.util.List;
@@ -39,15 +37,7 @@ public abstract class ArticleBasicRequest<R> extends Validator<R> {
         this.description = description;
     }
 
-
-    protected void validate() {
-        try {
-            validate(getFields());
-        } catch (InvalidObjectException e) {
-            throw new BadRequestException(e);
-        }
-    }
-
+    @Override
     protected abstract List<Field<Object>> getFields();
 
     public Article toArticle() {

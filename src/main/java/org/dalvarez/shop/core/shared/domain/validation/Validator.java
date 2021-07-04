@@ -1,5 +1,7 @@
 package org.dalvarez.shop.core.shared.domain.validation;
 
+import org.dalvarez.shop.core.shared.domain.exception.BadRequestException;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -35,5 +37,15 @@ public abstract class Validator<T> {
         if (!validationErrors.isEmpty())
             throw new InvalidObjectException(aggregateClass, validationErrors);
     }
+
+    protected void validate() {
+        try {
+            validate(getFields());
+        } catch (InvalidObjectException e) {
+            throw new BadRequestException(e);
+        }
+    }
+
+    protected abstract List<Field<Object>> getFields();
 
 }

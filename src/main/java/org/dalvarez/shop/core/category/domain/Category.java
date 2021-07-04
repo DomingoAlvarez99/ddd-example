@@ -2,20 +2,27 @@ package org.dalvarez.shop.core.category.domain;
 
 import java.util.Objects;
 
-public final class Category {
+public class Category {
 
-    private final Long id;
+    protected final Long id;
 
-    private final String name;
+    protected final String name;
 
-    private final Category parent;
+    protected final Category parent;
 
-    private final String uuid;
+    protected final String uuid;
 
-    private Category(final Long id,
-                     final String name,
-                     final Category parent,
-                     final String uuid) {
+    protected Category() {
+        this.id = null;
+        this.name = null;
+        this.parent = null;
+        this.uuid = null;
+    }
+
+    protected Category(final Long id,
+                       final String name,
+                       final Category parent,
+                       final String uuid) {
         this.id = id;
         this.name = name;
         this.parent = parent;
@@ -43,6 +50,22 @@ public final class Category {
                 parent,
                 uuid
         );
+    }
+
+    public static Category fromRequest(final Category request,
+                                       final String uuid,
+                                       final Category parent) {
+        return new Category(
+                null,
+                request.getName(),
+                parent,
+                uuid
+        );
+    }
+
+    public static Category fromRequest(final Category request,
+                                       final Category parent) {
+        return fromRequest(request, request.getUuid(), parent);
     }
 
     public Long getId() {

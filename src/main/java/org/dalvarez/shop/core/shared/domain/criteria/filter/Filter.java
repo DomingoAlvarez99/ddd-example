@@ -2,8 +2,6 @@ package org.dalvarez.shop.core.shared.domain.criteria.filter;
 
 import org.dalvarez.shop.core.shared.domain.exception.WrongFilterException;
 
-import javax.print.DocFlavor;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
@@ -71,13 +69,14 @@ public final class Filter<T> {
         if (value == null)
             return new HashSet<>();
 
-        if (!value.toString().contains(MULTIPLE_VALUES_DELIMITER))
+        if (!value.toString()
+                  .contains(MULTIPLE_VALUES_DELIMITER))
             return new HashSet<>(Collections.singletonList(value.toString()));
 
-            return Arrays.stream(value.toString()
-                        .split(MULTIPLE_VALUES_DELIMITER_RE))
-                         .filter(Objects::nonNull)
-                    .collect(Collectors.toSet());
+        return Arrays.stream(value.toString()
+                                  .split(MULTIPLE_VALUES_DELIMITER_RE))
+                     .filter(Objects::nonNull)
+                     .collect(Collectors.toSet());
     }
 
     public Set<String> getValues() {

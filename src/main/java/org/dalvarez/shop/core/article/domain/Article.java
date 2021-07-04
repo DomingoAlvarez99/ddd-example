@@ -34,11 +34,11 @@ public class Article {
     }
 
     protected Article(final Long id,
-                    final String uuid,
-                    final Integer stock,
-                    final Double price,
-                    final String name,
-                    final String description) {
+                      final String uuid,
+                      final Integer stock,
+                      final Double price,
+                      final String name,
+                      final String description) {
         this.id = id;
         this.uuid = uuid;
         this.stock = stock;
