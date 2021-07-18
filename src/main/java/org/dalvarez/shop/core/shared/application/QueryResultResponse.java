@@ -1,7 +1,7 @@
 package org.dalvarez.shop.core.shared.application;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.dalvarez.shop.core.shared.domain.query_result.QueryResult;
+import org.dalvarez.shop.shared.persistence.domain.criteria.QueryResult;
 
 import java.util.List;
 

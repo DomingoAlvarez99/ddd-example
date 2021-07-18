@@ -3,9 +3,9 @@ package org.dalvarez.shop.core.article.application.create;
 import org.dalvarez.shop.core.article.domain.ArticleRepository;
 import org.dalvarez.shop.core.shared.ContextTestCase;
 import org.dalvarez.shop.core.shared.application.GeneratorUniqueUuid;
-import org.dalvarez.shop.core.shared.domain.generator.UuidGenerator;
-import org.dalvarez.shop.core.shared.domain.log.Logger;
-import org.dalvarez.shop.core.shared.infrastructure.hibernate_persistence.exception.NotFoundException;
+import org.dalvarez.shop.shared.persistence.domain.uuid_generator.UuidGenerator;
+import org.dalvarez.shop.shared.log.domain.Logger;
+import org.dalvarez.shop.shared.persistence.infrastructure.shared.exception.NotFoundException;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 

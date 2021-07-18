@@ -1,12 +1,12 @@
 package org.dalvarez.shop.core.shared.application;
 
-import org.dalvarez.shop.core.shared.domain.generator.UuidGenerator;
-import org.dalvarez.shop.core.shared.domain.repository.GenericRepository;
-import org.dalvarez.shop.core.shared.domain.validation.Field;
-import org.dalvarez.shop.core.shared.domain.validation.FieldValidator;
-import org.dalvarez.shop.core.shared.domain.validation.UuidValidator;
-import org.dalvarez.shop.core.shared.domain.validation.ValidationNotPassedException;
-import org.dalvarez.shop.core.shared.infrastructure.hibernate_persistence.exception.NotFoundException;
+import org.dalvarez.shop.shared.persistence.domain.uuid_generator.UuidGenerator;
+import org.dalvarez.shop.shared.persistence.domain.repository.GenericRepository;
+import org.dalvarez.shop.shared.shared.infrastructure.validation.Field;
+import org.dalvarez.shop.shared.shared.infrastructure.validation.FieldValidator;
+import org.dalvarez.shop.shared.shared.infrastructure.validation.UuidValidator;
+import org.dalvarez.shop.shared.shared.infrastructure.validation.ValidationNotPassedException;
+import org.dalvarez.shop.shared.persistence.infrastructure.shared.exception.NotFoundException;
 
 public class GeneratorUniqueUuid {
 
@@ -30,7 +30,7 @@ public class GeneratorUniqueUuid {
         while (alreadyExists(uuid));
 
         try {
-            uuidValidator.validate(new Field<>(UuidValidator.UUID_FIELD_NAME, uuid));
+            uuidValidator.validate(new Field<>(uuid));
         } catch (ValidationNotPassedException e) {
             throw new IllegalStateException(e);
         }

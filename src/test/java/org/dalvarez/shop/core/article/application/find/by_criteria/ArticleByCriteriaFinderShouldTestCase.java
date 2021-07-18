@@ -3,7 +3,7 @@ package org.dalvarez.shop.core.article.application.find.by_criteria;
 import org.dalvarez.shop.core.article.application.ArticleApplicationModuleTestCase;
 import org.dalvarez.shop.core.article.domain.ArticleMother;
 import org.dalvarez.shop.core.shared.domain.QueryResultMother;
-import org.dalvarez.shop.core.shared.domain.criteria.Criteria;
+import org.dalvarez.shop.shared.persistence.domain.criteria.Criteria;
 import org.junit.jupiter.api.Test;
 
 import static org.mockito.Mockito.when;

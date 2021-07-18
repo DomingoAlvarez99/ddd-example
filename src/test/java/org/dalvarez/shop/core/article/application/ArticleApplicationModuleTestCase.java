@@ -3,7 +3,7 @@ package org.dalvarez.shop.core.article.application;
 import org.dalvarez.shop.core.article.domain.Article;
 import org.dalvarez.shop.core.article.domain.ArticleRepository;
 import org.dalvarez.shop.core.shared.application.ApplicationModuleTestCase;
-import org.dalvarez.shop.core.shared.domain.criteria.Criteria;
+import org.dalvarez.shop.shared.persistence.domain.criteria.Criteria;
 
 import static org.mockito.Mockito.atLeastOnce;
 import static org.mockito.Mockito.verify;

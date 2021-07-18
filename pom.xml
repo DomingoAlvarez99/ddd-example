@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.dalvarez.shop</groupId>
-    <artifactId>shop-core</artifactId>
+    <artifactId>core</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <name>${project.groupId}.${project.artifactId}</name>
@@ -31,9 +31,18 @@
         <sonarqube.login>ce5b1e3f8e952772b05f77bb39e48dc763bd672b</sonarqube.login>
         <!-- Logstash -->
         <logstash.version>6.3</logstash.version>
+        <shop-shared.version>1.0-SNAPSHOT</shop-shared.version>
     </properties>
 
     <dependencies>
+        <!-- Shop shared -->
+        <dependency>
+            <groupId>org.dalvarez.shop</groupId>
+            <artifactId>shared</artifactId>
+            <!--Look for the latest version (v >= 1.0). Take Release if available. Else SNAPSHOT-->
+            <version>[1.0-SNAPSHOT,)</version>
+        </dependency>
+
         <!-- Spring -->
         <dependency>
             <groupId>org.springframework.boot</groupId>

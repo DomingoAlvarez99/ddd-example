@@ -1,7 +1,7 @@
 package org.dalvarez.shop.core.article.application.create;
 
 import org.dalvarez.shop.core.article.domain.ArticleCreatedDomainEvent;
-import org.dalvarez.shop.core.shared.domain.log.Logger;
+import org.dalvarez.shop.shared.log.domain.Logger;
 import org.springframework.context.event.EventListener;
 
 public final class OnArticleCreatedEvent {

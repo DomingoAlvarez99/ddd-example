@@ -3,7 +3,7 @@ package org.dalvarez.shop.core.article.infrastructure.rest_api.controller.get.su
 import org.dalvarez.shop.core.article.application.sum.by_price.ArticleByPriceAdder;
 import org.dalvarez.shop.core.article.infrastructure.rest_api.controller.ArticleApiController;
 import org.dalvarez.shop.core.shared.application.sum.SumResponse;
-import org.dalvarez.shop.core.shared.domain.criteria.Criteria;
+import org.dalvarez.shop.shared.persistence.domain.criteria.Criteria;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;

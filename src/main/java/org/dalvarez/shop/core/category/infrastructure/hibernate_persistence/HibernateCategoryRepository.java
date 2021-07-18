@@ -2,10 +2,10 @@ package org.dalvarez.shop.core.category.infrastructure.hibernate_persistence;
 
 import org.dalvarez.shop.core.category.domain.Category;
 import org.dalvarez.shop.core.category.domain.CategoryRepository;
-import org.dalvarez.shop.core.shared.domain.criteria.Criteria;
-import org.dalvarez.shop.core.shared.domain.criteria.CriteriaConverter;
-import org.dalvarez.shop.core.shared.domain.query_result.QueryResult;
-import org.dalvarez.shop.core.shared.infrastructure.hibernate_persistence.HibernateRepository;
+import org.dalvarez.shop.shared.persistence.domain.criteria.Criteria;
+import org.dalvarez.shop.shared.persistence.domain.criteria.CriteriaConverter;
+import org.dalvarez.shop.shared.persistence.domain.criteria.QueryResult;
+import org.dalvarez.shop.shared.persistence.infrastructure.hibernate.HibernateRepository;
 
 import javax.persistence.EntityManager;
 import java.util.stream.Collectors;

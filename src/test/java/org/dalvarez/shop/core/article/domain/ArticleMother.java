@@ -1,8 +1,8 @@
 package org.dalvarez.shop.core.article.domain;
 
 import org.dalvarez.shop.core.shared.domain.UuidMother;
-import org.dalvarez.shop.core.shared.domain.util.CollectionUtils;
 import org.dalvarez.shop.core.shared.domain.util.RandomElementPicker;
+import org.dalvarez.shop.shared.shared.domain.util.CollectionUtils;
 
 import java.util.List;
 import java.util.Random;

@@ -1,10 +1,10 @@
 package org.dalvarez.shop.core.category.infrastructure.rest_api.controller.post;
 
 import org.dalvarez.shop.core.category.infrastructure.rest_api.shared.CategoryBasicRequest;
-import org.dalvarez.shop.core.shared.domain.validation.Field;
-import org.dalvarez.shop.core.shared.domain.validation.FieldValidator;
-import org.dalvarez.shop.core.shared.domain.validation.GenericNotEmptyValidator;
-import org.dalvarez.shop.core.shared.domain.validation.UuidValidator;
+import org.dalvarez.shop.shared.shared.infrastructure.validation.Field;
+import org.dalvarez.shop.shared.shared.infrastructure.validation.FieldValidator;
+import org.dalvarez.shop.shared.shared.infrastructure.validation.GenericNotEmptyValidator;
+import org.dalvarez.shop.shared.shared.infrastructure.validation.UuidValidator;
 
 import java.util.List;
 import java.util.Map;

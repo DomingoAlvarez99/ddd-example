@@ -4,8 +4,8 @@ import org.dalvarez.shop.core.article.application.ArticleResponse;
 import org.dalvarez.shop.core.article.domain.Article;
 import org.dalvarez.shop.core.article.domain.ArticleRepository;
 import org.dalvarez.shop.core.shared.application.QueryResultResponse;
-import org.dalvarez.shop.core.shared.domain.criteria.Criteria;
-import org.dalvarez.shop.core.shared.domain.query_result.QueryResult;
+import org.dalvarez.shop.shared.persistence.domain.criteria.Criteria;
+import org.dalvarez.shop.shared.persistence.domain.criteria.QueryResult;
 
 import java.util.stream.Collectors;
 

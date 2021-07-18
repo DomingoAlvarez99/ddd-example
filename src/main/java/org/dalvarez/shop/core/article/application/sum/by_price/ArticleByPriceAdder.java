@@ -2,7 +2,7 @@ package org.dalvarez.shop.core.article.application.sum.by_price;
 
 import org.dalvarez.shop.core.article.domain.ArticleRepository;
 import org.dalvarez.shop.core.shared.application.sum.SumResponse;
-import org.dalvarez.shop.core.shared.domain.criteria.Criteria;
+import org.dalvarez.shop.shared.persistence.domain.criteria.Criteria;
 
 public final class ArticleByPriceAdder {
 

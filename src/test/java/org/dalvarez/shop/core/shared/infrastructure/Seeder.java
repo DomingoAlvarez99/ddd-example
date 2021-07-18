@@ -1,9 +1,9 @@
 package org.dalvarez.shop.core.shared.infrastructure;
 
 import org.dalvarez.shop.core.shared.ContextTestCase;
-import org.dalvarez.shop.core.shared.domain.criteria.Criteria;
-import org.dalvarez.shop.core.shared.domain.log.Logger;
-import org.dalvarez.shop.core.shared.domain.repository.GenericRepository;
+import org.dalvarez.shop.shared.persistence.domain.repository.GenericRepository;
+import org.dalvarez.shop.shared.log.domain.Logger;
+import org.dalvarez.shop.shared.persistence.domain.criteria.Criteria;
 
 import java.util.List;
 import java.util.stream.Collectors;

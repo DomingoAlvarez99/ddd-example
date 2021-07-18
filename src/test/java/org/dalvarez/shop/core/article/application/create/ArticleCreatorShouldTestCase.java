@@ -5,9 +5,9 @@ import org.dalvarez.shop.core.article.domain.Article;
 import org.dalvarez.shop.core.article.domain.ArticleCreatedDomainEvent;
 import org.dalvarez.shop.core.article.domain.ArticleMother;
 import org.dalvarez.shop.core.shared.domain.UuidMother;
-import org.dalvarez.shop.core.shared.domain.bus.event.DomainEvent;
-import org.dalvarez.shop.core.shared.domain.log.Logger;
-import org.dalvarez.shop.core.shared.infrastructure.hibernate_persistence.exception.NotFoundException;
+import org.dalvarez.shop.shared.event.domain.DomainEvent;
+import org.dalvarez.shop.shared.log.domain.Logger;
+import org.dalvarez.shop.shared.persistence.infrastructure.shared.exception.NotFoundException;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 

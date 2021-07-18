@@ -1,16 +1,16 @@
 package org.dalvarez.shop.core.shared.infrastructure.hibernate_persistence;
 
-import org.dalvarez.shop.core.article.domain.Article;
 import org.dalvarez.shop.core.article.infrastructure.hibernate_persistence.ArticleEntity;
 import org.dalvarez.shop.core.shared.ContextTestCase;
-import org.dalvarez.shop.core.shared.domain.criteria.Criteria;
-import org.dalvarez.shop.core.shared.domain.criteria.filter.Filter;
-import org.dalvarez.shop.core.shared.domain.criteria.filter.FilterOperator;
-import org.dalvarez.shop.core.shared.domain.criteria.filter.Filters;
-import org.dalvarez.shop.core.shared.domain.criteria.order.Order;
-import org.dalvarez.shop.core.shared.domain.criteria.order.OrderType;
-import org.dalvarez.shop.core.shared.domain.criteria.page.Page;
-import org.dalvarez.shop.core.shared.infrastructure.hibernate_persistence.criteria.HibernateCriteriaConverter;
+import org.dalvarez.shop.shared.persistence.domain.criteria.Criteria;
+import org.dalvarez.shop.shared.persistence.domain.criteria.filter.Filter;
+import org.dalvarez.shop.shared.persistence.domain.criteria.filter.FilterOperator;
+import org.dalvarez.shop.shared.persistence.domain.criteria.filter.Filters;
+import org.dalvarez.shop.shared.persistence.domain.criteria.order.Order;
+import org.dalvarez.shop.shared.persistence.domain.criteria.order.OrderType;
+import org.dalvarez.shop.shared.persistence.domain.criteria.page.Page;
+import org.dalvarez.shop.shared.persistence.infrastructure.hibernate.BaseEntity;
+import org.dalvarez.shop.shared.persistence.infrastructure.hibernate.criteria.HibernateCriteriaConverter;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.springframework.beans.factory.annotation.Autowired;

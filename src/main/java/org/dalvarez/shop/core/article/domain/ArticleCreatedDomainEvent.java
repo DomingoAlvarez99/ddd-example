@@ -1,6 +1,6 @@
 package org.dalvarez.shop.core.article.domain;
 
-import org.dalvarez.shop.core.shared.domain.bus.event.DomainEvent;
+import org.dalvarez.shop.shared.event.domain.DomainEvent;
 
 public final class ArticleCreatedDomainEvent extends DomainEvent<Article> {
 

@@ -3,7 +3,7 @@ package org.dalvarez.shop.core.article_category.infrastructure.hibernate_persist
 import org.dalvarez.shop.core.article.infrastructure.hibernate_persistence.ArticleEntity;
 import org.dalvarez.shop.core.article_category.domain.ArticleCategory;
 import org.dalvarez.shop.core.category.infrastructure.hibernate_persistence.CategoryEntity;
-import org.dalvarez.shop.core.shared.infrastructure.hibernate_persistence.BaseEntity;
+import org.dalvarez.shop.shared.persistence.infrastructure.hibernate.BaseEntity;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;

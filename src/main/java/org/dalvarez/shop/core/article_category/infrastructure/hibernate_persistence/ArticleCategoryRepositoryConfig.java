@@ -1,7 +1,7 @@
 package org.dalvarez.shop.core.article_category.infrastructure.hibernate_persistence;
 
 import org.dalvarez.shop.core.article_category.domain.ArticleCategoryRepository;
-import org.dalvarez.shop.core.shared.domain.criteria.CriteriaConverter;
+import org.dalvarez.shop.shared.persistence.domain.criteria.CriteriaConverter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

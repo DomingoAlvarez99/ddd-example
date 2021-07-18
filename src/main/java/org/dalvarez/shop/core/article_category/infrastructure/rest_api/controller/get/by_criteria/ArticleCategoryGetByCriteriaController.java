@@ -4,7 +4,7 @@ import org.dalvarez.shop.core.article_category.application.ArticleCategoryRespon
 import org.dalvarez.shop.core.article_category.application.find.by_criteria.ArticleCategoryByCriteriaFinder;
 import org.dalvarez.shop.core.article_category.infrastructure.rest_api.controller.ArticleCategoryApiController;
 import org.dalvarez.shop.core.shared.application.QueryResultResponse;
-import org.dalvarez.shop.core.shared.domain.criteria.Criteria;
+import org.dalvarez.shop.shared.persistence.domain.criteria.Criteria;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
