@@ -1,4 +1,4 @@
-_**Este repositorio se está desarrollando**_
+_**Este repositorio está en desarrollo**_
 # Shop core
 > Este proyecto es el microservicio principal del proyecto Shop. Se encarga de acceder a la db, comunicarse con otros microservicios a través de eventos...
  
