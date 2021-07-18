@@ -3,7 +3,7 @@ package org.dalvarez.shop.core.article.application.find.by_criteria;
 import org.dalvarez.shop.core.article.application.ArticleResponse;
 import org.dalvarez.shop.core.article.domain.Article;
 import org.dalvarez.shop.core.article.domain.ArticleRepository;
-import org.dalvarez.shop.core.shared.application.QueryResultResponse;
+import org.dalvarez.shop.shared.persistence.application.QueryResultResponse;
 import org.dalvarez.shop.shared.persistence.domain.criteria.Criteria;
 import org.dalvarez.shop.shared.persistence.domain.criteria.QueryResult;
 

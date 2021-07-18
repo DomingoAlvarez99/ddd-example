@@ -3,7 +3,7 @@ package org.dalvarez.shop.core.article_category.infrastructure.rest_api.controll
 import org.dalvarez.shop.core.article_category.application.ArticleCategoryResponse;
 import org.dalvarez.shop.core.article_category.application.find.by_criteria.ArticleCategoryByCriteriaFinder;
 import org.dalvarez.shop.core.article_category.infrastructure.rest_api.controller.ArticleCategoryApiController;
-import org.dalvarez.shop.core.shared.application.QueryResultResponse;
+import org.dalvarez.shop.shared.persistence.application.QueryResultResponse;
 import org.dalvarez.shop.shared.persistence.domain.criteria.Criteria;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
