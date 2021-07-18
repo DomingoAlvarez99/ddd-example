@@ -25,7 +25,6 @@
         <!-- Swagger -->
         <open-api.version>1.5.9</open-api.version>
         <!-- Sonarqube -->
-        <sonarqube.version>3.2</sonarqube.version>
         <sonarqube.projectKey>shop-core-key</sonarqube.projectKey>
         <sonarqube.host.url>http://localhost:9000</sonarqube.host.url>
         <sonarqube.login>ce5b1e3f8e952772b05f77bb39e48dc763bd672b</sonarqube.login>
@@ -41,18 +40,6 @@
             <artifactId>shared</artifactId>
             <!--Look for the latest version (v >= 1.0). Take Release if available. Else SNAPSHOT-->
             <version>[1.0-SNAPSHOT,)</version>
-        </dependency>
-
-        <!-- Spring -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter</artifactId>
-        </dependency>
-
-        <!-- JPA -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
 
         <!-- POSTGRESQL -->
@@ -80,13 +67,6 @@
             <groupId>org.springdoc</groupId>
             <artifactId>springdoc-openapi-ui</artifactId>
             <version>${open-api.version}</version>
-        </dependency>
-
-        <!-- Sonarqube -->
-        <dependency>
-            <groupId>org.sonarsource.scanner.maven</groupId>
-            <artifactId>sonar-maven-plugin</artifactId>
-            <version>${sonarqube.version}</version>
         </dependency>
 
         <!-- Spring test -->
