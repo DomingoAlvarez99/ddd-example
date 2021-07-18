@@ -2,6 +2,7 @@ package org.dalvarez.shop.core.article_category.infrastructure.hibernate_persist
 
 import org.dalvarez.shop.core.article_category.domain.ArticleCategory;
 import org.dalvarez.shop.core.article_category.domain.ArticleCategoryRepository;
+import org.dalvarez.shop.shared.persistence.domain.criteria.CountResult;
 import org.dalvarez.shop.shared.persistence.domain.criteria.Criteria;
 import org.dalvarez.shop.shared.persistence.domain.criteria.CriteriaConverter;
 import org.dalvarez.shop.shared.persistence.domain.criteria.QueryResult;
@@ -39,6 +40,11 @@ public class HibernateArticleCategoryRepository extends HibernateRepository<Arti
                       .map(ArticleCategoryEntity::toArticleCategory)
                       .collect(Collectors.toList())
         );
+    }
+
+    @Override
+    public CountResult countByCriteria(final Criteria criteria) {
+        return super.countByCriteria(criteria);
     }
 
     @Override

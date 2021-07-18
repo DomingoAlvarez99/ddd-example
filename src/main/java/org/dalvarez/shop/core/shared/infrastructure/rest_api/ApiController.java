@@ -13,4 +13,6 @@ public class ApiController {
 
     public static final String SUM_PATH = "/sum";
 
+    public static final String COUNT_PATH = "/count";
+
 }

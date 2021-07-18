@@ -30,7 +30,6 @@
         <sonarqube.login>ce5b1e3f8e952772b05f77bb39e48dc763bd672b</sonarqube.login>
         <!-- Logstash -->
         <logstash.version>6.3</logstash.version>
-        <shop-shared.version>1.0-SNAPSHOT</shop-shared.version>
     </properties>
 
     <dependencies>
