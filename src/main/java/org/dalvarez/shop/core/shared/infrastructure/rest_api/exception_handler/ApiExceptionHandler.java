@@ -5,7 +5,7 @@ import org.dalvarez.shop.shared.persistence.domain.criteria.NonUniqueResultExcep
 import org.dalvarez.shop.shared.persistence.domain.criteria.filter.WrongFilterException;
 import org.dalvarez.shop.shared.persistence.infrastructure.shared.exception.ConflictException;
 import org.dalvarez.shop.shared.persistence.infrastructure.shared.exception.NotFoundException;
-import org.dalvarez.shop.shared.shared.infrastructure.shared.exception.BadRequestException;
+import org.dalvarez.shop.shared.shared.infrastructure.validation.BadRequestException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
