@@ -3,7 +3,7 @@ package org.dalvarez.shop.core.category.application.create;
 import org.dalvarez.shop.core.category.application.CategoryResponse;
 import org.dalvarez.shop.core.category.domain.Category;
 import org.dalvarez.shop.core.category.domain.CategoryRepository;
-import org.dalvarez.shop.shared.persistence.application.GeneratorUniqueUuid;
+import org.dalvarez.shop.shared.persistence.application.uuid_generator.GeneratorUniqueUuid;
 import org.dalvarez.shop.shared.persistence.domain.uuid_generator.UuidGenerator;
 import org.springframework.stereotype.Service;
 

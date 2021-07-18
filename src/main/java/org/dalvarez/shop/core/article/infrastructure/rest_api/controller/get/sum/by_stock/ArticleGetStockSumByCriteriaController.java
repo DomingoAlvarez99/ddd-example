@@ -2,7 +2,7 @@ package org.dalvarez.shop.core.article.infrastructure.rest_api.controller.get.su
 
 import org.dalvarez.shop.core.article.application.sum.by_stock.ArticleByStockAdder;
 import org.dalvarez.shop.core.article.infrastructure.rest_api.controller.ArticleApiController;
-import org.dalvarez.shop.shared.persistence.application.sum.SumResponse;
+import org.dalvarez.shop.shared.persistence.application.shared.sum.SumResponse;
 import org.dalvarez.shop.shared.persistence.domain.criteria.Criteria;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
