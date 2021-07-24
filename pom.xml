@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.dalvarez.shop</groupId>
-    <artifactId>core</artifactId>
+    <artifactId>shop-core</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <name>${project.groupId}.${project.artifactId}</name>
@@ -22,8 +22,9 @@
         <encoding>UTF-8</encoding>
         <!-- Jacoco version -->
         <jacoco.version>0.8.5</jacoco.version>
-        <!-- Swagger -->
+        <!-- Open Api -->
         <open-api.version>1.5.9</open-api.version>
+        <open-api-generator.version>5.0.0-beta2</open-api-generator.version>
         <!-- Sonarqube -->
         <sonarqube.projectKey>shop-core-key</sonarqube.projectKey>
         <sonarqube.host.url>http://localhost:9000</sonarqube.host.url>
@@ -36,7 +37,7 @@
         <!-- Shop shared -->
         <dependency>
             <groupId>org.dalvarez.shop</groupId>
-            <artifactId>shared</artifactId>
+            <artifactId>shop-shared</artifactId>
             <!--Look for the latest version (v >= 1.0). Take Release if available. Else SNAPSHOT-->
             <version>[1.0-SNAPSHOT,)</version>
         </dependency>
@@ -111,6 +112,37 @@
                             <goal>report</goal>
                             <goal>report-integration</goal>
                         </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.openapitools</groupId>
+                <artifactId>openapi-generator-maven-plugin</artifactId>
+                <version>${open-api-generator.version}</version>
+                <executions>
+                    <execution>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <typeMappings>
+                                <typeMapping>OffsetDateTime=Timestamp</typeMapping>
+                            </typeMappings>
+                            <importMappings>
+                                <importMapping>java.time.OffsetDateTime=java.sql.Timestamp</importMapping>
+                            </importMappings>
+                            <inputSpec>${basedir}/generated/swagger-api/api-docs.json</inputSpec>
+                            <generatorName>java</generatorName>
+                            <library>native</library>
+                            <apiPackage>${project.groupId}.${project.artifactId}.client.api</apiPackage>
+                            <modelPackage>${project.groupId}.${project.artifactId}.client.model</modelPackage>
+                            <invokerPackage>${project.groupId}.${project.artifactId}.client.invoker</invokerPackage>
+                            <groupId>${project.groupId}</groupId>
+                            <artifactId>${project.artifactId}-api-client</artifactId>
+                            <artifactVersion>${project.version}</artifactVersion>
+                            <output>${project.build.directory}/generated-sources-swagger-api</output>
+                        </configuration>
                     </execution>
                 </executions>
             </plugin>

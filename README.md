@@ -76,7 +76,7 @@ El código del proyecto está separado en módulos. Cada módulo tiene su propio
 
 Cada módulo intenta ser independiente y las interacciones entre módulos son mínimas.
 
-Paquete de ejemplo: [article](src/main/java/org/dalvarez/shop/core/article)
+Paquete de ejemplo: [article](src/main/java/org/dalvarez/shop/shop_core/article)
 
 # Capa de Dominio
 
@@ -93,7 +93,7 @@ Esta capa es el núcleo de la aplicación y contiene la lógica de negocio.
 
 Los modelos son el núcleo del dominio. Encapsulan las reglas y los atributos del negocio. Un moddelo es una objecto con propiedades, métodos, estructuras de datos..
 
-Fichero de ejemplo: [Article.java](src/main/java/org/dalvarez/shop/core/article/domain/Article.java)
+Fichero de ejemplo: [Article.java](src/main/java/org/dalvarez/shop/shop_core/article/domain/Article.java)
 
 ## Puertos
 
@@ -108,8 +108,8 @@ Los puertos con interfaces que definen contratos que deben implementar los adapt
 
 Ejemplos: 
     
-- [ArticleRepository.java](src/main/java/org/dalvarez/shop/core/article/domain/ArticleRepository.java) - Puerto que cumple el principio [ISP](https://en.wikipedia.org/wiki/Interface_segregation_principle).
-- [ArticleRepositoryConfig.java](src/main/java/org/dalvarez/shop/core/article/domain/ArticleRepositoryConfig.java) - Ejemplo de inversión de dependencias [DIP](https://en.wikipedia.org/wiki/Dependency_inversion_principle) junto a un único punto de instanciación.
+- [ArticleRepository.java](src/main/java/org/dalvarez/shop/shop_core/article/domain/ArticleRepository.java) - Puerto que cumple el principio [ISP](https://en.wikipedia.org/wiki/Interface_segregation_principle).
+- [ArticleRepositoryConfig.java](src/main/java/org/dalvarez/shop/shop_core/article/domain/ArticleRepositoryConfig.java) - Ejemplo de inversión de dependencias [DIP](https://en.wikipedia.org/wiki/Dependency_inversion_principle) junto a un único punto de instanciación.
 
 ## Eventos de Dominio
 
@@ -127,10 +127,10 @@ Una mejor solución sería publicar un evento de dominio. Cualquier operación q
 
 Ejemplos:
 
-- [EventBus.java](src/main/java/org/dalvarez/shop/core/shared/domain/bus/event/EventBus.java) - Responsable de publicar/escuchar eventos de dominio.
-- [ArticleCreatedDomainEvent.java](src/main/java/org/dalvarez/shop/core/article/domain/ArticleCreatedDomainEvent.java) - Objeto que contiene datos relaciones con el evento de dominio publicado.
-- [OnArticleCreatedEvent.java](src/main/java/org/dalvarez/shop/core/article/application/create/OnArticleCreatedEvent.java) - Caso de uso que escucha la publiación de un tipo de evento de dominio.
-- [ArticleCreator.java](src/main/java/org/dalvarez/shop/core/article/application/create/ArticleCreator.java) - Caso de uso que publica un evento de dominio.
+- [EventBus.java](src/main/java/org/dalvarez/shop/shop_core/shared/domain/bus/event/EventBus.java) - Responsable de publicar/escuchar eventos de dominio.
+- [ArticleCreatedDomainEvent.java](src/main/java/org/dalvarez/shop/shop_core/article/domain/ArticleCreatedDomainEvent.java) - Objeto que contiene datos relaciones con el evento de dominio publicado.
+- [OnArticleCreatedEvent.java](src/main/java/org/dalvarez/shop/shop_core/article/application/create/OnArticleCreatedEvent.java) - Caso de uso que escucha la publiación de un tipo de evento de dominio.
+- [ArticleCreator.java](src/main/java/org/dalvarez/shop/shop_core/article/application/create/ArticleCreator.java) - Caso de uso que publica un evento de dominio.
 
 # Capa de Aplicación
 
@@ -144,7 +144,7 @@ Estos servicios orquestan los pasos necesarios para cumplir con las directrices 
 - Pueden ejecutar otras comunicaciones a través de puertos (como emitir eventos, enviar notificaciones..).
 - No deberían de depender de otros casos de uso.
 
-Fichero de ejemplo: [ArticleCreator.java](src/main/java/org/dalvarez/shop/core/article/application/create/ArticleCreator.java)
+Fichero de ejemplo: [ArticleCreator.java](src/main/java/org/dalvarez/shop/shop_core/article/application/create/ArticleCreator.java)
 
 ## CQRS
 
@@ -166,7 +166,7 @@ Son implementaciones de los puertos. Toman los datos de entrada del usuario, la 
 
 - Contiene controladores y DTO de solicitud, persistencia, CLI..
 
-Fichero de ejemplo [HibernateArticleRepository.java](src/main/java/org/dalvarez/shop/core/article/infrastructure/hibernate_persistence/HibernateArticleRepository.java)
+Fichero de ejemplo [HibernateArticleRepository.java](src/main/java/org/dalvarez/shop/shop_core/article/infrastructure/hibernate_persistence/HibernateArticleRepository.java)
 
 ## Otras cosas que pueden ser parte de la capa de Infraestructura
 
@@ -185,25 +185,25 @@ Verbos más usados:
 
 Se usa para recuperar un recurso. Si no se encuentra se debe de enviar un código [HTTP 404](https://en.wikipedia.org/wiki/HTTP_404).
 
-Fichero de ejemplo [ArticleGetByIdController](src/main/java/org/dalvarez/shop/core/article/infrastructure/rest_api/controller/get/by_id/ArticleGetByIdController.java)
+Fichero de ejemplo [ArticleGetByIdController](src/main/java/org/dalvarez/shop/shop_core/article/infrastructure/rest_api/controller/get/by_id/ArticleGetByIdController.java)
 
 #### POST
 
 Se usa para crear un recurso. En caso de que ese recurso exista se debe de enviar un código [HTTP 403](https://en.wikipedia.org/wiki/HTTP_403).
 
-Fichero de ejemplo [ArticlePostController](src/main/java/org/dalvarez/shop/core/article/infrastructure/rest_api/controller/post/ArticlePostController.java)
+Fichero de ejemplo [ArticlePostController](src/main/java/org/dalvarez/shop/shop_core/article/infrastructure/rest_api/controller/post/ArticlePostController.java)
 
 #### PUT
 
 Se usa para actualizar un recurso. En caso de que ese recurso no exista se debe de enviar un código [HTTP 404](https://en.wikipedia.org/wiki/HTTP_404).
 
-Fichero de ejemplo [ArticlePutController](src/main/java/org/dalvarez/shop/core/article/infrastructure/rest_api/controller/put/ArticlePutController.java)
+Fichero de ejemplo [ArticlePutController](src/main/java/org/dalvarez/shop/shop_core/article/infrastructure/rest_api/controller/put/ArticlePutController.java)
 
 #### DELETE
 
 Se usa para eliminar un recurso. Si ese recurso no existe, no se debe de mandar un código [HTTP 404](https://en.wikipedia.org/wiki/HTTP_404).
 
-Fichero de ejemplo [ArticleDeleteController.java](src/main/java/org/dalvarez/shop/core/article/infrastructure/rest_api/controller/delete/ArticleDeleteController.java)
+Fichero de ejemplo [ArticleDeleteController.java](src/main/java/org/dalvarez/shop/shop_core/article/infrastructure/rest_api/controller/delete/ArticleDeleteController.java)
 
 ## Recomendaciones y buenas prácticas
 
@@ -216,8 +216,8 @@ Fichero de ejemplo [ArticleDeleteController.java](src/main/java/org/dalvarez/sho
 
 Ejemplos:
 
-- [BadRequestException.java](src/main/java/org/dalvarez/shop/core/shared/domain/exception/BadRequestException.java) - Excepción unchecked.
-- [ApiExceptionHandler.java](src/main/java/org/dalvarez/shop/core/shared/infrastructure/rest_api/exception_handler/ApiExceptionHandler.java) - Manejador de excepciones de la aplicación.
+- [BadRequestException.java](src/main/java/org/dalvarez/shop/shop_core/shared/domain/exception/BadRequestException.java) - Excepción unchecked.
+- [ApiExceptionHandler.java](src/main/java/org/dalvarez/shop/shop_core/shared/infrastructure/rest_api/exception_handler/ApiExceptionHandler.java) - Manejador de excepciones de la aplicación.
 
 ### Testing
 
@@ -257,7 +257,7 @@ En lugar de usar el estilo típico de organizar la aplicación en capas de repos
 - Agrupar archivos por su comportamiento que cambia juntos, no por el tipo de funcionalidad que proporciona.
 - Mantener separados los archivos utilizados por otros componentes.
 
-Paquete de ejemplo: [article application](src/main/java/org/dalvarez/shop/core/article/application)
+Paquete de ejemplo: [article application](src/main/java/org/dalvarez/shop/shop_core/article/application)
 
 ### Formato del código
 
@@ -287,7 +287,7 @@ Criteria es un patrón de diseño que permite filtrar, ordenar y paginar un conj
 
 - Se suele usar para obtener/modificar información de la base de datos.
 
-Paquete de ejemplo: [criteria](src/main/java/org/dalvarez/shop/core/shared/domain/criteria)
+Paquete de ejemplo: [criteria](src/main/java/org/dalvarez/shop/shop_core/shared/domain/criteria)
 
 # Configuración
 
