@@ -4,12 +4,12 @@ import org.dalvarez.shop.shop_core.article_category.application.erase.ArticleCat
 import org.dalvarez.shop.shop_core.article_category.infrastructure.rest_api.controller.ArticleCategoryApiController;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestController;
 
-@Service
+@RestController
 public final class ArticleCategoryDeleteController extends ArticleCategoryApiController {
 
     private final ArticleCategoryEraser articleCategoryEraser;

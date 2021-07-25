@@ -1,6 +1,6 @@
 package org.dalvarez.shop.shop_core.shared.domain;
 
-import org.dalvarez.shop.shop_shared.persistence.domain.criteria.QueryResult;
+import org.dalvarez.shop.shop_common.persistence.domain.criteria.QueryResult;
 
 import java.util.List;
 

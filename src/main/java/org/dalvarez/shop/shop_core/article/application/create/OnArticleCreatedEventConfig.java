@@ -1,6 +1,6 @@
 package org.dalvarez.shop.shop_core.article.application.create;
 
-import org.dalvarez.shop.shop_shared.log.domain.Logger;
+import org.dalvarez.shop.shop_common.log.domain.Logger;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

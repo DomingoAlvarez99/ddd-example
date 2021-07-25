@@ -1,7 +1,7 @@
 package org.dalvarez.shop.shop_core.article.application.sum.by_stock;
 
 import org.dalvarez.shop.shop_core.article.application.ArticleApplicationModuleTestCase;
-import org.dalvarez.shop.shop_shared.persistence.domain.criteria.Criteria;
+import org.dalvarez.shop.shop_common.persistence.domain.criteria.Criteria;
 import org.junit.jupiter.api.Test;
 
 public final class ArticleByStockAdderShouldTestCase extends ArticleApplicationModuleTestCase {

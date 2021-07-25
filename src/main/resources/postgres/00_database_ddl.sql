@@ -1,11 +1,14 @@
 create role shop_admin login password 'admin';
 
-create database shop_core;
-grant create on database shop_core TO shop_admin;
+create database shop;
+grant create on database shop TO shop_admin;
 
 --\c shop_core
 
-create schema shop;
+create schema shop_core;
 
+create schema shop_other;
+
+alter role shop_admin in database shop set search_path to shop_core, shop_other;
+-- Exit and enter again to update the search path
 --show search_path;
-alter role shop_admin in database shop_core set search_path to shop;

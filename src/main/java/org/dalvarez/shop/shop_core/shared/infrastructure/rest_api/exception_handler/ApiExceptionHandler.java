@@ -1,11 +1,11 @@
 package org.dalvarez.shop.shop_core.shared.infrastructure.rest_api.exception_handler;
 
-import org.dalvarez.shop.shop_shared.log.domain.Logger;
-import org.dalvarez.shop.shop_shared.persistence.domain.criteria.NonUniqueResultException;
-import org.dalvarez.shop.shop_shared.persistence.domain.criteria.filter.WrongFilterException;
-import org.dalvarez.shop.shop_shared.persistence.infrastructure.shared.exception.ConflictException;
-import org.dalvarez.shop.shop_shared.persistence.infrastructure.shared.exception.NotFoundException;
-import org.dalvarez.shop.shop_shared.shared.infrastructure.validation.BadRequestException;
+import org.dalvarez.shop.shop_common.log.domain.Logger;
+import org.dalvarez.shop.shop_common.persistence.domain.criteria.NonUniqueResultException;
+import org.dalvarez.shop.shop_common.persistence.domain.criteria.filter.WrongFilterException;
+import org.dalvarez.shop.shop_common.persistence.infrastructure.shared.exception.ConflictException;
+import org.dalvarez.shop.shop_common.persistence.infrastructure.shared.exception.NotFoundException;
+import org.dalvarez.shop.shop_common.shared.infrastructure.validation.BadRequestException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;

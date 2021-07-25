@@ -3,8 +3,8 @@ package org.dalvarez.shop.shop_core.article.infrastructure.rest_api.get.by_crite
 import org.dalvarez.shop.shop_core.article.application.ArticleResponse;
 import org.dalvarez.shop.shop_core.article.domain.ArticleRepository;
 import org.dalvarez.shop.shop_core.article.infrastructure.ArticleInfrastructureRestApiModuleTestCase;
-import org.dalvarez.shop.shop_shared.log.domain.Logger;
-import org.dalvarez.shop.shop_shared.persistence.domain.criteria.QueryResult;
+import org.dalvarez.shop.shop_common.log.domain.Logger;
+import org.dalvarez.shop.shop_common.persistence.domain.criteria.QueryResult;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 

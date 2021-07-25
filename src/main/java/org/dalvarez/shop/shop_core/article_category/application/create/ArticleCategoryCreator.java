@@ -7,8 +7,8 @@ import org.dalvarez.shop.shop_core.article_category.domain.ArticleCategory;
 import org.dalvarez.shop.shop_core.article_category.domain.ArticleCategoryRepository;
 import org.dalvarez.shop.shop_core.category.domain.Category;
 import org.dalvarez.shop.shop_core.category.domain.CategoryRepository;
-import org.dalvarez.shop.shop_shared.persistence.application.uuid_generator.GeneratorUniqueUuid;
-import org.dalvarez.shop.shop_shared.persistence.domain.uuid_generator.UuidGenerator;
+import org.dalvarez.shop.shop_common.persistence.application.uuid_generator.GeneratorUniqueUuid;
+import org.dalvarez.shop.shop_common.persistence.domain.uuid_generator.UuidGenerator;
 import org.springframework.stereotype.Service;
 
 @Service

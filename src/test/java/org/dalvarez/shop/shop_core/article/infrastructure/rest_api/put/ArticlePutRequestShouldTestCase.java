@@ -2,10 +2,10 @@ package org.dalvarez.shop.shop_core.article.infrastructure.rest_api.put;
 
 import org.dalvarez.shop.shop_core.article.infrastructure.rest_api.controller.put.ArticlePutRequest;
 import org.dalvarez.shop.shop_core.shared.ContextTestCase;
-import org.dalvarez.shop.shop_shared.shared.infrastructure.validation.BadRequestException;
-import org.dalvarez.shop.shop_shared.shared.infrastructure.validation.InvalidObjectException;
-import org.dalvarez.shop.shop_shared.log.domain.Logger;
-import org.dalvarez.shop.shop_shared.shared.domain.util.StringUtils;
+import org.dalvarez.shop.shop_common.shared.infrastructure.validation.BadRequestException;
+import org.dalvarez.shop.shop_common.shared.infrastructure.validation.InvalidObjectException;
+import org.dalvarez.shop.shop_common.log.domain.Logger;
+import org.dalvarez.shop.shop_common.shared.domain.util.StringUtils;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

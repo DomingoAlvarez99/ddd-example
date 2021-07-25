@@ -31,18 +31,20 @@
         <sonarqube.login>ce5b1e3f8e952772b05f77bb39e48dc763bd672b</sonarqube.login>
         <!-- Logstash -->
         <logstash.version>6.3</logstash.version>
+        <!-- Shop shared -->
+        <!--Look for the latest version (v >= 1.0). Take Release if available. Else SNAPSHOT-->
+        <shop-common.version>[1.0-SNAPSHOT,)</shop-common.version>
     </properties>
 
     <dependencies>
         <!-- Shop shared -->
         <dependency>
             <groupId>org.dalvarez.shop</groupId>
-            <artifactId>shop-shared</artifactId>
-            <!--Look for the latest version (v >= 1.0). Take Release if available. Else SNAPSHOT-->
-            <version>[1.0-SNAPSHOT,)</version>
+            <artifactId>shop-common</artifactId>
+            <version>${shop-common.version}</version>
         </dependency>
 
-        <!-- POSTGRESQL -->
+        <!-- Postgresql -->
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
@@ -69,7 +71,7 @@
             <version>${open-api.version}</version>
         </dependency>
 
-        <!-- Spring test -->
+        <!-- Spring Test -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>

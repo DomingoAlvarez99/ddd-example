@@ -2,7 +2,7 @@ package org.dalvarez.shop.shop_core.article.domain;
 
 import org.dalvarez.shop.shop_core.shared.domain.UuidMother;
 import org.dalvarez.shop.shop_core.shared.domain.util.RandomElementPicker;
-import org.dalvarez.shop.shop_shared.shared.domain.util.CollectionUtils;
+import org.dalvarez.shop.shop_common.shared.domain.util.CollectionUtils;
 
 import java.util.List;
 import java.util.Random;

@@ -7,7 +7,7 @@ spring:
     datasource:
         host: localhost
         port: 5555
-        name: shop_core
+        name: shop
         username: shop_admin
         password: admin
     cache:

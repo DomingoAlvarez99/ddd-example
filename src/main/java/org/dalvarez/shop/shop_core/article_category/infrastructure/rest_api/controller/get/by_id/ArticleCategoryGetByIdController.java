@@ -4,11 +4,11 @@ import org.dalvarez.shop.shop_core.article_category.application.ArticleCategoryR
 import org.dalvarez.shop.shop_core.article_category.application.find.by_id.ArticleCategoryByIdFinder;
 import org.dalvarez.shop.shop_core.article_category.infrastructure.rest_api.controller.ArticleCategoryApiController;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RestController;
 
-@Service
+@RestController
 public final class ArticleCategoryGetByIdController extends ArticleCategoryApiController {
 
     private final ArticleCategoryByIdFinder articleCategoryByIdFinder;

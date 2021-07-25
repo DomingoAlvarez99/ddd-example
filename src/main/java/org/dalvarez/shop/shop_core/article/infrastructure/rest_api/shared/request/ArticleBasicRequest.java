@@ -1,9 +1,9 @@
 package org.dalvarez.shop.shop_core.article.infrastructure.rest_api.shared.request;
 
 import org.dalvarez.shop.shop_core.article.domain.Article;
-import org.dalvarez.shop.shop_shared.shared.infrastructure.validation.Field;
-import org.dalvarez.shop.shop_shared.shared.infrastructure.validation.FieldValidator;
-import org.dalvarez.shop.shop_shared.shared.infrastructure.validation.Validator;
+import org.dalvarez.shop.shop_common.shared.infrastructure.validation.Field;
+import org.dalvarez.shop.shop_common.shared.infrastructure.validation.FieldValidator;
+import org.dalvarez.shop.shop_common.shared.infrastructure.validation.Validator;
 
 import java.util.List;
 import java.util.Map;

@@ -2,10 +2,10 @@ package org.dalvarez.shop.shop_core.article.application.create;
 
 import org.dalvarez.shop.shop_core.article.domain.ArticleRepository;
 import org.dalvarez.shop.shop_core.shared.ContextTestCase;
-import org.dalvarez.shop.shop_shared.persistence.application.uuid_generator.GeneratorUniqueUuid;
-import org.dalvarez.shop.shop_shared.persistence.domain.uuid_generator.UuidGenerator;
-import org.dalvarez.shop.shop_shared.log.domain.Logger;
-import org.dalvarez.shop.shop_shared.persistence.infrastructure.shared.exception.NotFoundException;
+import org.dalvarez.shop.shop_common.persistence.application.uuid_generator.GeneratorUniqueUuid;
+import org.dalvarez.shop.shop_common.persistence.domain.uuid_generator.UuidGenerator;
+import org.dalvarez.shop.shop_common.log.domain.Logger;
+import org.dalvarez.shop.shop_common.persistence.infrastructure.shared.exception.NotFoundException;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 

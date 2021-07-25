@@ -4,11 +4,11 @@ import org.dalvarez.shop.shop_core.category.application.CategoryResponse;
 import org.dalvarez.shop.shop_core.category.application.find.by_uuid.CategoryByUuidFinder;
 import org.dalvarez.shop.shop_core.category.infrastructure.rest_api.controller.CategoryApiController;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
-@Service
+@RestController
 public final class CategoryGetByUuidController extends CategoryApiController {
 
     private final CategoryByUuidFinder categoryByUuidFinder;

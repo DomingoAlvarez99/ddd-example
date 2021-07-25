@@ -3,9 +3,9 @@ package org.dalvarez.shop.shop_core.article_category.application.find.by_criteri
 import org.dalvarez.shop.shop_core.article_category.application.ArticleCategoryResponse;
 import org.dalvarez.shop.shop_core.article_category.domain.ArticleCategory;
 import org.dalvarez.shop.shop_core.article_category.domain.ArticleCategoryRepository;
-import org.dalvarez.shop.shop_shared.persistence.application.criteria.QueryResultResponse;
-import org.dalvarez.shop.shop_shared.persistence.domain.criteria.Criteria;
-import org.dalvarez.shop.shop_shared.persistence.domain.criteria.QueryResult;
+import org.dalvarez.shop.shop_common.persistence.application.criteria.QueryResultResponse;
+import org.dalvarez.shop.shop_common.persistence.domain.criteria.Criteria;
+import org.dalvarez.shop.shop_common.persistence.domain.criteria.QueryResult;
 import org.springframework.stereotype.Service;
 
 import java.util.stream.Collectors;

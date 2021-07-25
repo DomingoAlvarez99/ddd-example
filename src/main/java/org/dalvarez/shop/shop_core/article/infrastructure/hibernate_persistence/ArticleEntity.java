@@ -1,7 +1,7 @@
 package org.dalvarez.shop.shop_core.article.infrastructure.hibernate_persistence;
 
 import org.dalvarez.shop.shop_core.article.domain.Article;
-import org.dalvarez.shop.shop_shared.persistence.infrastructure.hibernate.BaseEntity;
+import org.dalvarez.shop.shop_common.persistence.infrastructure.hibernate.BaseEntity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

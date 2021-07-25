@@ -1,11 +1,12 @@
 package org.dalvarez.shop.shop_core.category.infrastructure.rest_api.controller.post;
 
 import org.dalvarez.shop.shop_core.category.infrastructure.rest_api.shared.CategoryBasicRequest;
-import org.dalvarez.shop.shop_shared.shared.infrastructure.validation.Field;
-import org.dalvarez.shop.shop_shared.shared.infrastructure.validation.FieldValidator;
-import org.dalvarez.shop.shop_shared.shared.infrastructure.validation.GenericNotEmptyValidator;
-import org.dalvarez.shop.shop_shared.shared.infrastructure.validation.UuidValidator;
+import org.dalvarez.shop.shop_common.shared.infrastructure.validation.Field;
+import org.dalvarez.shop.shop_common.shared.infrastructure.validation.FieldValidator;
+import org.dalvarez.shop.shop_common.shared.infrastructure.validation.GenericNotEmptyValidator;
+import org.dalvarez.shop.shop_common.shared.infrastructure.validation.UuidValidator;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -28,10 +29,13 @@ public class CategoryPostRequest extends CategoryBasicRequest<CategoryPostReques
 
     @Override
     protected List<Field<Object>> getFields() {
-        return List.of(
-                new Field<>(FieldNames.NAME, name),
-                new Field<>(FieldNames.PARENT_UUID, parentUuid)
-        );
+        final List<Field<Object>> fields = new ArrayList<>();
+        fields.add(new Field<>(FieldNames.NAME, name));
+
+        if (parentUuid != null)
+            fields.add(new Field<>(FieldNames.PARENT_UUID, parentUuid));
+
+        return fields;
     }
 
 }

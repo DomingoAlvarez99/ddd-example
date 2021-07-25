@@ -4,12 +4,12 @@ import org.dalvarez.shop.shop_core.category.application.CategoryResponse;
 import org.dalvarez.shop.shop_core.category.application.update.CategoryUpdater;
 import org.dalvarez.shop.shop_core.category.infrastructure.rest_api.controller.CategoryApiController;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
-@Service
+@RestController
 public final class CategoryPutController extends CategoryApiController {
 
     private final CategoryUpdater categoryUpdater;

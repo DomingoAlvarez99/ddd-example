@@ -1,8 +1,8 @@
 package org.dalvarez.shop.shop_core.shared.infrastructure.rest_api;
 
-import org.dalvarez.shop.shop_shared.persistence.domain.repository.GenericRepository;
+import org.dalvarez.shop.shop_common.persistence.domain.repository.GenericRepository;
 import org.dalvarez.shop.shop_core.shared.infrastructure.Seeder;
-import org.dalvarez.shop.shop_shared.log.domain.Logger;
+import org.dalvarez.shop.shop_common.log.domain.Logger;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 

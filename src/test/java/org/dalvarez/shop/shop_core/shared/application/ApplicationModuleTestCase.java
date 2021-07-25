@@ -1,11 +1,11 @@
 package org.dalvarez.shop.shop_core.shared.application;
 
 import org.dalvarez.shop.shop_core.shared.ContextTestCase;
-import org.dalvarez.shop.shop_shared.persistence.domain.uuid_generator.UuidGenerator;
-import org.dalvarez.shop.shop_shared.persistence.domain.repository.GenericRepository;
-import org.dalvarez.shop.shop_shared.event.domain.DomainEvent;
-import org.dalvarez.shop.shop_shared.event.domain.EventBus;
-import org.dalvarez.shop.shop_shared.persistence.domain.criteria.Criteria;
+import org.dalvarez.shop.shop_common.persistence.domain.uuid_generator.UuidGenerator;
+import org.dalvarez.shop.shop_common.persistence.domain.repository.GenericRepository;
+import org.dalvarez.shop.shop_common.event.domain.DomainEvent;
+import org.dalvarez.shop.shop_common.event.domain.EventBus;
+import org.dalvarez.shop.shop_common.persistence.domain.criteria.Criteria;
 
 import java.util.List;
 
