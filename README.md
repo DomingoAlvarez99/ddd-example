@@ -30,14 +30,18 @@ _**Este repositorio está en desarrollo**_
       - [Estructura de carpetas y archivos](#Estructura-de-carpetas-y-archivos)
       - [Formato del código](#Formato-del-código)   
       - [Documentación](#Documentación)
+        - [Generación de código](#Generación-de-código) 
       - [Hacer que la aplicación sea fácil de configurar](#Hacer-que-la-aplicación-sea-fácil-de-configurar)
       - [Evitar cadenas de herencia masivas](#Evitar-cadenas-de-herencia-masivas)
       - [Criteria](#Criteria)
 - [Configuración](#Configuración)
 - [Ejecución](#Ejecución)
-- [Testing](#Testing)
-- [Doc](#Doc)
-   - [Urls](#Urls)
+  - [Testing](#Testing)
+- [Generar Cliente](#Generar-cliente)
+- [Otros](#Otros)
+  - [Errores](#Errores)
+  - [Criteria](#Criteria) 
+  - [Urls](#Urls)
 
 # Arquitectura
 
@@ -276,6 +280,10 @@ Fichero de ejemplo [editorconfig](src/.editorconfig)
 
 Usar especificaciones de OpenAPI (Swagger) o GraphQL.
 
+#### Generación de código
+
+Consiste en generar un cliente de la API REST definida mediante Open Api. Se realiza partiendo de [esquemas](https://swagger.io/specification/v2/) JSON o YML que describen los endpoints.
+
 ### Hacer que la aplicación sea fácil de configurar
 
 Configurar una apliación puede llegar a ser muy tedioso. Es recomendable añadir scripts que hagan esto de forma automática:
@@ -304,8 +312,14 @@ Paquete de ejemplo: [criteria](src/main/java/org/dalvarez/shop/shop_core/shared/
 
 - Crear proyecto en sonarqube.
   1. Iniciar sesión
-        - Username: admin
-        - Password: admin
+      <details><summary>Credenciales usuario por defecto</summary>
+      <p>
+
+       - Username: admin
+       - Password: admin
+
+      </p>
+      </details>
   2. [Crear proyecto](http://localhost:9000/projects/create) 
 - [pom.xml](pom.xml) Editar las propiedades del perfil de sonar.
 
@@ -324,7 +338,7 @@ Paquete de ejemplo: [criteria](src/main/java/org/dalvarez/shop/shop_core/shared/
    - `> mvn clean install`
    - `> mvn spring-boot:run`
 
-# Testing
+## Testing
 
 - Ejecutar tests: `> mvn test`
 - Generar métricas: `> mvn verify`
@@ -338,8 +352,17 @@ Paquete de ejemplo: [criteria](src/main/java/org/dalvarez/shop/shop_core/shared/
      ```
 - Realizar las 2 cosas: `> mvn verify sonar:sonar`
 
+# Generar Cliente
 
-# Doc
+ 1. Descargar la especificación `> wget -P /generated/swagger-api http://localhost:8080/api/v0/api-docs -O api-docs.json`
+ 2. Generar el cliente 
+ ```bash
+ > mvn clean install
+ > cd /target/generated-sources-swagger-api
+ > mvn clean install
+ ```
+
+# Otros
 
 ## Errores
 
@@ -352,6 +375,7 @@ Cualquier búsqueda que no obtenga un resultado devolverá un error 404.
   "message": "ArticleEntity not found"
 }
 ```
+_Error model_
 
 ## Criteria
 
@@ -389,9 +413,11 @@ Cualquier búsqueda que no obtenga un resultado devolverá un error 404.
   ]
 }
 ```
+
 ## Urls
 
 - [Api](http://localhost:8080/api/v0)
 - [Api doc](http://localhost:8080/api/v0/swagger-ui.html)
+- [Api spec](http://localhost:8080/api/v0/api-docs)
 - [Sonar](http://localhost:9000/projects)
 - [Kibana](http://localhost:5601/)
