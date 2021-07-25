@@ -26,6 +26,7 @@ _**Este repositorio está en desarrollo**_
       - [Testing](#Testing)
       - [Configuración](#Configuración)
       - [Logging](#Logging)
+      - [Uso-de-identificadores](#Uso-de-identificadores)
       - [Estructura de carpetas y archivos](#Estructura-de-carpetas-y-archivos)
       - [Formato del código](#Formato-del-código)   
       - [Documentación](#Documentación)
@@ -248,6 +249,12 @@ Ejemplos:
 - Utilizar sistemas de gestión de logs como [Logstash](https://www.elastic.co/es/logstash).
 - Visualizar logs usando herramientas como [Kibana](https://www.elastic.co/es/kibana).
 
+### Uso de identificadores
+
+- En caso de usar identificadores autoincrementales, estos no se deben de exponer ya son 'fáciles de adivinar' (Se deben de exponer [uuids](https://en.wikipedia.org/wiki/Universally_unique_identifier)) y solo se deben de usar en claves primarias para relacionar entidades.
+
+- [article.sql](src/main/resources/postgres/01_article_ddl.sql) - Ddl de los artículos.
+
 ### Estructura de carpetas y archivos
 
 En lugar de usar el estilo típico de organizar la aplicación en capas de repositorios, servicios, controladores..  Se debe de dividir todo en módulos, dónde cada módulo está compuesto por componentes que están relacionados([CCP](https://ericbackhage.net/clean-code/the-common-closure-principle/)).
@@ -366,7 +373,6 @@ Cualquier búsqueda que no obtenga un resultado devolverá un error 404.
   "firstElement": 0,
   "result": [
     {
-      "id": 6500,
       "uuid": "19efe4d8-b707-46b2-8bef-1d87318262f9",
       "stock": 11,
       "price": 10,
@@ -374,7 +380,6 @@ Cualquier búsqueda que no obtenga un resultado devolverá un error 404.
       "description": "string"
     },
     {
-      "id": 6600,
       "uuid": "df09574c-552d-43b5-950b-6bfd270ea0b1",
       "stock": 11,
       "price": 11,
