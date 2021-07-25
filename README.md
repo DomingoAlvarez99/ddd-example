@@ -13,7 +13,7 @@ _**Este repositorio está en desarrollo**_
 
 # Arquitectura
 
-[Basada en](https://github.com/DomingoAlvarez99/shop#De-cada-miroservicio)
+[Basada en](https://github.com/DomingoAlvarez99/shop#De-cada-microservicio)
 
 # Configuración
 
