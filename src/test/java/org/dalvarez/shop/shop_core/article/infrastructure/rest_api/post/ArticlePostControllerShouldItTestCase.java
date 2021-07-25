@@ -40,7 +40,7 @@ final class ArticlePostControllerShouldItTestCase extends ArticleInfrastructureR
 
         final ArticleResponse expected = shouldPost(request, ArticleResponse.class);
 
-        final ArticleResponse actual = shouldGetById(expected.getId(), ArticleResponse.class);
+        final ArticleResponse actual = shouldGetByUuid(expected.getUuid(), ArticleResponse.class);
 
         assertEquals(expected, actual);
     }

@@ -18,10 +18,10 @@ public final class ArticleCategoryDeleteController extends ArticleCategoryApiCon
         this.articleCategoryEraser = articleCategoryEraser;
     }
 
-    @DeleteMapping(ID_PATH_VAR)
+    @DeleteMapping(UUID_PATH_VAR)
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public ResponseEntity<Void> delete(@PathVariable final Long id) {
-        articleCategoryEraser.erase(id);
+    public ResponseEntity<Void> delete(@PathVariable final String uuid) {
+        articleCategoryEraser.erase(uuid);
 
         return ResponseEntity.noContent()
                              .build();

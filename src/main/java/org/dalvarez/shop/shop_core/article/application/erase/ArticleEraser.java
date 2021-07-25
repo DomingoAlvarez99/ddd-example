@@ -10,8 +10,8 @@ public class ArticleEraser {
         this.articleRepository = articleRepository;
     }
 
-    public void erase(final Long id) {
-        articleRepository.deleteById(id);
+    public void erase(final String uuid) {
+        articleRepository.deleteByUuid(uuid);
     }
 
 }

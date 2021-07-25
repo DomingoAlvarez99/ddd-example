@@ -12,8 +12,8 @@ public class CategoryEraser {
         this.categoryRepository = categoryRepository;
     }
 
-    public void erase(final Long id) {
-        categoryRepository.deleteById(id);
+    public void erase(final String uuid) {
+        categoryRepository.deleteByUuid(uuid);
     }
 
 }

@@ -4,9 +4,7 @@ public class ApiController {
 
     public static final String SEARCH_PATH = "/search";
 
-    public static final String ID_PATH_VAR = "/{id}";
-
-    public static final String UUID_PARAM = "uuid";
+    public static final String UUID_PATH_VAR = "/{uuid}";
 
     public static final String SUM_PATH = "/sum";
 

@@ -1,12 +1,12 @@
 package org.dalvarez.shop.shop_core.article_category.infrastructure.hibernate_persistence;
 
-import org.dalvarez.shop.shop_core.article_category.domain.ArticleCategory;
-import org.dalvarez.shop.shop_core.article_category.domain.ArticleCategoryRepository;
 import org.dalvarez.shop.shop_common.persistence.domain.criteria.CountResult;
 import org.dalvarez.shop.shop_common.persistence.domain.criteria.Criteria;
 import org.dalvarez.shop.shop_common.persistence.domain.criteria.CriteriaConverter;
 import org.dalvarez.shop.shop_common.persistence.domain.criteria.QueryResult;
 import org.dalvarez.shop.shop_common.persistence.infrastructure.hibernate.HibernateRepository;
+import org.dalvarez.shop.shop_core.article_category.domain.ArticleCategory;
+import org.dalvarez.shop.shop_core.article_category.domain.ArticleCategoryRepository;
 
 import javax.persistence.EntityManager;
 import java.util.stream.Collectors;
@@ -16,11 +16,6 @@ public class HibernateArticleCategoryRepository extends HibernateRepository<Arti
     public HibernateArticleCategoryRepository(final EntityManager entityManager,
                                               final CriteriaConverter<ArticleCategoryEntity> hibernateCriteriaConverter) {
         super(entityManager, hibernateCriteriaConverter, ArticleCategoryEntity.class);
-    }
-
-    @Override
-    public ArticleCategory getById(final Long id) {
-        return findById(id).toArticleCategory();
     }
 
     @Override
@@ -54,14 +49,14 @@ public class HibernateArticleCategoryRepository extends HibernateRepository<Arti
     }
 
     @Override
-    public ArticleCategory update(final ArticleCategory article) {
-        return update(article.getId(), ArticleCategoryEntity.fromArticleCategory(article))
+    public ArticleCategory update(final ArticleCategory articleCategory) {
+        return update(ArticleCategoryEntity.fromArticleCategory(articleCategory))
                 .toArticleCategory();
     }
 
     @Override
-    public void deleteById(final Long id) {
-        removeById(id);
+    public void deleteByUuid(final String uuid) {
+        removeByUuid(uuid);
     }
 
     @Override

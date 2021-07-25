@@ -8,6 +8,7 @@ import org.dalvarez.shop.shop_core.article_category.domain.ArticleCategoryReposi
 import org.dalvarez.shop.shop_core.article_category.infrastructure.hibernate_persistence.ArticleCategoryEntity;
 import org.dalvarez.shop.shop_core.category.domain.Category;
 import org.dalvarez.shop.shop_core.category.domain.CategoryRepository;
+import org.dalvarez.shop.shop_core.shared.domain.UuidMother;
 import org.dalvarez.shop.shop_core.shared.infrastructure.Seeder;
 import org.dalvarez.shop.shop_common.log.domain.Logger;
 import org.dalvarez.shop.shop_common.persistence.domain.criteria.Criteria;
@@ -52,7 +53,7 @@ public final class HibernateArticleCategoryRepositoryShouldItTestCase extends Se
     void setup() {
         Article article = ArticleMother.random();
         articleRepository.create(article);
-        Category category = Category.create("kjekw", null, "a");
+        Category category = Category.create("kjekw", null, UuidMother.randomPick());
         categoryRepository.create(category);
         final List<ArticleCategory> data = List.of(
                 ArticleCategory.create(

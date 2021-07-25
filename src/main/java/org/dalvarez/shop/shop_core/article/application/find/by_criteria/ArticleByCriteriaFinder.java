@@ -1,11 +1,11 @@
 package org.dalvarez.shop.shop_core.article.application.find.by_criteria;
 
-import org.dalvarez.shop.shop_core.article.application.ArticleResponse;
-import org.dalvarez.shop.shop_core.article.domain.Article;
-import org.dalvarez.shop.shop_core.article.domain.ArticleRepository;
 import org.dalvarez.shop.shop_common.persistence.application.criteria.QueryResultResponse;
 import org.dalvarez.shop.shop_common.persistence.domain.criteria.Criteria;
 import org.dalvarez.shop.shop_common.persistence.domain.criteria.QueryResult;
+import org.dalvarez.shop.shop_core.article.application.ArticleResponse;
+import org.dalvarez.shop.shop_core.article.domain.Article;
+import org.dalvarez.shop.shop_core.article.domain.ArticleRepository;
 
 import java.util.stream.Collectors;
 

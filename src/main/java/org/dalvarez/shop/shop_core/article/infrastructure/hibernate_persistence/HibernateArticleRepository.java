@@ -1,12 +1,12 @@
 package org.dalvarez.shop.shop_core.article.infrastructure.hibernate_persistence;
 
-import org.dalvarez.shop.shop_core.article.domain.Article;
-import org.dalvarez.shop.shop_core.article.domain.ArticleRepository;
 import org.dalvarez.shop.shop_common.persistence.domain.criteria.CountResult;
 import org.dalvarez.shop.shop_common.persistence.domain.criteria.Criteria;
 import org.dalvarez.shop.shop_common.persistence.domain.criteria.CriteriaConverter;
 import org.dalvarez.shop.shop_common.persistence.domain.criteria.QueryResult;
 import org.dalvarez.shop.shop_common.persistence.infrastructure.hibernate.HibernateRepository;
+import org.dalvarez.shop.shop_core.article.domain.Article;
+import org.dalvarez.shop.shop_core.article.domain.ArticleRepository;
 
 import javax.persistence.EntityManager;
 import java.util.stream.Collectors;
@@ -16,11 +16,6 @@ public class HibernateArticleRepository extends HibernateRepository<ArticleEntit
     public HibernateArticleRepository(final EntityManager entityManager,
                                       final CriteriaConverter<ArticleEntity> hibernateCriteriaConverter) {
         super(entityManager, hibernateCriteriaConverter, ArticleEntity.class);
-    }
-
-    @Override
-    public Article getById(final Long id) {
-        return findById(id).toArticle();
     }
 
     @Override
@@ -55,13 +50,13 @@ public class HibernateArticleRepository extends HibernateRepository<ArticleEntit
 
     @Override
     public Article update(final Article article) {
-        return update(article.getId(), ArticleEntity.fromArticle(article))
+        return update(ArticleEntity.fromArticle(article))
                 .toArticle();
     }
 
     @Override
-    public void deleteById(final Long id) {
-        removeById(id);
+    public void deleteByUuid(final String uuid) {
+        removeByUuid(uuid);
     }
 
     @Override

@@ -18,10 +18,10 @@ public final class ArticlePutController extends ArticleApiController {
         this.articleUpdater = articleUpdater;
     }
 
-    @PutMapping(ID_PATH_VAR)
-    public ResponseEntity<ArticleResponse> put(@PathVariable final Long id,
+    @PutMapping(UUID_PATH_VAR)
+    public ResponseEntity<ArticleResponse> put(@PathVariable final String uuid,
                                                @RequestBody final ArticlePutRequest articlePutRequest) {
-        return ResponseEntity.ok(articleUpdater.update(articlePutRequest.toArticle(id)));
+        return ResponseEntity.ok(articleUpdater.update(articlePutRequest.toArticle(uuid)));
     }
 
 }

@@ -3,6 +3,8 @@ package org.dalvarez.shop.shop_core.article.infrastructure.hibernate_persistence
 import org.dalvarez.shop.shop_core.article.domain.Article;
 import org.dalvarez.shop.shop_core.article.domain.ArticleMother;
 import org.dalvarez.shop.shop_core.article.domain.ArticleRepository;
+import org.dalvarez.shop.shop_core.shared.domain.UuidMother;
+import org.dalvarez.shop.shop_core.shared.domain.util.RandomElementPicker;
 import org.dalvarez.shop.shop_core.shared.infrastructure.Seeder;
 import org.dalvarez.shop.shop_common.log.domain.Logger;
 import org.dalvarez.shop.shop_common.persistence.domain.criteria.Criteria;
@@ -74,25 +76,25 @@ public final class HibernateArticleRepositoryShouldItTestCase extends Seeder<Art
 
     @Test
     void shouldGetTheArticleById() {
-        final Long expected = data.get(1)
-                                  .getId();
+        final String uuidExpected = data.get(1)
+                                  .getUuid();
 
-        final Article actual = articleRepository.getById(expected);
+        final Article actual = articleRepository.getByUuid(uuidExpected);
 
-        assertEquals(expected, actual.getId());
+        assertEquals(uuidExpected, actual.getUuid());
     }
 
     @Test
     void shouldNotGetTheArticleById() {
-        final Long id = 0L;
+        final String uuid = UuidMother.randomGeneration(999);
 
         final NotFoundException notFoundException = assertThrows(
                 NotFoundException.class,
-                () -> articleRepository.getById(id)
+                () -> articleRepository.getByUuid(uuid)
         );
         log.info("ActualMessage {}", notFoundException.getMessage());
 
-        final String expectedMessage = NotFoundException.getIdMessage(ArticleEntity.class, id);
+        final String expectedMessage = NotFoundException.getUuidMessage(ArticleEntity.class, uuid);
 
         log.info("ExpectedMessage {}", expectedMessage);
 
@@ -101,12 +103,12 @@ public final class HibernateArticleRepositoryShouldItTestCase extends Seeder<Art
 
     @Test
     void shouldDeleteTheArticleById() {
-        final Long id = data.get(2)
-                            .getId();
+        final String uuid = data.get(2)
+                            .getUuid();
 
-        articleRepository.deleteById(id);
+        articleRepository.deleteByUuid(uuid);
 
-        assertThrows(NotFoundException.class, () -> articleRepository.getById(id));
+        assertThrows(NotFoundException.class, () -> articleRepository.getByUuid(uuid));
     }
 
     @Test

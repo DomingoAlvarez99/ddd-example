@@ -1,11 +1,11 @@
 package org.dalvarez.shop.shop_core.article_category.infrastructure.rest_api.shared.request;
 
-import org.dalvarez.shop.shop_core.article.domain.Article;
-import org.dalvarez.shop.shop_core.article_category.domain.ArticleCategory;
-import org.dalvarez.shop.shop_core.category.domain.Category;
 import org.dalvarez.shop.shop_common.shared.infrastructure.validation.Field;
 import org.dalvarez.shop.shop_common.shared.infrastructure.validation.FieldValidator;
 import org.dalvarez.shop.shop_common.shared.infrastructure.validation.Validator;
+import org.dalvarez.shop.shop_core.article.domain.Article;
+import org.dalvarez.shop.shop_core.article_category.domain.ArticleCategory;
+import org.dalvarez.shop.shop_core.category.domain.Category;
 
 import java.util.List;
 import java.util.Map;
@@ -38,12 +38,11 @@ public abstract class ArticleCategoryBasicRequest<R> extends Validator<R> {
         return toArticleCategory(null);
     }
 
-    public ArticleCategory toArticleCategory(final Long id) {
+    public ArticleCategory toArticleCategory(final String uuid) {
         validate();
 
         return ArticleCategory.create(
-                id,
-                null,
+                uuid,
                 Article.create(null, articleUuid, null, null, null, null),
                 Category.create(null, null, null, categoryUuid)
         );

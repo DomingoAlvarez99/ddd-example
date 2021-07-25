@@ -1,9 +1,9 @@
 package org.dalvarez.shop.shop_core.article.infrastructure.rest_api.controller.get.sum.by_price;
 
-import org.dalvarez.shop.shop_core.article.application.sum.by_price.ArticleByPriceAdder;
-import org.dalvarez.shop.shop_core.article.infrastructure.rest_api.controller.ArticleApiController;
 import org.dalvarez.shop.shop_common.persistence.application.shared.sum.SumResponse;
 import org.dalvarez.shop.shop_common.persistence.domain.criteria.Criteria;
+import org.dalvarez.shop.shop_core.article.application.sum.by_price.ArticleByPriceAdder;
+import org.dalvarez.shop.shop_core.article.infrastructure.rest_api.controller.ArticleApiController;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;

@@ -1,12 +1,12 @@
 package org.dalvarez.shop.shop_core.article.application.create;
 
+import org.dalvarez.shop.shop_common.event.domain.EventBus;
+import org.dalvarez.shop.shop_common.persistence.application.uuid_generator.GeneratorUniqueUuid;
+import org.dalvarez.shop.shop_common.persistence.domain.uuid_generator.UuidGenerator;
 import org.dalvarez.shop.shop_core.article.application.ArticleResponse;
 import org.dalvarez.shop.shop_core.article.domain.Article;
 import org.dalvarez.shop.shop_core.article.domain.ArticleCreatedDomainEvent;
 import org.dalvarez.shop.shop_core.article.domain.ArticleRepository;
-import org.dalvarez.shop.shop_common.event.domain.EventBus;
-import org.dalvarez.shop.shop_common.persistence.application.uuid_generator.GeneratorUniqueUuid;
-import org.dalvarez.shop.shop_common.persistence.domain.uuid_generator.UuidGenerator;
 
 import java.util.Collections;
 

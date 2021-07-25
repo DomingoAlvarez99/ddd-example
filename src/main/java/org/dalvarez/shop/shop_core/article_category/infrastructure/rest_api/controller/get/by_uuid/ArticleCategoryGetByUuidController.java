@@ -5,7 +5,7 @@ import org.dalvarez.shop.shop_core.article_category.application.find.by_uuid.Art
 import org.dalvarez.shop.shop_core.article_category.infrastructure.rest_api.controller.ArticleCategoryApiController;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -17,8 +17,8 @@ public final class ArticleCategoryGetByUuidController extends ArticleCategoryApi
         this.articleCategoryByUuidFinder = articleCategoryByUuidFinder;
     }
 
-    @GetMapping
-    public ResponseEntity<ArticleCategoryResponse> get(@RequestParam(required = false) final String uuid) {
+    @GetMapping(UUID_PATH_VAR)
+    public ResponseEntity<ArticleCategoryResponse> get(@PathVariable final String uuid) {
         return ResponseEntity.ok(articleCategoryByUuidFinder.find(uuid));
     }
 

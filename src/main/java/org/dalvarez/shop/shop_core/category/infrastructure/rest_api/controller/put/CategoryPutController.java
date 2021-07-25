@@ -18,10 +18,10 @@ public final class CategoryPutController extends CategoryApiController {
         this.categoryUpdater = categoryUpdater;
     }
 
-    @PutMapping(ID_PATH_VAR)
-    public ResponseEntity<CategoryResponse> put(@PathVariable final Long id,
+    @PutMapping(UUID_PATH_VAR)
+    public ResponseEntity<CategoryResponse> put(@PathVariable final String uuid,
                                                 @RequestBody final CategoryPutRequest categoryPutRequest) {
-        return ResponseEntity.ok(categoryUpdater.update(categoryPutRequest.toCategory(id)));
+        return ResponseEntity.ok(categoryUpdater.update(categoryPutRequest.toCategory(uuid)));
     }
 
 }

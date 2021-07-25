@@ -1,9 +1,9 @@
 package org.dalvarez.shop.shop_core.article.application.create;
 
-import org.dalvarez.shop.shop_core.article.domain.ArticleRepository;
 import org.dalvarez.shop.shop_common.event.domain.EventBus;
 import org.dalvarez.shop.shop_common.event.infrastructure.SpringApplicationEventBusConfig;
 import org.dalvarez.shop.shop_common.persistence.domain.uuid_generator.UuidGenerator;
+import org.dalvarez.shop.shop_core.article.domain.ArticleRepository;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

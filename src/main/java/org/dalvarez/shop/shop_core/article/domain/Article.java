@@ -12,33 +12,24 @@ public class Article {
 
     public static final Double MAX_PRICE = 1000D;
 
-    protected final Long id;
+    private final Long id;
 
-    protected final String uuid;
+    private final String uuid;
 
-    protected final Integer stock;
+    private final Integer stock;
 
-    protected final Double price;
+    private final Double price;
 
-    protected final String name;
+    private final String name;
 
-    protected final String description;
+    private final String description;
 
-    protected Article() {
-        this.id = null;
-        this.uuid = null;
-        this.stock = null;
-        this.price = null;
-        this.name = null;
-        this.description = null;
-    }
-
-    protected Article(final Long id,
-                      final String uuid,
-                      final Integer stock,
-                      final Double price,
-                      final String name,
-                      final String description) {
+    private Article(final Long id,
+                    final String uuid,
+                    final Integer stock,
+                    final Double price,
+                    final String name,
+                    final String description) {
         this.id = id;
         this.uuid = uuid;
         this.stock = stock;
@@ -65,8 +56,14 @@ public class Article {
 
     public static Article fromRequest(final Article request,
                                       final String uuid) {
+        return fromRequest(request, uuid, null);
+    }
+
+    public static Article fromRequest(final Article request,
+                                      final String uuid,
+                                      final Long id) {
         return new Article(
-                null,
+                id,
                 uuid,
                 request.getStock(),
                 request.getPrice(),
@@ -101,20 +98,15 @@ public class Article {
 
     @Override
     public boolean equals(final Object o) {
-        if (this == o)
-            return true;
-
-        if (o == null || getClass() != o.getClass())
-            return false;
-
-        Article article = (Article) o;
-
-        return Objects.equals(id, article.id);
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        final Article article = (Article) o;
+        return Objects.equals(uuid, article.uuid);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id);
+        return Objects.hash(uuid);
     }
 
     @Override

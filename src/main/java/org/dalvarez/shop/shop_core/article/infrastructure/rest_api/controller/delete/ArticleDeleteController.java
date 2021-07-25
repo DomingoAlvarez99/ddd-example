@@ -18,10 +18,10 @@ public final class ArticleDeleteController extends ArticleApiController {
         this.articleEraser = articleEraser;
     }
 
-    @DeleteMapping(ID_PATH_VAR)
+    @DeleteMapping(UUID_PATH_VAR)
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public ResponseEntity<Void> delete(@PathVariable final Long id) {
-        articleEraser.erase(id);
+    public ResponseEntity<Void> delete(@PathVariable final String uuid) {
+        articleEraser.erase(uuid);
 
         return ResponseEntity.noContent()
                              .build();

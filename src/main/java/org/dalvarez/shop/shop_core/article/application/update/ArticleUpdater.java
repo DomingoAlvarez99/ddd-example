@@ -13,7 +13,7 @@ public class ArticleUpdater {
     }
 
     public ArticleResponse update(final Article article) {
-        return ArticleResponse.fromArticle(articleRepository.update(article));
+        return ArticleResponse.fromArticle(articleRepository.update(Article.fromRequest(article, article.getUuid())));
     }
 
 }

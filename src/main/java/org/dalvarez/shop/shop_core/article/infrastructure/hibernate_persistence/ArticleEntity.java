@@ -1,14 +1,10 @@
 package org.dalvarez.shop.shop_core.article.infrastructure.hibernate_persistence;
 
-import org.dalvarez.shop.shop_core.article.domain.Article;
 import org.dalvarez.shop.shop_common.persistence.infrastructure.hibernate.BaseEntity;
+import org.dalvarez.shop.shop_core.article.domain.Article;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
@@ -16,21 +12,6 @@ import javax.persistence.Table;
 public final class ArticleEntity extends BaseEntity {
 
     static final String TABLE_NAME = "article";
-
-    private static final String SEQUENCE_NAME = "article_seq";
-
-    private static final int SEQUENCE_ALLOCATION_SIZE = 1;
-
-    @Id
-    @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = SEQUENCE_NAME
-    )
-    @SequenceGenerator(
-            name = SEQUENCE_NAME,
-            allocationSize = SEQUENCE_ALLOCATION_SIZE
-    )
-    private Long id;
 
     @Column(nullable = false)
     private Integer stock;
@@ -82,6 +63,20 @@ public final class ArticleEntity extends BaseEntity {
                 article.getName(),
                 article.getDescription()
         );
+    }
+
+    @Override
+    public String toString() {
+        return "ArticleEntity{" +
+                "id=" + id +
+                ", stock=" + stock +
+                ", price=" + price +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", createdAt=" + createdAt +
+                ", updatedAt=" + updatedAt +
+                ", uuid='" + uuid + '\'' +
+                '}';
     }
 
     public static final class FieldNames {

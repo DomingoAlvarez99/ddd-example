@@ -12,8 +12,8 @@ public class ArticleCategoryEraser {
         this.articleCategoryRepository = articleCategoryRepository;
     }
 
-    public void erase(final Long id) {
-        articleCategoryRepository.deleteById(id);
+    public void erase(final String uuid) {
+        articleCategoryRepository.deleteByUuid(uuid);
     }
 
 }

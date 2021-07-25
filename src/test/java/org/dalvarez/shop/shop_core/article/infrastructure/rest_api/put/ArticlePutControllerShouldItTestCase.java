@@ -6,6 +6,8 @@ import org.dalvarez.shop.shop_core.article.domain.ArticleRepository;
 import org.dalvarez.shop.shop_core.article.infrastructure.ArticleInfrastructureRestApiModuleTestCase;
 import org.dalvarez.shop.shop_core.article.infrastructure.rest_api.controller.put.ArticlePutRequest;
 import org.dalvarez.shop.shop_common.log.domain.Logger;
+import org.dalvarez.shop.shop_core.shared.domain.UuidMother;
+import org.dalvarez.shop.shop_core.shared.domain.util.RandomElementPicker;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -40,15 +42,12 @@ final class ArticlePutControllerShouldItTestCase extends ArticleInfrastructureRe
                 DESCRIPTION
         );
 
-        final ArticleResponse expected = shouldPut(request, ArticleResponse.class, article.getId());
+        final ArticleResponse expected = shouldPut(request, ArticleResponse.class, article.getUuid());
 
-        final ArticleResponse actual = shouldGetById(expected.getId(), ArticleResponse.class);
+        log.info("asdsd| {}", expected.toString());
+        final ArticleResponse actual = shouldGetByUuid(expected.getUuid(), ArticleResponse.class);
 
-        assertEquals(expected.getId(), actual.getId());
-        assertEquals(expected.getDescription(), actual.getDescription());
-        assertEquals(expected.getStock(), actual.getStock());
-        assertEquals(expected.getPrice(), actual.getPrice());
-        assertEquals(expected.getName(), actual.getName());
+        assertEquals(expected.getUuid(), actual.getUuid());
     }
 
     @Test
@@ -60,24 +59,9 @@ final class ArticlePutControllerShouldItTestCase extends ArticleInfrastructureRe
                 DESCRIPTION
         );
 
-        final Long id = 100000L;
+        final String uuid = UuidMother.randomGeneration(888);
 
-        shouldNotPutCauseNotExist(request, id);
-    }
-
-
-    @Test
-    void shouldNotUpdateAnUuidCauseIsNotUpdatable() throws Exception {
-        final ArticlePutRequest request = new ArticlePutRequest(
-                STOCK,
-                PRICE,
-                NAME,
-                DESCRIPTION
-        );
-
-        log.info("Request {}", request.toString());
-
-        shouldNotPutCauseNotExist(request, 100000000L);
+        shouldNotPutCauseNotExist(request, uuid);
     }
 
 }

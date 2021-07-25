@@ -13,7 +13,7 @@ import static org.mockito.Mockito.atLeastOnce;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
-public abstract class ApplicationModuleTestCase<T, R extends GenericRepository<T, Long>> extends ContextTestCase {
+public abstract class ApplicationModuleTestCase<T, R extends GenericRepository<T, String>> extends ContextTestCase {
 
     protected final R repository;
 
@@ -39,8 +39,8 @@ public abstract class ApplicationModuleTestCase<T, R extends GenericRepository<T
         verify(repository, atLeastOnce()).create(model);
     }
 
-    protected void shouldHaveErased(final Long id) {
-        verify(repository, atLeastOnce()).deleteById(id);
+    protected void shouldHaveErased(final String uuid) {
+        verify(repository, atLeastOnce()).deleteByUuid(uuid);
     }
 
     protected void shouldHaveUpdated(final T model) {
@@ -49,10 +49,6 @@ public abstract class ApplicationModuleTestCase<T, R extends GenericRepository<T
 
     protected void shouldHaveFoundByCriteria(final Criteria criteria) {
         verify(repository, atLeastOnce()).getByCriteria(criteria);
-    }
-
-    protected void shouldHaveFoundById(final Long id) {
-        verify(repository, atLeastOnce()).getById(id);
     }
 
     protected void shouldHaveFoundByUuid(final String uuid) {

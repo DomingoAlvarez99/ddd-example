@@ -1,17 +1,13 @@
 package org.dalvarez.shop.shop_core.category.infrastructure.hibernate_persistence;
 
-import org.dalvarez.shop.shop_core.category.domain.Category;
 import org.dalvarez.shop.shop_common.persistence.infrastructure.hibernate.BaseEntity;
+import org.dalvarez.shop.shop_core.category.domain.Category;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
@@ -19,21 +15,6 @@ import javax.persistence.Table;
 public final class CategoryEntity extends BaseEntity {
 
     static final String TABLE_NAME = "category";
-
-    private static final String SEQUENCE_NAME = "category_seq";
-
-    private static final int SEQUENCE_ALLOCATION_SIZE = 1;
-
-    @Id
-    @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = SEQUENCE_NAME
-    )
-    @SequenceGenerator(
-            name = SEQUENCE_NAME,
-            allocationSize = SEQUENCE_ALLOCATION_SIZE
-    )
-    private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "parent_id", referencedColumnName = "id")

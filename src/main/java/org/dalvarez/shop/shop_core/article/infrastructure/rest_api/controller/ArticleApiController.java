@@ -19,4 +19,5 @@ public class ArticleApiController extends ApiController {
     public static final String STOCK_SUM_BY_CRITERIA_PATH = SUM_PATH + STOCK_PATH + SEARCH_PATH;
 
     public static final String COUNT_BY_CRITERIA_PATH = COUNT_PATH + SEARCH_PATH;
+
 }

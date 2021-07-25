@@ -1,9 +1,9 @@
 package org.dalvarez.shop.shop_core.article.infrastructure.rest_api.shared.request;
 
-import org.dalvarez.shop.shop_core.article.domain.Article;
 import org.dalvarez.shop.shop_common.shared.infrastructure.validation.Field;
 import org.dalvarez.shop.shop_common.shared.infrastructure.validation.FieldValidator;
 import org.dalvarez.shop.shop_common.shared.infrastructure.validation.Validator;
+import org.dalvarez.shop.shop_core.article.domain.Article;
 
 import java.util.List;
 import java.util.Map;
@@ -44,12 +44,12 @@ public abstract class ArticleBasicRequest<R> extends Validator<R> {
         return toArticle(null);
     }
 
-    public Article toArticle(final Long id) {
+    public Article toArticle(final String uuid) {
         validate();
 
         return Article.create(
-                id,
                 null,
+                uuid,
                 stock,
                 price,
                 name,

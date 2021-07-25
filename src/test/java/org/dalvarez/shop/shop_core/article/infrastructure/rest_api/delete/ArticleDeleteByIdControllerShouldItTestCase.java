@@ -21,9 +21,9 @@ final class ArticleDeleteByIdControllerShouldItTestCase extends ArticleInfrastru
     void shouldDeleteById() throws Exception {
         final Article expected = data.get(10);
 
-        shouldDeleteById(expected.getId());
+        shouldDeleteByUuid(expected.getUuid());
 
-        shouldNotGetById(expected.getId());
+        shouldNotGetByUuid(expected.getUuid());
     }
 
 }

@@ -1,10 +1,10 @@
 package org.dalvarez.shop.shop_core.category.application.create;
 
+import org.dalvarez.shop.shop_common.persistence.application.uuid_generator.GeneratorUniqueUuid;
+import org.dalvarez.shop.shop_common.persistence.domain.uuid_generator.UuidGenerator;
 import org.dalvarez.shop.shop_core.category.application.CategoryResponse;
 import org.dalvarez.shop.shop_core.category.domain.Category;
 import org.dalvarez.shop.shop_core.category.domain.CategoryRepository;
-import org.dalvarez.shop.shop_common.persistence.application.uuid_generator.GeneratorUniqueUuid;
-import org.dalvarez.shop.shop_common.persistence.domain.uuid_generator.UuidGenerator;
 import org.springframework.stereotype.Service;
 
 @Service

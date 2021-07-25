@@ -18,10 +18,10 @@ public final class ArticleCategoryPutController extends ArticleCategoryApiContro
         this.articleCategoryUpdater = articleCategoryUpdater;
     }
 
-    @PutMapping(ID_PATH_VAR)
-    public ResponseEntity<ArticleCategoryResponse> put(@PathVariable final Long id,
+    @PutMapping(UUID_PATH_VAR)
+    public ResponseEntity<ArticleCategoryResponse> put(@PathVariable final String uuid,
                                                        @RequestBody final ArticleCategoryPutRequest articleCategoryPutRequest) {
-        return ResponseEntity.ok(articleCategoryUpdater.update(articleCategoryPutRequest.toArticleCategory(id)));
+        return ResponseEntity.ok(articleCategoryUpdater.update(articleCategoryPutRequest.toArticleCategory(uuid)));
     }
 
 }

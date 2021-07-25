@@ -1,12 +1,12 @@
 package org.dalvarez.shop.shop_core.category.infrastructure.hibernate_persistence;
 
-import org.dalvarez.shop.shop_core.category.domain.Category;
-import org.dalvarez.shop.shop_core.category.domain.CategoryRepository;
 import org.dalvarez.shop.shop_common.persistence.domain.criteria.CountResult;
 import org.dalvarez.shop.shop_common.persistence.domain.criteria.Criteria;
 import org.dalvarez.shop.shop_common.persistence.domain.criteria.CriteriaConverter;
 import org.dalvarez.shop.shop_common.persistence.domain.criteria.QueryResult;
 import org.dalvarez.shop.shop_common.persistence.infrastructure.hibernate.HibernateRepository;
+import org.dalvarez.shop.shop_core.category.domain.Category;
+import org.dalvarez.shop.shop_core.category.domain.CategoryRepository;
 
 import javax.persistence.EntityManager;
 import java.util.stream.Collectors;
@@ -16,11 +16,6 @@ public class HibernateCategoryRepository extends HibernateRepository<CategoryEnt
     public HibernateCategoryRepository(final EntityManager entityManager,
                                        final CriteriaConverter<CategoryEntity> hibernateCriteriaConverter) {
         super(entityManager, hibernateCriteriaConverter, CategoryEntity.class);
-    }
-
-    @Override
-    public Category getById(final Long id) {
-        return findById(id).toCategory();
     }
 
     @Override
@@ -48,20 +43,20 @@ public class HibernateCategoryRepository extends HibernateRepository<CategoryEnt
     }
 
     @Override
-    public Category create(final Category article) {
-        return save(CategoryEntity.fromCategory(article))
+    public Category create(final Category category) {
+        return save(CategoryEntity.fromCategory(category))
                 .toCategory();
     }
 
     @Override
-    public Category update(final Category article) {
-        return update(article.getId(), CategoryEntity.fromCategory(article))
+    public Category update(final Category category) {
+        return update(CategoryEntity.fromCategory(category))
                 .toCategory();
     }
 
     @Override
-    public void deleteById(final Long id) {
-        removeById(id);
+    public void deleteByUuid(final String uuid) {
+        removeByUuid(uuid);
     }
 
     @Override

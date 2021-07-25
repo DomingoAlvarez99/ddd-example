@@ -1,10 +1,10 @@
 package org.dalvarez.shop.shop_core.article.infrastructure.rest_api.controller.get.by_criteria;
 
+import org.dalvarez.shop.shop_common.persistence.application.criteria.QueryResultResponse;
+import org.dalvarez.shop.shop_common.persistence.domain.criteria.Criteria;
 import org.dalvarez.shop.shop_core.article.application.ArticleResponse;
 import org.dalvarez.shop.shop_core.article.application.find.by_criteria.ArticleByCriteriaFinder;
 import org.dalvarez.shop.shop_core.article.infrastructure.rest_api.controller.ArticleApiController;
-import org.dalvarez.shop.shop_common.persistence.application.criteria.QueryResultResponse;
-import org.dalvarez.shop.shop_common.persistence.domain.criteria.Criteria;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;

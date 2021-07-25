@@ -1,18 +1,14 @@
 package org.dalvarez.shop.shop_core.article_category.infrastructure.hibernate_persistence;
 
+import org.dalvarez.shop.shop_common.persistence.infrastructure.hibernate.BaseEntity;
 import org.dalvarez.shop.shop_core.article.infrastructure.hibernate_persistence.ArticleEntity;
 import org.dalvarez.shop.shop_core.article_category.domain.ArticleCategory;
 import org.dalvarez.shop.shop_core.category.infrastructure.hibernate_persistence.CategoryEntity;
-import org.dalvarez.shop.shop_common.persistence.infrastructure.hibernate.BaseEntity;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
@@ -20,21 +16,6 @@ import javax.persistence.Table;
 public final class ArticleCategoryEntity extends BaseEntity {
 
     static final String TABLE_NAME = "article_category";
-
-    private static final String SEQUENCE_NAME = "article_category_seq";
-
-    private static final int SEQUENCE_ALLOCATION_SIZE = 1;
-
-    @Id
-    @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = SEQUENCE_NAME
-    )
-    @SequenceGenerator(
-            name = SEQUENCE_NAME,
-            allocationSize = SEQUENCE_ALLOCATION_SIZE
-    )
-    private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "article_id", referencedColumnName = "id")
