@@ -23,14 +23,11 @@
         <!-- Jacoco version -->
         <jacoco.version>0.8.5</jacoco.version>
         <!-- Open Api -->
-        <open-api.version>1.5.9</open-api.version>
         <open-api-generator.version>5.0.0-beta2</open-api-generator.version>
         <!-- Sonarqube -->
-        <sonarqube.projectKey>shop-core-key</sonarqube.projectKey>
+        <sonarqube.projectKey>${project.artifactId}</sonarqube.projectKey>
         <sonarqube.host.url>http://localhost:9000</sonarqube.host.url>
-        <sonarqube.login>ce5b1e3f8e952772b05f77bb39e48dc763bd672b</sonarqube.login>
-        <!-- Logstash -->
-        <logstash.version>6.3</logstash.version>
+        <sonarqube.login>01c0db63c2ee120e01ece5a847fa0136e51261b5</sonarqube.login>
         <!-- Shop shared -->
         <!--Look for the latest version (v >= 1.0). Take Release if available. Else SNAPSHOT-->
         <shop-common.version>[1.0-SNAPSHOT,)</shop-common.version>
@@ -58,19 +55,6 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- Web -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-
-        <!-- Open Api -->
-        <dependency>
-            <groupId>org.springdoc</groupId>
-            <artifactId>springdoc-openapi-ui</artifactId>
-            <version>${open-api.version}</version>
-        </dependency>
-
         <!-- Spring Test -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -82,13 +66,6 @@
                     <artifactId>junit-vintage-engine</artifactId>
                 </exclusion>
             </exclusions>
-        </dependency>
-
-        <!-- Logstash -->
-        <dependency>
-            <groupId>net.logstash.logback</groupId>
-            <artifactId>logstash-logback-encoder</artifactId>
-            <version>${logstash.version}</version>
         </dependency>
     </dependencies>
 

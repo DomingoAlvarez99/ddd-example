@@ -1,4 +1,4 @@
-package org.dalvarez.shop.shop_core.shared;
+package org.dalvarez.shop.shop_core.shared.infrastructure.shared;
 
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.TestPropertySource;

@@ -9,8 +9,8 @@ import org.dalvarez.shop.shop_core.article_category.infrastructure.hibernate_per
 import org.dalvarez.shop.shop_core.category.domain.Category;
 import org.dalvarez.shop.shop_core.category.domain.CategoryRepository;
 import org.dalvarez.shop.shop_core.shared.domain.UuidMother;
-import org.dalvarez.shop.shop_core.shared.infrastructure.Seeder;
-import org.dalvarez.shop.shop_common.log.domain.Logger;
+import org.dalvarez.shop.shop_core.shared.infrastructure.persistence.Seeder;
+import org.dalvarez.shop.shop_common.shared.domain.log.Logger;
 import org.dalvarez.shop.shop_common.persistence.domain.criteria.Criteria;
 import org.dalvarez.shop.shop_common.persistence.domain.criteria.QueryResult;
 import org.dalvarez.shop.shop_common.persistence.domain.criteria.filter.Filter;

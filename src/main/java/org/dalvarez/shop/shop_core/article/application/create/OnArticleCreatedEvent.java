@@ -1,6 +1,6 @@
 package org.dalvarez.shop.shop_core.article.application.create;
 
-import org.dalvarez.shop.shop_common.log.domain.Logger;
+import org.dalvarez.shop.shop_common.shared.domain.log.Logger;
 import org.dalvarez.shop.shop_core.article.domain.ArticleCreatedDomainEvent;
 import org.springframework.context.event.EventListener;
 

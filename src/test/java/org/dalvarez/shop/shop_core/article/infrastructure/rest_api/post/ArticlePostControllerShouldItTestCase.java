@@ -5,7 +5,7 @@ import org.dalvarez.shop.shop_core.article.domain.Article;
 import org.dalvarez.shop.shop_core.article.domain.ArticleRepository;
 import org.dalvarez.shop.shop_core.article.infrastructure.ArticleInfrastructureRestApiModuleTestCase;
 import org.dalvarez.shop.shop_core.article.infrastructure.rest_api.controller.post.ArticlePostRequest;
-import org.dalvarez.shop.shop_common.log.domain.Logger;
+import org.dalvarez.shop.shop_common.shared.domain.log.Logger;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
