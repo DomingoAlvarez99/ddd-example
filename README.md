@@ -28,7 +28,7 @@ _**Este repositorio está en desarrollo**_
 
 ## [Testing](https://github.com/DomingoAlvarez99/shop/blob/master/README.md#generar-api-del-cliente)
 
-# [Generar cliente](https://github.com/DomingoAlvarez99/shop/blob/master/README.md#generar-api-del-cliente)
+# [Generar cliente](https://github.com/DomingoAlvarez99/shop/blob/master/README.md#generar-cliente-de-la-api)
 
 # Urls
 
