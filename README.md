@@ -1,6 +1,6 @@
 _**Este repositorio está en desarrollo**_
 # Shop core
-> Este proyecto es el microservicio principal del proyecto Shop. Se encarga de acceder a la db, comunicarse con otros microservicios a través de eventos...
+> Este proyecto es el microservicio principal del grupo Shop.
  
 # Tabla de contenidos
 
@@ -11,45 +11,27 @@ _**Este repositorio está en desarrollo**_
 - [Generar Cliente](#Generar-cliente)
 - [Urls](#Urls)
 
-# Arquitectura
-
-[Basada en](https://github.com/DomingoAlvarez99/shop#De-cada-microservicio)
+# [Arquitectura](https://github.com/DomingoAlvarez99/shop/blob/master/README.md#arquitectura-de-cada-microservicio)
 
 # Configuración
 
-- [db](src/main/resources/postgres) Lanzar las sentencias para crear las bases de datos, usuarios, tablas..
+## [Común](https://github.com/DomingoAlvarez99/shop/blob/master/README.md#servicios)
 
-## Sonarqube
+## Propia
 
-- Crear proyecto en sonarqube.
-  1. Iniciar sesión
-      <details><summary>Credenciales usuario por defecto</summary>
-      <p>
-
-       - Username: admin
-       - Password: admin
-
-      </p>
-      </details>
-  2. [Crear proyecto](http://localhost:9000/projects/create) 
-- [pom.xml](pom.xml) Editar las propiedades del perfil de sonar.
-
-## Kibana
-
-- Añadir el índice declarado en [logstash.conf](logstash/logstash.conf) en la [configuración de kibana](http://localhost:5601/app/logs/settings).
-  ![Index](src/main/resources/static/kibana_idx.png)
+- [db](src/main/resources/postgres) Lanzar las sentencias para crear los schemas, tablas, índices..
 
 # Ejecución
 
-- Arrancar la base de datos: `> docker-compose up -d postgres`
-- Arrancar sonarqube: `> docker-compose up -d sonarqube`
-- Arrancar elk: `> docker-compose up -d elasticsearch logstash kibana`
-- Arrancar la aplicación en un contenedor: `> docker-compose up -d spring`
+## [Común](https://github.com/DomingoAlvarez99/shop#Servicios)
+
+## Propia
+
 - Arrancar el proyecto en local: 
    - `> mvn clean install`
    - `> mvn spring-boot:run`
 
-## Testing
+### [Testing](https://github.com/DomingoAlvarez99/shop/blob/master/README.md#generar-api-del-cliente)
 
 - Ejecutar tests: `> mvn test`
 - Generar métricas: `> mvn verify`
@@ -63,20 +45,10 @@ _**Este repositorio está en desarrollo**_
      ```
 - Realizar las 2 cosas: `> mvn verify sonar:sonar`
 
-# Generar Cliente
-
- 1. Descargar la especificación `> wget -P /generated/swagger-api http://localhost:8080/api/v0/api-docs -O api-docs.json`
- 2. Generar el cliente 
- ```bash
- > mvn clean install
- > cd /target/generated-sources-swagger-api
- > mvn clean install
- ```
+# [Generar cliente](https://github.com/DomingoAlvarez99/shop/blob/master/README.md#generar-api-del-cliente)
 
 # Urls
 
 - [Api](http://localhost:8080/api/v0)
 - [Api doc](http://localhost:8080/api/v0/swagger-ui.html)
 - [Api spec](http://localhost:8080/api/v0/api-docs)
-- [Sonar](http://localhost:9000/projects)
-- [Kibana](http://localhost:5601/)
