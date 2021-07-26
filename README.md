@@ -5,7 +5,7 @@ _**Este repositorio está en desarrollo**_
 # Tabla de contenidos
 
 - [Arquitectura](#Arquitectura)
-- [Servicios comunes](#Servicios comunes)
+- [Servicios comunes](#Servicios-comunes)
 - [Configuración](#Configuración)
 - [Ejecución](#Ejecución)
   - [Testing](#Testing)
