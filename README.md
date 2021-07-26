@@ -18,7 +18,7 @@ _**Este repositorio está en desarrollo**_
 
 # Configuración
 
-- [db](resources/postgres) Lanzar las sentencias para crear los schemas, tablas, índices.
+- [db](resources/postgres): Lanzar las sentencias para crear los schemas, tablas, índices.
 
 # Ejecución
 
