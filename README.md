@@ -5,6 +5,7 @@ _**Este repositorio está en desarrollo**_
 # Tabla de contenidos
 
 - [Arquitectura](#Arquitectura)
+- [Servicios comunes](#Servicios comunes)
 - [Configuración](#Configuración)
 - [Ejecución](#Ejecución)
   - [Testing](#Testing)
@@ -13,37 +14,19 @@ _**Este repositorio está en desarrollo**_
 
 # [Arquitectura](https://github.com/DomingoAlvarez99/shop/blob/master/README.md#arquitectura-de-cada-microservicio)
 
+# [Servicios comunes](https://github.com/DomingoAlvarez99/shop/blob/master/README.md#servicios)
+
 # Configuración
 
-## [Común](https://github.com/DomingoAlvarez99/shop/blob/master/README.md#servicios)
-
-## Propia
-
-- [db](src/main/resources/postgres) Lanzar las sentencias para crear los schemas, tablas, índices..
+- [db](resources/postgres) Lanzar las sentencias para crear los schemas, tablas, índices.
 
 # Ejecución
-
-## [Común](https://github.com/DomingoAlvarez99/shop#Servicios)
-
-## Propia
 
 - Arrancar el proyecto en local: 
    - `> mvn clean install`
    - `> mvn spring-boot:run`
 
-### [Testing](https://github.com/DomingoAlvarez99/shop/blob/master/README.md#generar-api-del-cliente)
-
-- Ejecutar tests: `> mvn test`
-- Generar métricas: `> mvn verify`
-- Enviar las métricas a SonarQube: 
-   - `> mvn sonar:sonar` (Las propiedades se deben de haber añadido previamente en el perfil de sonar del [pom.xml](pom.xml))
-   - ```bash
-     mvn sonar:sonar \
-             -Dsonar.projectKey=${KEY} \
-             -Dsonar.host.url=${HOST} \
-             -Dsonar.login=${TOKEN}
-     ```
-- Realizar las 2 cosas: `> mvn verify sonar:sonar`
+## [Testing](https://github.com/DomingoAlvarez99/shop/blob/master/README.md#generar-api-del-cliente)
 
 # [Generar cliente](https://github.com/DomingoAlvarez99/shop/blob/master/README.md#generar-api-del-cliente)
 
