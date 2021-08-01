@@ -5,7 +5,8 @@ _**Este repositorio está en desarrollo**_
 
 ## Documentación
 
-- [Shop](https://github.com/DomingoAlvarez99/shop)
+- [Arquitectura](https://github.com/DomingoAlvarez99/shop/blob/master/README.md#Microservicios)
+- [Configuración y ejecución](https://github.com/DomingoAlvarez99/shop/blob/master/README.md#Configuraci%C3%B3n-y-ejecuci%C3%B3n)
 
 ## Urls
 
