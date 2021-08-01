@@ -5,7 +5,7 @@ _**Este repositorio está en desarrollo**_
 
 ## Documentación
 
-- [Arquitectura](https://github.com/DomingoAlvarez99/shop/blob/master/README.md#Microservicios)
+- [Arquitectura](https://github.com/DomingoAlvarez99/shop/blob/master/README.md#Arquitectura-de-los-microservicios)
 - [Configuración y ejecución](https://github.com/DomingoAlvarez99/shop/blob/master/README.md#Configuraci%C3%B3n-y-ejecuci%C3%B3n)
 
 ## Urls
