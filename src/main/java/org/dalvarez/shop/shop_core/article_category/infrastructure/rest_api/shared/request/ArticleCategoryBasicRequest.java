@@ -1,50 +1,63 @@
 package org.dalvarez.shop.shop_core.article_category.infrastructure.rest_api.shared.request;
 
+import org.dalvarez.shop.shop_common.shared.domain.util.CollectionUtils;
 import org.dalvarez.shop.shop_common.shared.infrastructure.validation.Field;
-import org.dalvarez.shop.shop_common.shared.infrastructure.validation.FieldValidator;
-import org.dalvarez.shop.shop_common.shared.infrastructure.validation.Validator;
+import org.dalvarez.shop.shop_common.shared.infrastructure.validation.RequestValidator;
+import org.dalvarez.shop.shop_common.shared.infrastructure.validation.UuidValidator;
 import org.dalvarez.shop.shop_core.article.domain.Article;
 import org.dalvarez.shop.shop_core.article_category.domain.ArticleCategory;
 import org.dalvarez.shop.shop_core.category.domain.Category;
 
+import java.util.Collections;
 import java.util.List;
-import java.util.Map;
 
-public abstract class ArticleCategoryBasicRequest<R> extends Validator<R> {
+public abstract class ArticleCategoryBasicRequest<R> extends RequestValidator<R> {
 
     protected String articleUuid;
 
     protected String categoryUuid;
 
-    private ArticleCategoryBasicRequest(final Map<String, FieldValidator> fieldsValidators,
-                                        final Class<R> requestClass) {
-        super(fieldsValidators, requestClass);
+    private ArticleCategoryBasicRequest(final Class<R> requestClass) {
+        super(requestClass);
     }
 
     protected ArticleCategoryBasicRequest(
-            final Map<String, FieldValidator> fieldsValidators,
             final Class<R> requestClass,
             final String articleUuid,
             final String categoryUuid) {
-        this(fieldsValidators, requestClass);
+        this(requestClass);
+
         this.articleUuid = articleUuid;
         this.categoryUuid = categoryUuid;
     }
 
-    @Override
-    protected abstract List<Field<Object>> getFields();
-
-    public ArticleCategory toArticleCategory() {
-        return toArticleCategory(null);
-    }
-
-    public ArticleCategory toArticleCategory(final String uuid) {
-        validate();
-
+    private ArticleCategory toArticleCategory(final String uuid) {
         return ArticleCategory.create(
                 uuid,
-                Article.create(null, articleUuid, null, null, null, null),
-                Category.create(null, null, null, categoryUuid)
+                Article.of(null, articleUuid, null, null, null, null),
+                Category.of(null, null, null, categoryUuid)
+        );
+    }
+
+    public ArticleCategory validateAndGetRequest() {
+        return validateAndGetRequest(null);
+    }
+
+    public ArticleCategory validateAndGetRequest(final String uuid) {
+        return validateAndGetRequest(uuid, Collections.emptyList());
+    }
+
+    protected ArticleCategory validateAndGetRequest(final String uuid,
+                                                    final List<Field<Object>> customFieldValidators) {
+        validate(CollectionUtils.concat(getDefaultFieldValidators(), customFieldValidators));
+
+        return toArticleCategory(uuid);
+    }
+
+    protected List<Field<Object>> getDefaultFieldValidators() {
+        return List.of(
+                new Field<>(FieldNames.ARTICLE_UUID, articleUuid, UuidValidator.getInstance()),
+                new Field<>(FieldNames.CATEGORY_UUID, categoryUuid, UuidValidator.getInstance())
         );
     }
 

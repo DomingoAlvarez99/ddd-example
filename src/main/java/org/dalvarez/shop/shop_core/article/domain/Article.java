@@ -38,12 +38,12 @@ public class Article {
         this.description = description;
     }
 
-    public static Article create(final Long id,
-                                 final String uuid,
-                                 final Integer stock,
-                                 final Double price,
-                                 final String name,
-                                 final String description) {
+    public static Article of(final Long id,
+                             final String uuid,
+                             final Integer stock,
+                             final Double price,
+                             final String name,
+                             final String description) {
         return new Article(
                 id,
                 uuid,

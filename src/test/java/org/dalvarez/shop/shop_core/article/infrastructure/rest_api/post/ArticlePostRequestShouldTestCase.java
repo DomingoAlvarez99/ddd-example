@@ -53,7 +53,7 @@ final class ArticlePostRequestShouldTestCase extends ContextTestCase {
                         333333.25,
                         StringUtils.EMPTY,
                         null
-                ).toArticle()
+                ).validateAndGetRequest()
         );
 
         final List<String> errors = InvalidObjectException.asListOfErrors(exception.getMessage());

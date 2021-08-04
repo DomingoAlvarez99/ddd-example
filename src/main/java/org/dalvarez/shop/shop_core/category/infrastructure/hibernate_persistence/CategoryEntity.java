@@ -38,7 +38,7 @@ public final class CategoryEntity extends BaseEntity {
     }
 
     public Category toCategory() {
-        return Category.create(
+        return Category.of(
                 id,
                 name,
                 parent != null ? parent.toCategory() : null,

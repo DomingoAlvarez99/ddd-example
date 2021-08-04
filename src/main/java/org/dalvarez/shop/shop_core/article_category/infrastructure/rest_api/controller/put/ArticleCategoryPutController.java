@@ -21,7 +21,7 @@ public final class ArticleCategoryPutController extends ArticleCategoryApiContro
     @PutMapping(UUID_PATH_VAR)
     public ResponseEntity<ArticleCategoryResponse> put(@PathVariable final String uuid,
                                                        @RequestBody final ArticleCategoryPutRequest articleCategoryPutRequest) {
-        return ResponseEntity.ok(articleCategoryUpdater.update(articleCategoryPutRequest.toArticleCategory(uuid)));
+        return ResponseEntity.ok(articleCategoryUpdater.update(articleCategoryPutRequest.validateAndGetRequest(uuid)));
     }
 
 }

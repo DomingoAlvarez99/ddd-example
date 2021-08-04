@@ -1,50 +1,67 @@
 package org.dalvarez.shop.shop_core.category.infrastructure.rest_api.shared;
 
+import org.dalvarez.shop.shop_common.shared.domain.util.CollectionUtils;
 import org.dalvarez.shop.shop_common.shared.infrastructure.validation.Field;
-import org.dalvarez.shop.shop_common.shared.infrastructure.validation.FieldValidator;
-import org.dalvarez.shop.shop_common.shared.infrastructure.validation.Validator;
+import org.dalvarez.shop.shop_common.shared.infrastructure.validation.GenericNotEmptyValidator;
+import org.dalvarez.shop.shop_common.shared.infrastructure.validation.RequestValidator;
+import org.dalvarez.shop.shop_common.shared.infrastructure.validation.UuidValidator;
 import org.dalvarez.shop.shop_core.category.domain.Category;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
-import java.util.Map;
 
-public abstract class CategoryBasicRequest<R> extends Validator<R> {
+public abstract class CategoryBasicRequest<R> extends RequestValidator<R> {
 
     protected String name;
 
     protected String parentUuid;
 
-    private CategoryBasicRequest(final Map<String, FieldValidator> fieldsValidators,
-                                 final Class<R> requestClass) {
-        super(fieldsValidators, requestClass);
+    private CategoryBasicRequest(final Class<R> requestClass) {
+        super(requestClass);
     }
 
     protected CategoryBasicRequest(
-            final Map<String, FieldValidator> fieldsValidators,
             final Class<R> requestClass,
             final String name,
             String parentUuid) {
-        this(fieldsValidators, requestClass);
+        this(requestClass);
         this.name = name;
         this.parentUuid = parentUuid;
     }
 
-    @Override
-    protected abstract List<Field<Object>> getFields();
-
-    public Category toCategory() {
-        return toCategory(null);
-    }
-
-    public Category toCategory(final String uuid) {
-        validate();
-
-        return Category.create(
+    private Category toCategory(final String uuid) {
+        return Category.of(
                 null,
                 name,
-                Category.create(null, null, null, parentUuid),
+                Category.of(null, null, null, parentUuid),
                 uuid
         );
+    }
+
+    public Category validateAndGetRequest() {
+        return validateAndGetRequest(null);
+    }
+
+    public Category validateAndGetRequest(final String uuid) {
+        return validateAndGetRequest(uuid, Collections.emptyList());
+    }
+
+    protected Category validateAndGetRequest(final String uuid,
+                                             final List<Field<Object>> customFieldValidators) {
+        validate(CollectionUtils.concat(getDefaultFieldValidators(), customFieldValidators));
+
+        return toCategory(uuid);
+    }
+
+    protected List<Field<Object>> getDefaultFieldValidators() {
+        final List<Field<Object>> fields = new ArrayList<>();
+        fields.add(new Field<>(FieldNames.NAME, name, GenericNotEmptyValidator.getInstance()));
+
+        if (parentUuid != null)
+            fields.add(new Field<>(FieldNames.PARENT_UUID, parentUuid, UuidValidator.getInstance()));
+
+        return fields;
     }
 
     public String getName() {

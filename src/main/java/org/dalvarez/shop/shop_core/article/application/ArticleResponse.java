@@ -51,20 +51,9 @@ public class ArticleResponse {
         return description;
     }
 
-    public Article toArticle(final Long id) {
-        return Article.create(
-                id,
-                uuid,
-                stock,
-                price,
-                name,
-                description
-        );
-    }
-
     public Article toArticle(final Long id,
                              final String uuid) {
-        return Article.create(
+        return Article.of(
                 id,
                 uuid,
                 stock,

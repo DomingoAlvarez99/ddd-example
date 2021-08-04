@@ -39,7 +39,7 @@ final class ArticlePutRequestShouldTestCase extends ContextTestCase {
                 PRICE,
                 NAME,
                 DESCRIPTION
-        ).toArticle(UUID);
+        ).validateAndGetRequest(UUID);
     }
 
     @Test
@@ -51,7 +51,7 @@ final class ArticlePutRequestShouldTestCase extends ContextTestCase {
                         333333.25,
                         StringUtils.EMPTY,
                         null
-                ).toArticle("kekw")
+                ).validateAndGetRequest("kekw")
         );
 
         final List<String> errors = InvalidObjectException.asListOfErrors(exception.getMessage());

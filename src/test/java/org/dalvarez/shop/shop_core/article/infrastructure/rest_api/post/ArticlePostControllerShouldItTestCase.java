@@ -36,7 +36,7 @@ final class ArticlePostControllerShouldItTestCase extends ArticleInfrastructureR
                 PRICE,
                 NAME,
                 DESCRIPTION
-        ).toArticle();
+        ).validateAndGetRequest();
 
         final ArticleResponse expected = shouldPost(request, ArticleResponse.class);
 

@@ -23,7 +23,7 @@ public final class ArticleCategoryPostController extends ArticleCategoryApiContr
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<ArticleCategoryResponse> post(@RequestBody final ArticleCategoryPostRequest articleCategoryPostRequest) {
         return new ResponseEntity<>(
-                articleCategoryCreator.create(articleCategoryPostRequest.toArticleCategory()),
+                articleCategoryCreator.create(articleCategoryPostRequest.validateAndGetRequest()),
                 HttpStatus.CREATED
         );
     }

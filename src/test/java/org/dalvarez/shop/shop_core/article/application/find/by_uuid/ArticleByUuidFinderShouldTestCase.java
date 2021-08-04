@@ -18,7 +18,7 @@ public final class ArticleByUuidFinderShouldTestCase extends ArticleApplicationM
     public void findAnArticleByUuid() {
         final String uuid = uuidGenerator.generate();
 
-        final Article article = Article.create(
+        final Article article = Article.of(
                 null,
                 null,
                 50,

@@ -22,7 +22,10 @@ public final class ArticlePostController extends ArticleApiController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<ArticleResponse> post(@RequestBody final ArticlePostRequest articlePostRequest) {
-        return new ResponseEntity<>(articleCreator.create(articlePostRequest.toArticle()), HttpStatus.CREATED);
+        return new ResponseEntity<>(
+                articleCreator.create(articlePostRequest.validateAndGetRequest()),
+                HttpStatus.CREATED
+        );
     }
 
 }

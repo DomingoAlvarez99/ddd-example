@@ -44,7 +44,7 @@ public final class ArticleEntity extends BaseEntity {
     }
 
     public Article toArticle() {
-        return Article.create(
+        return Article.of(
                 id,
                 uuid,
                 stock,

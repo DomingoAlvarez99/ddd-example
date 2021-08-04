@@ -17,7 +17,7 @@ public final class ArticleMother {
                                  final Double price,
                                  final String name,
                                  final String description) {
-        return Article.create(
+        return Article.of(
                 id,
                 uuid,
                 stock,

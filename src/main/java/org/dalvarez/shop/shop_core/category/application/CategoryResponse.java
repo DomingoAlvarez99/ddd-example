@@ -30,7 +30,7 @@ public class CategoryResponse extends Category {
 
     public Category toCategory(final Long id,
                                final String uuid) {
-        return Category.create(
+        return Category.of(
                 id,
                 name,
                 parent,

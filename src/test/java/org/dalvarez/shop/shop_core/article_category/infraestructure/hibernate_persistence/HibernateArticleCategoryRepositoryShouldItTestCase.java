@@ -53,7 +53,7 @@ public final class HibernateArticleCategoryRepositoryShouldItTestCase extends Se
     void setup() {
         Article article = ArticleMother.random();
         articleRepository.create(article);
-        Category category = Category.create("kjekw", null, UuidMother.randomPick());
+        Category category = Category.of("kjekw", null, UuidMother.randomPick());
         categoryRepository.create(category);
         final List<ArticleCategory> data = List.of(
                 ArticleCategory.create(

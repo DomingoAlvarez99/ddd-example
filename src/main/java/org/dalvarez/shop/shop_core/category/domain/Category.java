@@ -29,10 +29,10 @@ public class Category {
         this.uuid = uuid;
     }
 
-    public static Category create(final Long id,
-                                  final String name,
-                                  final Category parent,
-                                  final String uuid) {
+    public static Category of(final Long id,
+                              final String name,
+                              final Category parent,
+                              final String uuid) {
         return new Category(
                 id,
                 name,
@@ -41,10 +41,10 @@ public class Category {
         );
     }
 
-    public static Category create(final String name,
-                                  final Category parent,
-                                  final String uuid) {
-        return create(
+    public static Category of(final String name,
+                              final Category parent,
+                              final String uuid) {
+        return of(
                 null,
                 name,
                 parent,

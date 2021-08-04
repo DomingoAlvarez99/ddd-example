@@ -21,7 +21,7 @@ public final class ArticlePutController extends ArticleApiController {
     @PutMapping(UUID_PATH_VAR)
     public ResponseEntity<ArticleResponse> put(@PathVariable final String uuid,
                                                @RequestBody final ArticlePutRequest articlePutRequest) {
-        return ResponseEntity.ok(articleUpdater.update(articlePutRequest.toArticle(uuid)));
+        return ResponseEntity.ok(articleUpdater.update(articlePutRequest.validateAndGetRequest(uuid)));
     }
 
 }
