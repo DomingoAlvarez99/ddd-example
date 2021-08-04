@@ -95,37 +95,6 @@
                 </executions>
             </plugin>
             <plugin>
-                <groupId>org.openapitools</groupId>
-                <artifactId>openapi-generator-maven-plugin</artifactId>
-                <version>${open-api-generator.version}</version>
-                <executions>
-                    <execution>
-                        <phase>compile</phase>
-                        <goals>
-                            <goal>generate</goal>
-                        </goals>
-                        <configuration>
-                            <typeMappings>
-                                <typeMapping>OffsetDateTime=Timestamp</typeMapping>
-                            </typeMappings>
-                            <importMappings>
-                                <importMapping>java.time.OffsetDateTime=java.sql.Timestamp</importMapping>
-                            </importMappings>
-                            <inputSpec>${basedir}/generated/swagger-api/api-docs.json</inputSpec>
-                            <generatorName>java</generatorName>
-                            <library>native</library>
-                            <apiPackage>${project.groupId}.${project.artifactId}.client.api</apiPackage>
-                            <modelPackage>${project.groupId}.${project.artifactId}.client.model</modelPackage>
-                            <invokerPackage>${project.groupId}.${project.artifactId}.client.invoker</invokerPackage>
-                            <groupId>${project.groupId}</groupId>
-                            <artifactId>${project.artifactId}-api-client</artifactId>
-                            <artifactVersion>${project.version}</artifactVersion>
-                            <output>${project.build.directory}/generated-sources-swagger-api</output>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
@@ -143,6 +112,45 @@
                 <sonar.host.url>${sonarqube.host.url}</sonar.host.url>
                 <sonar.login>${sonarqube.login}</sonar.login>
             </properties>
+        </profile>
+        <profile>
+            <id>code-gen</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.openapitools</groupId>
+                        <artifactId>openapi-generator-maven-plugin</artifactId>
+                        <version>${open-api-generator.version}</version>
+                        <executions>
+                            <execution>
+                                <phase>compile</phase>
+                                <goals>
+                                    <goal>generate</goal>
+                                </goals>
+                                <configuration>
+                                    <typeMappings>
+                                        <typeMapping>OffsetDateTime=Timestamp</typeMapping>
+                                    </typeMappings>
+                                    <importMappings>
+                                        <importMapping>java.time.OffsetDateTime=java.sql.Timestamp</importMapping>
+                                    </importMappings>
+                                    <inputSpec>${basedir}/generated/swagger-api/api-docs.json</inputSpec>
+                                    <generatorName>java</generatorName>
+                                    <library>native</library>
+                                    <apiPackage>${project.groupId}.${project.artifactId}.client.api</apiPackage>
+                                    <modelPackage>${project.groupId}.${project.artifactId}.client.model</modelPackage>
+                                    <invokerPackage>${project.groupId}.${project.artifactId}.client.invoker
+                                    </invokerPackage>
+                                    <groupId>${project.groupId}</groupId>
+                                    <artifactId>${project.artifactId}-api-client</artifactId>
+                                    <artifactVersion>${project.version}</artifactVersion>
+                                    <output>${project.build.directory}/generated-sources-swagger-api</output>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
         </profile>
     </profiles>
 
