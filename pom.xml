@@ -31,10 +31,12 @@
         <!-- Shop shared -->
         <!--Look for the latest version (v >= 1.0). Take Release if available. Else SNAPSHOT-->
         <shop-common.version>[1.0-SNAPSHOT,)</shop-common.version>
-    </properties>
+        <!--Fixes [CVE-2021-45046, CVE-2021-45105] vulnerabilities-->
+       <log4j2.version>2.17.0</log4j2.version>
+   </properties>
 
-    <dependencies>
-        <!-- Shop shared -->
+   <dependencies>
+       <!-- Shop shared -->
         <dependency>
             <groupId>org.dalvarez.shop</groupId>
             <artifactId>shop-common</artifactId>
