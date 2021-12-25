@@ -1,7 +1,6 @@
 package org.dalvarez.shop.shop_core.article.infrastructure.rest_api.put;
 
 import org.dalvarez.shop.shop_core.article.infrastructure.rest_api.controller.put.ArticlePutRequest;
-import org.dalvarez.shop.shop_core.shared.infrastructure.shared.ContextTestCase;
 import org.dalvarez.shop.shop_common.shared.infrastructure.validation.BadRequestException;
 import org.dalvarez.shop.shop_common.shared.infrastructure.validation.InvalidObjectException;
 import org.dalvarez.shop.shop_common.shared.domain.log.Logger;
@@ -17,7 +16,7 @@ import java.util.stream.Collectors;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-final class ArticlePutRequestShouldTestCase extends ContextTestCase {
+final class ArticlePutRequestShouldTestCase {
 
     private static final String UUID = UuidMother.randomPick();
 

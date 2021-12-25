@@ -1,11 +1,11 @@
 package org.dalvarez.shop.shop_core.article.infrastructure.rest_api.post;
 
 import org.dalvarez.shop.shop_core.article.infrastructure.rest_api.controller.post.ArticlePostRequest;
-import org.dalvarez.shop.shop_core.shared.infrastructure.shared.ContextTestCase;
 import org.dalvarez.shop.shop_common.shared.infrastructure.validation.BadRequestException;
 import org.dalvarez.shop.shop_common.shared.infrastructure.validation.InvalidObjectException;
 import org.dalvarez.shop.shop_common.shared.domain.log.Logger;
 import org.dalvarez.shop.shop_common.shared.domain.util.StringUtils;
+import org.dalvarez.shop.shop_core.shared.infrastructure.shared.TestConfig;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +16,8 @@ import java.util.stream.Collectors;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-final class ArticlePostRequestShouldTestCase extends ContextTestCase {
+@TestConfig
+final class ArticlePostRequestShouldTestCase {
 
     private static final Integer STOCK = 100;
 

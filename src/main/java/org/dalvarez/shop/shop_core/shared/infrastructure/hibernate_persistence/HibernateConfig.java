@@ -1,6 +1,6 @@
 package org.dalvarez.shop.shop_core.shared.infrastructure.hibernate_persistence;
 
-import org.dalvarez.shop.shop_core.Application;
+import org.dalvarez.shop.shop_core.shared.infrastructure.Application;
 import org.hibernate.cfg.AvailableSettings;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

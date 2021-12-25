@@ -1,5 +1,6 @@
 package org.dalvarez.shop.shop_core.shared.infrastructure.shared;
 
+import org.dalvarez.shop.shop_core.shared.infrastructure.Application;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.TestPropertySource;
 
@@ -11,8 +12,8 @@ import java.lang.annotation.Target;
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
 
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@SpringBootTest(classes = Application.class)
 @TestPropertySource("classpath:test.properties")
-@interface TestConfig {
+public @interface TestConfig {
 
 }

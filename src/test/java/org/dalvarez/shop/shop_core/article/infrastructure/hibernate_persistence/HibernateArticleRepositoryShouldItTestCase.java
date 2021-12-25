@@ -17,6 +17,7 @@ import org.dalvarez.shop.shop_common.persistence.domain.criteria.order.OrderType
 import org.dalvarez.shop.shop_common.persistence.domain.criteria.page.Page;
 import org.dalvarez.shop.shop_common.persistence.infrastructure.hibernate.BaseEntity;
 import org.dalvarez.shop.shop_common.persistence.infrastructure.shared.exception.NotFoundException;
+import org.dalvarez.shop.shop_core.shared.infrastructure.shared.TestConfig;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
@@ -28,6 +29,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+@TestConfig
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public final class HibernateArticleRepositoryShouldItTestCase extends Seeder<Article, ArticleRepository> {
 

@@ -1,14 +1,15 @@
 package org.dalvarez.shop.shop_core.shared.infrastructure.persistence;
 
-import org.dalvarez.shop.shop_core.shared.infrastructure.shared.ContextTestCase;
 import org.dalvarez.shop.shop_common.persistence.domain.repository.GenericRepository;
 import org.dalvarez.shop.shop_common.shared.domain.log.Logger;
 import org.dalvarez.shop.shop_common.persistence.domain.criteria.Criteria;
+import org.dalvarez.shop.shop_core.shared.infrastructure.shared.TestConfig;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-public abstract class Seeder<T, R extends GenericRepository<T, ?>> extends ContextTestCase {
+@TestConfig
+public abstract class Seeder<T, R extends GenericRepository<T, ?>> {
 
     private final Logger log;
 

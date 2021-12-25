@@ -1,6 +1,5 @@
 package org.dalvarez.shop.shop_core.shared.application;
 
-import org.dalvarez.shop.shop_core.shared.infrastructure.shared.ContextTestCase;
 import org.dalvarez.shop.shop_common.persistence.domain.uuid_generator.UuidGenerator;
 import org.dalvarez.shop.shop_common.persistence.domain.repository.GenericRepository;
 import org.dalvarez.shop.shop_common.shared.domain.bus.DomainEvent;
@@ -13,7 +12,7 @@ import static org.mockito.Mockito.atLeastOnce;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
-public abstract class ApplicationModuleTestCase<T, R extends GenericRepository<T, String>> extends ContextTestCase {
+public abstract class ApplicationModuleTestCase<T, R extends GenericRepository<T, String>> {
 
     protected final R repository;
 

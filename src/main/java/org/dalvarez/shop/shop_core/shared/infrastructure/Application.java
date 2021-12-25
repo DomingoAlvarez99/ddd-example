@@ -1,4 +1,4 @@
-package org.dalvarez.shop.shop_core;
+package org.dalvarez.shop.shop_core.shared.infrastructure;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
