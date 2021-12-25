@@ -24,18 +24,32 @@ public class Article {
 
     private final String description;
 
+    private final String categoryUuid;
+
+    private Article() {
+        id = null;
+        uuid = null;
+        stock = null;
+        price = null;
+        name = null;
+        description = null;
+        categoryUuid = null;
+    }
+
     private Article(final Long id,
                     final String uuid,
                     final Integer stock,
                     final Double price,
                     final String name,
-                    final String description) {
+                    final String description,
+                    final String categoryUuid) {
         this.id = id;
         this.uuid = uuid;
         this.stock = stock;
         this.price = price;
         this.name = name;
         this.description = description;
+        this.categoryUuid = categoryUuid;
     }
 
     public static Article of(final Long id,
@@ -50,7 +64,8 @@ public class Article {
                 stock,
                 price,
                 name,
-                description
+                description,
+                null
         );
     }
 
@@ -68,7 +83,8 @@ public class Article {
                 request.getStock(),
                 request.getPrice(),
                 request.getName(),
-                request.getDescription()
+                request.getDescription(),
+                null
         );
     }
 
@@ -96,6 +112,10 @@ public class Article {
         return description;
     }
 
+    public String getCategoryUuid() {
+        return categoryUuid;
+    }
+
     @Override
     public boolean equals(final Object o) {
         if (this == o) return true;
@@ -118,7 +138,16 @@ public class Article {
                 ", price=" + price +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
+                ", categoryUuid='" + categoryUuid + '\'' +
                 '}';
+    }
+
+    public static final class FieldNames {
+        public static final String UUID = "uuid";
+        public static final String STOCK = "stock";
+        public static final String PRICE = "price";
+        public static final String NAME = "name";
+
     }
 
 }

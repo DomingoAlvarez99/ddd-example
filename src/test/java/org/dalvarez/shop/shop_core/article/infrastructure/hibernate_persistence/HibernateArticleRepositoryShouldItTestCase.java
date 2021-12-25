@@ -93,7 +93,7 @@ public final class HibernateArticleRepositoryShouldItTestCase extends Seeder<Art
         );
         log.info("ActualMessage {}", notFoundException.getMessage());
 
-        final String expectedMessage = NotFoundException.getUuidMessage(ArticleEntity.class, uuid);
+        final String expectedMessage = NotFoundException.getUuidMessage(Article.class, uuid);
 
         log.info("ExpectedMessage {}", expectedMessage);
 
@@ -130,7 +130,7 @@ public final class HibernateArticleRepositoryShouldItTestCase extends Seeder<Art
     void shouldGetNotGetAnything() {
         final Criteria criteria = Criteria.builder()
                                           .withFilter(new Filter<>(
-                                                  ArticleEntity.FieldNames.NAME,
+                                                  Article.FieldNames.NAME,
                                                   FilterOperator.EQUAL,
                                                   "unknown"
                                           ))
@@ -143,7 +143,7 @@ public final class HibernateArticleRepositoryShouldItTestCase extends Seeder<Art
 
         log.info("ActualMessage {}", notFoundException.getMessage());
 
-        final String expectedMessage = NotFoundException.getDefaultMessage(ArticleEntity.class);
+        final String expectedMessage = NotFoundException.getDefaultMessage(Article.class);
 
         log.info("ExpectedMessage {}", expectedMessage);
 
@@ -156,7 +156,7 @@ public final class HibernateArticleRepositoryShouldItTestCase extends Seeder<Art
 
         final Criteria criteria = Criteria.builder()
                                           .withPage(new Page(0L, 1L))
-                                          .withOrder(new Order(ArticleEntity.FieldNames.NAME, OrderType.DESC))
+                                          .withOrder(new Order(Article.FieldNames.NAME, OrderType.DESC))
                                           .withFilters(
                                                   new Filters(
                                                           FiltersBooleanOperator.AND,
@@ -166,12 +166,12 @@ public final class HibernateArticleRepositoryShouldItTestCase extends Seeder<Art
                                                                   expected.getId()
                                                           ),
                                                           new Filter<>(
-                                                                  ArticleEntity.FieldNames.NAME,
+                                                                  Article.FieldNames.NAME,
                                                                   FilterOperator.EQUAL,
                                                                   expected.getName()
                                                           ),
                                                           new Filter<>(
-                                                                  ArticleEntity.FieldNames.PRICE,
+                                                                  Article.FieldNames.PRICE,
                                                                   FilterOperator.GREATER_THAN,
                                                                   expected.getPrice() - 1
                                                           )

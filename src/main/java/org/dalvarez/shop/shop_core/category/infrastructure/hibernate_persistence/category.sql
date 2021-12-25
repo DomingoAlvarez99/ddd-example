@@ -12,8 +12,6 @@ create table shop_core.category (
     name varchar(255) not null,
     parent_id bigint,
     uuid varchar(36) not null unique,
-    created_at timestamp not null,
-    updated_at timestamp not null,
     constraint category_pk primary key (id),
     constraint article_category_parent_fk foreign key (parent_id) references shop_core.category(id)
 );

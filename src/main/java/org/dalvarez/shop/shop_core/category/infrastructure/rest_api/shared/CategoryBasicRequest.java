@@ -34,7 +34,7 @@ public abstract class CategoryBasicRequest<R> extends RequestValidator<R> {
         return Category.of(
                 null,
                 name,
-                Category.of(null, null, null, parentUuid),
+                parentUuid,
                 uuid
         );
     }

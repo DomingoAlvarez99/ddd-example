@@ -10,16 +10,16 @@ public class CategoryResponse extends Category {
 
     public CategoryResponse(final Long id,
                             final String name,
-                            final Category parent,
+                            final String parentUuid,
                             final String uuid) {
-        super(id, name, parent, uuid);
+        super(id, name, parentUuid, uuid);
     }
 
     public static CategoryResponse fromCategory(final Category category) {
         return new CategoryResponse(
                 category.getId(),
                 category.getName(),
-                category.getParent(),
+                category.getParentUuid(),
                 category.getUuid()
         );
     }
@@ -33,7 +33,7 @@ public class CategoryResponse extends Category {
         return Category.of(
                 id,
                 name,
-                parent,
+                parentUuid,
                 uuid
         );
     }
@@ -47,7 +47,7 @@ public class CategoryResponse extends Category {
         return "CategoryResponse{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", parent=" + parent +
+                ", parentUuid='" + parentUuid + '\'' +
                 ", uuid='" + uuid + '\'' +
                 '}';
     }

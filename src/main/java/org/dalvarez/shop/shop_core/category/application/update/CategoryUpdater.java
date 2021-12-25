@@ -15,10 +15,9 @@ public class CategoryUpdater {
     }
 
     public CategoryResponse update(final Category request) {
-        final Category parent = categoryRepository.getByUuid(request.getParent()
-                                                                    .getUuid());
+        final Category parent = categoryRepository.getByUuid(request.getParentUuid());
 
-        final Category categoryRequest = Category.fromRequest(request, parent);
+        final Category categoryRequest = Category.fromRequest(request, parent.getParentUuid());
 
         final Category category = categoryRepository.create(categoryRequest);
 

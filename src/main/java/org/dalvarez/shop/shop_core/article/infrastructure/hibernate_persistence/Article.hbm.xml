@@ -1,0 +1,16 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="org.dalvarez.shop.shop_core.article.domain.Article" table="article">
+        <id name="uuid" column="id" type="string" access="field" />
+
+        <property name="stock" column="stock" type="integer" access="field" />
+        <property name="price" column="price" type="double" access="field" />
+        <property name="name" column="name" type="string" access="field" />
+        <property name="description" column="description" type="string" access="field" />
+        <property name="categoryUuid" column="category_uuid" type="string" access="field" />
+    </class>
+</hibernate-mapping>

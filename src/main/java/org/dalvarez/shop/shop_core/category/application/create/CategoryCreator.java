@@ -22,14 +22,12 @@ public final class CategoryCreator extends GeneratorUniqueUuid {
     public CategoryResponse create(final Category request) {
         final String uniqueUuid = generate();
 
-        Category parent = null;
+        String parentUuid = null;
 
-        if (request.getParent()
-                   .getUuid() != null)
-            parent = categoryRepository.getByUuid(request.getParent()
-                                                         .getUuid());
+        if (request.getParentUuid() != null)
+            parentUuid = categoryRepository.getByUuid(request.getParentUuid()).getParentUuid();
 
-        final Category categoryRequest = Category.fromRequest(request, uniqueUuid, parent);
+        final Category categoryRequest = Category.fromRequest(request, uniqueUuid, parentUuid);
 
         final Category category = categoryRepository.create(categoryRequest);
 

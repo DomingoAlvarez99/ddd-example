@@ -14,8 +14,6 @@ create table shop_core.article (
     price double precision not null,
     stock bigint not null,
     uuid varchar(36) not null unique,
-    created_at timestamp not null,
-    updated_at timestamp not null,
     category_id bigint not null,
     constraint article_pk primary key (id),
     constraint article_category_fk foreign key (category_id) references shop_core.category(id)

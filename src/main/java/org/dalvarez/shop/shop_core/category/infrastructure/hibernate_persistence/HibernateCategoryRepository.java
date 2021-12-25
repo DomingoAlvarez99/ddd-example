@@ -11,30 +11,21 @@ import org.dalvarez.shop.shop_core.category.domain.CategoryRepository;
 import javax.persistence.EntityManager;
 import java.util.stream.Collectors;
 
-public class HibernateCategoryRepository extends HibernateRepository<CategoryEntity> implements CategoryRepository {
+public class HibernateCategoryRepository extends HibernateRepository<Category> implements CategoryRepository {
 
     public HibernateCategoryRepository(final EntityManager entityManager,
-                                       final CriteriaConverter<CategoryEntity> hibernateCriteriaConverter) {
-        super(entityManager, hibernateCriteriaConverter, CategoryEntity.class);
+                                       final CriteriaConverter<Category> hibernateCriteriaConverter) {
+        super(entityManager, hibernateCriteriaConverter, Category.class);
     }
 
     @Override
     public Category getByUuid(final String uuid) {
-        return findByUuid(uuid).toCategory();
+        return findByUuid(uuid);
     }
 
     @Override
     public QueryResult<Category> getByCriteria(final Criteria criteria) {
-        final QueryResult<CategoryEntity> result = findByCriteria(criteria);
-
-        return new QueryResult<>(
-                result.getTotalElements(),
-                result.getFirstElement(),
-                result.getResult()
-                      .stream()
-                      .map(CategoryEntity::toCategory)
-                      .collect(Collectors.toList())
-        );
+        return findByCriteria(criteria);
     }
 
     @Override
@@ -44,14 +35,12 @@ public class HibernateCategoryRepository extends HibernateRepository<CategoryEnt
 
     @Override
     public Category create(final Category category) {
-        return save(CategoryEntity.fromCategory(category))
-                .toCategory();
+        return save(category);
     }
 
     @Override
     public Category update(final Category category) {
-        return update(CategoryEntity.fromCategory(category))
-                .toCategory();
+        return super.update(category);
     }
 
     @Override

@@ -8,64 +8,64 @@ public class Category {
 
     protected final String name;
 
-    protected final Category parent;
+    protected final String parentUuid;
 
     protected final String uuid;
 
     protected Category() {
         this.id = null;
         this.name = null;
-        this.parent = null;
+        this.parentUuid = null;
         this.uuid = null;
     }
 
     protected Category(final Long id,
                        final String name,
-                       final Category parent,
+                       final String parentUuid,
                        final String uuid) {
         this.id = id;
         this.name = name;
-        this.parent = parent;
+        this.parentUuid = parentUuid;
         this.uuid = uuid;
     }
 
     public static Category of(final Long id,
                               final String name,
-                              final Category parent,
+                              final String parentUuid,
                               final String uuid) {
         return new Category(
                 id,
                 name,
-                parent,
+                parentUuid,
                 uuid
         );
     }
 
     public static Category of(final String name,
-                              final Category parent,
+                              final String parentUuid,
                               final String uuid) {
         return of(
                 null,
                 name,
-                parent,
+                parentUuid,
                 uuid
         );
     }
 
     public static Category fromRequest(final Category request,
                                        final String uuid,
-                                       final Category parent) {
+                                       final String parentUuid) {
         return new Category(
                 null,
                 request.getName(),
-                parent,
+                parentUuid,
                 uuid
         );
     }
 
     public static Category fromRequest(final Category request,
-                                       final Category parent) {
-        return fromRequest(request, request.getUuid(), parent);
+                                       final String parentUuid) {
+        return fromRequest(request, request.getUuid(), parentUuid);
     }
 
     public Long getId() {
@@ -76,8 +76,8 @@ public class Category {
         return name;
     }
 
-    public Category getParent() {
-        return parent;
+    public String getParentUuid() {
+        return parentUuid;
     }
 
     public String getUuid() {
@@ -107,7 +107,7 @@ public class Category {
         return "Category{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", parent=" + parent +
+                ", parentUuid='" + parentUuid + '\'' +
                 ", uuid='" + uuid + '\'' +
                 '}';
     }

@@ -1,0 +1,13 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="org.dalvarez.shop.shop_core.category.domain.Category" table="category">
+        <id name="uuid" column="id" type="string" access="field" />
+
+        <property name="name" column="name" type="string" access="field" />
+        <property name="parentUuid" column="parent_uuid" type="string" access="field" />
+    </class>
+</hibernate-mapping>
