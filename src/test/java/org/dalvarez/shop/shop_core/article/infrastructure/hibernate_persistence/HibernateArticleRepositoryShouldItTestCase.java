@@ -163,11 +163,6 @@ public final class HibernateArticleRepositoryShouldItTestCase extends Seeder<Art
                                                   new Filters(
                                                           FiltersBooleanOperator.AND,
                                                           new Filter<>(
-                                                                  BaseEntity.FieldNames.ID,
-                                                                  FilterOperator.EQUAL,
-                                                                  expected.getId()
-                                                          ),
-                                                          new Filter<>(
                                                                   Article.FieldNames.NAME,
                                                                   FilterOperator.EQUAL,
                                                                   expected.getName()

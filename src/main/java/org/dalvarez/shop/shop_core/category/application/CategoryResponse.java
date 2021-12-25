@@ -8,44 +8,35 @@ public class CategoryResponse extends Category {
 
     }
 
-    public CategoryResponse(final Long id,
-                            final String name,
+    public CategoryResponse(final String name,
                             final String parentUuid,
                             final String uuid) {
-        super(id, name, parentUuid, uuid);
+        super(name, parentUuid, uuid);
     }
 
     public static CategoryResponse fromCategory(final Category category) {
         return new CategoryResponse(
-                category.getId(),
                 category.getName(),
                 category.getParentUuid(),
                 category.getUuid()
         );
     }
 
-    public Category toCategory(final Long id) {
-        return toCategory(id, uuid);
+    public Category toCategory() {
+        return toCategory(uuid);
     }
 
-    public Category toCategory(final Long id,
-                               final String uuid) {
+    public Category toCategory(final String uuid) {
         return Category.of(
-                id,
                 name,
                 parentUuid,
                 uuid
         );
     }
 
-    public Category toCategory() {
-        return toCategory(id, uuid);
-    }
-
     @Override
     public String toString() {
         return "CategoryResponse{" +
-                "id=" + id +
                 ", name='" + name + '\'' +
                 ", parentUuid='" + parentUuid + '\'' +
                 ", uuid='" + uuid + '\'' +

@@ -57,11 +57,6 @@ public final class ArticleMother {
         return (long) randomNumber;
     }
 
-    public static Long randomId(List<Article> articles) {
-        return RandomElementPicker.from(articles)
-                                  .getId();
-    }
-
     public static List<Article> randomList() {
         return randomList(randomId());
     }

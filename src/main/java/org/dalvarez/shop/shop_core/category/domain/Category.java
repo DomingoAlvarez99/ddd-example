@@ -4,8 +4,6 @@ import java.util.Objects;
 
 public class Category {
 
-    protected final Long id;
-
     protected final String name;
 
     protected final String parentUuid;
@@ -13,39 +11,23 @@ public class Category {
     protected final String uuid;
 
     protected Category() {
-        this.id = null;
         this.name = null;
         this.parentUuid = null;
         this.uuid = null;
     }
 
-    protected Category(final Long id,
-                       final String name,
+    protected Category(final String name,
                        final String parentUuid,
                        final String uuid) {
-        this.id = id;
         this.name = name;
         this.parentUuid = parentUuid;
         this.uuid = uuid;
     }
 
-    public static Category of(final Long id,
-                              final String name,
-                              final String parentUuid,
-                              final String uuid) {
-        return new Category(
-                id,
-                name,
-                parentUuid,
-                uuid
-        );
-    }
-
     public static Category of(final String name,
                               final String parentUuid,
                               final String uuid) {
-        return of(
-                null,
+        return new Category(
                 name,
                 parentUuid,
                 uuid
@@ -56,7 +38,6 @@ public class Category {
                                        final String uuid,
                                        final String parentUuid) {
         return new Category(
-                null,
                 request.getName(),
                 parentUuid,
                 uuid
@@ -66,10 +47,6 @@ public class Category {
     public static Category fromRequest(final Category request,
                                        final String parentUuid) {
         return fromRequest(request, request.getUuid(), parentUuid);
-    }
-
-    public Long getId() {
-        return id;
     }
 
     public String getName() {
@@ -94,18 +71,17 @@ public class Category {
 
         final Category category = (Category) o;
 
-        return Objects.equals(id, category.id);
+        return Objects.equals(uuid, category.uuid);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id);
+        return Objects.hash(uuid);
     }
 
     @Override
     public String toString() {
         return "Category{" +
-                "id=" + id +
                 ", name='" + name + '\'' +
                 ", parentUuid='" + parentUuid + '\'' +
                 ", uuid='" + uuid + '\'' +

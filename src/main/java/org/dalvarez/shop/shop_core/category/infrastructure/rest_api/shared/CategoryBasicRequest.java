@@ -32,7 +32,6 @@ public abstract class CategoryBasicRequest<R> extends RequestValidator<R> {
 
     private Category toCategory(final String uuid) {
         return Category.of(
-                null,
                 name,
                 parentUuid,
                 uuid

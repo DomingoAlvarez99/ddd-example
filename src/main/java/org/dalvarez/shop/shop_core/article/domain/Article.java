@@ -12,8 +12,6 @@ public class Article {
 
     public static final Double MAX_PRICE = 1000D;
 
-    private final Long id;
-
     private final String uuid;
 
     private final Integer stock;
@@ -27,7 +25,6 @@ public class Article {
     private final String categoryUuid;
 
     private Article() {
-        id = null;
         uuid = null;
         stock = null;
         price = null;
@@ -43,7 +40,6 @@ public class Article {
                     final String name,
                     final String description,
                     final String categoryUuid) {
-        this.id = id;
         this.uuid = uuid;
         this.stock = stock;
         this.price = price;
@@ -88,10 +84,6 @@ public class Article {
         );
     }
 
-    public Long getId() {
-        return id;
-    }
-
     public String getUuid() {
         return uuid;
     }
@@ -132,7 +124,6 @@ public class Article {
     @Override
     public String toString() {
         return "Article{" +
-                "id=" + id +
                 ", uuid='" + uuid + '\'' +
                 ", stock=" + stock +
                 ", price=" + price +

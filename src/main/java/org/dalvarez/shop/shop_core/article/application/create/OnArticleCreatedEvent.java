@@ -18,7 +18,7 @@ public final class OnArticleCreatedEvent {
                 "Event <name={}>, <id={}>, <date={}>",
                 event.eventName(),
                 event.getValue()
-                     .getId(),
+                     .getUuid(),
                 event.getDate()
         );
     }
