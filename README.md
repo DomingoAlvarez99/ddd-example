@@ -1,15 +1,42 @@
 _**Este repositorio está en desarrollo**_
-# Shop core
-> Este proyecto es el microservicio principal del grupo Shop.
+# Arquitectura Hexagonal y DDD en Java
+Ejemplo de una aplicación Java que utiliza la Arquitectura de *Puertos y Adaptadores* ([Arquitectura Hexagonal](https://es.wikipedia.org/wiki/Arquitectura_hexagonal_(software))) junto a Domain Driven Design ([DDD](https://es.wikipedia.org/wiki/Dise%C3%B1o_guiado_por_el_dominio)) para mantener el código lo más simple posible.
+
+## Tabla de contenidos
+- [Arquitectura Hexagonal y DDD en Java](#arquitectura-hexagonal-y-ddd-en-java)
+  - [Tabla de contenidos](#tabla-de-contenidos)
+  - [1. Tecnologías necesarias](#1-tecnologías-necesarias)
+  - [2. Entrypoint](#2-entrypoint)
+    - [Endpoints](#endpoints)
+    - [Cli](#cli)
+  - [3. Librerías y ejemplos de implementación](#3-librerías-y-ejemplos-de-implementación)
+  - [4. Casos de uso y patrones implementados](#4-casos-de-uso-y-patrones-implementados)
+  - [5. Configuración del entorno](#5-configuración-del-entorno)
+  - [6. Testing](#6-testing)
+  - [7. Logs](#7-logs)
+  - [8. Deploy](#8-deploy)
  
 
-## Documentación
+## 1. Tecnologías necesarias
 
-- [Arquitectura](https://github.com/DomingoAlvarez99/shop/blob/master/README.md#Arquitectura-de-los-microservicios)
-- [Configuración y ejecución](https://github.com/DomingoAlvarez99/shop/blob/master/README.md#Configuraci%C3%B3n-y-ejecuci%C3%B3n)
+## 2. Entrypoint
 
-## Urls
+### Endpoints
 
-- [Api](http://localhost:8080/api/v0)
-- [Api doc](http://localhost:8080/api/v0/swagger-ui.html)
-- [Api spec](http://localhost:8080/api/v0/api-docs)
+### Cli
+
+## 3. Librerías y ejemplos de implementación
+
+| Característica                   | Librería                                                     | Ejemplos de implementación    |
+| ------------------------- | ----------------------------------------------------------- | -------------------------- |
+| Build tool                | [Maven](https://maven.apache.org/)                           | [Dependencias](pom.xml)
+
+## 4. Casos de uso y patrones implementados
+
+## 5. Configuración del entorno
+
+## 6. Testing
+
+## 7. Logs
+
+## 8. Deploy
