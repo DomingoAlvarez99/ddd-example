@@ -1,7 +1,7 @@
 package org.dalvarez.shop.shop_core.article.application.sum.by_stock;
 
-import org.dalvarez.shop.shop_common.persistence.application.shared.sum.SumResponse;
-import org.dalvarez.shop.shop_common.persistence.domain.criteria.Criteria;
+import org.dalvarez.shop.shop_core.shop_common.persistence.application.shared.sum.SumResponse;
+import org.dalvarez.shop.shop_core.shop_common.persistence.domain.criteria.Criteria;
 import org.dalvarez.shop.shop_core.article.domain.port.ArticleRepository;
 
 public final class ArticleByStockAdder {

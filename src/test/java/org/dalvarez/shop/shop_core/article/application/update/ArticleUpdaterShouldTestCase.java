@@ -1,6 +1,6 @@
 package org.dalvarez.shop.shop_core.article.application.update;
 
-import org.dalvarez.shop.shop_common.shared.domain.value_object.id.Identifier;
+import org.dalvarez.shop.shop_core.shop_common.shared.domain.value_object.id.Identifier;
 import org.dalvarez.shop.shop_core.article.application.ArticleApplicationModuleTestCase;
 import org.dalvarez.shop.shop_core.article.application.ArticleRequest;
 import org.dalvarez.shop.shop_core.article.domain.model.Article;

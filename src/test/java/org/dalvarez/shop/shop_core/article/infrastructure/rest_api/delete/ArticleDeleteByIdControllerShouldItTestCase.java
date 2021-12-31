@@ -3,7 +3,7 @@ package org.dalvarez.shop.shop_core.article.infrastructure.rest_api.delete;
 import org.dalvarez.shop.shop_core.article.domain.model.Article;
 import org.dalvarez.shop.shop_core.article.domain.port.ArticleRepository;
 import org.dalvarez.shop.shop_core.article.infrastructure.ArticleInfrastructureRestApiModuleTestCase;
-import org.dalvarez.shop.shop_common.shared.domain.log.Logger;
+import org.dalvarez.shop.shop_core.shop_common.shared.domain.log.Logger;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 

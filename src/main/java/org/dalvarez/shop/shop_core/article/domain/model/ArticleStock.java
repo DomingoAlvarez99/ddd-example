@@ -1,6 +1,6 @@
 package org.dalvarez.shop.shop_core.article.domain.model;
 
-import org.dalvarez.shop.shop_common.shared.domain.value_object.IntValueObject;
+import org.dalvarez.shop.shop_core.shop_common.shared.domain.value_object.IntValueObject;
 
 public final class ArticleStock extends IntValueObject {
 

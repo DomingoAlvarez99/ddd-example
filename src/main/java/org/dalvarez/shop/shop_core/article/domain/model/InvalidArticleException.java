@@ -1,7 +1,7 @@
 package org.dalvarez.shop.shop_core.article.domain.model;
 
 
-import org.dalvarez.shop.shop_common.shared.domain.exception.DomainException;
+import org.dalvarez.shop.shop_core.shop_common.shared.domain.exception.DomainException;
 
 public class InvalidArticleException extends DomainException {
 

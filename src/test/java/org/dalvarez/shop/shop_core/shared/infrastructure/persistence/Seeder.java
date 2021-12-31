@@ -1,8 +1,8 @@
 package org.dalvarez.shop.shop_core.shared.infrastructure.persistence;
 
-import org.dalvarez.shop.shop_common.persistence.domain.repository.GenericRepository;
-import org.dalvarez.shop.shop_common.shared.domain.log.Logger;
-import org.dalvarez.shop.shop_common.persistence.domain.criteria.Criteria;
+import org.dalvarez.shop.shop_core.shop_common.persistence.domain.repository.GenericRepository;
+import org.dalvarez.shop.shop_core.shop_common.shared.domain.log.Logger;
+import org.dalvarez.shop.shop_core.shop_common.persistence.domain.criteria.Criteria;
 import org.dalvarez.shop.shop_core.shared.infrastructure.shared.TestConfig;
 
 import java.util.List;

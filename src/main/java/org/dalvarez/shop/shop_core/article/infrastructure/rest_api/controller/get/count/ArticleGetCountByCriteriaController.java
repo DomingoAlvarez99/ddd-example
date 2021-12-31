@@ -1,7 +1,7 @@
 package org.dalvarez.shop.shop_core.article.infrastructure.rest_api.controller.get.count;
 
-import org.dalvarez.shop.shop_common.persistence.application.criteria.CountResultResponse;
-import org.dalvarez.shop.shop_common.persistence.domain.criteria.Criteria;
+import org.dalvarez.shop.shop_core.shop_common.persistence.application.criteria.CountResultResponse;
+import org.dalvarez.shop.shop_core.shop_common.persistence.domain.criteria.Criteria;
 import org.dalvarez.shop.shop_core.article.application.count.by_criteria.ArticleByCriteriaCounter;
 import org.dalvarez.shop.shop_core.article.domain.model.Article;
 import org.dalvarez.shop.shop_core.article.infrastructure.rest_api.controller.ArticleApiController;

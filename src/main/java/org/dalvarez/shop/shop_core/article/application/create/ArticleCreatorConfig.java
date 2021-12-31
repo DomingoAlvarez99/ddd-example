@@ -1,7 +1,7 @@
 package org.dalvarez.shop.shop_core.article.application.create;
 
-import org.dalvarez.shop.shop_common.shared.domain.bus.EventBus;
-import org.dalvarez.shop.shop_common.shared.infrastructure.bus.SpringApplicationEventBusConfig;
+import org.dalvarez.shop.shop_core.shop_common.shared.domain.bus.EventBus;
+import org.dalvarez.shop.shop_core.shop_common.shared.infrastructure.bus.SpringApplicationEventBusConfig;
 import org.dalvarez.shop.shop_core.article.domain.port.ArticleRepository;
 import org.dalvarez.shop.shop_core.category.domain.port.CategoryRepository;
 import org.springframework.beans.factory.annotation.Qualifier;

@@ -1,11 +1,11 @@
 package org.dalvarez.shop.shop_core.category.infrastructure.hibernate_persistence;
 
-import org.dalvarez.shop.shop_common.persistence.domain.criteria.CountResult;
-import org.dalvarez.shop.shop_common.persistence.domain.criteria.Criteria;
-import org.dalvarez.shop.shop_common.persistence.domain.criteria.CriteriaConverter;
-import org.dalvarez.shop.shop_common.persistence.domain.criteria.QueryResult;
-import org.dalvarez.shop.shop_common.persistence.infrastructure.hibernate.HibernateRepository;
-import org.dalvarez.shop.shop_common.shared.domain.value_object.id.Identifier;
+import org.dalvarez.shop.shop_core.shop_common.persistence.domain.criteria.CountResult;
+import org.dalvarez.shop.shop_core.shop_common.persistence.domain.criteria.Criteria;
+import org.dalvarez.shop.shop_core.shop_common.persistence.domain.criteria.CriteriaConverter;
+import org.dalvarez.shop.shop_core.shop_common.persistence.domain.criteria.QueryResult;
+import org.dalvarez.shop.shop_core.shop_common.persistence.infrastructure.hibernate.HibernateRepository;
+import org.dalvarez.shop.shop_core.shop_common.shared.domain.value_object.id.Identifier;
 import org.dalvarez.shop.shop_core.category.domain.model.Category;
 import org.dalvarez.shop.shop_core.category.domain.port.CategoryRepository;
 

@@ -1,6 +1,6 @@
 package org.dalvarez.shop.shop_core.article.domain;
 
-import org.dalvarez.shop.shop_common.shared.domain.util.CollectionUtils;
+import org.dalvarez.shop.shop_core.shop_common.shared.domain.util.CollectionUtils;
 import org.dalvarez.shop.shop_core.article.domain.model.Article;
 import org.dalvarez.shop.shop_core.article.domain.model.ArticleDescription;
 import org.dalvarez.shop.shop_core.article.domain.model.ArticleId;

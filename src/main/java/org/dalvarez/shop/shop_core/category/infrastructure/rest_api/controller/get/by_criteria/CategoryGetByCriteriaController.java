@@ -1,7 +1,7 @@
 package org.dalvarez.shop.shop_core.category.infrastructure.rest_api.controller.get.by_criteria;
 
-import org.dalvarez.shop.shop_common.persistence.application.criteria.QueryResultResponse;
-import org.dalvarez.shop.shop_common.persistence.domain.criteria.Criteria;
+import org.dalvarez.shop.shop_core.shop_common.persistence.application.criteria.QueryResultResponse;
+import org.dalvarez.shop.shop_core.shop_common.persistence.domain.criteria.Criteria;
 import org.dalvarez.shop.shop_core.article.domain.model.Article;
 import org.dalvarez.shop.shop_core.category.application.CategoryResponse;
 import org.dalvarez.shop.shop_core.category.application.find.by_criteria.CategoryByCriteriaFinder;

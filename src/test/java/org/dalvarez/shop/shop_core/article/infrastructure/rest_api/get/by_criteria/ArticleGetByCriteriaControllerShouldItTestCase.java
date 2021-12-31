@@ -1,10 +1,10 @@
 package org.dalvarez.shop.shop_core.article.infrastructure.rest_api.get.by_criteria;
 
-import org.dalvarez.shop.shop_common.persistence.application.criteria.QueryResultResponse;
-import org.dalvarez.shop.shop_common.shared.domain.log.Logger;
-import org.dalvarez.shop.shop_common.shared.domain.value_object.IntValueObject;
-import org.dalvarez.shop.shop_common.shared.domain.value_object.StringValueObject;
-import org.dalvarez.shop.shop_common.shared.domain.value_object.ValueObject;
+import org.dalvarez.shop.shop_core.shop_common.persistence.application.criteria.QueryResultResponse;
+import org.dalvarez.shop.shop_core.shop_common.shared.domain.log.Logger;
+import org.dalvarez.shop.shop_core.shop_common.shared.domain.value_object.IntValueObject;
+import org.dalvarez.shop.shop_core.shop_common.shared.domain.value_object.StringValueObject;
+import org.dalvarez.shop.shop_core.shop_common.shared.domain.value_object.ValueObject;
 import org.dalvarez.shop.shop_core.article.application.ArticleResponse;
 import org.dalvarez.shop.shop_core.article.domain.model.Article;
 import org.dalvarez.shop.shop_core.article.domain.port.ArticleRepository;

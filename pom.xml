@@ -22,25 +22,68 @@
         <encoding>UTF-8</encoding>
         <!-- Jacoco version -->
         <jacoco.version>0.8.5</jacoco.version>
-        <!-- Open Api -->
+        <!-- Open Api Generator -->
         <open-api-generator.version>5.0.0-beta2</open-api-generator.version>
+        <!-- Open Api -->
+        <open-api.version>1.5.9</open-api.version>
+        <!--Fixes [CVE-2021-45046, CVE-2021-45105] vulnerabilities-->
+        <log4j2.version>2.17.0</log4j2.version>
+        <!-- Junit launcher -->
+        <junit-launcher.version>1.5.2</junit-launcher.version>
+        <!-- Logstash  -->
+        <logstash.version>6.3</logstash.version>
         <!-- Sonarqube -->
+        <sonarqube.version>3.2</sonarqube.version>
         <sonarqube.projectKey>${project.artifactId}</sonarqube.projectKey>
         <sonarqube.host.url>http://localhost:9000</sonarqube.host.url>
         <sonarqube.login>01c0db63c2ee120e01ece5a847fa0136e51261b5</sonarqube.login>
-        <!-- Shop shared -->
-        <!--Look for the latest version (v >= 1.0). Take Release if available. Else SNAPSHOT-->
-        <shop-common.version>[1.0-SNAPSHOT,)</shop-common.version>
-        <!--Fixes [CVE-2021-45046, CVE-2021-45105] vulnerabilities-->
-       <log4j2.version>2.17.0</log4j2.version>
-   </properties>
+    </properties>
 
-   <dependencies>
-       <!-- Shop shared -->
+    <dependencies>
+        <!-- Spring -->
         <dependency>
-            <groupId>org.dalvarez.shop</groupId>
-            <artifactId>shop-common</artifactId>
-            <version>${shop-common.version}</version>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+        </dependency>
+
+        <!-- Spring Test -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.junit.vintage</groupId>
+                    <artifactId>junit-vintage-engine</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <!-- Junit launcher -->
+        <dependency>
+            <groupId>org.junit.platform</groupId>
+            <artifactId>junit-platform-launcher</artifactId>
+            <version>${junit-launcher.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- Web -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <!-- Open Api -->
+        <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-ui</artifactId>
+            <version>${open-api.version}</version>
+        </dependency>
+
+        <!-- JPA -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
 
         <!-- Postgresql -->
@@ -57,25 +100,20 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- Spring Test -->
+        <!-- Sonarqube -->
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.junit.vintage</groupId>
-                    <artifactId>junit-vintage-engine</artifactId>
-                </exclusion>
-            </exclusions>
+            <groupId>org.sonarsource.scanner.maven</groupId>
+            <artifactId>sonar-maven-plugin</artifactId>
+            <version>${sonarqube.version}</version>
         </dependency>
 
-       <dependency>
-           <groupId>org.junit.platform</groupId>
-           <artifactId>junit-platform-launcher</artifactId>
-           <version>1.5.2</version>
-           <scope>test</scope>
-       </dependency>
+        <!-- Logstash -->
+        <dependency>
+            <groupId>net.logstash.logback</groupId>
+            <artifactId>logstash-logback-encoder</artifactId>
+            <version>${logstash.version}</version>
+        </dependency>
+
     </dependencies>
 
     <build>

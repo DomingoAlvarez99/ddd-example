@@ -1,10 +1,10 @@
 package org.dalvarez.shop.shop_core.shared.application;
 
-import org.dalvarez.shop.shop_common.persistence.domain.repository.GenericRepository;
-import org.dalvarez.shop.shop_common.shared.domain.bus.DomainEvent;
-import org.dalvarez.shop.shop_common.shared.domain.bus.EventBus;
-import org.dalvarez.shop.shop_common.persistence.domain.criteria.Criteria;
-import org.dalvarez.shop.shop_common.shared.domain.value_object.id.Identifier;
+import org.dalvarez.shop.shop_core.shop_common.persistence.domain.repository.GenericRepository;
+import org.dalvarez.shop.shop_core.shop_common.shared.domain.bus.DomainEvent;
+import org.dalvarez.shop.shop_core.shop_common.shared.domain.bus.EventBus;
+import org.dalvarez.shop.shop_core.shop_common.persistence.domain.criteria.Criteria;
+import org.dalvarez.shop.shop_core.shop_common.shared.domain.value_object.id.Identifier;
 import org.dalvarez.shop.shop_core.category.domain.port.CategoryRepository;
 
 import java.util.List;
