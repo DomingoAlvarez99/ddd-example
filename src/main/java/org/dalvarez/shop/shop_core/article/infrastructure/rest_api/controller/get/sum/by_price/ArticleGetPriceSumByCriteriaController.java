@@ -3,6 +3,7 @@ package org.dalvarez.shop.shop_core.article.infrastructure.rest_api.controller.g
 import org.dalvarez.shop.shop_common.persistence.application.shared.sum.SumResponse;
 import org.dalvarez.shop.shop_common.persistence.domain.criteria.Criteria;
 import org.dalvarez.shop.shop_core.article.application.sum.by_price.ArticleByPriceAdder;
+import org.dalvarez.shop.shop_core.article.domain.model.Article;
 import org.dalvarez.shop.shop_core.article.infrastructure.rest_api.controller.ArticleApiController;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,6 +27,7 @@ public final class ArticleGetPriceSumByCriteriaController extends ArticleApiCont
                                                    @RequestParam(required = false) final Long pageIndex,
                                                    @RequestParam(required = false) final Long pageSize) {
         final Criteria criteria = Criteria.fromQuery(
+                Article.class,
                 orderField,
                 orderType,
                 filtersBooleanOperator,

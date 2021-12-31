@@ -4,8 +4,8 @@ import org.dalvarez.shop.shop_common.persistence.application.criteria.QueryResul
 import org.dalvarez.shop.shop_common.persistence.domain.criteria.Criteria;
 import org.dalvarez.shop.shop_common.persistence.domain.criteria.QueryResult;
 import org.dalvarez.shop.shop_core.article.application.ArticleResponse;
-import org.dalvarez.shop.shop_core.article.domain.Article;
-import org.dalvarez.shop.shop_core.article.domain.ArticleRepository;
+import org.dalvarez.shop.shop_core.article.domain.model.Article;
+import org.dalvarez.shop.shop_core.article.domain.port.ArticleRepository;
 
 import java.util.stream.Collectors;
 

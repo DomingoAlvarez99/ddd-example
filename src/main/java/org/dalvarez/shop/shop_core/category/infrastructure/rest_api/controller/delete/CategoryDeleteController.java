@@ -18,10 +18,10 @@ public final class CategoryDeleteController extends CategoryApiController {
         this.categoryEraser = categoryEraser;
     }
 
-    @DeleteMapping(UUID_PATH_VAR)
+    @DeleteMapping(ID_PATH_VAR)
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public ResponseEntity<Void> delete(@PathVariable final String uuid) {
-        categoryEraser.erase(uuid);
+    public ResponseEntity<Void> delete(@PathVariable final String id) {
+        categoryEraser.erase(id);
 
         return ResponseEntity.noContent()
                              .build();

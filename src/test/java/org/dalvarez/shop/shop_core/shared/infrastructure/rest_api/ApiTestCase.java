@@ -9,7 +9,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 @AutoConfigureMockMvc
 @SpringBootTest(classes = Application.class)
-public class ApiTestCase<T, R extends GenericRepository<T, ?>> extends Seeder<T, R> {
+public class ApiTestCase<T, R extends GenericRepository<T>> extends Seeder<T, R> {
 
     protected ApiTestCase(final R repository,
                           final Logger log) {

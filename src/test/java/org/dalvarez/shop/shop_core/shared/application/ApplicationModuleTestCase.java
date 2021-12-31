@@ -1,28 +1,30 @@
 package org.dalvarez.shop.shop_core.shared.application;
 
-import org.dalvarez.shop.shop_common.persistence.domain.uuid_generator.UuidGenerator;
 import org.dalvarez.shop.shop_common.persistence.domain.repository.GenericRepository;
 import org.dalvarez.shop.shop_common.shared.domain.bus.DomainEvent;
 import org.dalvarez.shop.shop_common.shared.domain.bus.EventBus;
 import org.dalvarez.shop.shop_common.persistence.domain.criteria.Criteria;
+import org.dalvarez.shop.shop_common.shared.domain.value_object.id.Identifier;
+import org.dalvarez.shop.shop_core.category.domain.port.CategoryRepository;
 
 import java.util.List;
 
+import static org.mockito.ArgumentMatchers.refEq;
 import static org.mockito.Mockito.atLeastOnce;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
-public abstract class ApplicationModuleTestCase<T, R extends GenericRepository<T, String>> {
+public abstract class ApplicationModuleTestCase<T, R extends GenericRepository<T>> {
 
     protected final R repository;
 
-    protected final UuidGenerator uuidGenerator;
+    protected final CategoryRepository categoryRepository;
 
     protected final EventBus eventBus;
 
     public ApplicationModuleTestCase(final Class<R> repositoryClass) {
         repository = mock(repositoryClass);
-        uuidGenerator = mock(UuidGenerator.class);
+        categoryRepository = mock(CategoryRepository.class);
         eventBus = mock(EventBus.class);
     }
 
@@ -30,16 +32,12 @@ public abstract class ApplicationModuleTestCase<T, R extends GenericRepository<T
         verify(eventBus, atLeastOnce()).publish(domainEvents);
     }
 
-    protected void shouldHaveGeneratedAnUuid() {
-        verify(uuidGenerator, atLeastOnce()).generate();
-    }
-
     protected void shouldHaveCreated(final T model) {
-        verify(repository, atLeastOnce()).create(model);
+        verify(repository, atLeastOnce()).create(refEq(model, "id"));
     }
 
-    protected void shouldHaveErased(final String uuid) {
-        verify(repository, atLeastOnce()).deleteByUuid(uuid);
+    protected void shouldHaveErased(final Identifier id) {
+        verify(repository, atLeastOnce()).deleteById(id);
     }
 
     protected void shouldHaveUpdated(final T model) {
@@ -50,8 +48,8 @@ public abstract class ApplicationModuleTestCase<T, R extends GenericRepository<T
         verify(repository, atLeastOnce()).getByCriteria(criteria);
     }
 
-    protected void shouldHaveFoundByUuid(final String uuid) {
-        verify(repository, atLeastOnce()).getByUuid(uuid);
+    protected void shouldHaveFoundById(final Identifier id) {
+        verify(repository, atLeastOnce()).getById(id);
     }
 
 }

@@ -4,8 +4,8 @@ import org.dalvarez.shop.shop_common.persistence.application.criteria.QueryResul
 import org.dalvarez.shop.shop_common.persistence.domain.criteria.Criteria;
 import org.dalvarez.shop.shop_common.persistence.domain.criteria.QueryResult;
 import org.dalvarez.shop.shop_core.category.application.CategoryResponse;
-import org.dalvarez.shop.shop_core.category.domain.Category;
-import org.dalvarez.shop.shop_core.category.domain.CategoryRepository;
+import org.dalvarez.shop.shop_core.category.domain.model.Category;
+import org.dalvarez.shop.shop_core.category.domain.port.CategoryRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.stream.Collectors;

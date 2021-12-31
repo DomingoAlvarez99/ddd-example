@@ -1,19 +1,21 @@
 package org.dalvarez.shop.shop_core.article.application.create;
 
-import org.dalvarez.shop.shop_core.article.application.ArticleApplicationModuleTestCase;
-import org.dalvarez.shop.shop_core.article.domain.Article;
-import org.dalvarez.shop.shop_core.article.domain.ArticleCreatedDomainEvent;
-import org.dalvarez.shop.shop_core.article.domain.ArticleMother;
-import org.dalvarez.shop.shop_core.shared.domain.UuidMother;
 import org.dalvarez.shop.shop_common.shared.domain.bus.DomainEvent;
 import org.dalvarez.shop.shop_common.shared.domain.log.Logger;
-import org.dalvarez.shop.shop_common.persistence.infrastructure.shared.exception.NotFoundException;
+import org.dalvarez.shop.shop_common.shared.domain.value_object.id.Identifier;
+import org.dalvarez.shop.shop_core.article.application.ArticleApplicationModuleTestCase;
+import org.dalvarez.shop.shop_core.article.application.ArticleRequest;
+import org.dalvarez.shop.shop_core.article.domain.ArticleMother;
+import org.dalvarez.shop.shop_core.article.domain.event.ArticleCreatedDomainEvent;
+import org.dalvarez.shop.shop_core.article.domain.model.Article;
+import org.dalvarez.shop.shop_core.article.domain.model.ArticleId;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Collections;
 import java.util.List;
 
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.when;
 
@@ -25,33 +27,36 @@ public final class ArticleCreatorShouldTestCase extends ArticleApplicationModule
     private Logger log;
 
     public ArticleCreatorShouldTestCase() {
-        articleCreator = new ArticleCreator(repository, uuidGenerator, eventBus);
+        articleCreator = new ArticleCreator(repository, categoryRepository, eventBus);
     }
 
     @Test
     public void createAValidArticle() {
-        final String uuid = UuidMother.randomPick();
+        final Article random = ArticleMother.random();
 
-        when(uuidGenerator.generate()).thenReturn(uuid);
+        final ArticleRequest randomRequest = ArticleRequest.of(random.stock()
+                                                                     .value(),
+                                                               random.price()
+                                                                     .value(),
+                                                               random.name()
+                                                                     .value(),
+                                                               random.description()
+                                                                     .value(),
+                                                               null
+        );
 
-        when(repository.getByUuid(uuid)).thenThrow(new NotFoundException(uuid));
+        when(repository.getById(any())).thenReturn(random);
 
-        final Article request = Article.fromRequest(ArticleMother.random(), uuid);
+        when(repository.create(any())).thenReturn(random);
 
-        final Article articleCreated = ArticleMother.random();
-
-        when(repository.create(request)).thenReturn(articleCreated);
-
-        final List<DomainEvent<?>> domainEvents = Collections.singletonList(new ArticleCreatedDomainEvent(articleCreated));
+        final List<DomainEvent<?>> domainEvents = Collections.singletonList(new ArticleCreatedDomainEvent(random));
 
         doNothing().when(eventBus)
                    .publish(domainEvents);
 
-        articleCreator.create(request);
+        articleCreator.create(randomRequest);
 
-        shouldHaveGeneratedAnUuid();
-
-        shouldHaveCreated(request);
+        shouldHaveCreated(random);
 
         shouldHavePublishedDomainEvents(domainEvents);
     }

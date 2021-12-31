@@ -1,8 +1,8 @@
 package org.dalvarez.shop.shop_core.article.infrastructure;
 
-import org.dalvarez.shop.shop_core.article.domain.Article;
+import org.dalvarez.shop.shop_core.article.domain.model.Article;
 import org.dalvarez.shop.shop_core.article.domain.ArticleMother;
-import org.dalvarez.shop.shop_core.article.domain.ArticleRepository;
+import org.dalvarez.shop.shop_core.article.domain.port.ArticleRepository;
 import org.dalvarez.shop.shop_core.article.infrastructure.rest_api.controller.ArticleApiController;
 import org.dalvarez.shop.shop_core.shared.infrastructure.rest_api.InfrastructureRestApiModuleTestCase;
 import org.dalvarez.shop.shop_common.shared.domain.log.Logger;
@@ -28,7 +28,7 @@ public class ArticleInfrastructureRestApiModuleTestCase extends InfrastructureRe
 
     @BeforeAll
     void setup() {
-        final List<Article> data = ArticleMother.randomListNullId();
+        final List<Article> data = ArticleMother.randomList();
         populateDatabase(data);
     }
 

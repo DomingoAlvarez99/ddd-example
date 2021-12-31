@@ -2,6 +2,7 @@ package org.dalvarez.shop.shop_core.category.infrastructure.rest_api.controller.
 
 import org.dalvarez.shop.shop_common.persistence.application.criteria.QueryResultResponse;
 import org.dalvarez.shop.shop_common.persistence.domain.criteria.Criteria;
+import org.dalvarez.shop.shop_core.article.domain.model.Article;
 import org.dalvarez.shop.shop_core.category.application.CategoryResponse;
 import org.dalvarez.shop.shop_core.category.application.find.by_criteria.CategoryByCriteriaFinder;
 import org.dalvarez.shop.shop_core.category.infrastructure.rest_api.controller.CategoryApiController;
@@ -27,6 +28,7 @@ public final class CategoryGetByCriteriaController extends CategoryApiController
                                                                      @RequestParam(required = false) final Long pageIndex,
                                                                      @RequestParam(required = false) final Long pageSize) {
         final Criteria criteria = Criteria.fromQuery(
+                Article.class,
                 orderField,
                 orderType,
                 filtersBooleanOperator,

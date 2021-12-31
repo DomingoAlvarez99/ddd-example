@@ -1,45 +1,40 @@
 package org.dalvarez.shop.shop_core.category.application;
 
-import org.dalvarez.shop.shop_core.category.domain.Category;
+import org.dalvarez.shop.shop_core.category.domain.model.Category;
 
-public class CategoryResponse extends Category {
+public class CategoryResponse {
 
-    protected CategoryResponse() {
+    private final String id;
 
-    }
+    private final String name;
 
-    public CategoryResponse(final String name,
-                            final String parentUuid,
-                            final String uuid) {
-        super(name, parentUuid, uuid);
+    private final String parentId;
+
+    private CategoryResponse(final String id,
+                             final String name,
+                             final String parentId) {
+        this.id = id;
+        this.name = name;
+        this.parentId = parentId;
     }
 
     public static CategoryResponse fromCategory(final Category category) {
         return new CategoryResponse(
-                category.getName(),
-                category.getParentUuid(),
-                category.getUuid()
-        );
-    }
-
-    public Category toCategory() {
-        return toCategory(uuid);
-    }
-
-    public Category toCategory(final String uuid) {
-        return Category.of(
-                name,
-                parentUuid,
-                uuid
+                category.id()
+                        .value(),
+                category.name()
+                        .value(),
+                category.parentId()
+                        .value()
         );
     }
 
     @Override
     public String toString() {
         return "CategoryResponse{" +
+                "id='" + id + '\'' +
                 ", name='" + name + '\'' +
-                ", parentUuid='" + parentUuid + '\'' +
-                ", uuid='" + uuid + '\'' +
+                ", parentId='" + parentId + '\'' +
                 '}';
     }
 

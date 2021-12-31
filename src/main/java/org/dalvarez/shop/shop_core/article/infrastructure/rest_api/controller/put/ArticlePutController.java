@@ -1,5 +1,6 @@
 package org.dalvarez.shop.shop_core.article.infrastructure.rest_api.controller.put;
 
+import org.dalvarez.shop.shop_core.article.application.ArticleRequest;
 import org.dalvarez.shop.shop_core.article.application.ArticleResponse;
 import org.dalvarez.shop.shop_core.article.application.update.ArticleUpdater;
 import org.dalvarez.shop.shop_core.article.infrastructure.rest_api.controller.ArticleApiController;
@@ -18,10 +19,10 @@ public final class ArticlePutController extends ArticleApiController {
         this.articleUpdater = articleUpdater;
     }
 
-    @PutMapping(UUID_PATH_VAR)
-    public ResponseEntity<ArticleResponse> put(@PathVariable final String uuid,
-                                               @RequestBody final ArticlePutRequest articlePutRequest) {
-        return ResponseEntity.ok(articleUpdater.update(articlePutRequest.validateAndGetRequest(uuid)));
+    @PutMapping(ID_PATH_VAR)
+    public ResponseEntity<ArticleResponse> put(@PathVariable final String id,
+                                               @RequestBody final ArticleRequest articleRequest) {
+        return ResponseEntity.ok(articleUpdater.update(id, articleRequest));
     }
 
 }

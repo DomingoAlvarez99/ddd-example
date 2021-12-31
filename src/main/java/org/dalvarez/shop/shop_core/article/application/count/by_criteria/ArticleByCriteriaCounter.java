@@ -2,7 +2,7 @@ package org.dalvarez.shop.shop_core.article.application.count.by_criteria;
 
 import org.dalvarez.shop.shop_common.persistence.application.criteria.CountResultResponse;
 import org.dalvarez.shop.shop_common.persistence.domain.criteria.Criteria;
-import org.dalvarez.shop.shop_core.article.domain.ArticleRepository;
+import org.dalvarez.shop.shop_core.article.domain.port.ArticleRepository;
 
 public final class ArticleByCriteriaCounter {
 

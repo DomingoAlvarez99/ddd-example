@@ -22,7 +22,8 @@ import java.util.stream.Collectors;
 public class HibernateConfig {
 
     @Bean
-    public LocalSessionFactoryBean sessionFactory(DataSource dataSource, Environment env) {
+    public LocalSessionFactoryBean sessionFactory(DataSource dataSource,
+                                                  Environment env) {
         LocalSessionFactoryBean sessionFactoryBean = new LocalSessionFactoryBean();
         Resource[] resources = loadMappingResources();
         sessionFactoryBean.setMappingLocations(resources);
@@ -45,8 +46,6 @@ public class HibernateConfig {
         String dirBase = Application.PACKAGE_BASE.replaceAll("\\.", "/");
         File root = new File(getResource(dirBase));
 
-        System.out.println(root);
-
         return getFilesRecursively(root, ".hbm.xml")
                 .stream()
                 .map(FileSystemResource::new)
@@ -55,7 +54,9 @@ public class HibernateConfig {
     }
 
     private static String getResource(String path) {
-        return ClassLoader.getSystemClassLoader().getResource(path).getFile();
+        return ClassLoader.getSystemClassLoader()
+                          .getResource(path)
+                          .getFile();
     }
 
     private static List<File> getFilesRecursively(File root,

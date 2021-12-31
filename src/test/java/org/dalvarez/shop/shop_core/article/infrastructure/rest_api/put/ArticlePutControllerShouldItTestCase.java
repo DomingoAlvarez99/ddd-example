@@ -1,13 +1,12 @@
 package org.dalvarez.shop.shop_core.article.infrastructure.rest_api.put;
 
+import org.dalvarez.shop.shop_core.article.application.ArticleRequest;
 import org.dalvarez.shop.shop_core.article.application.ArticleResponse;
-import org.dalvarez.shop.shop_core.article.domain.Article;
-import org.dalvarez.shop.shop_core.article.domain.ArticleRepository;
+import org.dalvarez.shop.shop_core.article.domain.model.Article;
+import org.dalvarez.shop.shop_core.article.domain.port.ArticleRepository;
 import org.dalvarez.shop.shop_core.article.infrastructure.ArticleInfrastructureRestApiModuleTestCase;
-import org.dalvarez.shop.shop_core.article.infrastructure.rest_api.controller.put.ArticlePutRequest;
 import org.dalvarez.shop.shop_common.shared.domain.log.Logger;
-import org.dalvarez.shop.shop_core.shared.domain.UuidMother;
-import org.dalvarez.shop.shop_core.shared.domain.util.RandomElementPicker;
+import org.dalvarez.shop.shop_core.shared.domain.IdMother;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -35,33 +34,35 @@ final class ArticlePutControllerShouldItTestCase extends ArticleInfrastructureRe
     void shouldPutAnArticle() throws Exception {
         final Article article = data.get(1);
 
-        final ArticlePutRequest request = new ArticlePutRequest(
+        final ArticleRequest request = ArticleRequest.of(
                 STOCK,
                 PRICE,
                 NAME,
-                DESCRIPTION
+                DESCRIPTION,
+                null
         );
 
-        final ArticleResponse expected = shouldPut(request, ArticleResponse.class, article.getUuid());
+        final ArticleResponse expected = shouldPut(request, ArticleResponse.class, article.id().value());
 
-        log.info("asdsd| {}", expected.toString());
-        final ArticleResponse actual = shouldGetByUuid(expected.getUuid(), ArticleResponse.class);
+        log.info("{}", expected.toString());
+        final ArticleResponse actual = shouldgetById(expected.id(), ArticleResponse.class);
 
-        assertEquals(expected.getUuid(), actual.getUuid());
+        assertEquals(expected.id(), actual.id());
     }
 
     @Test
     void shouldNotPutAnArticleCauseNotExist() throws Exception {
-        final ArticlePutRequest request = new ArticlePutRequest(
+        final ArticleRequest request =  ArticleRequest.of(
                 STOCK,
                 PRICE,
                 NAME,
-                DESCRIPTION
+                DESCRIPTION,
+                null
         );
 
-        final String uuid = UuidMother.randomGeneration(888);
+        final String id = IdMother.randomGeneration(888);
 
-        shouldNotPutCauseNotExist(request, uuid);
+        shouldNotPutCauseNotExist(request, id);
     }
 
 }

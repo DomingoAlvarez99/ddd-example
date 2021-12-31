@@ -1,5 +1,6 @@
 package org.dalvarez.shop.shop_core.article.infrastructure.rest_api.controller.post;
 
+import org.dalvarez.shop.shop_core.article.application.ArticleRequest;
 import org.dalvarez.shop.shop_core.article.application.ArticleResponse;
 import org.dalvarez.shop.shop_core.article.application.create.ArticleCreator;
 import org.dalvarez.shop.shop_core.article.infrastructure.rest_api.controller.ArticleApiController;
@@ -21,9 +22,9 @@ public final class ArticlePostController extends ArticleApiController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<ArticleResponse> post(@RequestBody final ArticlePostRequest articlePostRequest) {
+    public ResponseEntity<ArticleResponse> post(@RequestBody final ArticleRequest articleRequest) {
         return new ResponseEntity<>(
-                articleCreator.create(articlePostRequest.validateAndGetRequest()),
+                articleCreator.create(articleRequest),
                 HttpStatus.CREATED
         );
     }

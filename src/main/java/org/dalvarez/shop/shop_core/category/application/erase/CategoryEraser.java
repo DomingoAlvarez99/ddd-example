@@ -1,6 +1,7 @@
 package org.dalvarez.shop.shop_core.category.application.erase;
 
-import org.dalvarez.shop.shop_core.category.domain.CategoryRepository;
+import org.dalvarez.shop.shop_core.category.domain.port.CategoryRepository;
+import org.dalvarez.shop.shop_core.shared.domain.category.CategoryId;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -12,8 +13,8 @@ public class CategoryEraser {
         this.categoryRepository = categoryRepository;
     }
 
-    public void erase(final String uuid) {
-        categoryRepository.deleteByUuid(uuid);
+    public void erase(final String id) {
+        categoryRepository.deleteById(CategoryId.of(id));
     }
 
 }

@@ -5,8 +5,9 @@ import org.dalvarez.shop.shop_common.persistence.domain.criteria.Criteria;
 import org.dalvarez.shop.shop_common.persistence.domain.criteria.CriteriaConverter;
 import org.dalvarez.shop.shop_common.persistence.domain.criteria.QueryResult;
 import org.dalvarez.shop.shop_common.persistence.infrastructure.hibernate.HibernateRepository;
-import org.dalvarez.shop.shop_core.article.domain.Article;
-import org.dalvarez.shop.shop_core.article.domain.ArticleRepository;
+import org.dalvarez.shop.shop_common.shared.domain.value_object.id.Identifier;
+import org.dalvarez.shop.shop_core.article.domain.model.Article;
+import org.dalvarez.shop.shop_core.article.domain.port.ArticleRepository;
 
 import javax.persistence.EntityManager;
 
@@ -18,8 +19,8 @@ public class HibernateArticleRepository extends HibernateRepository<Article> imp
     }
 
     @Override
-    public Article getByUuid(final String uuid) {
-        return findByUuid(uuid);
+    public Article getById(final Identifier id) {
+        return findById(id);
     }
 
     @Override
@@ -43,8 +44,8 @@ public class HibernateArticleRepository extends HibernateRepository<Article> imp
     }
 
     @Override
-    public void deleteByUuid(final String uuid) {
-        removeByUuid(uuid);
+    public void deleteById(final Identifier id) {
+        removeById(id);
     }
 
     @Override

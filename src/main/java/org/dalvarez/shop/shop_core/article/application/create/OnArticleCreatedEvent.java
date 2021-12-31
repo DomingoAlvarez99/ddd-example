@@ -1,7 +1,7 @@
 package org.dalvarez.shop.shop_core.article.application.create;
 
 import org.dalvarez.shop.shop_common.shared.domain.log.Logger;
-import org.dalvarez.shop.shop_core.article.domain.ArticleCreatedDomainEvent;
+import org.dalvarez.shop.shop_core.article.domain.event.ArticleCreatedDomainEvent;
 import org.springframework.context.event.EventListener;
 
 public final class OnArticleCreatedEvent {
@@ -18,7 +18,7 @@ public final class OnArticleCreatedEvent {
                 "Event <name={}>, <id={}>, <date={}>",
                 event.eventName(),
                 event.getValue()
-                     .getUuid(),
+                     .id(),
                 event.getDate()
         );
     }

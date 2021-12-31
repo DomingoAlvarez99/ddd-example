@@ -1,8 +1,8 @@
 package org.dalvarez.shop.shop_core.category.infrastructure.hibernate_persistence;
 
 import org.dalvarez.shop.shop_common.persistence.domain.criteria.CriteriaConverter;
-import org.dalvarez.shop.shop_core.category.domain.Category;
-import org.dalvarez.shop.shop_core.category.domain.CategoryRepository;
+import org.dalvarez.shop.shop_core.category.domain.model.Category;
+import org.dalvarez.shop.shop_core.category.domain.port.CategoryRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

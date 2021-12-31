@@ -1,5 +1,6 @@
 package org.dalvarez.shop.shop_core.category.infrastructure.rest_api.controller.put;
 
+import org.dalvarez.shop.shop_core.category.application.CategoryRequest;
 import org.dalvarez.shop.shop_core.category.application.CategoryResponse;
 import org.dalvarez.shop.shop_core.category.application.update.CategoryUpdater;
 import org.dalvarez.shop.shop_core.category.infrastructure.rest_api.controller.CategoryApiController;
@@ -18,10 +19,10 @@ public final class CategoryPutController extends CategoryApiController {
         this.categoryUpdater = categoryUpdater;
     }
 
-    @PutMapping(UUID_PATH_VAR)
-    public ResponseEntity<CategoryResponse> put(@PathVariable final String uuid,
-                                                @RequestBody final CategoryPutRequest categoryPutRequest) {
-        return ResponseEntity.ok(categoryUpdater.update(categoryPutRequest.validateAndGetRequest(uuid)));
+    @PutMapping(ID_PATH_VAR)
+    public ResponseEntity<CategoryResponse> put(@PathVariable final String id,
+                                                @RequestBody final CategoryRequest categoryRequest) {
+        return ResponseEntity.ok(categoryUpdater.update(id, categoryRequest));
     }
 
 }

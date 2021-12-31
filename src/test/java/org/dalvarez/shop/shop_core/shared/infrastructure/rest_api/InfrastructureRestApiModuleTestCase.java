@@ -1,6 +1,8 @@
 package org.dalvarez.shop.shop_core.shared.infrastructure.rest_api;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import org.dalvarez.shop.shop_common.persistence.domain.repository.GenericRepository;
@@ -26,7 +28,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-public abstract class InfrastructureRestApiModuleTestCase<T, R extends GenericRepository<T, ?>> extends ApiTestCase<T, R> {
+public abstract class InfrastructureRestApiModuleTestCase<T, R extends GenericRepository<T>> extends ApiTestCase<T, R> {
 
     @Autowired
     protected MockMvc mockMvc;
@@ -48,31 +50,31 @@ public abstract class InfrastructureRestApiModuleTestCase<T, R extends GenericRe
         return new ObjectMapper().writeValueAsString(object);
     }
 
-    protected <RES> RES shouldGetByUuid(final String uuid,
+    protected <RES> RES shouldgetById(final String id,
                                       final Class<RES> responseClass) throws Exception {
-        return getByUuid(
+        return getById(
                 HttpStatus.OK.value(),
                 responseClass,
-                uuid
+                id
         );
     }
 
-    protected void shouldNotGetByUuid(final String uuid) throws Exception {
-        getByUuid(
+    protected void shouldNotgetById(final String id) throws Exception {
+        getById(
                 HttpStatus.NOT_FOUND.value(),
                 ErrorResponse.class,
-                uuid
+                id
         );
     }
 
     @SafeVarargs
-    private <V, RES> RES getByUuid(final Integer expectedStatusCode,
+    private <V, RES> RES getById(final Integer expectedStatusCode,
                                  final Class<RES> responseClass,
                                  final V... vars) throws Exception {
         return getBy(
                 expectedStatusCode,
                 responseClass,
-                ApiController.UUID_PATH_VAR,
+                ApiController.ID_PATH_VAR,
                 new LinkedMultiValueMap<>(),
                 vars
         );
@@ -158,12 +160,12 @@ public abstract class InfrastructureRestApiModuleTestCase<T, R extends GenericRe
 
     protected <RES, REQ> RES shouldPut(final REQ request,
                                        final Class<RES> responseClass,
-                                       final String uuid) throws Exception {
+                                       final String id) throws Exception {
         return put(
                 request,
                 HttpStatus.OK.value(),
                 responseClass,
-                uuid
+                id
         );
     }
 
@@ -193,7 +195,7 @@ public abstract class InfrastructureRestApiModuleTestCase<T, R extends GenericRe
                                   final V... vars) throws Exception {
         final AtomicReference<RES> response = new AtomicReference<>();
 
-        mockMvc.perform(MockMvcRequestBuilders.put(buildPath(ApiController.UUID_PATH_VAR), vars)
+        mockMvc.perform(MockMvcRequestBuilders.put(buildPath(ApiController.ID_PATH_VAR), vars)
                                               .contextPath(contextPath)
                                               .content(convertObjectToJsonString(request))
                                               .contentType(MediaType.APPLICATION_JSON)
@@ -204,19 +206,19 @@ public abstract class InfrastructureRestApiModuleTestCase<T, R extends GenericRe
         return response.get();
     }
 
-    protected void shouldDeleteByUuid(final String uuid) throws Exception {
-        shouldDeleteByUuid(
+    protected void shouldDeleteById(final String id) throws Exception {
+        shouldDeleteById(
                 HttpStatus.NO_CONTENT.value(),
-                uuid
+                id
         );
     }
 
-    private void shouldDeleteByUuid(final Integer expectedStatusCode,
-                                    final String uuid) throws Exception {
+    private void shouldDeleteById(final Integer expectedStatusCode,
+                                  final String id) throws Exception {
         deleteBy(
                 expectedStatusCode,
-                ApiController.UUID_PATH_VAR,
-                uuid
+                ApiController.ID_PATH_VAR,
+                id
         );
     }
 
@@ -234,12 +236,12 @@ public abstract class InfrastructureRestApiModuleTestCase<T, R extends GenericRe
     }
 
     protected <REQ> void shouldNotPutCauseNotExist(final REQ request,
-                                                   final String uuid) throws Exception {
+                                                   final String id) throws Exception {
         put(
                 request,
                 HttpStatus.NOT_FOUND.value(),
                 ErrorResponse.class,
-                uuid
+                id
         );
     }
 

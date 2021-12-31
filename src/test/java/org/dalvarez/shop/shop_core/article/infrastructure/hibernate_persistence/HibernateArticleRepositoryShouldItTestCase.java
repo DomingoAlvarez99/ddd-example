@@ -1,9 +1,11 @@
 package org.dalvarez.shop.shop_core.article.infrastructure.hibernate_persistence;
 
-import org.dalvarez.shop.shop_core.article.domain.Article;
+import org.dalvarez.shop.shop_core.article.domain.model.Article;
 import org.dalvarez.shop.shop_core.article.domain.ArticleMother;
-import org.dalvarez.shop.shop_core.article.domain.ArticleRepository;
-import org.dalvarez.shop.shop_core.shared.domain.UuidMother;
+import org.dalvarez.shop.shop_core.article.domain.model.ArticleId;
+import org.dalvarez.shop.shop_core.article.domain.model.ArticleName;
+import org.dalvarez.shop.shop_core.article.domain.port.ArticleRepository;
+import org.dalvarez.shop.shop_core.shared.domain.IdMother;
 import org.dalvarez.shop.shop_core.shared.infrastructure.persistence.Seeder;
 import org.dalvarez.shop.shop_common.shared.domain.log.Logger;
 import org.dalvarez.shop.shop_common.persistence.domain.criteria.Criteria;
@@ -15,9 +17,9 @@ import org.dalvarez.shop.shop_common.persistence.domain.criteria.filter.FiltersB
 import org.dalvarez.shop.shop_common.persistence.domain.criteria.order.Order;
 import org.dalvarez.shop.shop_common.persistence.domain.criteria.order.OrderType;
 import org.dalvarez.shop.shop_common.persistence.domain.criteria.page.Page;
-import org.dalvarez.shop.shop_common.persistence.infrastructure.hibernate.BaseEntity;
 import org.dalvarez.shop.shop_common.persistence.infrastructure.shared.exception.NotFoundException;
 import org.dalvarez.shop.shop_core.shared.infrastructure.shared.TestConfig;
+import org.hibernate.property.access.spi.PropertyAccessException;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
@@ -47,17 +49,17 @@ public final class HibernateArticleRepositoryShouldItTestCase extends Seeder<Art
 
     @BeforeAll
     void setup() {
-        final List<Article> data = ArticleMother.randomListNullId();
+        final List<Article> data = ArticleMother.randomList();
         populateDatabase(data);
     }
 
     @Test
     void shouldCreateTheArticle() {
-        final Article newArticle = ArticleMother.random(null, null);
+        final Article newArticle = ArticleMother.random(null);
 
         final Article expected = articleRepository.create(newArticle);
 
-        final Article actual = articleRepository.getByUuid(expected.getUuid());
+        final Article actual = articleRepository.getById(expected.id());
 
         log.info(expected.toString());
 
@@ -77,25 +79,25 @@ public final class HibernateArticleRepositoryShouldItTestCase extends Seeder<Art
 
     @Test
     void shouldGetTheArticleById() {
-        final String uuidExpected = data.get(1)
-                                  .getUuid();
+        final ArticleId idExpected = data.get(1)
+                                         .id();
 
-        final Article actual = articleRepository.getByUuid(uuidExpected);
+        final Article actual = articleRepository.getById(idExpected);
 
-        assertEquals(uuidExpected, actual.getUuid());
+        assertEquals(idExpected, actual.id());
     }
 
     @Test
     void shouldNotGetTheArticleById() {
-        final String uuid = UuidMother.randomGeneration(999);
+        final ArticleId id = ArticleId.random();
 
         final NotFoundException notFoundException = assertThrows(
                 NotFoundException.class,
-                () -> articleRepository.getByUuid(uuid)
+                () -> articleRepository.getById(id)
         );
         log.info("ActualMessage {}", notFoundException.getMessage());
 
-        final String expectedMessage = NotFoundException.getUuidMessage(Article.class, uuid);
+        final String expectedMessage = NotFoundException.getIdMessage(Article.class, id);
 
         log.info("ExpectedMessage {}", expectedMessage);
 
@@ -104,12 +106,12 @@ public final class HibernateArticleRepositoryShouldItTestCase extends Seeder<Art
 
     @Test
     void shouldDeleteTheArticleById() {
-        final String uuid = data.get(2)
-                            .getUuid();
+        final ArticleId id = data.get(2)
+                            .id();
 
-        articleRepository.deleteByUuid(uuid);
+        articleRepository.deleteById(id);
 
-        assertThrows(NotFoundException.class, () -> articleRepository.getByUuid(uuid));
+        assertThrows(NotFoundException.class, () -> articleRepository.getById(id));
     }
 
     @Test
@@ -134,7 +136,7 @@ public final class HibernateArticleRepositoryShouldItTestCase extends Seeder<Art
                                           .withFilter(new Filter<>(
                                                   Article.FieldNames.NAME,
                                                   FilterOperator.EQUAL,
-                                                  "unknown"
+                                                  ArticleName.of("unknown")
                                           ))
                                           .build();
 
@@ -165,12 +167,17 @@ public final class HibernateArticleRepositoryShouldItTestCase extends Seeder<Art
                                                           new Filter<>(
                                                                   Article.FieldNames.NAME,
                                                                   FilterOperator.EQUAL,
-                                                                  expected.getName()
+                                                                  expected.name()
                                                           ),
                                                           new Filter<>(
                                                                   Article.FieldNames.PRICE,
                                                                   FilterOperator.GREATER_THAN,
-                                                                  expected.getPrice() - 1
+                                                                  expected.stock().value() - 1
+                                                          ),
+                                                          new Filter<>(
+                                                                  Article.FieldNames.ID,
+                                                                  FilterOperator.EQUAL,
+                                                                  expected.id()
                                                           )
                                                   )
                                           )
@@ -181,9 +188,9 @@ public final class HibernateArticleRepositoryShouldItTestCase extends Seeder<Art
         final List<Article> actualArticles = queryResult.getResult();
 
         assertEquals(
-                expected.getName(),
+                expected.name(),
                 actualArticles.get(0)
-                              .getName()
+                              .name()
         );
     }
 

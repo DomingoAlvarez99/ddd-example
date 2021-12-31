@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @TestConfig
-public abstract class Seeder<T, R extends GenericRepository<T, ?>> {
+public abstract class Seeder<T, R extends GenericRepository<T>> {
 
     private final Logger log;
 

@@ -1,37 +1,34 @@
 package org.dalvarez.shop.shop_core.category.application.create;
 
-import org.dalvarez.shop.shop_common.persistence.application.uuid_generator.GeneratorUniqueUuid;
-import org.dalvarez.shop.shop_common.persistence.domain.uuid_generator.UuidGenerator;
+import org.dalvarez.shop.shop_core.category.application.CategoryRequest;
 import org.dalvarez.shop.shop_core.category.application.CategoryResponse;
-import org.dalvarez.shop.shop_core.category.domain.Category;
-import org.dalvarez.shop.shop_core.category.domain.CategoryRepository;
+import org.dalvarez.shop.shop_core.category.domain.model.Category;
+import org.dalvarez.shop.shop_core.category.domain.model.CategoryName;
+import org.dalvarez.shop.shop_core.category.domain.port.CategoryRepository;
+import org.dalvarez.shop.shop_core.shared.domain.category.CategoryId;
 import org.springframework.stereotype.Service;
 
 @Service
-public final class CategoryCreator extends GeneratorUniqueUuid {
+public final class CategoryCreator {
 
     private final CategoryRepository categoryRepository;
 
 
-    public CategoryCreator(final CategoryRepository categoryRepository,
-                           final UuidGenerator uuidGenerator) {
-        super(categoryRepository, uuidGenerator);
+    public CategoryCreator(final CategoryRepository categoryRepository) {
         this.categoryRepository = categoryRepository;
     }
 
-    public CategoryResponse create(final Category request) {
-        final String uniqueUuid = generate();
+    public CategoryResponse create(final CategoryRequest request) {
+        CategoryName categoryName = CategoryName.of(request.name());
 
-        String parentUuid = null;
+        final CategoryId parentId = categoryRepository.getById(CategoryId.of(request.parentId()))
+                                                      .id();
 
-        if (request.getParentUuid() != null)
-            parentUuid = categoryRepository.getByUuid(request.getParentUuid()).getParentUuid();
+        Category category = Category.create(categoryName, parentId);
 
-        final Category categoryRequest = Category.fromRequest(request, uniqueUuid, parentUuid);
+        final Category categoryCreated = categoryRepository.create(category);
 
-        final Category category = categoryRepository.create(categoryRequest);
-
-        return CategoryResponse.fromCategory(category);
+        return CategoryResponse.fromCategory(categoryCreated);
     }
 
 }

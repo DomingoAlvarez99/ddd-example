@@ -1,8 +1,11 @@
 package org.dalvarez.shop.shop_core.category.application.update;
 
+import org.dalvarez.shop.shop_core.category.application.CategoryRequest;
 import org.dalvarez.shop.shop_core.category.application.CategoryResponse;
-import org.dalvarez.shop.shop_core.category.domain.Category;
-import org.dalvarez.shop.shop_core.category.domain.CategoryRepository;
+import org.dalvarez.shop.shop_core.category.domain.model.Category;
+import org.dalvarez.shop.shop_core.category.domain.model.CategoryName;
+import org.dalvarez.shop.shop_core.category.domain.port.CategoryRepository;
+import org.dalvarez.shop.shop_core.shared.domain.category.CategoryId;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -14,14 +17,20 @@ public class CategoryUpdater {
         this.categoryRepository = categoryRepository;
     }
 
-    public CategoryResponse update(final Category request) {
-        final Category parent = categoryRepository.getByUuid(request.getParentUuid());
+    public CategoryResponse update(final String id,
+                                   final CategoryRequest request) {
+        final Category category = categoryRepository.getById(CategoryId.of(id));
 
-        final Category categoryRequest = Category.fromRequest(request, parent.getParentUuid());
+        final CategoryId parentId = categoryRepository.getById(CategoryId.of(request.parentId()))
+                                                      .id();
+        category.updateParentId(parentId);
 
-        final Category category = categoryRepository.create(categoryRequest);
+        final CategoryName newName = CategoryName.of(request.name());
+        category.rename(newName);
 
-        return CategoryResponse.fromCategory(categoryRepository.update(category));
+        final Category categoryUpdated = categoryRepository.update(category);
+
+        return CategoryResponse.fromCategory(categoryUpdated);
     }
 
 }

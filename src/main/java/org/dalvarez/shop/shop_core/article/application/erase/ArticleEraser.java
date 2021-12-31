@@ -1,6 +1,7 @@
 package org.dalvarez.shop.shop_core.article.application.erase;
 
-import org.dalvarez.shop.shop_core.article.domain.ArticleRepository;
+import org.dalvarez.shop.shop_core.article.domain.model.ArticleId;
+import org.dalvarez.shop.shop_core.article.domain.port.ArticleRepository;
 
 public class ArticleEraser {
 
@@ -10,8 +11,8 @@ public class ArticleEraser {
         this.articleRepository = articleRepository;
     }
 
-    public void erase(final String uuid) {
-        articleRepository.deleteByUuid(uuid);
+    public void erase(final String id) {
+        articleRepository.deleteById(ArticleId.of(id));
     }
 
 }

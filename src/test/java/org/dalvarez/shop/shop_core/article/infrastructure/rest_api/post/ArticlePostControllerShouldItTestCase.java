@@ -1,10 +1,10 @@
 package org.dalvarez.shop.shop_core.article.infrastructure.rest_api.post;
 
+import org.dalvarez.shop.shop_core.article.application.ArticleRequest;
 import org.dalvarez.shop.shop_core.article.application.ArticleResponse;
-import org.dalvarez.shop.shop_core.article.domain.Article;
-import org.dalvarez.shop.shop_core.article.domain.ArticleRepository;
+import org.dalvarez.shop.shop_core.article.domain.model.Article;
+import org.dalvarez.shop.shop_core.article.domain.port.ArticleRepository;
 import org.dalvarez.shop.shop_core.article.infrastructure.ArticleInfrastructureRestApiModuleTestCase;
-import org.dalvarez.shop.shop_core.article.infrastructure.rest_api.controller.post.ArticlePostRequest;
 import org.dalvarez.shop.shop_common.shared.domain.log.Logger;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,16 +31,17 @@ final class ArticlePostControllerShouldItTestCase extends ArticleInfrastructureR
 
     @Test
     void shouldPostAnArticle() throws Exception {
-        final Article request = new ArticlePostRequest(
+        final ArticleRequest request = ArticleRequest.of(
                 STOCK,
                 PRICE,
                 NAME,
-                DESCRIPTION
-        ).validateAndGetRequest();
+                DESCRIPTION,
+                null
+        );
 
         final ArticleResponse expected = shouldPost(request, ArticleResponse.class);
 
-        final ArticleResponse actual = shouldGetByUuid(expected.getUuid(), ArticleResponse.class);
+        final ArticleResponse actual = shouldgetById(expected.id(), ArticleResponse.class);
 
         assertEquals(expected, actual);
     }

@@ -1,7 +1,7 @@
 package org.dalvarez.shop.shop_core.article.infrastructure.rest_api.delete;
 
-import org.dalvarez.shop.shop_core.article.domain.Article;
-import org.dalvarez.shop.shop_core.article.domain.ArticleRepository;
+import org.dalvarez.shop.shop_core.article.domain.model.Article;
+import org.dalvarez.shop.shop_core.article.domain.port.ArticleRepository;
 import org.dalvarez.shop.shop_core.article.infrastructure.ArticleInfrastructureRestApiModuleTestCase;
 import org.dalvarez.shop.shop_common.shared.domain.log.Logger;
 import org.junit.jupiter.api.Test;
@@ -21,9 +21,9 @@ final class ArticleDeleteByIdControllerShouldItTestCase extends ArticleInfrastru
     void shouldDeleteById() throws Exception {
         final Article expected = data.get(10);
 
-        shouldDeleteByUuid(expected.getUuid());
+        shouldDeleteById(expected.id().value());
 
-        shouldNotGetByUuid(expected.getUuid());
+        shouldNotgetById(expected.id().value());
     }
 
 }

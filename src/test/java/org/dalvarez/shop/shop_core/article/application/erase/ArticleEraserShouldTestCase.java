@@ -1,7 +1,8 @@
 package org.dalvarez.shop.shop_core.article.application.erase;
 
 import org.dalvarez.shop.shop_core.article.application.ArticleApplicationModuleTestCase;
-import org.dalvarez.shop.shop_core.shared.domain.UuidMother;
+import org.dalvarez.shop.shop_core.article.domain.model.ArticleId;
+import org.dalvarez.shop.shop_core.shared.domain.IdMother;
 import org.junit.jupiter.api.Test;
 
 public final class ArticleEraserShouldTestCase extends ArticleApplicationModuleTestCase {
@@ -14,11 +15,11 @@ public final class ArticleEraserShouldTestCase extends ArticleApplicationModuleT
 
     @Test
     public void eraseAnArticle() {
-        final String uuid = UuidMother.randomPick();
+        final String id = IdMother.randomPick();
 
-        articleEraser.erase(uuid);
+        articleEraser.erase(id);
 
-        shouldHaveErased(uuid);
+        shouldHaveErased(ArticleId.of(id));
     }
 
 }

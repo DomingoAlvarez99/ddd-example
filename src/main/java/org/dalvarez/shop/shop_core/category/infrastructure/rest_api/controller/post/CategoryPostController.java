@@ -1,5 +1,6 @@
 package org.dalvarez.shop.shop_core.category.infrastructure.rest_api.controller.post;
 
+import org.dalvarez.shop.shop_core.category.application.CategoryRequest;
 import org.dalvarez.shop.shop_core.category.application.CategoryResponse;
 import org.dalvarez.shop.shop_core.category.application.create.CategoryCreator;
 import org.dalvarez.shop.shop_core.category.infrastructure.rest_api.controller.CategoryApiController;
@@ -21,9 +22,9 @@ public final class CategoryPostController extends CategoryApiController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<CategoryResponse> post(@RequestBody final CategoryPostRequest categoryPostRequest) {
+    public ResponseEntity<CategoryResponse> post(@RequestBody final CategoryRequest categoryRequest) {
         return new ResponseEntity<>(
-                categoryCreator.create(categoryPostRequest.validateAndGetRequest()),
+                categoryCreator.create(categoryRequest),
                 HttpStatus.CREATED
         );
     }

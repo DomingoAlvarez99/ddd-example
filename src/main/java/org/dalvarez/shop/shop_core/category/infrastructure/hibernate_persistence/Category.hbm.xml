@@ -4,10 +4,16 @@
         "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-    <class name="org.dalvarez.shop.shop_core.category.domain.Category" table="category">
-        <id name="uuid" column="id" type="string" access="field" />
+    <class name="org.dalvarez.shop.shop_core.category.domain.model.Category" table="category">
+        <composite-id name="id" class="org.dalvarez.shop.shop_core.shared.domain.category.CategoryId" access="field">
+            <key-property name="value" column="id" type="string" length="36" access="field"/>
+        </composite-id>
 
-        <property name="name" column="name" type="string" access="field" />
-        <property name="parentUuid" column="parent_uuid" type="string" access="field" />
+        <component name="name" class="org.dalvarez.shop.shop_core.category.domain.model.CategoryName" access="field">
+            <property name="value" column="name" type="string" access="field"/>
+        </component>
+        <component name="parentId" class="org.dalvarez.shop.shop_core.shared.domain.category.CategoryId" access="field">
+            <property name="value" column="parent_id" type="string" length="36" access="field"/>
+        </component>
     </class>
 </hibernate-mapping>

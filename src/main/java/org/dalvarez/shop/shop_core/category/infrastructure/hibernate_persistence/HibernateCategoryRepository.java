@@ -5,11 +5,11 @@ import org.dalvarez.shop.shop_common.persistence.domain.criteria.Criteria;
 import org.dalvarez.shop.shop_common.persistence.domain.criteria.CriteriaConverter;
 import org.dalvarez.shop.shop_common.persistence.domain.criteria.QueryResult;
 import org.dalvarez.shop.shop_common.persistence.infrastructure.hibernate.HibernateRepository;
-import org.dalvarez.shop.shop_core.category.domain.Category;
-import org.dalvarez.shop.shop_core.category.domain.CategoryRepository;
+import org.dalvarez.shop.shop_common.shared.domain.value_object.id.Identifier;
+import org.dalvarez.shop.shop_core.category.domain.model.Category;
+import org.dalvarez.shop.shop_core.category.domain.port.CategoryRepository;
 
 import javax.persistence.EntityManager;
-import java.util.stream.Collectors;
 
 public class HibernateCategoryRepository extends HibernateRepository<Category> implements CategoryRepository {
 
@@ -19,8 +19,8 @@ public class HibernateCategoryRepository extends HibernateRepository<Category> i
     }
 
     @Override
-    public Category getByUuid(final String uuid) {
-        return findByUuid(uuid);
+    public Category getById(final Identifier id) {
+        return findById(id);
     }
 
     @Override
@@ -44,8 +44,8 @@ public class HibernateCategoryRepository extends HibernateRepository<Category> i
     }
 
     @Override
-    public void deleteByUuid(final String uuid) {
-        removeByUuid(uuid);
+    public void deleteById(final Identifier id) {
+        removeById(id);
     }
 
     @Override

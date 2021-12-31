@@ -1,17 +1,7 @@
-create sequence shop_core.category_seq
-    start with 100
-    increment by 100
-    cache 1;
-
-alter sequence shop_core.category_seq owner to shop_admin;
-grant all on shop_core.category_seq to shop_admin;
---alter sequence category_seq restart;
-
 create table shop_core.category (
-    id bigint not null default nextval('shop_core.category_seq'),
+    id varchar(36) not null unique,
     name varchar(255) not null,
-    parent_id bigint,
-    uuid varchar(36) not null unique,
+    parent_id varchar(36) not null unique,
     constraint category_pk primary key (id),
     constraint article_category_parent_fk foreign key (parent_id) references shop_core.category(id)
 );
