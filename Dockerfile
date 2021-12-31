@@ -1,4 +1,4 @@
-FROM maven:3.6.3-adoptopenjdk-11 as builder
+FROM maven:3.6.3-adoptopenjdk-11 as build
 
 WORKDIR /app
 COPY pom.xml .
@@ -8,9 +8,6 @@ COPY src ./src
 RUN mvn verify sonar:sonar
 RUN mvn package -DskipTests
 
-FROM tomcat:9.0.10-jre8-alpine
-
-COPY --from=builder /app/target/*.war /usr/local/tomcat/webapps/ROOT.war
-
-RUN rm -rf /usr/local/tomcat/webapps/ROOT
-CMD ["catalina.sh", "run"]
+FROM openjdk:11-slim-buster
+COPY --from=build /app/target/*.jar app.jar
+ENTRYPOINT ["java","-jar","/app.jar"]
