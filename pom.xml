@@ -37,6 +37,8 @@
         <sonarqube.projectKey>${project.artifactId}</sonarqube.projectKey>
         <sonarqube.host.url>http://localhost:9000</sonarqube.host.url>
         <sonarqube.login>01c0db63c2ee120e01ece5a847fa0136e51261b5</sonarqube.login>
+        <!-- Reactor bus -->
+        <reactor.version>2.0.8.RELEASE</reactor.version>
     </properties>
 
     <dependencies>
@@ -64,6 +66,14 @@
             <groupId>org.junit.platform</groupId>
             <artifactId>junit-platform-launcher</artifactId>
             <version>${junit-launcher.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- Mockito -->
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <version>3.2.4</version>
             <scope>test</scope>
         </dependency>
 
@@ -112,6 +122,24 @@
             <groupId>net.logstash.logback</groupId>
             <artifactId>logstash-logback-encoder</artifactId>
             <version>${logstash.version}</version>
+        </dependency>
+
+        <!-- Reactor -->
+        <dependency>
+            <groupId>io.projectreactor</groupId>
+            <artifactId>reactor-bus</artifactId>
+            <version>${reactor.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.projectreactor</groupId>
+            <artifactId>reactor-core</artifactId>
+            <version>${reactor.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.reflections</groupId>
+            <artifactId>reflections</artifactId>
+            <version>0.10.2</version>
         </dependency>
 
     </dependencies>
