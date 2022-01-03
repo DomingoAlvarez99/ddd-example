@@ -6,7 +6,6 @@ import org.dalvarez.ddd_example.article.domain.model.Article;
 import org.dalvarez.ddd_example.article.domain.repository.ArticleRepository;
 import org.dalvarez.ddd_example.article.infrastructure.ArticleInfrastructureRestApiModuleTestCase;
 import org.dalvarez.ddd_example.shared.domain.IdMother;
-import org.dalvarez.ddd_example.shared.domain.log.Logger;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -22,12 +21,9 @@ final class ArticlePutControllerShouldItTestCase extends ArticleInfrastructureRe
 
     private static final String DESCRIPTION = "Desc 1";
 
-    protected Logger log;
 
-    protected ArticlePutControllerShouldItTestCase(@Autowired ArticleRepository repository,
-                                                   @Autowired Logger log) {
-        super(repository, log);
-        this.log = log;
+    ArticlePutControllerShouldItTestCase(@Autowired ArticleRepository repository) {
+        super(repository);
     }
 
     @Test
@@ -44,7 +40,6 @@ final class ArticlePutControllerShouldItTestCase extends ArticleInfrastructureRe
 
         final ArticleResponse expected = shouldPut(request, ArticleResponse.class, article.id().value());
 
-        log.info("{}", expected.toString());
         final ArticleResponse actual = shouldgetById(expected.id(), ArticleResponse.class);
 
         assertEquals(expected.id(), actual.id());

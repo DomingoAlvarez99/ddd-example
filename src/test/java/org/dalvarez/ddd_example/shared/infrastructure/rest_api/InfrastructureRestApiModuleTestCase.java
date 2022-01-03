@@ -3,7 +3,6 @@ package org.dalvarez.ddd_example.shared.infrastructure.rest_api;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-import org.dalvarez.ddd_example.shared.domain.log.Logger;
 import org.dalvarez.ddd_example.shared.domain.repository.GenericRepository;
 import org.dalvarez.ddd_example.shared.infrastructure.rest_api.controller.ApiController;
 import org.dalvarez.ddd_example.shared.infrastructure.rest_api.exception_handler.ErrorResponse;
@@ -36,9 +35,8 @@ public abstract class InfrastructureRestApiModuleTestCase<T, R extends GenericRe
     private final String requestPath;
 
     protected InfrastructureRestApiModuleTestCase(final R repository,
-                                                  final Logger log,
                                                   final String requestPath) {
-        super(repository, log);
+        super(repository);
 
         this.requestPath = requestPath;
     }

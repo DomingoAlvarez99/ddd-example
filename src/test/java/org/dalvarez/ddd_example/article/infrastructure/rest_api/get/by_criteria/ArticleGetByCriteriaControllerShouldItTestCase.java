@@ -3,7 +3,6 @@ package org.dalvarez.ddd_example.article.infrastructure.rest_api.get.by_criteria
 import org.dalvarez.ddd_example.article.application.ArticleQueryResultResponse;
 import org.dalvarez.ddd_example.article.domain.repository.ArticleRepository;
 import org.dalvarez.ddd_example.article.infrastructure.ArticleInfrastructureRestApiModuleTestCase;
-import org.dalvarez.ddd_example.shared.domain.log.Logger;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -16,12 +15,10 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 final class ArticleGetByCriteriaControllerShouldItTestCase extends ArticleInfrastructureRestApiModuleTestCase {
 
-    protected Logger log;
 
-    protected ArticleGetByCriteriaControllerShouldItTestCase(@Autowired ArticleRepository repository,
-                                                             @Autowired Logger log) {
-        super(repository, log);
-        this.log = log;
+    ArticleGetByCriteriaControllerShouldItTestCase(@Autowired ArticleRepository repository
+    ) {
+        super(repository);
     }
 
     @Test

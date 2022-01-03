@@ -9,16 +9,16 @@ import org.junit.jupiter.api.Test;
 
 import static org.mockito.Mockito.when;
 
-public final class ArticleByIdFinderShouldTestCase extends ArticleApplicationModuleTestCase {
+final class ArticleByIdFinderShouldTestCase extends ArticleApplicationModuleTestCase {
 
     private final ArticleByIdFinder articleByIdFinder;
 
-    public ArticleByIdFinderShouldTestCase() {
+    ArticleByIdFinderShouldTestCase() {
         articleByIdFinder = new ArticleByIdFinder(repository);
     }
 
     @Test
-    public void findAnArticleById() {
+    void findAnArticleById() {
         final String id = Identifier.random().value();
         final ArticleId articleId = ArticleId.of(id);
 

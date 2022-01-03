@@ -14,7 +14,6 @@ import org.dalvarez.ddd_example.shared.domain.criteria.filter.FiltersBooleanOper
 import org.dalvarez.ddd_example.shared.domain.criteria.order.Order;
 import org.dalvarez.ddd_example.shared.domain.criteria.order.OrderType;
 import org.dalvarez.ddd_example.shared.domain.criteria.page.Page;
-import org.dalvarez.ddd_example.shared.domain.log.Logger;
 import org.dalvarez.ddd_example.shared.infrastructure.persistence.Seeder;
 import org.dalvarez.ddd_example.shared.infrastructure.shared.TestConfig;
 import org.dalvarez.ddd_example.shared.infrastructure.shared.exception.NotFoundException;
@@ -31,18 +30,14 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @TestConfig
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-public final class HibernateArticleRepositoryShouldItTestCase extends Seeder<Article, ArticleRepository> {
+final class HibernateArticleRepositoryShouldItTestCase extends Seeder<Article, ArticleRepository> {
 
     private final ArticleRepository articleRepository;
 
-    private final Logger log;
-
-    public HibernateArticleRepositoryShouldItTestCase(@Autowired ArticleRepository articleRepository,
-                                                      @Autowired Logger log) {
-        super(articleRepository, log);
+    HibernateArticleRepositoryShouldItTestCase(@Autowired ArticleRepository articleRepository) {
+        super(articleRepository);
 
         this.articleRepository = articleRepository;
-        this.log = log;
     }
 
     @BeforeAll
@@ -59,16 +54,12 @@ public final class HibernateArticleRepositoryShouldItTestCase extends Seeder<Art
 
         final Article actual = articleRepository.getById(expected.id());
 
-        log.info(expected.toString());
-
         assertEquals(expected, actual);
     }
 
     @Test
     void shouldUpdateTheArticle() {
         final Article actual = data.get(0);
-
-        log.info("Actual: {}", actual.toString());
 
         final Article expected = articleRepository.update(actual);
 
@@ -93,11 +84,8 @@ public final class HibernateArticleRepositoryShouldItTestCase extends Seeder<Art
                 NotFoundException.class,
                 () -> articleRepository.getById(id)
         );
-        log.info("ActualMessage {}", notFoundException.getMessage());
 
         final String expectedMessage = NotFoundException.getIdMessage(Article.class, id);
-
-        log.info("ExpectedMessage {}", expectedMessage);
 
         assertEquals(expectedMessage, notFoundException.getMessage());
     }
@@ -141,11 +129,7 @@ public final class HibernateArticleRepositoryShouldItTestCase extends Seeder<Art
                 () -> articleRepository.getByCriteria(criteria)
         );
 
-        log.info("ActualMessage {}", notFoundException.getMessage());
-
         final String expectedMessage = NotFoundException.getDefaultMessage(Article.class);
-
-        log.info("ExpectedMessage {}", expectedMessage);
 
         assertEquals(expectedMessage, notFoundException.getMessage());
     }

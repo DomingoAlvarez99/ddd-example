@@ -5,7 +5,6 @@ import org.dalvarez.ddd_example.article.domain.ArticleMother;
 import org.dalvarez.ddd_example.article.domain.model.Article;
 import org.dalvarez.ddd_example.article.domain.repository.ArticleRepository;
 import org.dalvarez.ddd_example.article.infrastructure.ArticleInfrastructureRestApiModuleTestCase;
-import org.dalvarez.ddd_example.shared.domain.log.Logger;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -13,12 +12,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 final class ArticleGetByIdControllerShouldItTestCase extends ArticleInfrastructureRestApiModuleTestCase {
 
-    protected Logger log;
-
-    protected ArticleGetByIdControllerShouldItTestCase(@Autowired ArticleRepository repository,
-                                                       @Autowired Logger log) {
-        super(repository, log);
-        this.log = log;
+    ArticleGetByIdControllerShouldItTestCase(@Autowired ArticleRepository repository) {
+        super(repository);
     }
 
     @Test

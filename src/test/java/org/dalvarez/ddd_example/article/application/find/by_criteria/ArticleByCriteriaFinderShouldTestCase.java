@@ -8,16 +8,16 @@ import org.junit.jupiter.api.Test;
 
 import static org.mockito.Mockito.when;
 
-public final class ArticleByCriteriaFinderShouldTestCase extends ArticleApplicationModuleTestCase {
+final class ArticleByCriteriaFinderShouldTestCase extends ArticleApplicationModuleTestCase {
 
     private final ArticleByCriteriaFinder articleByCriteriaFinder;
 
-    public ArticleByCriteriaFinderShouldTestCase() {
+    ArticleByCriteriaFinderShouldTestCase() {
         this.articleByCriteriaFinder = new ArticleByCriteriaFinder(repository);
     }
 
     @Test
-    public void findArticlesByCriteria() {
+    void findArticlesByCriteria() {
         final Criteria criteria = new Criteria();
 
         when(repository.getByCriteria(criteria)).thenReturn(QueryResultMother.fromList(ArticleMother.randomList()));

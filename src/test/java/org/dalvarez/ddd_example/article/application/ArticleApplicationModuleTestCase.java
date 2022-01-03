@@ -10,7 +10,7 @@ import static org.mockito.Mockito.verify;
 
 public abstract class ArticleApplicationModuleTestCase extends ApplicationModuleTestCase<Article, ArticleRepository> {
 
-    public ArticleApplicationModuleTestCase() {
+    protected ArticleApplicationModuleTestCase() {
         super(ArticleRepository.class);
     }
 

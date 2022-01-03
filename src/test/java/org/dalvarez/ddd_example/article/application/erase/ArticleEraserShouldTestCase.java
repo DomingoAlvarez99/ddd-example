@@ -5,16 +5,16 @@ import org.dalvarez.ddd_example.article.domain.model.ArticleId;
 import org.dalvarez.ddd_example.shared.domain.IdMother;
 import org.junit.jupiter.api.Test;
 
-public final class ArticleEraserShouldTestCase extends ArticleApplicationModuleTestCase {
+final class ArticleEraserShouldTestCase extends ArticleApplicationModuleTestCase {
 
     private final ArticleEraser articleEraser;
 
-    public ArticleEraserShouldTestCase() {
+    ArticleEraserShouldTestCase() {
         this.articleEraser = new ArticleEraser(repository);
     }
 
     @Test
-    public void eraseAnArticle() {
+    void eraseAnArticle() {
         final String id = IdMother.randomPick();
 
         articleEraser.erase(id);

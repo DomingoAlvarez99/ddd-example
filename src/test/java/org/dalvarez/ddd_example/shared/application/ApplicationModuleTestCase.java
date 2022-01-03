@@ -1,12 +1,10 @@
 package org.dalvarez.ddd_example.shared.application;
 
-import org.dalvarez.ddd_example.category.domain.repository.CategoryRepository;
 import org.dalvarez.ddd_example.shared.domain.bus.DomainEvent;
 import org.dalvarez.ddd_example.shared.domain.bus.EventBus;
 import org.dalvarez.ddd_example.shared.domain.criteria.Criteria;
 import org.dalvarez.ddd_example.shared.domain.repository.GenericRepository;
 import org.dalvarez.ddd_example.shared.domain.value_object.id.Identifier;
-import org.dalvarez.ddd_example.shared.infrastructure.shared.TestConfig;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -23,7 +21,7 @@ public abstract class ApplicationModuleTestCase<T, R extends GenericRepository<T
 
     protected final EventBus eventBus;
 
-    public ApplicationModuleTestCase(final Class<R> repositoryClass) {
+    protected ApplicationModuleTestCase(final Class<R> repositoryClass) {
         repository = mock(repositoryClass);
         eventBus = mock(EventBus.class);
     }

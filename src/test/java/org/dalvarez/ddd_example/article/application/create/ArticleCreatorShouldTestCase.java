@@ -8,9 +8,7 @@ import org.dalvarez.ddd_example.article.domain.model.Article;
 import org.dalvarez.ddd_example.category.domain.repository.CategoryRepository;
 import org.dalvarez.ddd_example.shared.domain.bus.DomainEvent;
 import org.dalvarez.ddd_example.shared.domain.category.DomainCategoryByIdFinder;
-import org.dalvarez.ddd_example.shared.domain.log.Logger;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Collections;
 import java.util.List;
@@ -20,21 +18,18 @@ import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-public final class ArticleCreatorShouldTestCase extends ArticleApplicationModuleTestCase {
+final class ArticleCreatorShouldTestCase extends ArticleApplicationModuleTestCase {
 
     private final ArticleCreator articleCreator;
 
-    @Autowired
-    private Logger log;
-
-    public ArticleCreatorShouldTestCase() {
+    ArticleCreatorShouldTestCase() {
         final CategoryRepository categoryRepository = mock(CategoryRepository.class);
         final DomainCategoryByIdFinder categoryByIdFinder = new DomainCategoryByIdFinder(categoryRepository);
         articleCreator = new ArticleCreator(repository, categoryByIdFinder, eventBus);
     }
 
     @Test
-    public void createAValidArticle() {
+    void createAValidArticle() {
         final Article random = ArticleMother.random();
 
         final ArticleRequest randomRequest = ArticleRequest.of(

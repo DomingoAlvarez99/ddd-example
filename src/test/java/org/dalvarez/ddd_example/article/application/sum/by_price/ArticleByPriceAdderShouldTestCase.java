@@ -4,16 +4,16 @@ import org.dalvarez.ddd_example.article.application.ArticleApplicationModuleTest
 import org.dalvarez.ddd_example.shared.domain.criteria.Criteria;
 import org.junit.jupiter.api.Test;
 
-public final class ArticleByPriceAdderShouldTestCase extends ArticleApplicationModuleTestCase {
+final class ArticleByPriceAdderShouldTestCase extends ArticleApplicationModuleTestCase {
 
     private final ArticleByPriceAdder articleByPriceAdder;
 
-    public ArticleByPriceAdderShouldTestCase() {
+    ArticleByPriceAdderShouldTestCase() {
         articleByPriceAdder = new ArticleByPriceAdder(repository);
     }
 
     @Test
-    public void sumAnArticle() {
+    void sumAnArticle() {
         final Criteria criteria = new Criteria();
 
         articleByPriceAdder.sum(criteria);

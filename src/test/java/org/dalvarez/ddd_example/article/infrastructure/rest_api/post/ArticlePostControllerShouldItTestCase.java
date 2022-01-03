@@ -4,7 +4,6 @@ import org.dalvarez.ddd_example.article.application.ArticleRequest;
 import org.dalvarez.ddd_example.article.application.ArticleResponse;
 import org.dalvarez.ddd_example.article.domain.repository.ArticleRepository;
 import org.dalvarez.ddd_example.article.infrastructure.ArticleInfrastructureRestApiModuleTestCase;
-import org.dalvarez.ddd_example.shared.domain.log.Logger;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -20,12 +19,8 @@ final class ArticlePostControllerShouldItTestCase extends ArticleInfrastructureR
 
     private static final String DESCRIPTION = "Desc 1";
 
-    protected Logger log;
-
-    protected ArticlePostControllerShouldItTestCase(@Autowired ArticleRepository repository,
-                                                    @Autowired Logger log) {
-        super(repository, log);
-        this.log = log;
+    ArticlePostControllerShouldItTestCase(@Autowired ArticleRepository repository) {
+        super(repository);
     }
 
     @Test

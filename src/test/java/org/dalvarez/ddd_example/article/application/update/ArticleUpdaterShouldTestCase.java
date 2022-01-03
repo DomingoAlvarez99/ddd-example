@@ -15,18 +15,18 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 @TestConfig
-public final class ArticleUpdaterShouldTestCase extends ArticleApplicationModuleTestCase {
+final class ArticleUpdaterShouldTestCase extends ArticleApplicationModuleTestCase {
 
     private final ArticleUpdater articleUpdater;
 
-    public ArticleUpdaterShouldTestCase() {
+    ArticleUpdaterShouldTestCase() {
         final CategoryRepository categoryRepository = mock(CategoryRepository.class);
         final DomainCategoryByIdFinder categoryByIdFinder = new DomainCategoryByIdFinder(categoryRepository);
         articleUpdater = new ArticleUpdater(repository, categoryByIdFinder);
     }
 
     @Test
-    public void updateAnArticle() {
+    void updateAnArticle() {
         final String id = Identifier.random().value();
         final Article random = ArticleMother.random(id);
 
