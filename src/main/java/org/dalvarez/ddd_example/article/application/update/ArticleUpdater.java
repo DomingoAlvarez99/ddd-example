@@ -5,8 +5,8 @@ import org.dalvarez.ddd_example.article.application.ArticleResponse;
 import org.dalvarez.ddd_example.article.domain.model.Article;
 import org.dalvarez.ddd_example.article.domain.model.ArticleId;
 import org.dalvarez.ddd_example.article.domain.repository.ArticleRepository;
-import org.dalvarez.ddd_example.category.domain.repository.CategoryRepository;
 import org.dalvarez.ddd_example.shared.domain.category.CategoryId;
+import org.dalvarez.ddd_example.shared.domain.category.DomainCategoryByIdFinder;
 
 import java.util.Objects;
 
@@ -14,12 +14,12 @@ public final class ArticleUpdater {
 
     private final ArticleRepository articleRepository;
 
-    private final CategoryRepository categoryRepository;
+    private final DomainCategoryByIdFinder categoryByIdFinder;
 
     public ArticleUpdater(final ArticleRepository articleRepository,
-                          final CategoryRepository categoryRepository) {
+                          final DomainCategoryByIdFinder categoryByIdFinder) {
         this.articleRepository = articleRepository;
-        this.categoryRepository = categoryRepository;
+        this.categoryByIdFinder = categoryByIdFinder;
     }
 
     public ArticleResponse update(final String id,
@@ -30,7 +30,7 @@ public final class ArticleUpdater {
         final CategoryId categoryId = request.id() == null ? null : CategoryId.of(request.id());
 
         if (Objects.nonNull(categoryId))
-            categoryRepository.getById(categoryId);
+            categoryByIdFinder.find(categoryId);
 
         article.updateCategory(categoryId);
 

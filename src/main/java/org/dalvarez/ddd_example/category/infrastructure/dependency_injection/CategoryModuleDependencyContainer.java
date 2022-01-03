@@ -8,6 +8,7 @@ import org.dalvarez.ddd_example.category.application.update.CategoryUpdater;
 import org.dalvarez.ddd_example.category.domain.model.Category;
 import org.dalvarez.ddd_example.category.domain.repository.CategoryRepository;
 import org.dalvarez.ddd_example.category.infrastructure.persistence.hibernate.repository.HibernateCategoryRepository;
+import org.dalvarez.ddd_example.shared.domain.category.DomainCategoryByIdFinder;
 import org.dalvarez.ddd_example.shared.domain.criteria.CriteriaConverter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -24,28 +25,30 @@ public class CategoryModuleDependencyContainer {
     }
 
     @Bean
-    public CategoryCreator CategoryCreator(final CategoryRepository categoryRepository) {
-        return new CategoryCreator(categoryRepository);
+    public CategoryCreator categoryCreator(final CategoryRepository categoryRepository,
+                                           final DomainCategoryByIdFinder categoryByIdFinder) {
+        return new CategoryCreator(categoryRepository, categoryByIdFinder);
     }
 
     @Bean
-    public CategoryEraser CategoryEraser(final CategoryRepository categoryRepository) {
+    public CategoryEraser categoryEraser(final CategoryRepository categoryRepository) {
         return new CategoryEraser(categoryRepository);
     }
 
     @Bean
-    public CategoryByCriteriaFinder CategoryByCriteriaFinder(final CategoryRepository categoryRepository) {
+    public CategoryByCriteriaFinder categoryByCriteriaFinder(final CategoryRepository categoryRepository) {
         return new CategoryByCriteriaFinder(categoryRepository);
     }
 
     @Bean
-    public CategoryByIdFinder CategoryByIdFinder(final CategoryRepository categoryRepository) {
-        return new CategoryByIdFinder(categoryRepository);
+    public CategoryByIdFinder categoryByIdFinder(final DomainCategoryByIdFinder domainCategoryByIdFinder) {
+        return new CategoryByIdFinder(domainCategoryByIdFinder);
     }
 
     @Bean
-    public CategoryUpdater CategoryUpdater(final CategoryRepository categoryRepository) {
-        return new CategoryUpdater(categoryRepository);
+    public CategoryUpdater categoryUpdater(final CategoryRepository categoryRepository,
+                                           final DomainCategoryByIdFinder categoryByIdFinder) {
+        return new CategoryUpdater(categoryRepository, categoryByIdFinder);
     }
 
 }

@@ -5,9 +5,7 @@ import org.dalvarez.ddd_example.category.domain.model.Category;
 import org.dalvarez.ddd_example.category.domain.repository.CategoryRepository;
 import org.dalvarez.ddd_example.shared.domain.criteria.Criteria;
 import org.dalvarez.ddd_example.shared.domain.criteria.QueryResult;
-import org.springframework.stereotype.Service;
 
-@Service
 public final class CategoryByCriteriaFinder {
 
     private final CategoryRepository categoryRepository;

@@ -10,9 +10,9 @@ import org.dalvarez.ddd_example.article.domain.model.ArticleName;
 import org.dalvarez.ddd_example.article.domain.model.ArticlePrice;
 import org.dalvarez.ddd_example.article.domain.model.ArticleStock;
 import org.dalvarez.ddd_example.article.domain.repository.ArticleRepository;
-import org.dalvarez.ddd_example.category.domain.repository.CategoryRepository;
 import org.dalvarez.ddd_example.shared.domain.bus.EventBus;
 import org.dalvarez.ddd_example.shared.domain.category.CategoryId;
+import org.dalvarez.ddd_example.shared.domain.category.DomainCategoryByIdFinder;
 
 import java.util.Collections;
 import java.util.Objects;
@@ -21,15 +21,15 @@ public final class ArticleCreator {
 
     private final ArticleRepository articleRepository;
 
-    private final CategoryRepository categoryRepository;
+    private final DomainCategoryByIdFinder categoryByIdFinder;
 
     private final EventBus eventBus;
 
     public ArticleCreator(final ArticleRepository articleRepository,
-                          final CategoryRepository categoryRepository,
+                          final DomainCategoryByIdFinder categoryByIdFinder,
                           final EventBus eventBus) {
         this.articleRepository = articleRepository;
-        this.categoryRepository = categoryRepository;
+        this.categoryByIdFinder = categoryByIdFinder;
         this.eventBus = eventBus;
     }
 
@@ -51,7 +51,7 @@ public final class ArticleCreator {
         );
 
         if (Objects.nonNull(article.categoryId()))
-            categoryRepository.getById(article.categoryId());
+            categoryByIdFinder.find(article.categoryId());
 
         final Article articleCreated = articleRepository.create(article);
 

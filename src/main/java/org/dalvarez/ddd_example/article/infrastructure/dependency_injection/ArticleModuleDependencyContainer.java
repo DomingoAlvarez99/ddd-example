@@ -12,8 +12,8 @@ import org.dalvarez.ddd_example.article.application.update.ArticleUpdater;
 import org.dalvarez.ddd_example.article.domain.model.Article;
 import org.dalvarez.ddd_example.article.domain.repository.ArticleRepository;
 import org.dalvarez.ddd_example.article.infrastructure.persistence.hibernate.repository.HibernateArticleRepository;
-import org.dalvarez.ddd_example.category.domain.repository.CategoryRepository;
 import org.dalvarez.ddd_example.shared.domain.bus.EventBus;
+import org.dalvarez.ddd_example.shared.domain.category.DomainCategoryByIdFinder;
 import org.dalvarez.ddd_example.shared.domain.criteria.CriteriaConverter;
 import org.dalvarez.ddd_example.shared.domain.log.Logger;
 import org.springframework.context.annotation.Bean;
@@ -37,11 +37,11 @@ public class ArticleModuleDependencyContainer {
 
     @Bean
     public ArticleCreator articleCreator(final ArticleRepository articleRepository,
-                                         final CategoryRepository categoryRepository,
+                                         final DomainCategoryByIdFinder categoryByIdFinder,
                                          final EventBus eventBus) {
         return new ArticleCreator(
                 articleRepository,
-                categoryRepository,
+                categoryByIdFinder,
                 eventBus
         );
     }
@@ -78,8 +78,8 @@ public class ArticleModuleDependencyContainer {
 
     @Bean
     public ArticleUpdater articleUpdater(final ArticleRepository articleRepository,
-                                         final CategoryRepository categoryRepository) {
-        return new ArticleUpdater(articleRepository, categoryRepository);
+                                         final DomainCategoryByIdFinder categoryByIdFinder) {
+        return new ArticleUpdater(articleRepository, categoryByIdFinder);
     }
 
 }

@@ -5,7 +5,9 @@ import org.dalvarez.ddd_example.article.application.ArticleRequest;
 import org.dalvarez.ddd_example.article.domain.ArticleMother;
 import org.dalvarez.ddd_example.article.domain.event.ArticleCreatedDomainEvent;
 import org.dalvarez.ddd_example.article.domain.model.Article;
+import org.dalvarez.ddd_example.category.domain.repository.CategoryRepository;
 import org.dalvarez.ddd_example.shared.domain.bus.DomainEvent;
+import org.dalvarez.ddd_example.shared.domain.category.DomainCategoryByIdFinder;
 import org.dalvarez.ddd_example.shared.domain.log.Logger;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +17,7 @@ import java.util.List;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.doNothing;
+import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 public final class ArticleCreatorShouldTestCase extends ArticleApplicationModuleTestCase {
@@ -25,7 +28,9 @@ public final class ArticleCreatorShouldTestCase extends ArticleApplicationModule
     private Logger log;
 
     public ArticleCreatorShouldTestCase() {
-        articleCreator = new ArticleCreator(repository, categoryRepository, eventBus);
+        final CategoryRepository categoryRepository = mock(CategoryRepository.class);
+        final DomainCategoryByIdFinder categoryByIdFinder = new DomainCategoryByIdFinder(categoryRepository);
+        articleCreator = new ArticleCreator(repository, categoryByIdFinder, eventBus);
     }
 
     @Test

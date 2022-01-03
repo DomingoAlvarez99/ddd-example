@@ -1,21 +1,19 @@
 package org.dalvarez.ddd_example.category.application.find.by_id;
 
 import org.dalvarez.ddd_example.category.application.CategoryResponse;
-import org.dalvarez.ddd_example.category.domain.repository.CategoryRepository;
 import org.dalvarez.ddd_example.shared.domain.category.CategoryId;
-import org.springframework.stereotype.Service;
+import org.dalvarez.ddd_example.shared.domain.category.DomainCategoryByIdFinder;
 
-@Service
 public final class CategoryByIdFinder {
 
-    private final CategoryRepository categoryRepository;
+    private final DomainCategoryByIdFinder domainCategoryByIdFinder;
 
-    public CategoryByIdFinder(final CategoryRepository categoryRepository) {
-        this.categoryRepository = categoryRepository;
+    public CategoryByIdFinder(final DomainCategoryByIdFinder domainCategoryByIdFinder) {
+        this.domainCategoryByIdFinder = domainCategoryByIdFinder;
     }
 
     public CategoryResponse find(final String id) {
-        return CategoryResponse.fromCategory(categoryRepository.getById(CategoryId.of(id)));
+        return CategoryResponse.fromCategory(domainCategoryByIdFinder.find(CategoryId.of(id)));
     }
 
 }

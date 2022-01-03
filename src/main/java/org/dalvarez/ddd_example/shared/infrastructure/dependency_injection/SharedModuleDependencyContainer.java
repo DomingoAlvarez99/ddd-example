@@ -1,6 +1,8 @@
 package org.dalvarez.ddd_example.shared.infrastructure.dependency_injection;
 
+import org.dalvarez.ddd_example.category.domain.repository.CategoryRepository;
 import org.dalvarez.ddd_example.shared.domain.bus.EventBus;
+import org.dalvarez.ddd_example.shared.domain.category.DomainCategoryByIdFinder;
 import org.dalvarez.ddd_example.shared.domain.criteria.CriteriaConverter;
 import org.dalvarez.ddd_example.shared.domain.log.Logger;
 import org.dalvarez.ddd_example.shared.domain.transaction_handler.TransactionHandler;
@@ -55,6 +57,11 @@ public class SharedModuleDependencyContainer {
     @Bean
     public TransactionHandler springApplicationTransactionHandler() {
         return new SpringApplicationTransactionHandler();
+    }
+
+    @Bean
+    public DomainCategoryByIdFinder domainCategoryByIdFinder(final CategoryRepository categoryRepository) {
+        return new DomainCategoryByIdFinder(categoryRepository);
     }
 
 }
