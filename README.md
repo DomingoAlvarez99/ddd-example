@@ -26,17 +26,44 @@ Ejemplo de una aplicación Java que utiliza la Arquitectura de *Puertos y Adapta
 ### Cli
 
 ## 3. Librerías y ejemplos de implementación
-
-| Característica                   | Librería                                                     | Ejemplos de implementación    |
-| ------------------------- | ----------------------------------------------------------- | -------------------------- |
-| Build tool                | [Maven](https://maven.apache.org/)                           | [Dependencias](pom.xml)
+| Característica | Librería | Ejemplos de implementación |
+| ------------------------- | ----------------------------------------------------------- | ------------------------- |
+| Build tool | [Maven](https://maven.apache.org/) | [Dependencies, configuration and build](pom.xml) |
+| Style formatting | [EditorConf](https://www.jetbrains.com/help/idea/editorconfig.html) | [Rules](src/.editorconf)   |
+| HTTP server	| [Spring Boot Starter Web](https://spring.io/guides/gs/rest-service/) | [Article POST controller](src/main/java/org/dalvarez/ddd_example/article/infrastructure/rest_api/controller/post/ArticlePostController.java) |
+| Database integration | [Spring Data](https://spring.io/projects/spring-data) + [JPA](https://www.objectdb.com/api/java/jpa) + [Hibernate](https://hibernate.org/) | [Article repository](src/main/java/org/dalvarez/ddd_example/article/infrastructure/persistence/hibernate/repository/HibernateArticleRepository.java) |
+| Domain events publishing & consuming | [Project Reactor](https://projectreactor.io/) | [Publisher and consumer integration](src/main/java/org/dalvarez/ddd_example/shared/infrastructure/bus/reactor/ReactorEventBus.java) |
+| Infrastructure management | [Docker](https://www.docker.com/) | [Docker compose](docker-compose.yml) |
+| Logging | [Logback](https://logback.qos.ch/) + [Logstash encoder](https://github.com/logfellow/logstash-logback-encoder) | [Logback configuration](src/main/resources/logback-spring.xml), [logger implementation](src/main/java/org/dalvarez/ddd_example/shared/infrastructure/logger/Slf4jLogger.java) |
+| Code coverage	 | [Jacoco](https://github.com/jacoco/jacoco) | [Report](target/jacoco.exec) |
+| Unit tests	 | [Spring Boot Starter Test](https://docs.spring.io/spring-boot/docs/1.5.7.RELEASE/reference/html/boot-features-testing.html) | [Integration test case](src/test/java/org/dalvarez/ddd_example/article/application/create/ArticleCreatorShouldTestCase.java) |
+| Integration tests	 | [Spring Boot Starter Test](https://docs.spring.io/spring-boot/docs/1.5.7.RELEASE/reference/html/boot-features-testing.html) | [Unit test case](src/test/java/org/dalvarez/ddd_example/article/infrastructure/persistence/hibernate/repository/HibernateArticleRepositoryShouldItTestCase.java) |
 
 ## 4. Casos de uso y patrones implementados
+| Casos de uso y patrones | Ejemplos de implementación |
+| ------------------------- | ------------------------ | 
+| [Adapter pattern](https://refactoring.guru/es/design-patterns/adapter) | [Logger implementation](src/main/java/org/dalvarez/ddd_example/shared/infrastructure/logger/Slf4jLogger.java) |
+| [Repository pattern](https://www.martinfowler.com/eaaCatalog/repository.html) | [Repository implementation](src/main/java/org/dalvarez/ddd_example/article/infrastructure/persistence/hibernate/repository/HibernateArticleRepository.java) |
+| [Specification pattern](https://en.wikipedia.org/wiki/Specification_pattern) | [Criteria implementation](src/main/java/org/dalvarez/ddd_example/shared/domain/criteria) |
+| [Value Object](https://martinfowler.com/bliki/ValueObject.html) | [Identifier Value Object](src/main/java/org/dalvarez/ddd_example/shared/domain/value_object/id/Identifier.java) |
+| Rich Domain models ([tell don't ask](https://martinfowler.com/bliki/TellDontAsk.html), [avoid anemic domain models](https://martinfowler.com/bliki/AnemicDomainModel.html)) | [Article model](src/main/java/org/dalvarez/ddd_example/article/domain/model/Article.java) |
 
 ## 5. Configuración del entorno
 
 ## 6. Testing
-
+- Instalar las dependencias: `> mvn clean install`
+- Ejecutar tests:
+   - Integración (*Su nombre debe seguir el patrón `*ItTestCase`*): `> mvn failsafe:integration-test`
+   - Todos `mvn test`
+- Generar métricas: `> mvn verify`
+- Enviar las métricas a SonarQube:
+```
+  mvn sonar:sonar \
+    -Dsonar.projectKey=${KEY} \
+    -Dsonar.host.url=${HOST} \
+    -Dsonar.login=${TOKEN}
+```
+- Generar y enviar las métricas a SonarQube: `> mvn verify sonar:sonar`
 ## 7. Logs
 
 ## 8. Deploy
