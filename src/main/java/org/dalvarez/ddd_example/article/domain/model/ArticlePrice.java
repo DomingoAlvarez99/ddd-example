@@ -21,10 +21,10 @@ public final class ArticlePrice extends DoubleValueObject {
 
     private void ensureIsBetweenAcceptedValues() {
         if (Objects.isNull(value()))
-            throw new RuntimeException("Invalid value");
+            InvalidArticlePriceException.throwCauseOfIsNull();
 
         if (!isBetweenInclusive(MIN_VALUE, MAX_VALUE))
-            throw new RuntimeException("Value out of range value");
+            InvalidArticlePriceException.throwCauseOfIsNotBetweenExpectedValues(value(), MIN_VALUE, MAX_VALUE);
     }
 
     public static ArticlePrice of(final Double value) {

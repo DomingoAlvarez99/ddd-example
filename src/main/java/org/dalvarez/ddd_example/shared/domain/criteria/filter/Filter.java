@@ -72,12 +72,10 @@ public final class Filter<T> {
         if (value == null)
             return new HashSet<>();
 
-        if (!value.toString()
-                  .contains(MULTIPLE_VALUES_DELIMITER))
+        if (!value.toString().contains(MULTIPLE_VALUES_DELIMITER))
             return new HashSet<>(Collections.singletonList(value.toString()));
 
-        return Arrays.stream(value.toString()
-                                  .split(MULTIPLE_VALUES_DELIMITER_RE))
+        return Arrays.stream(value.toString().split(MULTIPLE_VALUES_DELIMITER_RE))
                      .filter(Objects::nonNull)
                      .collect(Collectors.toSet());
     }
@@ -87,7 +85,7 @@ public final class Filter<T> {
     }
 
     public static Filter<?> fromQuery(final String filter,
-                                      Class<?> aggregateClass) {
+                                      final Class<?> aggregateClass) {
         final Pattern regex = Pattern.compile(FILTER_REGEX);
         final Matcher matcher = regex.matcher(filter);
 
@@ -127,23 +125,18 @@ public final class Filter<T> {
     }
 
     @SuppressWarnings("unchecked")
-    private static <S> S buildFilterValue(Class<?> aggregateClass,
-                                          String fieldName,
-                                          String fieldValue) throws NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException, NoSuchFieldException {
-        Field field = aggregateClass.getDeclaredField(fieldName);
+    private static <S> S buildFilterValue(final Class<?> aggregateClass,
+                                          final String fieldName,
+                                          final String fieldValue) throws NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException, NoSuchFieldException {
+        final Field field = aggregateClass.getDeclaredField(fieldName);
         field.setAccessible(true);
 
         Class<?> clazz = field.getType();
 
         if (!isSubclassOf(clazz, ValueObject.class))
-            throw new ClassCastException(String.format(
-                    "Class %s is not a subclass of %s",
-                    clazz,
-                    ValueObject.class
-            ));
+            throw new ClassCastException(String.format("Class %s is not a subclass of %s", clazz, ValueObject.class));
 
-        while (clazz.getSuperclass() != null && !clazz.getSuperclass()
-                                                      .equals(ValueObject.class)) {
+        while (clazz.getSuperclass() != null && !clazz.getSuperclass().equals(ValueObject.class)) {
             clazz = clazz.getSuperclass();
         }
 
@@ -158,8 +151,7 @@ public final class Filter<T> {
         if (!field.contains(INNER_FIELDS_DELIMITER))
             return Collections.singletonList(field);
 
-        return Arrays.stream(field.split(INNER_FIELDS_DELIMITER_RE))
-                     .collect(Collectors.toList());
+        return Arrays.stream(field.split(INNER_FIELDS_DELIMITER_RE)).collect(Collectors.toList());
     }
 
     public List<String> fieldPath() {

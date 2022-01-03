@@ -92,18 +92,12 @@ public class ArticleResponse {
 
     public static ArticleResponse fromArticle(final Article article) {
         return new ArticleResponse(
-                article.id()
-                       .value(),
-                article.stock()
-                       .value(),
-                article.price()
-                       .value(),
-                article.name()
-                       .value(),
-                article.description()
-                       .value(),
-                article.categoryId() == null ? null : article.categoryId()
-                                                             .value()
+                article.id().value(),
+                article.stock().value(),
+                article.price().value(),
+                article.name().value(),
+                article.description().value(),
+                article.categoryId() == null ? null : article.categoryId().value()
         );
     }
 

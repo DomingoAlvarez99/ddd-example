@@ -18,8 +18,7 @@ public final class Slf4jLogger implements Logger {
 
     private String getClassName(final InjectionPoint ip) {
         return Optional.ofNullable(getMethodOrElseNull(ip.getMethodParameter()))
-                       .map(m -> m.getReturnType()
-                                  .getName())
+                       .map(m -> m.getReturnType().getName())
                        .orElseGet(() -> getMethodParameterOfDeclaredClass(ip));
     }
 
@@ -33,15 +32,13 @@ public final class Slf4jLogger implements Logger {
 
     private String getMethodParameterOfDeclaredClass(final InjectionPoint ip) {
         return Optional.ofNullable(ip.getMethodParameter())
-                       .map(mp -> mp.getDeclaringClass()
-                                    .getName())
+                       .map(mp -> mp.getDeclaringClass().getName())
                        .orElseGet(() -> getFieldParameterOfDeclaredClass(ip));
     }
 
     private String getFieldParameterOfDeclaredClass(final InjectionPoint ip) {
         return Optional.ofNullable(ip.getField())
-                       .map(f -> f.getDeclaringClass()
-                                  .getName())
+                       .map(f -> f.getDeclaringClass().getName())
                        .orElseThrow(IllegalArgumentException::new);
     }
 

@@ -31,8 +31,7 @@ public class Identifier extends StringValueObject implements Serializable {
     }
 
     private static String randomValue() {
-        return UUID.randomUUID()
-                   .toString();
+        return UUID.randomUUID().toString();
     }
 
 }

@@ -31,10 +31,7 @@ public final class CollectionUtils {
 
     public static <T> List<T> concat(final List<T> list1,
                                      final List<T> list2) {
-        return Stream.concat(
-                             list1.stream(),
-                             list2.stream()
-                     )
+        return Stream.concat(list1.stream(), list2.stream())
                      .collect(Collectors.toList());
     }
 

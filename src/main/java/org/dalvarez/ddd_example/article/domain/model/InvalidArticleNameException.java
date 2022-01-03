@@ -9,8 +9,8 @@ final class InvalidArticleNameException extends InvalidArticleException {
 
     private static final String NOT_REACH_MINIMUM_LENGTH_ERROR_CODE = "not_reach_min_length";
 
-    private InvalidArticleNameException(String errorCode,
-                                        String message) {
+    private InvalidArticleNameException(final String errorCode,
+                                        final String message) {
         super(errorCode, message);
     }
 
@@ -19,24 +19,24 @@ final class InvalidArticleNameException extends InvalidArticleException {
     }
 
 
-    public static void throwCauseOfExceedMaximumLength(String value,
-                                                       int length) {
+    public static void throwCauseOfExceedMaximumLength(final String value,
+                                                       final int length) {
         throwCauseOf(
                 EXCEED_MAXIMUM_LENGTH_ERROR_CODE,
                 String.format("The name <%s> exceed <%d> chars of length", value, length)
         );
     }
 
-    public static void throwCauseOfNotReachMinimumLength(String value,
-                                                         int length) {
+    public static void throwCauseOfNotReachMinimumLength(final String value,
+                                                         final int length) {
         throwCauseOf(
                 NOT_REACH_MINIMUM_LENGTH_ERROR_CODE,
                 String.format("The name <%s> doesn't reach <%d> chars of length", value, length)
         );
     }
 
-    private static void throwCauseOf(String value,
-                                     String message) {
+    private static void throwCauseOf(final String value,
+                                     final String message) {
         throw new InvalidArticleNameException(value, message);
     }
 

@@ -1,12 +1,12 @@
 package org.dalvarez.ddd_example.article.infrastructure.rest_api.put;
 
-import org.dalvarez.ddd_example.article.infrastructure.ArticleInfrastructureRestApiModuleTestCase;
-import org.dalvarez.ddd_example.shared.domain.IdMother;
-import org.dalvarez.ddd_example.shared.domain.log.Logger;
 import org.dalvarez.ddd_example.article.application.ArticleRequest;
 import org.dalvarez.ddd_example.article.application.ArticleResponse;
 import org.dalvarez.ddd_example.article.domain.model.Article;
 import org.dalvarez.ddd_example.article.domain.repository.ArticleRepository;
+import org.dalvarez.ddd_example.article.infrastructure.ArticleInfrastructureRestApiModuleTestCase;
+import org.dalvarez.ddd_example.shared.domain.IdMother;
+import org.dalvarez.ddd_example.shared.domain.log.Logger;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -52,7 +52,7 @@ final class ArticlePutControllerShouldItTestCase extends ArticleInfrastructureRe
 
     @Test
     void shouldNotPutAnArticleCauseNotExist() throws Exception {
-        final ArticleRequest request =  ArticleRequest.of(
+        final ArticleRequest request = ArticleRequest.of(
                 STOCK,
                 PRICE,
                 NAME,

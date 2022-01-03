@@ -20,12 +20,9 @@ public class CategoryResponse {
 
     public static CategoryResponse fromCategory(final Category category) {
         return new CategoryResponse(
-                category.id()
-                        .value(),
-                category.name()
-                        .value(),
-                category.parentId()
-                        .value()
+                category.id().value(),
+                category.name().value(),
+                category.parentId().value()
         );
     }
 

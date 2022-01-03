@@ -29,11 +29,7 @@ public class Category {
     public static Category create(
             final CategoryName name,
             final CategoryId parentId) {
-        return new Category(
-                CategoryId.random(),
-                name,
-                parentId
-        );
+        return new Category(CategoryId.random(), name, parentId);
     }
 
     public void rename(final CategoryName name) {

@@ -2,6 +2,8 @@ package org.dalvarez.ddd_example.article.domain.model;
 
 import org.dalvarez.ddd_example.shared.domain.value_object.IntValueObject;
 
+import java.util.Objects;
+
 public final class ArticleStock extends IntValueObject {
 
     private static final int MIN_VALUE = 1;
@@ -17,12 +19,11 @@ public final class ArticleStock extends IntValueObject {
     }
 
     private void ensureIsBetweenAcceptedValues(final Integer value) {
-        /*if (value == null)
-            throw new RuntimeException("Invalid value");
+        if (Objects.isNull(value()))
+            InvalidArticlePriceException.throwCauseOfIsNull();
 
-        if (!isBetweenExclusive(minStock, maxStock))
-            throw new RuntimeException("Value out of range value");
-         */
+        if (!isBetweenExclusive(MIN_VALUE, MAX_VALUE))
+            InvalidArticlePriceException.throwCauseOfIsNotBetweenExpectedValues(value(), MIN_VALUE, MAX_VALUE);
     }
 
     public static int minValue() {

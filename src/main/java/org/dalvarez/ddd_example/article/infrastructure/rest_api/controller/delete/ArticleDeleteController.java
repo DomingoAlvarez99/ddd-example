@@ -23,8 +23,7 @@ public final class ArticleDeleteController extends ArticleApiController {
     public ResponseEntity<Void> delete(@PathVariable final String id) {
         articleEraser.erase(id);
 
-        return ResponseEntity.noContent()
-                             .build();
+        return ResponseEntity.noContent().build();
     }
 
 }

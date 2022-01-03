@@ -13,8 +13,7 @@ public final class ArticleByCriteriaCounter {
     }
 
     public CountResultResponse count(final Criteria criteria) {
-        return new CountResultResponse(articleRepository.countByCriteria(criteria)
-                                                        .total());
+        return new CountResultResponse(articleRepository.countByCriteria(criteria).total());
     }
 
 }

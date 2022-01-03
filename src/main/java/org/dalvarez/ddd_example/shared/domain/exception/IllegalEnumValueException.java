@@ -6,11 +6,7 @@ public class IllegalEnumValueException extends IllegalArgumentException {
 
     public IllegalEnumValueException(final Class<?> clazz,
                                      final String value) {
-        super(String.format(
-                FORMAT_MESSAGE,
-                clazz.getSimpleName(),
-                value
-        ));
+        super(String.format(FORMAT_MESSAGE, clazz.getSimpleName(), value));
     }
 
 }

@@ -104,8 +104,7 @@ public final class HibernateArticleRepositoryShouldItTestCase extends Seeder<Art
 
     @Test
     void shouldDeleteTheArticleById() {
-        final ArticleId id = data.get(2)
-                            .id();
+        final ArticleId id = data.get(2).id();
 
         articleRepository.deleteById(id);
 
@@ -118,8 +117,7 @@ public final class HibernateArticleRepositoryShouldItTestCase extends Seeder<Art
 
         final QueryResult<Article> queryResult = articleRepository.getByCriteria(criteria);
 
-        final int actualSize = queryResult.result()
-                                          .size();
+        final int actualSize = queryResult.result().size();
 
         final int deletesExpected = 1;
 
@@ -185,11 +183,7 @@ public final class HibernateArticleRepositoryShouldItTestCase extends Seeder<Art
 
         final List<Article> actualArticles = queryResult.result();
 
-        assertEquals(
-                expected.name(),
-                actualArticles.get(0)
-                              .name()
-        );
+        assertEquals(expected.name(), actualArticles.get(0).name());
     }
 
 }

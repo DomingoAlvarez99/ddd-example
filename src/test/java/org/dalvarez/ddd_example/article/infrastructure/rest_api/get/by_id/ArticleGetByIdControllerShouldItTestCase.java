@@ -1,11 +1,11 @@
 package org.dalvarez.ddd_example.article.infrastructure.rest_api.get.by_id;
 
-import org.dalvarez.ddd_example.article.domain.ArticleMother;
-import org.dalvarez.ddd_example.article.infrastructure.ArticleInfrastructureRestApiModuleTestCase;
-import org.dalvarez.ddd_example.shared.domain.log.Logger;
 import org.dalvarez.ddd_example.article.application.ArticleResponse;
+import org.dalvarez.ddd_example.article.domain.ArticleMother;
 import org.dalvarez.ddd_example.article.domain.model.Article;
 import org.dalvarez.ddd_example.article.domain.repository.ArticleRepository;
+import org.dalvarez.ddd_example.article.infrastructure.ArticleInfrastructureRestApiModuleTestCase;
+import org.dalvarez.ddd_example.shared.domain.log.Logger;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -32,8 +32,7 @@ final class ArticleGetByIdControllerShouldItTestCase extends ArticleInfrastructu
 
     @Test
     void shouldNotgetByIdCauseNotExist() throws Exception {
-        shouldNotgetById(ArticleMother.random()
-                                        .id().value());
+        shouldNotgetById(ArticleMother.random().id().value());
     }
 
 }

@@ -1,11 +1,11 @@
 package org.dalvarez.ddd_example.article.application.update;
 
 import org.dalvarez.ddd_example.article.application.ArticleApplicationModuleTestCase;
-import org.dalvarez.ddd_example.article.domain.ArticleMother;
-import org.dalvarez.ddd_example.shared.domain.value_object.id.Identifier;
 import org.dalvarez.ddd_example.article.application.ArticleRequest;
+import org.dalvarez.ddd_example.article.domain.ArticleMother;
 import org.dalvarez.ddd_example.article.domain.model.Article;
 import org.dalvarez.ddd_example.category.domain.repository.CategoryRepository;
+import org.dalvarez.ddd_example.shared.domain.value_object.id.Identifier;
 import org.junit.jupiter.api.Test;
 
 import static org.mockito.ArgumentMatchers.any;
@@ -29,17 +29,13 @@ public final class ArticleUpdaterShouldTestCase extends ArticleApplicationModule
                                     .value();
         final Article random = ArticleMother.random(id);
 
-        final ArticleRequest randomRequest = ArticleRequest.of(random.id()
-                                                                     .value(),
-                                                               random.stock()
-                                                                     .value(),
-                                                               random.price()
-                                                                     .value(),
-                                                               random.name()
-                                                                     .value(),
-                                                               random.description()
-                                                                     .value(),
-                                                               null
+        final ArticleRequest randomRequest = ArticleRequest.of(
+                random.id().value(),
+                random.stock().value(),
+                random.price().value(),
+                random.name().value(),
+                random.description().value(),
+                null
         );
 
         when(repository.getById(any())).thenReturn(random);

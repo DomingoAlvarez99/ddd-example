@@ -1,13 +1,13 @@
 package org.dalvarez.ddd_example.article.domain;
 
-import org.dalvarez.ddd_example.shared.domain.IdMother;
-import org.dalvarez.ddd_example.shared.domain.util.CollectionUtils;
 import org.dalvarez.ddd_example.article.domain.model.Article;
 import org.dalvarez.ddd_example.article.domain.model.ArticleDescription;
 import org.dalvarez.ddd_example.article.domain.model.ArticleId;
 import org.dalvarez.ddd_example.article.domain.model.ArticleName;
 import org.dalvarez.ddd_example.article.domain.model.ArticlePrice;
 import org.dalvarez.ddd_example.article.domain.model.ArticleStock;
+import org.dalvarez.ddd_example.shared.domain.IdMother;
+import org.dalvarez.ddd_example.shared.domain.util.CollectionUtils;
 
 import java.util.List;
 import java.util.Random;

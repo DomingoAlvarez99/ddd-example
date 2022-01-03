@@ -23,8 +23,7 @@ public final class CategoryDeleteController extends CategoryApiController {
     public ResponseEntity<Void> delete(@PathVariable final String id) {
         categoryEraser.erase(id);
 
-        return ResponseEntity.noContent()
-                             .build();
+        return ResponseEntity.noContent().build();
     }
 
 }

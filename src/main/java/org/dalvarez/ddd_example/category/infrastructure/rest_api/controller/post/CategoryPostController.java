@@ -23,10 +23,7 @@ public final class CategoryPostController extends CategoryApiController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<CategoryResponse> post(@RequestBody final CategoryRequest categoryRequest) {
-        return new ResponseEntity<>(
-                categoryCreator.create(categoryRequest),
-                HttpStatus.CREATED
-        );
+        return new ResponseEntity<>(categoryCreator.create(categoryRequest), HttpStatus.CREATED);
     }
 
 }

@@ -25,8 +25,7 @@ public final class DomainEventSubscriberInformation {
     }
 
     public String className() {
-        String[] nameParts = subscriberClass.getName()
-                                            .split("\\.");
+        String[] nameParts = subscriberClass.getName().split("\\.");
 
         return nameParts[nameParts.length - 1];
     }

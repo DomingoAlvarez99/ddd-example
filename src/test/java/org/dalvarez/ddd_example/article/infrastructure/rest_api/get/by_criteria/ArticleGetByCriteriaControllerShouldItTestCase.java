@@ -1,9 +1,9 @@
 package org.dalvarez.ddd_example.article.infrastructure.rest_api.get.by_criteria;
 
-import org.dalvarez.ddd_example.article.infrastructure.ArticleInfrastructureRestApiModuleTestCase;
 import org.dalvarez.ddd_example.article.application.ArticleQueryResultResponse;
-import org.dalvarez.ddd_example.shared.domain.log.Logger;
 import org.dalvarez.ddd_example.article.domain.repository.ArticleRepository;
+import org.dalvarez.ddd_example.article.infrastructure.ArticleInfrastructureRestApiModuleTestCase;
+import org.dalvarez.ddd_example.shared.domain.log.Logger;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -31,8 +31,7 @@ final class ArticleGetByCriteriaControllerShouldItTestCase extends ArticleInfras
         final ArticleQueryResultResponse response = shouldGetByCriteria(params, ArticleQueryResultResponse.class);
 
         assertTrue(response.totalElements() > 0);
-        assertEquals(response.result()
-                             .size(), (long) response.totalElements());
+        assertEquals(response.result().size(), (long) response.totalElements());
     }
 
     @Test

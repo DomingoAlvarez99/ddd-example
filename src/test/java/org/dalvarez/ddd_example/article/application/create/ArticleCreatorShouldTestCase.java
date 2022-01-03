@@ -1,12 +1,12 @@
 package org.dalvarez.ddd_example.article.application.create;
 
 import org.dalvarez.ddd_example.article.application.ArticleApplicationModuleTestCase;
-import org.dalvarez.ddd_example.article.domain.ArticleMother;
-import org.dalvarez.ddd_example.shared.domain.bus.DomainEvent;
-import org.dalvarez.ddd_example.shared.domain.log.Logger;
 import org.dalvarez.ddd_example.article.application.ArticleRequest;
+import org.dalvarez.ddd_example.article.domain.ArticleMother;
 import org.dalvarez.ddd_example.article.domain.event.ArticleCreatedDomainEvent;
 import org.dalvarez.ddd_example.article.domain.model.Article;
+import org.dalvarez.ddd_example.shared.domain.bus.DomainEvent;
+import org.dalvarez.ddd_example.shared.domain.log.Logger;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -32,15 +32,12 @@ public final class ArticleCreatorShouldTestCase extends ArticleApplicationModule
     public void createAValidArticle() {
         final Article random = ArticleMother.random();
 
-        final ArticleRequest randomRequest = ArticleRequest.of(random.stock()
-                                                                     .value(),
-                                                               random.price()
-                                                                     .value(),
-                                                               random.name()
-                                                                     .value(),
-                                                               random.description()
-                                                                     .value(),
-                                                               null
+        final ArticleRequest randomRequest = ArticleRequest.of(
+                random.stock().value(),
+                random.price().value(),
+                random.name().value(),
+                random.description().value(),
+                null
         );
 
         when(repository.getById(any())).thenReturn(random);
@@ -49,8 +46,7 @@ public final class ArticleCreatorShouldTestCase extends ArticleApplicationModule
 
         final List<DomainEvent> domainEvents = Collections.singletonList(new ArticleCreatedDomainEvent(random));
 
-        doNothing().when(eventBus)
-                   .publish(domainEvents);
+        doNothing().when(eventBus).publish(domainEvents);
 
         articleCreator.create(randomRequest);
 

@@ -8,7 +8,6 @@ import org.dalvarez.ddd_example.shared.domain.repository.GenericRepository;
 import org.dalvarez.ddd_example.shared.domain.value_object.id.Identifier;
 
 import java.util.List;
-import java.util.Objects;
 import java.util.stream.Collectors;
 
 import static org.mockito.ArgumentMatchers.argThat;

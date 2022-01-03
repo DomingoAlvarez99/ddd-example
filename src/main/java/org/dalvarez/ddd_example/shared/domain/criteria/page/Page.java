@@ -19,10 +19,8 @@ public final class Page {
 
     public Page(final Long index,
                 final Long size) {
-        this.index = Optional.ofNullable(index)
-                             .orElse(emptyIndex);
-        this.size = Optional.ofNullable(size)
-                            .orElse(maxSize);
+        this.index = Optional.ofNullable(index).orElse(emptyIndex);
+        this.size = Optional.ofNullable(size).orElse(maxSize);
     }
 
     public Long getIndex() {

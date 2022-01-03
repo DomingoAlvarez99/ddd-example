@@ -21,8 +21,7 @@ public class CategoryUpdater {
                                    final CategoryRequest request) {
         final Category category = categoryRepository.getById(CategoryId.of(id));
 
-        final CategoryId parentId = categoryRepository.getById(CategoryId.of(request.parentId()))
-                                                      .id();
+        final CategoryId parentId = categoryRepository.getById(CategoryId.of(request.parentId())).id();
         category.updateParentId(parentId);
 
         final CategoryName newName = CategoryName.of(request.name());

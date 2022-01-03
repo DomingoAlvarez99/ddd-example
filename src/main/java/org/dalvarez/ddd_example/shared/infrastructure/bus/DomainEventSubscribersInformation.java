@@ -24,20 +24,14 @@ public final class DomainEventSubscribersInformation {
     }
 
     private static List<DomainEventSubscriberInformation> scanDomainEventSubscribers() {
-        Reflections reflections = new Reflections(PACKAGE_BASE);
-        Set<Class<?>> subscribers = reflections.getTypesAnnotatedWith(DomainEventSubscriber.class);
+        final Reflections reflections = new Reflections(PACKAGE_BASE);
+        final Set<Class<?>> subscribers = reflections.getTypesAnnotatedWith(DomainEventSubscriber.class);
 
-        return subscribers.stream()
-                          .map(subscriberClass -> {
-                              Class<? extends DomainEvent>[] domainEvents = subscriberClass.getAnnotation(
-                                                                                                   DomainEventSubscriber.class)
-                                                                                           .value();
-                              return new DomainEventSubscriberInformation(
-                                      subscriberClass,
-                                      Arrays.asList(domainEvents)
-                              );
-                          })
-                          .collect(Collectors.toList());
+        return subscribers.stream().map(subscriberClass -> {
+            final Class<? extends DomainEvent>[] domainEvents = subscriberClass.getAnnotation(DomainEventSubscriber.class).value();
+
+            return new DomainEventSubscriberInformation(subscriberClass, Arrays.asList(domainEvents));
+        }).collect(Collectors.toList());
     }
 
     public List<DomainEventSubscriberInformation> all() {

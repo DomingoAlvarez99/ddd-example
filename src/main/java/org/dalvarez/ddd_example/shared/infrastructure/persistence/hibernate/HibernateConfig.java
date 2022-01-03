@@ -62,22 +62,20 @@ public class HibernateConfig {
     private List<File> getFilesRecursively(File root,
                                            String extension) {
         return getFilesRecursively(root).stream()
-                                        .filter(file -> file.getName()
-                                                            .contains(extension))
+                                        .filter(file -> file.getName().contains(extension))
                                         .collect(Collectors.toList());
     }
 
     private List<File> getFilesRecursively(File root) {
         List<File> files = new ArrayList<>();
 
-        getFiles(root)
-                .forEach(file -> {
-                    if (file.isDirectory()) {
-                        files.addAll(getFilesRecursively(file));
-                    }
+        getFiles(root).forEach(file -> {
+            if (file.isDirectory()) {
+                files.addAll(getFilesRecursively(file));
+            }
 
-                    files.addAll(getFiles(file));
-                });
+            files.addAll(getFiles(file));
+        });
 
         return files;
     }

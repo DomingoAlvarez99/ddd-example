@@ -5,8 +5,7 @@ import org.dalvarez.ddd_example.shared.domain.exception.DomainException;
 
 public class InvalidArticleException extends DomainException {
 
-    private static final String ERROR_CODE_ID = Article.class.getSimpleName()
-                                                             .toLowerCase();
+    private static final String ERROR_CODE_ID = Article.class.getSimpleName().toLowerCase();
 
     protected InvalidArticleException(String errorCode,
                                       String message) {

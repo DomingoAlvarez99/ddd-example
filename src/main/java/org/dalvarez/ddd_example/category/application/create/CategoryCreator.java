@@ -21,8 +21,7 @@ public final class CategoryCreator {
     public CategoryResponse create(final CategoryRequest request) {
         CategoryName categoryName = CategoryName.of(request.name());
 
-        final CategoryId parentId = categoryRepository.getById(CategoryId.of(request.parentId()))
-                                                      .id();
+        final CategoryId parentId = categoryRepository.getById(CategoryId.of(request.parentId())).id();
 
         Category category = Category.create(categoryName, parentId);
 

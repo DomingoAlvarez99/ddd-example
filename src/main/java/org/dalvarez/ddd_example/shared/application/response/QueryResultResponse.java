@@ -24,9 +24,7 @@ public abstract class QueryResultResponse<REQ, RES> {
                                   final List<REQ> result) {
         this.totalElements = totalElements;
         this.firstElement = firstElement;
-        this.result = result.stream()
-                            .map(this::mapToResponse)
-                            .collect(Collectors.toList());
+        this.result = result.stream().map(this::mapToResponse).collect(Collectors.toList());
     }
 
     protected abstract RES mapToResponse(REQ request);

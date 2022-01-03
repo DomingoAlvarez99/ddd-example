@@ -1,9 +1,9 @@
 package org.dalvarez.ddd_example.shared.infrastructure.rest_api;
 
 import org.dalvarez.ddd_example.shared.domain.log.Logger;
-import org.dalvarez.ddd_example.shared.infrastructure.persistence.Seeder;
 import org.dalvarez.ddd_example.shared.domain.repository.GenericRepository;
 import org.dalvarez.ddd_example.shared.infrastructure.Application;
+import org.dalvarez.ddd_example.shared.infrastructure.persistence.Seeder;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 

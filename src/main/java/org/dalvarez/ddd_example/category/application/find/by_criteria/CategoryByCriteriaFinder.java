@@ -19,9 +19,7 @@ public final class CategoryByCriteriaFinder {
     public CategoryQueryResultResponse find(final Criteria criteria) {
         final QueryResult<Category> queryResult = categoryRepository.getByCriteria(criteria);
 
-        return CategoryQueryResultResponse.of(
-                queryResult
-        );
+        return CategoryQueryResultResponse.of(queryResult);
     }
 
 }

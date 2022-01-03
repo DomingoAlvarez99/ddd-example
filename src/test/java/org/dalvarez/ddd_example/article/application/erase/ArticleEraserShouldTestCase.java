@@ -1,8 +1,8 @@
 package org.dalvarez.ddd_example.article.application.erase;
 
 import org.dalvarez.ddd_example.article.application.ArticleApplicationModuleTestCase;
-import org.dalvarez.ddd_example.shared.domain.IdMother;
 import org.dalvarez.ddd_example.article.domain.model.ArticleId;
+import org.dalvarez.ddd_example.shared.domain.IdMother;
 import org.junit.jupiter.api.Test;
 
 public final class ArticleEraserShouldTestCase extends ArticleApplicationModuleTestCase {

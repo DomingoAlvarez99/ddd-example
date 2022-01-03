@@ -2,9 +2,9 @@ package org.dalvarez.ddd_example.article.application.find.by_id;
 
 import org.dalvarez.ddd_example.article.application.ArticleApplicationModuleTestCase;
 import org.dalvarez.ddd_example.article.domain.ArticleMother;
+import org.dalvarez.ddd_example.article.domain.model.Article;
 import org.dalvarez.ddd_example.article.domain.model.ArticleId;
 import org.dalvarez.ddd_example.shared.domain.value_object.id.Identifier;
-import org.dalvarez.ddd_example.article.domain.model.Article;
 import org.junit.jupiter.api.Test;
 
 import static org.mockito.Mockito.when;

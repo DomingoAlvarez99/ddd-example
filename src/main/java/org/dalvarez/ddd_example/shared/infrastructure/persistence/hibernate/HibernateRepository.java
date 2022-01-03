@@ -76,15 +76,14 @@ public abstract class HibernateRepository<T> {
                         .withFilter(new Filter<>(field, FilterOperator.EQUAL, value))
                         .build(),
                 errorMessage
-        )
-                .singleResult();
+        ).singleResult();
     }
 
     protected void removeById(final Identifier id) {
-        Filter<Identifier> idFilter = new Filter<>(ID_FIELD, FilterOperator.EQUAL, id);
-        Criteria criteriaDeleteById = Criteria.builder()
-                                              .withFilter(idFilter)
-                                              .build();
+        final Filter<Identifier> idFilter = new Filter<>(ID_FIELD, FilterOperator.EQUAL, id);
+        final Criteria criteriaDeleteById = Criteria.builder()
+                                                    .withFilter(idFilter)
+                                                    .build();
         removeByCriteria(criteriaDeleteById);
     }
 
@@ -94,8 +93,7 @@ public abstract class HibernateRepository<T> {
                 aggregateClass
         );
 
-        entityManager.createQuery(hibernateCriteria)
-                     .executeUpdate();
+        entityManager.createQuery(hibernateCriteria).executeUpdate();
     }
 
     private QueryResult<T> findByCriteria(final Criteria criteria,
@@ -115,10 +113,7 @@ public abstract class HibernateRepository<T> {
                                                          .filter(CollectionUtils::nonEmpty)
                                                          .orElseThrow(() -> new NotFoundException(errorMessage));
 
-        return new QueryResult<>(
-                resultsCount,
-                results
-        );
+        return new QueryResult<>(resultsCount, results);
     }
 
     protected QueryResult<T> findByCriteria(final Criteria criteria) {
@@ -142,21 +137,15 @@ public abstract class HibernateRepository<T> {
                 sumClass
         );
 
-        return entityManager.createQuery(criteriaQuery)
-                            .getSingleResult();
+        return entityManager.createQuery(criteriaQuery).getSingleResult();
     }
 
     private TypedQuery<T> paginate(final TypedQuery<T> query,
                                    final Criteria criteria) {
-        final int pageSize = criteria.page()
-                                     .getSize()
-                                     .intValue();
-        final int pageIndex = criteria.page()
-                                      .getIndex()
-                                      .intValue();
+        final int pageSize = criteria.page().getSize().intValue();
+        final int pageIndex = criteria.page().getIndex().intValue();
 
-        return query.setFirstResult(pageIndex * pageSize)
-                    .setMaxResults(pageSize);
+        return query.setFirstResult(pageIndex * pageSize).setMaxResults(pageSize);
     }
 
 }
