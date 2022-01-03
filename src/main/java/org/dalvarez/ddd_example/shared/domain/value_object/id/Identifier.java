@@ -26,8 +26,7 @@ public class Identifier extends StringValueObject implements Serializable {
     }
 
     public static Identifier random() {
-        return new Identifier(randomValue()) {
-        };
+        return new Identifier(randomValue());
     }
 
     private static String randomValue() {
