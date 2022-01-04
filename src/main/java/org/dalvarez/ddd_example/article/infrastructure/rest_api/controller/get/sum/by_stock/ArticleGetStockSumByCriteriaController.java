@@ -10,8 +10,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import static org.dalvarez.ddd_example.shared.infrastructure.rest_api.controller.ApiConstants.SEARCH_PATH;
+import static org.dalvarez.ddd_example.shared.infrastructure.rest_api.controller.ApiConstants.SUM_PATH;
+
 @RestController
 public final class ArticleGetStockSumByCriteriaController extends ArticleApiController {
+
+    public static final String STOCK_SUM_BY_CRITERIA_PATH = SUM_PATH + "/stock" + SEARCH_PATH;
 
     private final ArticleByStockAdder articleByStockAdder;
 

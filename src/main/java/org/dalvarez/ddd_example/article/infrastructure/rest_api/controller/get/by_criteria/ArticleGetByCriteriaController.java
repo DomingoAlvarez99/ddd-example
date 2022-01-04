@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import static org.dalvarez.ddd_example.shared.infrastructure.rest_api.controller.ApiConstants.SEARCH_PATH;
+
 @RestController
 public final class ArticleGetByCriteriaController extends ArticleApiController {
 

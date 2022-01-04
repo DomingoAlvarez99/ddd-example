@@ -10,8 +10,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import static org.dalvarez.ddd_example.shared.infrastructure.rest_api.controller.ApiConstants.SEARCH_PATH;
+import static org.dalvarez.ddd_example.shared.infrastructure.rest_api.controller.ApiConstants.SUM_PATH;
+
 @RestController
 public final class ArticleGetPriceSumByCriteriaController extends ArticleApiController {
+
+    public static final String PRICE_SUM_BY_CRITERIA_PATH = SUM_PATH + "/price" + SEARCH_PATH;
 
     private final ArticleByPriceAdder articleByPriceAdder;
 

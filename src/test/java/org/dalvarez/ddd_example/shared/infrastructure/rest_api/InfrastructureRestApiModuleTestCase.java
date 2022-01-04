@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import org.dalvarez.ddd_example.shared.domain.repository.GenericRepository;
-import org.dalvarez.ddd_example.shared.infrastructure.rest_api.controller.ApiController;
+import org.dalvarez.ddd_example.shared.infrastructure.rest_api.controller.ApiConstants;
 import org.dalvarez.ddd_example.shared.infrastructure.rest_api.exception_handler.ErrorResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -69,7 +69,7 @@ public abstract class InfrastructureRestApiModuleTestCase<T, R extends GenericRe
         return getBy(
                 expectedStatusCode,
                 responseClass,
-                ApiController.idPathVar(),
+                ApiConstants.ID_PATH_VAR,
                 new LinkedMultiValueMap<>(),
                 vars
         );
@@ -106,7 +106,7 @@ public abstract class InfrastructureRestApiModuleTestCase<T, R extends GenericRe
         return getBy(
                 expectedStatusCode,
                 responseClass,
-                ApiController.searchPath(),
+                ApiConstants.SEARCH_PATH,
                 params
         );
     }
@@ -190,7 +190,7 @@ public abstract class InfrastructureRestApiModuleTestCase<T, R extends GenericRe
                                   final V... vars) throws Exception {
         final AtomicReference<RES> response = new AtomicReference<>();
 
-        mockMvc.perform(MockMvcRequestBuilders.put(buildPath(ApiController.idPathVar()), vars)
+        mockMvc.perform(MockMvcRequestBuilders.put(buildPath(ApiConstants.ID_PATH_VAR), vars)
                                               .contextPath(contextPath)
                                               .content(convertObjectToJsonString(request))
                                               .contentType(MediaType.APPLICATION_JSON)
@@ -212,7 +212,7 @@ public abstract class InfrastructureRestApiModuleTestCase<T, R extends GenericRe
                                   final String id) throws Exception {
         deleteBy(
                 expectedStatusCode,
-                ApiController.idPathVar(),
+                ApiConstants.ID_PATH_VAR,
                 id
         );
     }

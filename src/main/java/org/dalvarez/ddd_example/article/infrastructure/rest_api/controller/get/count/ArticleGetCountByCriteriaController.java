@@ -10,8 +10,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import static org.dalvarez.ddd_example.shared.infrastructure.rest_api.controller.ApiConstants.COUNT_PATH;
+import static org.dalvarez.ddd_example.shared.infrastructure.rest_api.controller.ApiConstants.SEARCH_PATH;
+
 @RestController
 public final class ArticleGetCountByCriteriaController extends ArticleApiController {
+
+    public static final String COUNT_BY_CRITERIA_PATH = COUNT_PATH + SEARCH_PATH;
 
     private final ArticleByCriteriaCounter articleByCriteriaCounter;
 
