@@ -42,12 +42,14 @@ Ejemplo de una aplicación Java que utiliza la Arquitectura de *Puertos y Adapta
 ## 4. Casos de uso y patrones implementados
 | Casos de uso y patrones | Ejemplos de implementación |
 | ------------------------- | ------------------------ | 
-| [Adapter pattern](https://refactoring.guru/es/design-patterns/adapter) | [Logger implementation](src/main/java/org/dalvarez/ddd_example/shared/infrastructure/logger/Slf4jLogger.java) |
+| [Adapter pattern & infrastructure Service](https://refactoring.guru/es/design-patterns/adapter) | [Logger implementation](src/main/java/org/dalvarez/ddd_example/shared/infrastructure/logger/Slf4jLogger.java) |
 | [Repository pattern](https://www.martinfowler.com/eaaCatalog/repository.html) | [Repository implementation](src/main/java/org/dalvarez/ddd_example/article/infrastructure/persistence/hibernate/repository/HibernateArticleRepository.java) |
 | [Specification pattern](https://en.wikipedia.org/wiki/Specification_pattern) | [Criteria implementation](src/main/java/org/dalvarez/ddd_example/shared/domain/criteria) |
+| Domain Service | [CategoryFinder](src/main/java/org/dalvarez/ddd_example/shared/domain/category/DomainCategoryByIdFinder.java) |
 | [Value Object](https://martinfowler.com/bliki/ValueObject.html) | [Identifier Value Object](src/main/java/org/dalvarez/ddd_example/shared/domain/value_object/id/Identifier.java) |
 | Rich Domain models ([Tell don't ask](https://martinfowler.com/bliki/TellDontAsk.html), [Avoid anemic domain models](https://martinfowler.com/bliki/AnemicDomainModel.html)) | [Article model](src/main/java/org/dalvarez/ddd_example/article/domain/model/Article.java) |
 | Clean code patterns ([Guard clauses](https://refactoring.com/catalog/replaceNestedConditionalWithGuardClauses.html), [Named constructors](https://verraes.net/2014/06/named-constructors-in-php/), [Self encapsulation](https://refactoring.guru/es/self-encapsulate-field)) | [Example](src/main/java/org/dalvarez/ddd_example/shared/domain/value_object/id/Identifier.java) |
+| Application Service | [ArticleCreator](src/main/java/org/dalvarez/ddd_example/article/application/create/ArticleCreator.java) |
 
 ## 5. Configuración del entorno
 
