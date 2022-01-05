@@ -71,13 +71,13 @@ Example of a Java application using the * Ports and Adapters * Architecture ([He
     - Create the user, the database and the schema:
       - Access to the root db replacing the variables: `> docker exec -it postgres -U ${root_username} ${root_db}`
       - Run the following script replacing the variables:
-      ```sql
-        CREATE ROLE ${username} LOGIN PASSWORD ${password};
-        CREATE DATABASE ${db};
-        GRANT CREATE ON DATABASE ${db} TO ${username};
-        CREATE SCHEMA ${schema};
-        ALTER ROLE ${username} IN DATABASE ${db} SET search_path TO ${schema};
-      ```
+        ```sql
+          CREATE ROLE ${username} LOGIN PASSWORD ${password};
+          CREATE DATABASE ${db};
+          GRANT CREATE ON DATABASE ${db} TO ${username};
+          CREATE SCHEMA ${schema};
+          ALTER ROLE ${username} IN DATABASE ${db} SET search_path TO ${schema};
+        ```
     - Create the database tables:
       - Find the tables: `> find . -path '*/migration/*' -type f` 
       - Access to te database: `> docker exec -it postgres -U ${username} ${db}`
@@ -86,13 +86,13 @@ Example of a Java application using the * Ports and Adapters * Architecture ([He
     - Create the user, the database and the schema:
       - Access to the root db replacing the variables: `> docker exec -it postgres -U ${root_username} ${root_db}`
         - Run the following script replacing the variables:
-        ```sql
-          CREATE ROLE ${username} LOGIN PASSWORD ${password};
-          CREATE DATABASE ${db};
-          GRANT CREATE ON DATABASE ${db} TO ${username};
-          CREATE SCHEMA ${schema};
-          ALTER ROLE ${username} IN DATABASE ${db} SET search_path TO ${schema};
-        ```
+          ```sql
+            CREATE ROLE ${username} LOGIN PASSWORD ${password};
+            CREATE DATABASE ${db};
+            GRANT CREATE ON DATABASE ${db} TO ${username};
+            CREATE SCHEMA ${schema};
+            ALTER ROLE ${username} IN DATABASE ${db} SET search_path TO ${schema};
+          ```
 4. Bring up the other containers: `> docker-compose up -d sonarqube elasticsearch logstash kibana minio`
 
 ### Run the tests
