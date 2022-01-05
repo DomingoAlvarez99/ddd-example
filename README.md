@@ -54,19 +54,25 @@ Ejemplo de una aplicación Java que utiliza la Arquitectura de *Puertos y Adapta
 ## 5. Configuración del entorno
 
 ## 6. Testing
-- Instalar las dependencias: `> mvn clean install`
-- Ejecutar tests:
-   - Integración (*Su nombre debe seguir el patrón `*ItTestCase`*): `> mvn failsafe:integration-test`
-   - Todos `mvn test`
-- Generar métricas: `> mvn verify`
+Antes que nada, hay que instalar las dependencias: `> mvn clean install`
+
+- Ejecutar tests y generar métricas:
+  - Integración (*Su nombre debe seguir el patrón `*ItTestCase`*): `> mvn failsafe:integration-test`
+  - Todos: `mvn test`
 - Enviar las métricas a SonarQube:
-```
-  mvn sonar:sonar \
-    -Dsonar.projectKey=${KEY} \
-    -Dsonar.host.url=${HOST} \
-    -Dsonar.login=${TOKEN}
-```
-- Generar y enviar las métricas a SonarQube: `> mvn verify sonar:sonar`
+  ```
+    mvn sonar:sonar \
+      -Dsonar.projectKey=${KEY} \
+      -Dsonar.host.url=${HOST} \
+      -Dsonar.login=${TOKEN}
+  ```
+- Realizar todo lo anterior:
+  ```
+    mvn test sonar:sonar \
+      -Dsonar.projectKey=${KEY} \
+      -Dsonar.host.url=${HOST} \
+      -Dsonar.login=${TOKEN}
+  ```
 ## 7. Logs
 
 ## 8. Deploy
