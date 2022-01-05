@@ -1,46 +1,51 @@
-_**Este repositorio está en desarrollo**_
-# Arquitectura Hexagonal y DDD en Java
-Ejemplo de una aplicación Java que utiliza la Arquitectura de *Puertos y Adaptadores* ([Arquitectura Hexagonal](https://es.wikipedia.org/wiki/Arquitectura_hexagonal_(software))) junto a Domain Driven Design ([DDD](https://es.wikipedia.org/wiki/Dise%C3%B1o_guiado_por_el_dominio)) para mantener el código lo más simple posible.
+_**The repository is under develop**_
 
-## Tabla de contenidos
-- [Arquitectura Hexagonal y DDD en Java](#arquitectura-hexagonal-y-ddd-en-java)
-  - [Tabla de contenidos](#tabla-de-contenidos)
-  - [1. Tecnologías necesarias](#1-tecnologías-necesarias)
-  - [2. Entrypoint](#2-entrypoint)
+# Hexagonal Architecture and DDD in Java
+Example of a Java application using the * Ports and Adapters * Architecture ([Hexagonal Architecture](https://es.wikipedia.org/wiki/Arquitectura_hexagonal_(software))) with Domain Driven Design ([DDD](https://es.wikipedia.org/wiki/Dise%C3%B1o_guiado_por_el_dominio)) to keep the code as simple as possible.
+
+## 0. Table of contents
+- [Hexagonal Architecture and DDD in Java](#hexagonal-architecture-and-ddd-in-java)
+  - [0. Table of contents](#0-table-of-contents)
+  - [1. Entrypoint](#1-entrypoint)
     - [Endpoints](#endpoints)
     - [Cli](#cli)
-  - [3. Librerías y ejemplos de implementación](#3-librerías-y-ejemplos-de-implementación)
-  - [4. Casos de uso y patrones implementados](#4-casos-de-uso-y-patrones-implementados)
-  - [5. Configuración del entorno](#5-configuración-del-entorno)
-  - [6. Testing](#6-testing)
-  - [7. Logs](#7-logs)
-  - [8. Deploy](#8-deploy)
- 
+  - [2. Libraries and examples of implementation](#2-libraries-and-examples-of-implementation)
+  - [3. Use cases, patterns and examples of implementation](#3-use-cases-patterns-and-examples-of-implementation)
+  - [4. Environment setup](#4-environment-setup)
+    - [Install the needed tools](#install-the-needed-tools)
+    - [Prepare the application environment](#prepare-the-application-environment)
+    - [Run the tests](#run-the-tests)
+    - [Start the app](#start-the-app)
+  - [5. Logs](#5-logs)
+  - [6. Code gen](#6-code-gen)
+  - [7. Deploy](#7-deploy)
 
-## 1. Tecnologías necesarias
-
-## 2. Entrypoint
+## 1. Entrypoint
 
 ### Endpoints
 
 ### Cli
 
-## 3. Librerías y ejemplos de implementación
-| Característica | Librería | Ejemplos de implementación |
+## 2. Libraries and examples of implementation
+| Feature | Library | Example of implementation |
 | ------------------------- | ----------------------------------------------------------- | ------------------------- |
 | Build tool | [Maven](https://maven.apache.org/) | [Dependencies, configuration and build](pom.xml) |
 | Style formatting | [EditorConf](https://www.jetbrains.com/help/idea/editorconfig.html) | [Rules](src/.editorconf)   |
+| Extract metadata at runtime | [Reflections](https://github.com/ronmamo/reflections) | [DomainEventSuscribersInfo](src/main/java/org/dalvarez/ddd_example/shared/infrastructure/bus/DomainEventSubscribersInformation) |
 | HTTP server	| [Spring Boot Starter Web](https://spring.io/guides/gs/rest-service/) | [Article POST controller](src/main/java/org/dalvarez/ddd_example/article/infrastructure/rest_api/controller/post/ArticlePostController.java) |
 | Database integration | [Spring Data](https://spring.io/projects/spring-data) + [JPA](https://www.objectdb.com/api/java/jpa) + [Hibernate](https://hibernate.org/) | [Article repository](src/main/java/org/dalvarez/ddd_example/article/infrastructure/persistence/hibernate/repository/HibernateArticleRepository.java) |
 | Domain events publishing & consuming | [Project Reactor](https://projectreactor.io/) | [Publisher and consumer integration](src/main/java/org/dalvarez/ddd_example/shared/infrastructure/bus/reactor/ReactorEventBus.java) |
+| Document storer | [MinIO](https://min.io/) | *TO DO* |
 | Infrastructure management | [Docker](https://www.docker.com/) | [Docker compose](docker-compose.yml) |
 | Logging | [Logback](https://logback.qos.ch/) + [Logstash encoder](https://github.com/logfellow/logstash-logback-encoder) | [Logback configuration](src/main/resources/logback-spring.xml), [Logger implementation](src/main/java/org/dalvarez/ddd_example/shared/infrastructure/logger/Slf4jLogger.java) |
 | Code coverage	 | [Jacoco](https://github.com/jacoco/jacoco) + [Sonar Scanner](https://docs.sonarqube.org/latest/analysis/scan/sonarscanner-for-maven/) | [Config](pom.xml) |
-| Unit tests	 | [Spring Boot Starter Test](https://docs.spring.io/spring-boot/docs/1.5.7.RELEASE/reference/html/boot-features-testing.html) | [Unit test case](src/test/java/org/dalvarez/ddd_example/article/application/create/ArticleCreatorShouldTestCase.java) |
-| Integration tests	 | [Spring Boot Starter Test](https://docs.spring.io/spring-boot/docs/1.5.7.RELEASE/reference/html/boot-features-testing.html) | [Integration test case](src/test/java/org/dalvarez/ddd_example/article/infrastructure/persistence/hibernate/repository/HibernateArticleRepositoryShouldItTestCase.java) |
+| Unit tests	 | [Spring Boot Starter Test](https://docs.spring.io/spring-boot/docs/1.5.7.RELEASE/reference/html/boot-features-testing.html) (Mainly [JUnit 5](https://junit.org/junit5/) and [Mockito](https://site.mockito.org/)) | [Unit test case](src/test/java/org/dalvarez/ddd_example/article/application/create/ArticleCreatorShouldTestCase.java) |
+| Integration tests	 | [Spring Boot Starter Test](https://docs.spring.io/spring-boot/docs/1.5.7.RELEASE/reference/html/boot-features-testing.html) (Mainly [JUnit 5](https://junit.org/junit5/) and [Spring Test](https://docs.spring.io/spring-framework/docs/4.3.11.RELEASE/spring-framework-reference/htmlsingle/#integration-testing)) | [Integration test case](src/test/java/org/dalvarez/ddd_example/article/infrastructure/persistence/hibernate/repository/HibernateArticleRepositoryShouldItTestCase.java) |
+| Code gen | [Open Api generator](https://github.com/OpenAPITools/openapi-generator) | Before importing the client you must generate it |
+| Api documentation | [Swagger Open Api 3](https://swagger.io/specification/) | [Article POST controller](src/main/java/org/dalvarez/ddd_example/article/infrastructure/rest_api/controller/post/ArticlePostController.java) |
 
-## 4. Casos de uso y patrones implementados
-| Casos de uso y patrones | Ejemplos de implementación |
+## 3. Use cases, patterns and examples of implementation
+| Use cases and patterns | Example of implementation |
 | ------------------------- | ------------------------ | 
 | [Adapter pattern & infrastructure Service](https://refactoring.guru/es/design-patterns/adapter) | [Logger implementation](src/main/java/org/dalvarez/ddd_example/shared/infrastructure/logger/Slf4jLogger.java) |
 | [Repository pattern](https://www.martinfowler.com/eaaCatalog/repository.html) | [Repository implementation](src/main/java/org/dalvarez/ddd_example/article/infrastructure/persistence/hibernate/repository/HibernateArticleRepository.java) |
@@ -51,28 +56,70 @@ Ejemplo de una aplicación Java que utiliza la Arquitectura de *Puertos y Adapta
 | Clean code patterns ([Guard clauses](https://refactoring.com/catalog/replaceNestedConditionalWithGuardClauses.html), [Named constructors](https://verraes.net/2014/06/named-constructors-in-php/), [Self encapsulation](https://refactoring.guru/es/self-encapsulate-field)) | [Example](src/main/java/org/dalvarez/ddd_example/shared/domain/value_object/id/Identifier.java) |
 | Application Service | [ArticleCreator](src/main/java/org/dalvarez/ddd_example/article/application/create/ArticleCreator.java) |
 
-## 5. Configuración del entorno
+## 4. Environment setup
+### Install the needed tools
+1. Clone this repository: `> git clone https://github.com/DomingoAlvarez99/ddd-example.git`
+2. Download and install: [![Docker](https://img.shields.io/badge/-Docker-blue?&logo=Docker&logoColor=white)](https://www.docker.com/)
+[![Java](https://img.shields.io/badge/-java-yellow?&logo=java&logoColor=white)](https://www.docker.com/)
+[![Maven](https://img.shields.io/badge/-maven-red?&logo=apache-maven&logoColor=white)](https://www.docker.com/)
 
-## 6. Testing
-Antes que nada, hay que instalar las dependencias: `> mvn clean install`
+### Prepare the application environment
+1. Copy the Docker environment variables config file and tune it with your desired values: `> cp .env.dist .env`
+2. Start Docker and brin up the database container `docker-compose up -d postgres`
+3. Configure the users and databases of the backend and Sonarqube containers.
+  - Backend
+    - Create the user, the database and the schema:
+      - Access to the root db replacing the variables: `> docker exec -it postgres -U ${root_username} ${root_db}`
+      - Run the following script replacing the variables:
+      ```sql
+        CREATE ROLE ${username} LOGIN PASSWORD ${password};
+        CREATE DATABASE ${db};
+        GRANT CREATE ON DATABASE ${db} TO ${username};
+        CREATE SCHEMA ${schema};
+        ALTER ROLE ${username} IN DATABASE ${db} SET search_path TO ${schema};
+      ```
+    - Create the database tables:
+      - Find the tables: `> find . -path '*/migration/*' -type f` 
+      - Access to te database: `> docker exec -it postgres -U ${username} ${db}`
+      - Copy and paste the definition of the tables.
+  - SonarQube
+    - Create the user, the database and the schema:
+      - Access to the root db replacing the variables: `> docker exec -it postgres -U ${root_username} ${root_db}`
+        - Run the following script replacing the variables:
+        ```sql
+          CREATE ROLE ${username} LOGIN PASSWORD ${password};
+          CREATE DATABASE ${db};
+          GRANT CREATE ON DATABASE ${db} TO ${username};
+          CREATE SCHEMA ${schema};
+          ALTER ROLE ${username} IN DATABASE ${db} SET search_path TO ${schema};
+        ```
+4. Bring up the other containers: `> docker-compose up -d sonarqube elasticsearch logstash kibana minio`
 
-- Ejecutar tests y generar métricas:
-  - Integración (*Su nombre debe seguir el patrón `*ItTestCase`*): `> mvn failsafe:integration-test`
-  - Todos: `mvn test`
-- Enviar las métricas a SonarQube:
+### Run the tests
+Before all install the dependencies: `> mvn clean install`
+
+- Execute the tests and generate the metrics:
+  - Integration (*The name must follow the following pattern `*ItTestCase`*): `> mvn failsafe:integration-test`
+  - All: `mvn test`
+- Send metrics to SonarQube:
   ```
     mvn sonar:sonar \
-      -Dsonar.projectKey=${KEY} \
-      -Dsonar.host.url=${HOST} \
-      -Dsonar.login=${TOKEN}
+      -Dsonar.projectKey=${key} \
+      -Dsonar.host.url=${host} \
+      -Dsonar.login=${token}
   ```
-- Realizar todo lo anterior:
+- Do all:
   ```
     mvn test sonar:sonar \
-      -Dsonar.projectKey=${KEY} \
-      -Dsonar.host.url=${HOST} \
-      -Dsonar.login=${TOKEN}
+      -Dsonar.projectKey=${key} \
+      -Dsonar.host.url=${host} \
+      -Dsonar.login=${token}
   ```
-## 7. Logs
+### Start the app
+1. Backend: `mvn spring-boot:run`
 
-## 8. Deploy
+## 5. Logs
+
+## 6. Code gen
+
+## 7. Deploy
