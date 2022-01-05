@@ -36,8 +36,8 @@ Ejemplo de una aplicación Java que utiliza la Arquitectura de *Puertos y Adapta
 | Infrastructure management | [Docker](https://www.docker.com/) | [Docker compose](docker-compose.yml) |
 | Logging | [Logback](https://logback.qos.ch/) + [Logstash encoder](https://github.com/logfellow/logstash-logback-encoder) | [Logback configuration](src/main/resources/logback-spring.xml), [logger implementation](src/main/java/org/dalvarez/ddd_example/shared/infrastructure/logger/Slf4jLogger.java) |
 | Code coverage	 | [Jacoco](https://github.com/jacoco/jacoco) | [Report](target/jacoco.exec) |
-| Unit tests	 | [Spring Boot Starter Test](https://docs.spring.io/spring-boot/docs/1.5.7.RELEASE/reference/html/boot-features-testing.html) | [Integration test case](src/test/java/org/dalvarez/ddd_example/article/application/create/ArticleCreatorShouldTestCase.java) |
-| Integration tests	 | [Spring Boot Starter Test](https://docs.spring.io/spring-boot/docs/1.5.7.RELEASE/reference/html/boot-features-testing.html) | [Unit test case](src/test/java/org/dalvarez/ddd_example/article/infrastructure/persistence/hibernate/repository/HibernateArticleRepositoryShouldItTestCase.java) |
+| Unit tests	 | [Spring Boot Starter Test](https://docs.spring.io/spring-boot/docs/1.5.7.RELEASE/reference/html/boot-features-testing.html) | [Unit test case](src/test/java/org/dalvarez/ddd_example/article/application/create/ArticleCreatorShouldTestCase.java) |
+| Integration tests	 | [Spring Boot Starter Test](https://docs.spring.io/spring-boot/docs/1.5.7.RELEASE/reference/html/boot-features-testing.html) | [Integration test case](src/test/java/org/dalvarez/ddd_example/article/infrastructure/persistence/hibernate/repository/HibernateArticleRepositoryShouldItTestCase.java) |
 
 ## 4. Casos de uso y patrones implementados
 | Casos de uso y patrones | Ejemplos de implementación |
