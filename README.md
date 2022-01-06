@@ -98,9 +98,9 @@ Example of a Java application using the * Ports and Adapters * Architecture ([He
 
 ### Run the tests
 
-- Unit: (*The name must follow the following pattern `*TestCase`*):
-- Integration (*The name must follow the following pattern `*ItTestCase`*)
-- Acceptance: Must have a .feature file linked with a .java file
+- Unit: (*The name must follow the following pattern `*TestCase`.*)
+- Integration: (*The name must follow the following pattern `*ItTestCase`.*)
+- Acceptance: Must have a .feature file linked with a .java file.
 
 Before all install the dependencies: `> mvn clean install`
 
