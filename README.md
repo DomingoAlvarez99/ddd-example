@@ -156,7 +156,7 @@ After that you can import the client:
 ```
 
 ## 7. Deploy
-The project uses [Maven](https://maven.apache.org/) in order to package the app in single Jar file that you can execute.
+The project uses [Maven](https://maven.apache.org/) in order to package the app in a single Jar file that you can execute.
 
 1. Create the package: `> mvn package`.
 2. Copy the generated binary to the destination folder: `> mkdir -p /var/www/ddd-example && cp target/*.jar /var/www/ddd-example/app.jar`
