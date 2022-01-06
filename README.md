@@ -41,6 +41,7 @@ Example of a Java application using the * Ports and Adapters * Architecture ([He
 | Code coverage	 | [Jacoco](https://github.com/jacoco/jacoco) + [Sonar Scanner](https://docs.sonarqube.org/latest/analysis/scan/sonarscanner-for-maven/) | [Config](pom.xml) |
 | Unit tests	 | [Spring Boot Starter Test](https://docs.spring.io/spring-boot/docs/1.5.7.RELEASE/reference/html/boot-features-testing.html) (Mainly [JUnit 5](https://junit.org/junit5/) and [Mockito](https://site.mockito.org/)) | [Unit test case](src/test/java/org/dalvarez/ddd_example/article/application/create/ArticleCreatorShouldTestCase.java) |
 | Integration tests	 | [Spring Boot Starter Test](https://docs.spring.io/spring-boot/docs/1.5.7.RELEASE/reference/html/boot-features-testing.html) (Mainly [JUnit 5](https://junit.org/junit5/) and [Spring Test](https://docs.spring.io/spring-framework/docs/4.3.11.RELEASE/spring-framework-reference/htmlsingle/#integration-testing)) | [Integration test case](src/test/java/org/dalvarez/ddd_example/article/infrastructure/persistence/hibernate/repository/HibernateArticleRepositoryShouldItTestCase.java) |
+| Acceptance tests	 | [Cucumber](https://cucumber.io/) | [Feature](src/test/java/org/dalvarez/ddd_example/shared/infrastructure/rest_api/controller/health-check.feature), [Test case](src/test/java/org/dalvarez/ddd_example/shared/infrastructure/rest_api/controller/HealthCheckGetControllerShouldAcceptanceTest.java) |
 | Code gen | [Open Api generator](https://github.com/OpenAPITools/openapi-generator) | Before importing the client you must generate it |
 | Api documentation | [Swagger Open Api 3](https://swagger.io/specification/) | [Article POST controller](src/main/java/org/dalvarez/ddd_example/article/infrastructure/rest_api/controller/post/ArticlePostController.java) |
 
@@ -96,11 +97,14 @@ Example of a Java application using the * Ports and Adapters * Architecture ([He
 4. Bring up the other containers: `> docker-compose up -d sonarqube elasticsearch logstash kibana minio`
 
 ### Run the tests
+
+- Unit: (*The name must follow the following pattern `*TestCase`*):
+- Integration (*The name must follow the following pattern `*ItTestCase`*)
+- Acceptance: Must have a .feature file linked with a .java file
+
 Before all install the dependencies: `> mvn clean install`
 
-- Execute the tests and generate the metrics:
-  - Integration (*The name must follow the following pattern `*ItTestCase`*): `> mvn failsafe:integration-test`
-  - All: `mvn test`
+- Execute the tests and generate the metrics: `> mvn verify`
 - Send metrics to SonarQube:
   ```
     mvn sonar:sonar \
@@ -110,7 +114,7 @@ Before all install the dependencies: `> mvn clean install`
   ```
 - Do all:
   ```
-    mvn test sonar:sonar \
+    mvn verify sonar:sonar \
       -Dsonar.projectKey=${key} \
       -Dsonar.host.url=${host} \
       -Dsonar.login=${token}

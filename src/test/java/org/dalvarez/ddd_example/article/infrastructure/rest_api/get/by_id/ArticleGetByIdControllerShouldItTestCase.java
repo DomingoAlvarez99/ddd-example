@@ -27,7 +27,7 @@ final class ArticleGetByIdControllerShouldItTestCase extends ArticleInfrastructu
 
     @Test
     void shouldNotgetByIdCauseNotExist() throws Exception {
-        shouldNotgetById(ArticleMother.random().id().value());
+        shouldNotGetById(ArticleMother.random().id().value());
     }
 
 }

@@ -5,6 +5,7 @@ import org.dalvarez.ddd_example.article.domain.model.Article;
 import org.dalvarez.ddd_example.article.domain.model.ArticleId;
 import org.dalvarez.ddd_example.article.domain.model.ArticleName;
 import org.dalvarez.ddd_example.article.domain.repository.ArticleRepository;
+import org.dalvarez.ddd_example.article.infrastructure.ArticleInfrastructureModuleTestCase;
 import org.dalvarez.ddd_example.shared.domain.criteria.Criteria;
 import org.dalvarez.ddd_example.shared.domain.criteria.QueryResult;
 import org.dalvarez.ddd_example.shared.domain.criteria.filter.Filter;
@@ -14,8 +15,6 @@ import org.dalvarez.ddd_example.shared.domain.criteria.filter.FiltersBooleanOper
 import org.dalvarez.ddd_example.shared.domain.criteria.order.Order;
 import org.dalvarez.ddd_example.shared.domain.criteria.order.OrderType;
 import org.dalvarez.ddd_example.shared.domain.criteria.page.Page;
-import org.dalvarez.ddd_example.shared.infrastructure.persistence.Seeder;
-import org.dalvarez.ddd_example.shared.infrastructure.shared.TestConfig;
 import org.dalvarez.ddd_example.shared.infrastructure.shared.exception.NotFoundException;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -28,9 +27,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-@TestConfig
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-final class HibernateArticleRepositoryShouldItTestCase extends Seeder<Article, ArticleRepository> {
+final class HibernateArticleRepositoryShouldItTestCase extends ArticleInfrastructureModuleTestCase<Article, ArticleRepository> {
 
     private final ArticleRepository articleRepository;
 

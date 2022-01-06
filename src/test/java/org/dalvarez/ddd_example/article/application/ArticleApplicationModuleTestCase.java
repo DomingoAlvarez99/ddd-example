@@ -2,13 +2,13 @@ package org.dalvarez.ddd_example.article.application;
 
 import org.dalvarez.ddd_example.article.domain.model.Article;
 import org.dalvarez.ddd_example.article.domain.repository.ArticleRepository;
-import org.dalvarez.ddd_example.shared.application.ApplicationModuleTestCase;
+import org.dalvarez.ddd_example.shared.application.UnitTestCase;
 import org.dalvarez.ddd_example.shared.domain.criteria.Criteria;
 
 import static org.mockito.Mockito.atLeastOnce;
 import static org.mockito.Mockito.verify;
 
-public abstract class ArticleApplicationModuleTestCase extends ApplicationModuleTestCase<Article, ArticleRepository> {
+public abstract class ArticleApplicationModuleTestCase extends UnitTestCase<Article, ArticleRepository> {
 
     protected ArticleApplicationModuleTestCase() {
         super(ArticleRepository.class);

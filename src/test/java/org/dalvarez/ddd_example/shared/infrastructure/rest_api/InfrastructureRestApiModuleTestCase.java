@@ -4,10 +4,14 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import org.dalvarez.ddd_example.shared.domain.repository.GenericRepository;
+import org.dalvarez.ddd_example.shared.infrastructure.Application;
+import org.dalvarez.ddd_example.shared.infrastructure.persistence.Seeder;
 import org.dalvarez.ddd_example.shared.infrastructure.rest_api.controller.ApiConstants;
 import org.dalvarez.ddd_example.shared.infrastructure.rest_api.exception_handler.ErrorResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
@@ -24,7 +28,9 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-public abstract class InfrastructureRestApiModuleTestCase<T, R extends GenericRepository<T>> extends ApiTestCase<T, R> {
+@AutoConfigureMockMvc
+@SpringBootTest(classes = Application.class)
+public abstract class InfrastructureRestApiModuleTestCase<T, R extends GenericRepository<T>> extends Seeder<T, R> {
 
     @Autowired
     protected MockMvc mockMvc;
@@ -54,7 +60,7 @@ public abstract class InfrastructureRestApiModuleTestCase<T, R extends GenericRe
         );
     }
 
-    protected void shouldNotgetById(final String id) throws Exception {
+    protected void shouldNotGetById(final String id) throws Exception {
         getById(
                 HttpStatus.NOT_FOUND.value(),
                 ErrorResponse.class,

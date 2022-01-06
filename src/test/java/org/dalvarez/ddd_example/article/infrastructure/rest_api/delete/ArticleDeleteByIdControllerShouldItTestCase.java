@@ -18,7 +18,7 @@ final class ArticleDeleteByIdControllerShouldItTestCase extends ArticleInfrastru
 
         shouldDeleteById(expected.id().value());
 
-        shouldNotgetById(expected.id().value());
+        shouldNotGetById(expected.id().value());
     }
 
 }
