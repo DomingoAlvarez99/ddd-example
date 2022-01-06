@@ -130,7 +130,7 @@ The logging mechanism uses Logback and logstash-logback-encoder in order to:
 - Output the log records through the standard output channel (STDOUT, your terminal).
 - Append the log records in JSON format into Logstash.
 
-After this we can:
+After that we can:
 
 - Send the log records to an Elasticsearch index.
 - And finally visualize them centrally in Kibana.
