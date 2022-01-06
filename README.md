@@ -6,27 +6,21 @@ Example of a Java application using the * Ports and Adapters * Architecture ([He
 ## 0. Table of contents
 - [Hexagonal Architecture and DDD in Java](#hexagonal-architecture-and-ddd-in-java)
   - [0. Table of contents](#0-table-of-contents)
-  - [1. Entrypoint](#1-entrypoint)
-    - [Endpoints](#endpoints)
-    - [Cli](#cli)
-  - [2. Libraries and examples of implementation](#2-libraries-and-examples-of-implementation)
-  - [3. Use cases, patterns and examples of implementation](#3-use-cases-patterns-and-examples-of-implementation)
-  - [4. Environment setup](#4-environment-setup)
+  - [1. Libraries and examples of implementation](#1-libraries-and-examples-of-implementation)
+  - [2. Use cases, patterns and examples of implementation](#2-use-cases-patterns-and-examples-of-implementation)
+  - [3. Environment setup](#3-environment-setup)
     - [Install the needed tools](#install-the-needed-tools)
     - [Prepare the application environment](#prepare-the-application-environment)
     - [Run the tests](#run-the-tests)
     - [Start the app](#start-the-app)
+  - [4. Entrypoint](#4-entrypoint)
+    - [Endpoints](#endpoints)
+    - [Cli](#cli)
   - [5. Logs](#5-logs)
   - [6. Code gen](#6-code-gen)
   - [7. Deploy](#7-deploy)
 
-## 1. Entrypoint
-
-### Endpoints
-
-### Cli
-
-## 2. Libraries and examples of implementation
+## 1. Libraries and examples of implementation
 | Feature | Library | Example of implementation |
 | ------------------------- | ----------------------------------------------------------- | ------------------------- |
 | Build tool | [Maven](https://maven.apache.org/) | [Dependencies, configuration and build](pom.xml) |
@@ -45,7 +39,7 @@ Example of a Java application using the * Ports and Adapters * Architecture ([He
 | Code gen | [Open Api generator](https://github.com/OpenAPITools/openapi-generator) | Before importing the client you must generate it |
 | Api documentation | [Swagger Open Api 3](https://swagger.io/specification/) | [Article POST controller](src/main/java/org/dalvarez/ddd_example/article/infrastructure/rest_api/controller/post/ArticlePostController.java) |
 
-## 3. Use cases, patterns and examples of implementation
+## 2. Use cases, patterns and examples of implementation
 | Use cases and patterns | Example of implementation |
 | ------------------------- | ------------------------ | 
 | [Adapter pattern & infrastructure Service](https://refactoring.guru/es/design-patterns/adapter) | [Logger implementation](src/main/java/org/dalvarez/ddd_example/shared/infrastructure/logger/Slf4jLogger.java) |
@@ -57,7 +51,7 @@ Example of a Java application using the * Ports and Adapters * Architecture ([He
 | Clean code patterns ([Guard clauses](https://refactoring.com/catalog/replaceNestedConditionalWithGuardClauses.html), [Named constructors](https://verraes.net/2014/06/named-constructors-in-php/), [Self encapsulation](https://refactoring.guru/es/self-encapsulate-field)) | [Example](src/main/java/org/dalvarez/ddd_example/shared/domain/value_object/id/Identifier.java) |
 | Application Service | [ArticleCreator](src/main/java/org/dalvarez/ddd_example/article/application/create/ArticleCreator.java) |
 
-## 4. Environment setup
+## 3. Environment setup
 ### Install the needed tools
 1. Clone this repository: `> git clone https://github.com/DomingoAlvarez99/ddd-example.git`
 2. Download and install: [![Docker](https://img.shields.io/badge/-Docker-blue?&logo=Docker&logoColor=white)](https://www.docker.com/)
@@ -98,9 +92,9 @@ Example of a Java application using the * Ports and Adapters * Architecture ([He
 
 ### Run the tests
 
-- Unit: (*The name must follow the following pattern `*TestCase`*)
-- Integration: (*The name must follow the following pattern `*ItTestCase`*)
-- Acceptance: Must have a .feature file linked with a .java file.
+- Unit: (*The name must follow the following pattern `*TestCase`*):
+- Integration (*The name must follow the following pattern `*ItTestCase`*)
+- Acceptance: Must have a .feature file linked with a .java file
 
 Before all install the dependencies: `> mvn clean install`
 
@@ -120,10 +114,50 @@ Before all install the dependencies: `> mvn clean install`
       -Dsonar.login=${token}
   ```
 ### Start the app
-1. Backend: `mvn spring-boot:run`
+Backend: `mvn spring-boot:run`
+
+## 4. Entrypoint
+
+### Endpoints
+[Swagger ui](http://localhost:8080/api/v0/swagger-ui.html)
+
+### Cli
+*TO DO*
 
 ## 5. Logs
+The logging mechanism uses Logback and logstash-logback-encoder in order to:
+
+- Output the log records through the standard output channel (STDOUT, your terminal).
+- Append the log records in JSON format into Logstash.
+
+After this we can:
+
+- Send the log records to an Elasticsearch index.
+- And finally visualize them centrally in Kibana.
 
 ## 6. Code gen
+Open Api code generation allows generating a rest api client from a specification (controller definition):
+
+1. Download the spec: `> wget -P /generated/swagger-api http://localhost:8080/api-docs -O api-docs.json`
+2. Generate the client:
+  ```
+    > mvn clean install -P code-gen
+    > cd /target/generated-sources-swagger-api
+    > mvn clean install
+  ```
+
+After that you can import the client:
+```xml
+<dependency>
+  <groupId>org.dalvarez.shop</groupId>
+  <artifactId>${project.artifactId}-api-client</artifactId>
+  <version>${project.version}</version>
+</dependency>
+```
 
 ## 7. Deploy
+The project uses [Maven](https://maven.apache.org/) in order to package the app in single Jar file that you can execute.
+
+1. Create the package: `> mvn package`.
+2. Copy the generated binary to the destination folder: `> mkdir -p /var/www/ddd-example && cp target/*.jar /var/www/ddd-example/app.jar`
+3. Run the app binary:  `> java -jar /var/www/ddd-example/app.jar`
