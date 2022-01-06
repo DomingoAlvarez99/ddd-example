@@ -29,7 +29,7 @@ Example of a Java application using the * Ports and Adapters * Architecture ([He
 | HTTP server	| [Spring Boot Starter Web](https://spring.io/guides/gs/rest-service/) | [Article POST controller](src/main/java/org/dalvarez/ddd_example/article/infrastructure/rest_api/controller/post/ArticlePostController.java) |
 | Database integration | [Spring Data](https://spring.io/projects/spring-data) + [JPA](https://www.objectdb.com/api/java/jpa) + [Hibernate](https://hibernate.org/) | [Article repository](src/main/java/org/dalvarez/ddd_example/article/infrastructure/persistence/hibernate/repository/HibernateArticleRepository.java) |
 | Domain events publishing & consuming | [Project Reactor](https://projectreactor.io/) | [Publisher and consumer integration](src/main/java/org/dalvarez/ddd_example/shared/infrastructure/bus/reactor/ReactorEventBus.java) |
-| Document storer | [MinIO](https://min.io/) | *TO DO* |
+| Document storer | [MinIO](https://github.com/minio/minio-java) | *TO DO* |
 | Infrastructure management | [Docker](https://www.docker.com/) | [Docker compose](docker-compose.yml) |
 | Logging | [Logback](https://logback.qos.ch/) + [Logstash encoder](https://github.com/logfellow/logstash-logback-encoder) | [Logback configuration](src/main/resources/logback-spring.xml), [Logger implementation](src/main/java/org/dalvarez/ddd_example/shared/infrastructure/logger/Slf4jLogger.java) |
 | Code coverage	 | [Jacoco](https://github.com/jacoco/jacoco) + [Sonar Scanner](https://docs.sonarqube.org/latest/analysis/scan/sonarscanner-for-maven/) | [Config](pom.xml) |
