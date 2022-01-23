@@ -29,14 +29,14 @@ Example of a Java application using the * Ports and Adapters * Architecture ([He
 | HTTP server	| [Spring Boot Starter Web](https://spring.io/guides/gs/rest-service/) | [Article POST controller](src/main/java/org/dalvarez/ddd_example/article/infrastructure/rest_api/controller/post/ArticlePostController.java) |
 | Database integration | [Spring Data](https://spring.io/projects/spring-data) + [JPA](https://www.objectdb.com/api/java/jpa) + [Hibernate](https://hibernate.org/) | [Article repository](src/main/java/org/dalvarez/ddd_example/article/infrastructure/persistence/hibernate/repository/HibernateArticleRepository.java) |
 | Domain events publishing & consuming | [Project Reactor](https://projectreactor.io/) | [Publisher and consumer integration](src/main/java/org/dalvarez/ddd_example/shared/infrastructure/bus/reactor/ReactorEventBus.java) |
-| Document storer | [MinIO](https://min.io/) | *TO DO* |
+| Document storer | [MinIO](https://github.com/minio/minio-java) | *TO DO* |
 | Infrastructure management | [Docker](https://www.docker.com/) | [Docker compose](docker-compose.yml) |
 | Logging | [Logback](https://logback.qos.ch/) + [Logstash encoder](https://github.com/logfellow/logstash-logback-encoder) | [Logback configuration](src/main/resources/logback-spring.xml), [Logger implementation](src/main/java/org/dalvarez/ddd_example/shared/infrastructure/logger/Slf4jLogger.java) |
 | Code coverage	 | [Jacoco](https://github.com/jacoco/jacoco) + [Sonar Scanner](https://docs.sonarqube.org/latest/analysis/scan/sonarscanner-for-maven/) | [Config](pom.xml) |
 | Unit tests	 | [Spring Boot Starter Test](https://docs.spring.io/spring-boot/docs/1.5.7.RELEASE/reference/html/boot-features-testing.html) (Mainly [JUnit 5](https://junit.org/junit5/) and [Mockito](https://site.mockito.org/)) | [Unit test case](src/test/java/org/dalvarez/ddd_example/article/application/create/ArticleCreatorShouldTestCase.java) |
 | Integration tests	 | [Spring Boot Starter Test](https://docs.spring.io/spring-boot/docs/1.5.7.RELEASE/reference/html/boot-features-testing.html) (Mainly [JUnit 5](https://junit.org/junit5/) and [Spring Test](https://docs.spring.io/spring-framework/docs/4.3.11.RELEASE/spring-framework-reference/htmlsingle/#integration-testing)) | [Integration test case](src/test/java/org/dalvarez/ddd_example/article/infrastructure/persistence/hibernate/repository/HibernateArticleRepositoryShouldItTestCase.java) |
-| Acceptance tests	 | [Cucumber](https://cucumber.io/) | [Feature](src/test/java/org/dalvarez/ddd_example/shared/infrastructure/rest_api/controller/health-check.feature), [Test case](src/test/java/org/dalvarez/ddd_example/shared/infrastructure/rest_api/controller/HealthCheckGetControllerShouldAcceptanceTest.java) |
-| Code gen | [Open Api generator](https://github.com/OpenAPITools/openapi-generator) | Before importing the client you must generate it |
+| Acceptance tests	 | [Spring Boot Starter Test](https://docs.spring.io/spring-boot/docs/1.5.7.RELEASE/reference/html/boot-features-testing.html) (Mainly [JUnit 4](https://junit.org/junit4/) + [Spring Test](https://docs.spring.io/spring-framework/docs/4.3.11.RELEASE/spring-framework-reference/htmlsingle/#integration-testing)) + [Cucumber](https://cucumber.io/) | [Health check feature](src/test/java/org/dalvarez/ddd_example/shared/infrastructure/rest_api/controller/health-check.feature), [Health check test case](src/test/java/org/dalvarez/ddd_example/shared/infrastructure/rest_api/controller/HealthCheckGetControllerShouldAcceptanceTest.java) |
+| Code gen | [Open Api generator](https://github.com/OpenAPITools/openapi-generator) | Before importing the client you must generate it. |
 | Api documentation | [Swagger Open Api 3](https://swagger.io/specification/) | [Article POST controller](src/main/java/org/dalvarez/ddd_example/article/infrastructure/rest_api/controller/post/ArticlePostController.java) |
 
 ## 2. Use cases, patterns and examples of implementation
@@ -130,7 +130,7 @@ The logging mechanism uses Logback and logstash-logback-encoder in order to:
 - Output the log records through the standard output channel (STDOUT, your terminal).
 - Append the log records in JSON format into Logstash.
 
-After this we can:
+After that we can:
 
 - Send the log records to an Elasticsearch index.
 - And finally visualize them centrally in Kibana.
@@ -156,7 +156,7 @@ After that you can import the client:
 ```
 
 ## 7. Deploy
-The project uses [Maven](https://maven.apache.org/) in order to package the app in single Jar file that you can execute.
+The project uses [Maven](https://maven.apache.org/) in order to package the app in a single Jar file that you can execute.
 
 1. Create the package: `> mvn package`.
 2. Copy the generated binary to the destination folder: `> mkdir -p /var/www/ddd-example && cp target/*.jar /var/www/ddd-example/app.jar`
