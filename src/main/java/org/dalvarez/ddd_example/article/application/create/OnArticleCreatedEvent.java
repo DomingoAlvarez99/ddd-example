@@ -19,7 +19,7 @@ public final class OnArticleCreatedEvent {
                 event.eventName(),
                 event.id(),
                 event.aggregateId(),
-                event.date()
+                event.occurredOn()
         );
     }
 

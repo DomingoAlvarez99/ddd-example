@@ -7,7 +7,7 @@ import java.util.Objects;
 
 public abstract class DomainEvent {
 
-    private final Instant date;
+    private final Instant occurredOn;
 
     private final Identifier id;
 
@@ -15,20 +15,20 @@ public abstract class DomainEvent {
 
     private DomainEvent() {
         this.aggregateId = null;
-        date = null;
+        occurredOn = null;
         id = null;
     }
 
     protected DomainEvent(final Identifier aggregateId) {
         this.aggregateId = aggregateId;
-        this.date = Instant.now();
+        this.occurredOn = Instant.now();
         this.id = Identifier.random();
     }
 
     public abstract String eventName();
 
-    public Instant date() {
-        return date;
+    public Instant occurredOn() {
+        return occurredOn;
     }
 
     public Identifier id() {
@@ -44,7 +44,7 @@ public abstract class DomainEvent {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         DomainEvent that = (DomainEvent) o;
-        return Objects.equals(date, that.date) && Objects.equals(id, that.id) && Objects.equals(
+        return Objects.equals(occurredOn, that.occurredOn) && Objects.equals(id, that.id) && Objects.equals(
                 aggregateId,
                 that.aggregateId
         );
@@ -52,13 +52,13 @@ public abstract class DomainEvent {
 
     @Override
     public int hashCode() {
-        return Objects.hash(date, id, aggregateId);
+        return Objects.hash(occurredOn, id, aggregateId);
     }
 
     @Override
     public String toString() {
         return "DomainEvent{" +
-                "date=" + date +
+                "date=" + occurredOn +
                 ", id=" + id +
                 ", aggregateId=" + aggregateId +
                 '}';
