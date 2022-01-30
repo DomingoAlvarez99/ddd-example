@@ -7,7 +7,7 @@ Example of a Java application using the *Ports and Adapters* Architecture ([Hexa
 - [Hexagonal Architecture and DDD in Java](#hexagonal-architecture-and-ddd-in-java)
   - [0. Table of contents](#0-table-of-contents)
   - [1. Libraries and examples of implementation](#1-libraries-and-examples-of-implementation)
-  - [2. Use cases, patterns and examples of implementation](#2-use-cases-patterns-and-examples-of-implementation)
+  - [2. Use cases and examples of implementation](#2-use-cases-and-examples-of-implementation)
   - [3. Environment setup](#3-environment-setup)
     - [Install the needed tools](#install-the-needed-tools)
     - [Prepare the application environment](#prepare-the-application-environment)
@@ -40,7 +40,7 @@ Example of a Java application using the *Ports and Adapters* Architecture ([Hexa
 | Code generation | [Open Api generator](https://github.com/OpenAPITools/openapi-generator) | [Instructions](#7-code-generation) |
 | Api documentation | [Swagger Open Api 3](https://swagger.io/specification/) | [Article POST controller](src/main/java/org/dalvarez/ddd_example/article/infrastructure/rest_api/controller/post/ArticlePostController.java) |
 
-## 2. Use cases, patterns and examples of implementation
+## 2. Use cases and examples of implementation
 | Use cases and patterns | Example of implementation |
 | ------------------------- | ------------------------ | 
 | [Adapter pattern & infrastructure Service](https://refactoring.guru/es/design-patterns/adapter) | [Logger implementation](src/main/java/org/dalvarez/ddd_example/shared/infrastructure/logger/Slf4jLogger.java) |
@@ -49,9 +49,14 @@ Example of a Java application using the *Ports and Adapters* Architecture ([Hexa
 | Domain Service | [CategoryFinder](src/main/java/org/dalvarez/ddd_example/shared/domain/category/DomainCategoryByIdFinder.java) |
 | [Value Object](https://martinfowler.com/bliki/ValueObject.html) | [Identifier Value Object](src/main/java/org/dalvarez/ddd_example/shared/domain/value_object/id/Identifier.java) |
 | Rich Domain models ([Tell don't ask](https://martinfowler.com/bliki/TellDontAsk.html), [Avoid anemic domain models](https://martinfowler.com/bliki/AnemicDomainModel.html)) | [Article model](src/main/java/org/dalvarez/ddd_example/article/domain/model/Article.java) |
-| Clean code patterns ([Guard clauses](https://refactoring.com/catalog/replaceNestedConditionalWithGuardClauses.html), [Named constructors](https://verraes.net/2014/06/named-constructors-in-php/), [Self encapsulation](https://refactoring.guru/es/self-encapsulate-field)) | [Example](src/main/java/org/dalvarez/ddd_example/shared/domain/value_object/id/Identifier.java) |
-| Application Service | [ArticleCreator](src/main/java/org/dalvarez/ddd_example/article/application/create/ArticleCreator.java) |
-| Composition over inheritance | [Use case](src/main/java/org/dalvarez/ddd_example/article/application/create/ArticleCreator.java) |
+| Some clean code patterns ([Guard clauses](https://refactoring.com/catalog/replaceNestedConditionalWithGuardClauses.html), [Named constructors](https://verraes.net/2014/06/named-constructors-in-php/), [Self encapsulation](https://refactoring.guru/es/self-encapsulate-field)) | [Identifier](src/main/java/org/dalvarez/ddd_example/shared/domain/value_object/id/Identifier.java) |
+| Application Service | [ArticleEraser](src/main/java/org/dalvarez/ddd_example/article/application/erase/ArticleEraser.java) |
+| Composition over inheritance | [ArticleCreator](src/main/java/org/dalvarez/ddd_example/article/application/create/ArticleCreator.java) |
+| Dependency container (unique instantiation point) | [ArticleDependencyContainer](src/main/java/org/dalvarez/ddd_example/article/infrastructure/dependency_injection/ArticleModuleDependencyContainer.java) |
+| [SRP](https://en.wikipedia.org/wiki/Single-responsibility_principle) of [SOLID](https://en.wikipedia.org/wiki/SOLID) | [ArticlePostController](src/main/java/org/dalvarez/ddd_example/article/infrastructure/rest_api/controller/post/ArticlePostController.java) |
+| [OCP](https://en.wikipedia.org/wiki/Open%E2%80%93closed_principle) of [SOLID](https://en.wikipedia.org/wiki/SOLID) | [ArticleCreator](src/main/java/org/dalvarez/ddd_example/article/application/create/ArticleCreator.java) |
+| [ISP](https://en.wikipedia.org/wiki/Interface_segregation_principle) of [SOLID](https://en.wikipedia.org/wiki/SOLID) | [ArticleRepository](src/main/java/org/dalvarez/ddd_example/article/domain/repository/ArticleRepository.java) |
+| [DIP](https://en.wikipedia.org/wiki/Dependency_inversion_principle) of [SOLID](https://en.wikipedia.org/wiki/SOLID) | [ArticleByCriteriaFinder](src/main/java/org/dalvarez/ddd_example/article/application/find/by_criteria/ArticleByCriteriaFinder.java) ([Interface](src/main/java/org/dalvarez/ddd_example/article/domain/repository/ArticleRepository.java), [implementation](src/main/java/org/dalvarez/ddd_example/article/infrastructure/persistence/hibernate/repository/HibernateArticleRepository.java) and [instantiation point](src/main/java/org/dalvarez/ddd_example/article/infrastructure/dependency_injection/ArticleModuleDependencyContainer.java)) |
 
 ## 3. Environment setup
 ### Install the needed tools
