@@ -90,16 +90,18 @@ public final class Filter<T> {
         final Matcher matcher = regex.matcher(filter);
 
         if (!matcher.find() || matcher.groupCount() != EXPECTED_FILTER_PARTS)
-            throw new WrongFilterException(filter);
+            WrongFilterException.throwCauseOfFormatIsInvalid(filter);
 
         final String field = matcher.group(FIELD_IDX);
         final String operator = matcher.group(OPERATOR_IDX);
         final String rawValue = matcher.group(VALUE_IDX);
-        final ValueObject<?> value;
+        ValueObject<?> value = null;
         try {
             value = buildFilterValue(aggregateClass, field, rawValue);
-        } catch (Exception e) {
-            throw new WrongFilterException(filter);
+        } catch (NoSuchFieldException e) {
+            WrongFilterException.throwCauseOfFieldNotExist(e, aggregateClass);
+        } catch (NoSuchMethodException | InvocationTargetException | InstantiationException | IllegalAccessException e) {
+            WrongFilterException.throwCauseOf(e);
         }
 
         final FilterOperator filterOperator = FilterOperator.fromValue(operator);
@@ -109,19 +111,6 @@ public final class Filter<T> {
                 filterOperator,
                 value
         );
-    }
-
-    private static boolean isSubclassOf(Class<?> clazz,
-                                        Class<?> superClass) {
-        if (clazz == null)
-            return false;
-
-        if (!clazz.equals(superClass)) {
-            return isSubclassOf(clazz.getSuperclass(), superClass);
-        }
-
-        return true;
-
     }
 
     @SuppressWarnings("unchecked")
@@ -134,7 +123,7 @@ public final class Filter<T> {
         Class<?> clazz = field.getType();
 
         if (!isSubclassOf(clazz, ValueObject.class))
-            throw new ClassCastException(String.format("Class %s is not a subclass of %s", clazz, ValueObject.class));
+            WrongFilterException.throwCauseOfAggregateIsNotASubclassOfValueObject(clazz);
 
         while (clazz.getSuperclass() != null && !clazz.getSuperclass().equals(ValueObject.class)) {
             clazz = clazz.getSuperclass();
@@ -145,6 +134,18 @@ public final class Filter<T> {
         constructor.setAccessible(true);
 
         return (S) constructor.newInstance(fieldValue);
+    }
+
+    private static boolean isSubclassOf(final Class<?> clazz,
+                                        final Class<?> superClass) {
+        if (clazz == null)
+            return false;
+
+        if (!clazz.equals(superClass)) {
+            return isSubclassOf(clazz.getSuperclass(), superClass);
+        }
+
+        return true;
     }
 
     private List<String> calculateFieldPath() {
