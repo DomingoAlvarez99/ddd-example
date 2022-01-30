@@ -28,7 +28,7 @@ Example of a Java application using the *Ports and Adapters* Architecture ([Hexa
 | Style formatting | [EditorConf](https://www.jetbrains.com/help/idea/editorconfig.html) | [Rules](src/.editorconf)   |
 | Extract metadata at runtime | [Reflections](https://github.com/ronmamo/reflections) | [DomainEventSuscribersInfo](src/main/java/org/dalvarez/ddd_example/shared/infrastructure/bus/DomainEventSubscribersInformation.java) |
 | HTTP server	| [Spring Boot Starter Web](https://spring.io/guides/gs/rest-service/) | [Article POST controller](src/main/java/org/dalvarez/ddd_example/article/infrastructure/rest_api/controller/post/ArticlePostController.java) |
-| Database integration | [Spring Data](https://spring.io/projects/spring-data) + [JPA](https://www.objectdb.com/api/java/jpa) + [Hibernate](https://hibernate.org/) | [Article repository](src/main/java/org/dalvarez/ddd_example/article/infrastructure/persistence/hibernate/repository/HibernateArticleRepository.java) |
+| Database integration | [Spring Data JPA](https://spring.io/projects/spring-data-jpa) + [Hibernate](https://hibernate.org/) + [Postgresql driver](https://github.com/pgjdbc/pgjdbc)| [Article repository](src/main/java/org/dalvarez/ddd_example/article/infrastructure/persistence/hibernate/repository/HibernateArticleRepository.java) |
 | Domain events publishing & consuming | [Project Reactor](https://projectreactor.io/) | [Publisher and consumer integration](src/main/java/org/dalvarez/ddd_example/shared/infrastructure/bus/reactor/ReactorEventBus.java) |
 | Document storer | [MinIO](https://github.com/minio/minio-java) | *TO DO* |
 | Infrastructure management | [Docker](https://www.docker.com/) | [Docker compose](docker-compose.yml) |
@@ -66,7 +66,7 @@ Example of a Java application using the *Ports and Adapters* Architecture ([Hexa
 3. Configure the users and databases of the backend and Sonarqube containers.
   - Common script to generate a database, an user and a schema: 
     ```sql
-      CREATE ROLE ${username} LOGIN PASSWORD ${password};
+      CREATE ROLE ${username} LOGIN PASSWORD '${password}';
       CREATE DATABASE ${db};
       GRANT CREATE ON DATABASE ${db} TO ${username};
       CREATE SCHEMA ${schema};
@@ -85,6 +85,7 @@ Example of a Java application using the *Ports and Adapters* Architecture ([Hexa
       - Access to the root db replacing the variables: `> docker exec -it postgres -U ${root_username} ${root_db}`
         - Run the above script replacing the variables.
 4. Bring up the other containers: `> docker-compose up -d sonarqube elasticsearch logstash kibana minio`
+5. Add the index pattern `logstash*` in the [kibana config](http://localhost:5601/app/logs/settings).
 
 ### Run the tests
 - Unit: (*The name must follow the following pattern `*TestCase`*):
