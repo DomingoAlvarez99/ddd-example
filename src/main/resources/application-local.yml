@@ -15,8 +15,11 @@ spring:
     banner:
         location: classpath:/banner.txt # Graffiti
 # Server config
-
 server:
     servlet:
         contextPath: /api/v0
     port: 8080
+# Logging
+logstash:
+    host: localhost
+    port: 5000
