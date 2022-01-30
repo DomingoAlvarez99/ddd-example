@@ -13,7 +13,7 @@ spring:
     cache:
         type: none
     banner:
-        location: classpath:/static/banner.txt # Graffiti
+        location: classpath:/banner.txt # Graffiti
 # Server config
 
 server:
