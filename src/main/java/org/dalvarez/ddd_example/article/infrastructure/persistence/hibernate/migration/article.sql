@@ -4,7 +4,7 @@ create table shop_core.article (
     name varchar(200) not null,
     price double precision not null,
     stock smallint not null,
-    category_id varchar(36) not null,
+    category_id varchar(36),
     constraint article_pk primary key (id),
     constraint article_category_fk foreign key (category_id) references shop_core.category(id)
 );
