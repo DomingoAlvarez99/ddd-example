@@ -23,3 +23,7 @@ server:
 logstash:
     host: localhost
     port: 5000
+# Kafka
+kafka:
+    host: localhost
+    port: 9092

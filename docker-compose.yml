@@ -17,6 +17,7 @@ services:
       - elasticsearch
       - sonarqube
       - minio
+      - kafka
   postgres:
     image: postgres:13.3
     container_name: ${POSTGRES_CONTAINER_NAME}
@@ -104,9 +105,39 @@ services:
     command: server /data
     command: server /data --console-address ':9001'
     restart: unless-stopped
+  zookeeper:
+    image: "confluentinc/cp-zookeeper:4.1.2"
+    container_name: ${ZOOKEEPER_CONTAINER_NAME}
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 32181
+      ZOOKEEPER_TICK_TIME: 2000
+    ports:
+      - 32181:32181
+    hostname: zookeeper
+    networks:
+      - kafkanet
+  kafka:
+    image: "confluentinc/cp-kafka:4.1.2"
+    container_name: ${KAFKA_CONTAINER_NAME}
+    hostname: kafka
+    ports:
+      - 9092:9092
+      - 29092:29092
+    environment:
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:32181
+      KAFKA_BROKER_ID: 1
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9092,PLAINTEXT_HOST://kafka:29092
+      LISTENERS: PLAINTEXT://0.0.0.0:9092
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+    depends_on:
+      - zookeeper
+    networks:
+      - kafkanet
 networks:
   sonarnet:
   elknet:
+  kafkanet:
 
 volumes:
   postgres_data:

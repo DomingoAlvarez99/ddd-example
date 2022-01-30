@@ -26,7 +26,8 @@ public class WrongFilterException extends RuntimeException {
         throw new WrongFilterException(String.format(INVALID_SUBCLASS_MESSAGE, aggregateClass, ValueObject.class));
     }
 
-    public static void throwCauseOfFieldNotExist(final NoSuchFieldException e, final Class<?> aggregate) {
+    public static void throwCauseOfFieldNotExist(final NoSuchFieldException e,
+                                                 final Class<?> aggregate) {
         String field = e.getMessage().split(":")[0].trim();
 
         throw new WrongFilterException(String.format(UNKNOWN_FIELD_MESSAGE, field, aggregate.getSimpleName()));

@@ -22,7 +22,7 @@ final class ArticleUpdaterShouldTestCase extends ArticleApplicationModuleTestCas
     ArticleUpdaterShouldTestCase() {
         final CategoryRepository categoryRepository = mock(CategoryRepository.class);
         final DomainCategoryByIdFinder categoryByIdFinder = new DomainCategoryByIdFinder(categoryRepository);
-        articleUpdater = new ArticleUpdater(repository, categoryByIdFinder);
+        articleUpdater = new ArticleUpdater(repository, categoryByIdFinder, eventBus);
     }
 
     @Test

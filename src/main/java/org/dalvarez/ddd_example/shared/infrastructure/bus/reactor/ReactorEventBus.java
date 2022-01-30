@@ -28,7 +28,7 @@ public final class ReactorEventBus implements org.dalvarez.ddd_example.shared.do
                                           final DomainEventSubscribersInformation subscribersInformation) {
         subscribersInformation.all().forEach(information -> {
             final Object subscriber = applicationContext.getBean(information.subscriberClass());
-            final Class<?> domainEventClass = information.subscribedEvent();
+            final Class<?> domainEventClass = information.subscribedEvent().clazz();
 
             registerOnEventBus(subscriber, domainEventClass);
         });
@@ -65,7 +65,7 @@ public final class ReactorEventBus implements org.dalvarez.ddd_example.shared.do
     }
 
     private void publish(final DomainEvent event) {
-        final Class<? extends DomainEvent> eventIdentifier = event.getClass();
+        final Class<?> eventIdentifier = event.getClass();
         final Event<DomainEvent> wrappedEvent = Event.wrap(event);
 
         bus.notify(eventIdentifier, wrappedEvent);

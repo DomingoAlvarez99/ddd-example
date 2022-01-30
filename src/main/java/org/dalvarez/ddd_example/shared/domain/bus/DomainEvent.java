@@ -13,8 +13,8 @@ public abstract class DomainEvent {
 
     private final Identifier aggregateId;
 
-    private DomainEvent() {
-        this.aggregateId = null;
+    protected DomainEvent() {
+        aggregateId = null;
         occurredOn = null;
         id = null;
     }
@@ -55,12 +55,14 @@ public abstract class DomainEvent {
         return Objects.hash(occurredOn, id, aggregateId);
     }
 
+
     @Override
     public String toString() {
         return "DomainEvent{" +
-                "date=" + occurredOn +
+                "occurredOn=" + occurredOn +
                 ", id=" + id +
                 ", aggregateId=" + aggregateId +
+                ", eventName=" + eventName() +
                 '}';
     }
 

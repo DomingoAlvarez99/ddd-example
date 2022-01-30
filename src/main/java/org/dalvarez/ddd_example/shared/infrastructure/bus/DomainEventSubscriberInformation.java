@@ -8,10 +8,10 @@ public final class DomainEventSubscriberInformation {
 
     private final Class<?> subscriberClass;
 
-    private final List<Class<? extends DomainEvent>> subscribedEvents;
+    private final List<SubscribedEvent> subscribedEvents;
 
-    public DomainEventSubscriberInformation(Class<?> subscriberClass,
-                                            final List<Class<? extends DomainEvent>> subscribedEvents) {
+    public DomainEventSubscriberInformation(final Class<?> subscriberClass,
+                                            final List<SubscribedEvent> subscribedEvents) {
         this.subscriberClass = subscriberClass;
         this.subscribedEvents = subscribedEvents;
     }
@@ -20,7 +20,7 @@ public final class DomainEventSubscriberInformation {
         return subscriberClass;
     }
 
-    public Class<? extends DomainEvent> subscribedEvent() {
+    public SubscribedEvent subscribedEvent() {
         return subscribedEvents.get(0);
     }
 
@@ -36,6 +36,28 @@ public final class DomainEventSubscriberInformation {
                 "subscriberClass=" + subscriberClass +
                 ", subscribedEvents=" + subscribedEvents +
                 '}';
+    }
+
+    public static class SubscribedEvent {
+
+        private final Class<? extends DomainEvent> clazz;
+
+        private final String name;
+
+        public SubscribedEvent(final Class<? extends DomainEvent> clazz,
+                               final String subscribedEventName) {
+            this.clazz = clazz;
+            this.name = subscribedEventName;
+        }
+
+        public Class<? extends DomainEvent> clazz() {
+            return clazz;
+        }
+
+        public String name() {
+            return name;
+        }
+
     }
 
 }

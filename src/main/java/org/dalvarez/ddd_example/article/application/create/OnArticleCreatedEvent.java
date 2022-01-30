@@ -13,14 +13,9 @@ public final class OnArticleCreatedEvent {
         this.log = log;
     }
 
+    @SuppressWarnings("unused")
     public void on(final ArticleCreatedDomainEvent event) {
-        log.info(
-                "Event <name={}>, <id={}>, <aggregateId={}>, <date={}>",
-                event.eventName(),
-                event.id(),
-                event.aggregateId(),
-                event.occurredOn()
-        );
+        log.info(event.toString());
     }
 
 }

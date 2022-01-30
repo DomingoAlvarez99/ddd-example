@@ -29,7 +29,7 @@ Example of a Java application using the *Ports and Adapters* Architecture ([Hexa
 | Extract metadata at runtime | [Reflections](https://github.com/ronmamo/reflections) | [DomainEventSuscribersInfo](src/main/java/org/dalvarez/ddd_example/shared/infrastructure/bus/DomainEventSubscribersInformation.java) |
 | HTTP server	| [Spring Boot Starter Web](https://spring.io/guides/gs/rest-service/) | [Article POST controller](src/main/java/org/dalvarez/ddd_example/article/infrastructure/rest_api/controller/post/ArticlePostController.java) |
 | Database integration | [Spring Data JPA](https://spring.io/projects/spring-data-jpa) + [Hibernate](https://hibernate.org/) + [Postgresql driver](https://github.com/pgjdbc/pgjdbc)| [Article repository](src/main/java/org/dalvarez/ddd_example/article/infrastructure/persistence/hibernate/repository/HibernateArticleRepository.java) |
-| Domain events publishing & consuming | [Project Reactor](https://projectreactor.io/) | [Publisher and consumer integration](src/main/java/org/dalvarez/ddd_example/shared/infrastructure/bus/reactor/ReactorEventBus.java) |
+| Domain events publishing & consuming | [Spring Kafka](https://github.com/spring-projects/spring-kafka) | [Publisher integration](src/main/java/org/dalvarez/ddd_example/shared/infrastructure/bus/kafka/consumer/KafkaDomainEventsConsumer.java), [Publisher integration](src/main/java/org/dalvarez/ddd_example/shared/infrastructure/bus/kafka/publisher/KafkaEventBus.java) |
 | Document storer | [MinIO](https://github.com/minio/minio-java) | *TO DO* |
 | Infrastructure management | [Docker](https://www.docker.com/) | [Docker compose](docker-compose.yml) |
 | Logging | [Logback](https://logback.qos.ch/) + [Logstash encoder](https://github.com/logfellow/logstash-logback-encoder) | [Logback configuration](src/main/resources/logback-spring.xml), [Logger implementation](src/main/java/org/dalvarez/ddd_example/shared/infrastructure/logger/Slf4jLogger.java) |
@@ -89,8 +89,9 @@ Example of a Java application using the *Ports and Adapters* Architecture ([Hexa
     - Create the user, the database and the schema:
       - Access to the root db replacing the variables: `> docker exec -it postgres -U ${root_username} ${root_db}`
         - Run the above script replacing the variables.
-4. Bring up the other containers: `> docker-compose up -d sonarqube elasticsearch logstash kibana minio`
-5. Add the index pattern `logstash*` in the [kibana config](http://localhost:5601/app/logs/settings).
+4. Bring up the other containers: `> docker-compose up -d sonarqube elasticsearch logstash kibana minio kafka`
+5. Create the topic to publish and consume domain events: `> bash ./scripts/create-topics.sh domain_events`
+6. Add the index pattern `logstash*` in the [kibana config](http://localhost:5601/app/logs/settings).
 
 ### Run the tests
 - Unit: (*The name must follow the following pattern `*TestCase`*):

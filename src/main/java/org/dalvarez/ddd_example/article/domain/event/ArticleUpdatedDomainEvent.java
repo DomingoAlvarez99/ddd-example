@@ -7,6 +7,10 @@ public final class ArticleUpdatedDomainEvent extends DomainEvent {
 
     private static final String EVENT_NAME = "article.updated";
 
+    public ArticleUpdatedDomainEvent() {
+        super();
+    }
+
     public ArticleUpdatedDomainEvent(final Article value) {
         super(value.id());
     }

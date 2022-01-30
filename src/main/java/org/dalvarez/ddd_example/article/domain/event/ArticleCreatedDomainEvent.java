@@ -7,13 +7,35 @@ public final class ArticleCreatedDomainEvent extends DomainEvent {
 
     private static final String EVENT_NAME = "article.created";
 
-    public ArticleCreatedDomainEvent(final Article value) {
-        super(value.id());
+    private final String name;
+
+    public ArticleCreatedDomainEvent() {
+        super();
+
+        this.name = null;
     }
 
     @Override
     public String eventName() {
         return EVENT_NAME;
+    }
+
+
+    public ArticleCreatedDomainEvent(final Article value) {
+        super(value.id());
+
+        this.name = value.name().value();
+    }
+
+    public String name() {
+        return name;
+    }
+
+    @Override
+    public String toString() {
+        return "ArticleCreatedDomainEvent{" +
+                "name='" + name + '\'' +
+                "} " + super.toString();
     }
 
 }

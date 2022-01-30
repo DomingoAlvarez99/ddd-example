@@ -9,6 +9,7 @@ import org.dalvarez.ddd_example.article.application.find.by_id.ArticleByIdFinder
 import org.dalvarez.ddd_example.article.application.sum.by_price.ArticleByPriceAdder;
 import org.dalvarez.ddd_example.article.application.sum.by_stock.ArticleByStockAdder;
 import org.dalvarez.ddd_example.article.application.update.ArticleUpdater;
+import org.dalvarez.ddd_example.article.application.update.OnArticleUpdatedEvent;
 import org.dalvarez.ddd_example.article.domain.model.Article;
 import org.dalvarez.ddd_example.article.domain.repository.ArticleRepository;
 import org.dalvarez.ddd_example.article.infrastructure.persistence.hibernate.repository.HibernateArticleRepository;
@@ -78,8 +79,14 @@ public class ArticleModuleDependencyContainer {
 
     @Bean
     public ArticleUpdater articleUpdater(final ArticleRepository articleRepository,
-                                         final DomainCategoryByIdFinder categoryByIdFinder) {
-        return new ArticleUpdater(articleRepository, categoryByIdFinder);
+                                         final DomainCategoryByIdFinder categoryByIdFinder,
+                                         final EventBus eventBus) {
+        return new ArticleUpdater(articleRepository, categoryByIdFinder, eventBus);
+    }
+
+    @Bean
+    public OnArticleUpdatedEvent onArticleUpdatedEvent(final Logger log) {
+        return new OnArticleUpdatedEvent(log);
     }
 
 }
