@@ -90,7 +90,7 @@ Example of a Java application using the *Ports and Adapters* Architecture ([Hexa
       - Access to the root db replacing the variables: `> docker exec -it postgres -U ${root_username} ${root_db}`
         - Run the above script replacing the variables.
 4. Bring up the other containers: `> docker-compose up -d sonarqube elasticsearch logstash kibana minio kafka`
-5. Create the topic to publish and consume domain events: `> bash ./scripts/create-topics.sh domain_events`
+5. Create the topics to publish and consume domain events: `> bash ./scripts/create-topics.sh domain_events,dead_letter-domain_events`
 6. Add the index pattern `logstash*` in the [kibana config](http://localhost:5601/app/logs/settings).
 
 ### Run the tests
