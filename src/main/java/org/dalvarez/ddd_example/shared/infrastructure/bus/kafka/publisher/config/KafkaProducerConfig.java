@@ -34,7 +34,7 @@ public class KafkaProducerConfig {
     }
 
     public ProducerFactory<String, ?> producerFactory() {
-        Map<String, Object> configProps = Map.of(
+        final Map<String, Object> configProps = Map.of(
                 ProducerConfig.BOOTSTRAP_SERVERS_CONFIG,
                 configProvider.bootstrapAddress()
         );
