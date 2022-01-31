@@ -18,7 +18,6 @@ public final class KafkaConfigProvider {
         this.kafkaPort = kafkaPort;
     }
 
-
     public String bootstrapAddress() {
         return String.join(ADDRESS_DELIMITER, kafkaHost, kafkaPort);
     }
