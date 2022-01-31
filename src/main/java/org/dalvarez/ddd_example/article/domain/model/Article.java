@@ -1,10 +1,13 @@
 package org.dalvarez.ddd_example.article.domain.model;
 
+import org.dalvarez.ddd_example.article.domain.event.ArticleCreatedDomainEvent;
+import org.dalvarez.ddd_example.article.domain.event.ArticleUpdatedDomainEvent;
+import org.dalvarez.ddd_example.shared.domain.bus.AggregateRoot;
 import org.dalvarez.ddd_example.shared.domain.category.CategoryId;
 
 import java.util.Objects;
 
-public class Article {
+public final class Article extends AggregateRoot {
 
     private final ArticleId id;
 
@@ -39,13 +42,14 @@ public class Article {
         this.categoryId = categoryId;
     }
 
-    public static Article of(final ArticleId id,
-                             final ArticleStock stock,
-                             final ArticlePrice price,
-                             final ArticleName name,
-                             final ArticleDescription description,
-                             final CategoryId categoryId) {
-        return new Article(
+    public static Article create(final ArticleId id,
+                                 final ArticleStock stock,
+                                 final ArticlePrice price,
+                                 final ArticleName name,
+                                 final ArticleDescription description,
+                                 final CategoryId categoryId) {
+
+        final Article article = new Article(
                 id,
                 stock,
                 price,
@@ -53,6 +57,10 @@ public class Article {
                 description,
                 categoryId
         );
+
+        article.record(new ArticleCreatedDomainEvent(article));
+
+        return article;
     }
 
     public ArticleId id() {
@@ -79,12 +87,14 @@ public class Article {
         return categoryId;
     }
 
-    public void rename(ArticleName articleName) {
+    public void rename(final ArticleName articleName) {
         this.name = articleName;
     }
 
-    public void updateCategory(CategoryId categoryId) {
+    public void updateCategory(final CategoryId categoryId) {
         this.categoryId = categoryId;
+
+        record(new ArticleUpdatedDomainEvent(this));
     }
 
     @Override

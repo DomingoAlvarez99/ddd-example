@@ -2,7 +2,6 @@ package org.dalvarez.ddd_example.article.application.update;
 
 import org.dalvarez.ddd_example.article.application.ArticleRequest;
 import org.dalvarez.ddd_example.article.application.ArticleResponse;
-import org.dalvarez.ddd_example.article.domain.event.ArticleUpdatedDomainEvent;
 import org.dalvarez.ddd_example.article.domain.model.Article;
 import org.dalvarez.ddd_example.article.domain.model.ArticleId;
 import org.dalvarez.ddd_example.article.domain.repository.ArticleRepository;
@@ -10,7 +9,6 @@ import org.dalvarez.ddd_example.shared.domain.bus.EventBus;
 import org.dalvarez.ddd_example.shared.domain.category.CategoryId;
 import org.dalvarez.ddd_example.shared.domain.category.DomainCategoryByIdFinder;
 
-import java.util.Collections;
 import java.util.Objects;
 
 public final class ArticleUpdater {
@@ -41,11 +39,11 @@ public final class ArticleUpdater {
 
         article.updateCategory(categoryId);
 
-        Article articleUpdated = articleRepository.update(article);
+        articleRepository.update(article);
 
-        eventBus.publish(Collections.singletonList(new ArticleUpdatedDomainEvent(articleUpdated)));
+        eventBus.publish(article.pullDomainEvents());
 
-        return ArticleResponse.fromArticle(articleUpdated);
+        return ArticleResponse.fromArticle(article);
     }
 
 }

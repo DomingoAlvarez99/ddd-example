@@ -50,6 +50,10 @@ public abstract class DomainEvent {
         );
     }
 
+    public boolean hasSameEventName(final DomainEvent other) {
+        return eventName().equals(other.eventName());
+    }
+
     @Override
     public int hashCode() {
         return Objects.hash(occurredOn, id, aggregateId);

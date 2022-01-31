@@ -2,7 +2,6 @@ package org.dalvarez.ddd_example.article.application.create;
 
 import org.dalvarez.ddd_example.article.application.ArticleRequest;
 import org.dalvarez.ddd_example.article.application.ArticleResponse;
-import org.dalvarez.ddd_example.article.domain.event.ArticleCreatedDomainEvent;
 import org.dalvarez.ddd_example.article.domain.model.Article;
 import org.dalvarez.ddd_example.article.domain.model.ArticleDescription;
 import org.dalvarez.ddd_example.article.domain.model.ArticleId;
@@ -14,7 +13,6 @@ import org.dalvarez.ddd_example.shared.domain.bus.EventBus;
 import org.dalvarez.ddd_example.shared.domain.category.CategoryId;
 import org.dalvarez.ddd_example.shared.domain.category.DomainCategoryByIdFinder;
 
-import java.util.Collections;
 import java.util.Objects;
 
 public final class ArticleCreator {
@@ -41,7 +39,7 @@ public final class ArticleCreator {
         final ArticleStock articleStock = ArticleStock.of(request.stock());
         final CategoryId categoryId = request.id() == null ? null : CategoryId.of(request.id());
 
-        final Article article = Article.of(
+        final Article article = Article.create(
                 articleId,
                 articleStock,
                 articlePrice,
@@ -53,11 +51,11 @@ public final class ArticleCreator {
         if (Objects.nonNull(article.categoryId()))
             categoryByIdFinder.find(article.categoryId());
 
-        final Article articleCreated = articleRepository.create(article);
+        articleRepository.create(article);
 
-        eventBus.publish(Collections.singletonList(new ArticleCreatedDomainEvent(articleCreated)));
+        eventBus.publish(article.pullDomainEvents());
 
-        return ArticleResponse.fromArticle(articleCreated);
+        return ArticleResponse.fromArticle(article);
     }
 
 }

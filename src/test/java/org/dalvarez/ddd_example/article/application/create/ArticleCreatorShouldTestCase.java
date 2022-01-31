@@ -3,14 +3,12 @@ package org.dalvarez.ddd_example.article.application.create;
 import org.dalvarez.ddd_example.article.application.ArticleApplicationModuleTestCase;
 import org.dalvarez.ddd_example.article.application.ArticleRequest;
 import org.dalvarez.ddd_example.article.domain.ArticleMother;
-import org.dalvarez.ddd_example.article.domain.event.ArticleCreatedDomainEvent;
 import org.dalvarez.ddd_example.article.domain.model.Article;
 import org.dalvarez.ddd_example.category.domain.repository.CategoryRepository;
 import org.dalvarez.ddd_example.shared.domain.bus.DomainEvent;
 import org.dalvarez.ddd_example.shared.domain.category.DomainCategoryByIdFinder;
 import org.junit.jupiter.api.Test;
 
-import java.util.Collections;
 import java.util.List;
 
 import static org.mockito.ArgumentMatchers.any;
@@ -44,7 +42,7 @@ final class ArticleCreatorShouldTestCase extends ArticleApplicationModuleTestCas
 
         when(repository.create(any())).thenReturn(random);
 
-        final List<DomainEvent> domainEvents = Collections.singletonList(new ArticleCreatedDomainEvent(random));
+        final List<DomainEvent> domainEvents = random.pullDomainEvents();
 
         doNothing().when(eventBus).publish(domainEvents);
 
