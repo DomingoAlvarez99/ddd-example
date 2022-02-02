@@ -5,7 +5,6 @@ import org.dalvarez.ddd_example.shared.domain.repository.GenericRepository;
 import org.dalvarez.ddd_example.shared.infrastructure.shared.TestConfig;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @TestConfig
 public abstract class Seeder<T, R extends GenericRepository<T>> {
@@ -21,9 +20,9 @@ public abstract class Seeder<T, R extends GenericRepository<T>> {
     protected void populateDatabase(final List<T> data) {
         repository.deleteByCriteria(new Criteria());
 
-        this.data = data.stream()
-                        .map(repository::create)
-                        .collect(Collectors.toList());
+        data.forEach(repository::createOrUpdate);
+
+        this.data = repository.getByCriteria(new Criteria()).result();
     }
 
 }

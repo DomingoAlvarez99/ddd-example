@@ -1,7 +1,6 @@
 package org.dalvarez.ddd_example.category.application.update;
 
 import org.dalvarez.ddd_example.category.application.CategoryRequest;
-import org.dalvarez.ddd_example.category.application.CategoryResponse;
 import org.dalvarez.ddd_example.category.domain.model.Category;
 import org.dalvarez.ddd_example.category.domain.model.CategoryName;
 import org.dalvarez.ddd_example.category.domain.repository.CategoryRepository;
@@ -21,8 +20,8 @@ public class CategoryUpdater {
 
     }
 
-    public CategoryResponse update(final String id,
-                                   final CategoryRequest request) {
+    public void update(final String id,
+                       final CategoryRequest request) {
         final Category category = categoryByIdFinder.find(CategoryId.of(id));
 
         final CategoryId parentId = categoryByIdFinder.find(CategoryId.of(request.parentId())).id();
@@ -31,9 +30,7 @@ public class CategoryUpdater {
         final CategoryName newName = CategoryName.of(request.name());
         category.rename(newName);
 
-        final Category categoryUpdated = categoryRepository.update(category);
-
-        return CategoryResponse.fromCategory(categoryUpdated);
+        categoryRepository.createOrUpdate(category);
     }
 
 }

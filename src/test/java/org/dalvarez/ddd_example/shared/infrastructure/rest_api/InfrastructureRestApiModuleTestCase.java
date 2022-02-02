@@ -51,7 +51,7 @@ public abstract class InfrastructureRestApiModuleTestCase<T, R extends GenericRe
         return new ObjectMapper().writeValueAsString(object);
     }
 
-    protected <RES> RES shouldgetById(final String id,
+    protected <RES> RES shouldGetById(final String id,
                                       final Class<RES> responseClass) throws Exception {
         return getById(
                 HttpStatus.OK.value(),
@@ -134,38 +134,29 @@ public abstract class InfrastructureRestApiModuleTestCase<T, R extends GenericRe
         return response.get();
     }
 
-    protected <RES, REQ> RES shouldPost(final REQ request,
-                                        final Class<RES> responseClass) throws Exception {
-        return post(
+    protected <REQ> void shouldPost(final REQ request) throws Exception {
+        post(
                 request,
-                HttpStatus.CREATED.value(),
-                responseClass
+                HttpStatus.CREATED.value()
         );
     }
 
-    private <RES, REQ> RES post(final REQ request,
-                                final Integer expectedStatusCode,
-                                final Class<RES> responseClass) throws Exception {
-        final AtomicReference<RES> response = new AtomicReference<>();
+    private <REQ> void post(final REQ request,
+                            final Integer expectedStatusCode) throws Exception {
 
         mockMvc.perform(MockMvcRequestBuilders.post(buildPath())
                                               .contextPath(contextPath)
                                               .content(convertObjectToJsonString(request))
                                               .contentType(MediaType.APPLICATION_JSON)
                                               .accept(MediaType.APPLICATION_JSON))
-               .andExpect(status().is(expectedStatusCode))
-               .andDo(mvcResult -> response.set(convertJsonStringToObject(mvcResult, responseClass)));
-
-        return response.get();
+               .andExpect(status().is(expectedStatusCode));
     }
 
-    protected <RES, REQ> RES shouldPut(final REQ request,
-                                       final Class<RES> responseClass,
-                                       final String id) throws Exception {
-        return put(
+    protected <REQ> void shouldPut(final REQ request,
+                                   final String id) throws Exception {
+        put(
                 request,
                 HttpStatus.OK.value(),
-                responseClass,
                 id
         );
     }
@@ -190,21 +181,15 @@ public abstract class InfrastructureRestApiModuleTestCase<T, R extends GenericRe
     }
 
     @SafeVarargs
-    private <RES, REQ, V> RES put(final REQ request,
-                                  final Integer expectedStatusCode,
-                                  final Class<RES> responseClass,
-                                  final V... vars) throws Exception {
-        final AtomicReference<RES> response = new AtomicReference<>();
-
+    private <REQ, V> void put(final REQ request,
+                              final Integer expectedStatusCode,
+                              final V... vars) throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.put(buildPath(ApiConstants.ID_PATH_VAR), vars)
                                               .contextPath(contextPath)
                                               .content(convertObjectToJsonString(request))
                                               .contentType(MediaType.APPLICATION_JSON)
                                               .accept(MediaType.APPLICATION_JSON))
-               .andExpect(status().is(expectedStatusCode))
-               .andDo(mvcResult -> response.set(convertJsonStringToObject(mvcResult, responseClass)));
-
-        return response.get();
+               .andExpect(status().is(expectedStatusCode));
     }
 
     protected void shouldDeleteById(final String id) throws Exception {
@@ -241,7 +226,6 @@ public abstract class InfrastructureRestApiModuleTestCase<T, R extends GenericRe
         put(
                 request,
                 HttpStatus.NOT_FOUND.value(),
-                ErrorResponse.class,
                 id
         );
     }

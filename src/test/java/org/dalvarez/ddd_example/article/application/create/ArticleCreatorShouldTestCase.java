@@ -10,6 +10,7 @@ import org.dalvarez.ddd_example.shared.domain.category.DomainCategoryByIdFinder;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
+import java.util.Optional;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.doNothing;
@@ -38,9 +39,9 @@ final class ArticleCreatorShouldTestCase extends ArticleApplicationModuleTestCas
                 null
         );
 
-        when(repository.getById(any())).thenReturn(random);
+        when(repository.getById(any())).thenReturn(Optional.of(random));
 
-        when(repository.create(any())).thenReturn(random);
+        doNothing().when(repository).createOrUpdate(any());
 
         final List<DomainEvent> domainEvents = random.pullDomainEvents();
 

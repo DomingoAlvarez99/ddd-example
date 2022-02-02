@@ -1,7 +1,6 @@
 package org.dalvarez.ddd_example.category.infrastructure.rest_api.controller.put;
 
 import org.dalvarez.ddd_example.category.application.CategoryRequest;
-import org.dalvarez.ddd_example.category.application.CategoryResponse;
 import org.dalvarez.ddd_example.category.application.update.CategoryUpdater;
 import org.dalvarez.ddd_example.category.infrastructure.rest_api.controller.CategoryApiController;
 import org.springframework.http.ResponseEntity;
@@ -22,9 +21,11 @@ public final class CategoryPutController extends CategoryApiController {
     }
 
     @PutMapping(ID_PATH_VAR)
-    public ResponseEntity<CategoryResponse> put(@PathVariable final String id,
-                                                @RequestBody final CategoryRequest categoryRequest) {
-        return ResponseEntity.ok(categoryUpdater.update(id, categoryRequest));
+    public ResponseEntity<Void> put(@PathVariable final String id,
+                                    @RequestBody final CategoryRequest categoryRequest) {
+        categoryUpdater.update(id, categoryRequest);
+
+        return ResponseEntity.ok().build();
     }
 
 }

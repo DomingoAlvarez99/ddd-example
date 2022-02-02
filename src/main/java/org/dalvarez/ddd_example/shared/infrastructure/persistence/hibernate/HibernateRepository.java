@@ -6,9 +6,7 @@ import org.dalvarez.ddd_example.shared.domain.criteria.CriteriaConverter;
 import org.dalvarez.ddd_example.shared.domain.criteria.QueryResult;
 import org.dalvarez.ddd_example.shared.domain.criteria.filter.Filter;
 import org.dalvarez.ddd_example.shared.domain.criteria.filter.FilterOperator;
-import org.dalvarez.ddd_example.shared.domain.util.CollectionUtils;
 import org.dalvarez.ddd_example.shared.domain.value_object.id.Identifier;
-import org.dalvarez.ddd_example.shared.infrastructure.shared.exception.NotFoundException;
 
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
@@ -38,44 +36,26 @@ public abstract class HibernateRepository<T> {
         this.aggregateClass = aggregateClass;
     }
 
-    protected T save(final T entity) {
-        final T persistedObject = entityManager.merge(entity);
+    protected void saveOrUpdated(final T entity) {
+        entityManager.merge(entity);
 
         entityManager.flush();
         entityManager.clear();
-
-        return persistedObject;
     }
 
-    protected T update(final T entity) {
-        return save(entity);
-    }
-
-    protected T findById(final Identifier id) {
+    protected Optional<T> findById(final Identifier id) {
         return findOneBy(
                 ID_FIELD,
-                id,
-                NotFoundException.getIdMessage(aggregateClass, id)
+                id
         );
     }
 
-    protected <V> T findOneBy(final String field,
-                              final V value) {
-        return findOneBy(
-                field,
-                value,
-                NotFoundException.getDefaultMessage(aggregateClass)
-        );
-    }
-
-    protected <V> T findOneBy(final String field,
-                              final V value,
-                              final String errorMessage) {
+    protected <V> Optional<T> findOneBy(final String field,
+                                        final V value) {
         return findByCriteria(
                 Criteria.builder()
                         .withFilter(new Filter<>(field, FilterOperator.EQUAL, value))
-                        .build(),
-                errorMessage
+                        .build()
         ).singleResult();
     }
 
@@ -96,8 +76,7 @@ public abstract class HibernateRepository<T> {
         entityManager.createQuery(hibernateCriteria).executeUpdate();
     }
 
-    private QueryResult<T> findByCriteria(final Criteria criteria,
-                                          final String errorMessage) {
+    protected QueryResult<T> findByCriteria(final Criteria criteria) {
         final CriteriaQuery<T> hibernateCriteria = criteriaConverter.convert(
                 criteria,
                 aggregateClass
@@ -106,18 +85,9 @@ public abstract class HibernateRepository<T> {
         final Long resultsCount = countByCriteria(criteria).total();
 
         final List<T> results = paginate(query, criteria).getResultStream()
-                                                         .collect(Collectors.collectingAndThen(
-                                                                 Collectors.toList(),
-                                                                 Optional::of
-                                                         ))
-                                                         .filter(CollectionUtils::nonEmpty)
-                                                         .orElseThrow(() -> new NotFoundException(errorMessage));
+                                                         .collect(Collectors.toList());
 
         return new QueryResult<>(resultsCount, results);
-    }
-
-    protected QueryResult<T> findByCriteria(final Criteria criteria) {
-        return findByCriteria(criteria, NotFoundException.getDefaultMessage(aggregateClass));
     }
 
     protected CountResult countByCriteria(final Criteria criteria) {

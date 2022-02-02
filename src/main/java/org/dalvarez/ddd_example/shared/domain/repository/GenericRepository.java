@@ -5,17 +5,17 @@ import org.dalvarez.ddd_example.shared.domain.criteria.Criteria;
 import org.dalvarez.ddd_example.shared.domain.criteria.QueryResult;
 import org.dalvarez.ddd_example.shared.domain.value_object.id.Identifier;
 
+import java.util.Optional;
+
 public interface GenericRepository<T> {
 
-    T getById(final Identifier id);
+    Optional<T> getById(final Identifier id);
 
     QueryResult<T> getByCriteria(final Criteria criteria);
 
     CountResult countByCriteria(final Criteria criteria);
 
-    T create(final T model);
-
-    T update(final T model);
+    void createOrUpdate(final T model);
 
     void deleteById(final Identifier id);
 

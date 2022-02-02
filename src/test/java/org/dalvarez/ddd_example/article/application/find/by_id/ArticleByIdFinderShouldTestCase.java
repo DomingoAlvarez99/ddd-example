@@ -7,6 +7,8 @@ import org.dalvarez.ddd_example.article.domain.model.ArticleId;
 import org.dalvarez.ddd_example.shared.domain.value_object.id.Identifier;
 import org.junit.jupiter.api.Test;
 
+import java.util.Optional;
+
 import static org.mockito.Mockito.when;
 
 final class ArticleByIdFinderShouldTestCase extends ArticleApplicationModuleTestCase {
@@ -23,7 +25,7 @@ final class ArticleByIdFinderShouldTestCase extends ArticleApplicationModuleTest
         final ArticleId articleId = ArticleId.of(id);
 
         final Article article = ArticleMother.random(id);
-        when(repository.getById(articleId)).thenReturn(article);
+        when(repository.getById(articleId)).thenReturn(Optional.ofNullable(article));
 
         articleByIdFinder.find(id);
 

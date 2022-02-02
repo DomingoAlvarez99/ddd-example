@@ -10,6 +10,7 @@ import org.dalvarez.ddd_example.shared.domain.value_object.id.Identifier;
 import org.dalvarez.ddd_example.shared.infrastructure.persistence.hibernate.HibernateRepository;
 
 import javax.persistence.EntityManager;
+import java.util.Optional;
 
 public class HibernateArticleRepository extends HibernateRepository<Article> implements ArticleRepository {
 
@@ -19,7 +20,7 @@ public class HibernateArticleRepository extends HibernateRepository<Article> imp
     }
 
     @Override
-    public Article getById(final Identifier id) {
+    public Optional<Article> getById(final Identifier id) {
         return findById(id);
     }
 
@@ -34,13 +35,8 @@ public class HibernateArticleRepository extends HibernateRepository<Article> imp
     }
 
     @Override
-    public Article create(final Article article) {
-        return save(article);
-    }
-
-    @Override
-    public Article update(final Article article) {
-        return super.update(article);
+    public void createOrUpdate(final Article article) {
+        saveOrUpdated(article);
     }
 
     @Override

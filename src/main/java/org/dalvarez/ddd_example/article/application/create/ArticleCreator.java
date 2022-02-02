@@ -1,7 +1,6 @@
 package org.dalvarez.ddd_example.article.application.create;
 
 import org.dalvarez.ddd_example.article.application.ArticleRequest;
-import org.dalvarez.ddd_example.article.application.ArticleResponse;
 import org.dalvarez.ddd_example.article.domain.model.Article;
 import org.dalvarez.ddd_example.article.domain.model.ArticleDescription;
 import org.dalvarez.ddd_example.article.domain.model.ArticleId;
@@ -31,7 +30,7 @@ public final class ArticleCreator {
         this.eventBus = eventBus;
     }
 
-    public ArticleResponse create(final ArticleRequest request) {
+    public void create(final ArticleRequest request) {
         final ArticleId articleId = ArticleId.random();
         final ArticleName articleName = ArticleName.of(request.name());
         final ArticleDescription articleDescription = ArticleDescription.of(request.description());
@@ -51,11 +50,9 @@ public final class ArticleCreator {
         if (Objects.nonNull(article.categoryId()))
             categoryByIdFinder.find(article.categoryId());
 
-        articleRepository.create(article);
+        articleRepository.createOrUpdate(article);
 
         eventBus.publish(article.pullDomainEvents());
-
-        return ArticleResponse.fromArticle(article);
     }
 
 }

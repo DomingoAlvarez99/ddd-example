@@ -10,6 +10,7 @@ import org.dalvarez.ddd_example.shared.domain.value_object.id.Identifier;
 import org.dalvarez.ddd_example.shared.infrastructure.persistence.hibernate.HibernateRepository;
 
 import javax.persistence.EntityManager;
+import java.util.Optional;
 
 public class HibernateCategoryRepository extends HibernateRepository<Category> implements CategoryRepository {
 
@@ -19,7 +20,7 @@ public class HibernateCategoryRepository extends HibernateRepository<Category> i
     }
 
     @Override
-    public Category getById(final Identifier id) {
+    public Optional<Category> getById(final Identifier id) {
         return findById(id);
     }
 
@@ -34,13 +35,8 @@ public class HibernateCategoryRepository extends HibernateRepository<Category> i
     }
 
     @Override
-    public Category create(final Category category) {
-        return save(category);
-    }
-
-    @Override
-    public Category update(final Category category) {
-        return super.update(category);
+    public void createOrUpdate(final Category category) {
+        saveOrUpdated(category);
     }
 
     @Override

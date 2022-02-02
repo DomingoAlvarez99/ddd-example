@@ -2,6 +2,7 @@ package org.dalvarez.ddd_example.shared.domain.criteria;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 public class QueryResult<T> {
 
@@ -44,15 +45,15 @@ public class QueryResult<T> {
         return result;
     }
 
-    public T singleResult() {
+    public Optional<T> singleResult() {
         if (result.size() > 1)
             throw new NonUniqueResultException();
 
-        return result.get(0);
+        return firstResult();
     }
 
-    public T firstResult() {
-        return result.get(0);
+    public Optional<T> firstResult() {
+        return result.stream().findFirst();
     }
 
 }

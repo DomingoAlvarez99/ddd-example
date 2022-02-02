@@ -1,7 +1,6 @@
 package org.dalvarez.ddd_example.article.infrastructure.rest_api.controller.post;
 
 import org.dalvarez.ddd_example.article.application.ArticleRequest;
-import org.dalvarez.ddd_example.article.application.ArticleResponse;
 import org.dalvarez.ddd_example.article.application.create.ArticleCreator;
 import org.dalvarez.ddd_example.article.infrastructure.rest_api.controller.ArticleApiController;
 import org.springframework.http.HttpStatus;
@@ -22,8 +21,10 @@ public final class ArticlePostController extends ArticleApiController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<ArticleResponse> post(@RequestBody final ArticleRequest articleRequest) {
-        return new ResponseEntity<>(articleCreator.create(articleRequest), HttpStatus.CREATED);
+    public ResponseEntity<Void> post(@RequestBody final ArticleRequest articleRequest) {
+        articleCreator.create(articleRequest);
+
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
 }

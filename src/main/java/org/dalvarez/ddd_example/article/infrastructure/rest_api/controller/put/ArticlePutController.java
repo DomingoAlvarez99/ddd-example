@@ -1,7 +1,6 @@
 package org.dalvarez.ddd_example.article.infrastructure.rest_api.controller.put;
 
 import org.dalvarez.ddd_example.article.application.ArticleRequest;
-import org.dalvarez.ddd_example.article.application.ArticleResponse;
 import org.dalvarez.ddd_example.article.application.update.ArticleUpdater;
 import org.dalvarez.ddd_example.article.infrastructure.rest_api.controller.ArticleApiController;
 import org.springframework.http.ResponseEntity;
@@ -22,9 +21,11 @@ public final class ArticlePutController extends ArticleApiController {
     }
 
     @PutMapping(ID_PATH_VAR)
-    public ResponseEntity<ArticleResponse> put(@PathVariable final String id,
-                                               @RequestBody final ArticleRequest articleRequest) {
-        return ResponseEntity.ok(articleUpdater.update(id, articleRequest));
+    public ResponseEntity<Void> put(@PathVariable final String id,
+                                    @RequestBody final ArticleRequest articleRequest) {
+        articleUpdater.update(id, articleRequest);
+
+        return ResponseEntity.ok().build();
     }
 
 }

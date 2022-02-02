@@ -1,7 +1,6 @@
 package org.dalvarez.ddd_example.category.application.create;
 
 import org.dalvarez.ddd_example.category.application.CategoryRequest;
-import org.dalvarez.ddd_example.category.application.CategoryResponse;
 import org.dalvarez.ddd_example.category.domain.model.Category;
 import org.dalvarez.ddd_example.category.domain.model.CategoryName;
 import org.dalvarez.ddd_example.category.domain.repository.CategoryRepository;
@@ -20,16 +19,14 @@ public final class CategoryCreator {
         this.categoryByIdFinder = categoryByIdFinder;
     }
 
-    public CategoryResponse create(final CategoryRequest request) {
+    public void create(final CategoryRequest request) {
         CategoryName categoryName = CategoryName.of(request.name());
 
         final CategoryId parentId = categoryByIdFinder.find(CategoryId.of(request.parentId())).id();
 
         Category category = Category.create(categoryName, parentId);
 
-        final Category categoryCreated = categoryRepository.create(category);
-
-        return CategoryResponse.fromCategory(categoryCreated);
+        categoryRepository.createOrUpdate(category);
     }
 
 }

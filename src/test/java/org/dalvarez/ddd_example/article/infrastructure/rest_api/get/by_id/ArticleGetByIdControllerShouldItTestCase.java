@@ -20,7 +20,7 @@ final class ArticleGetByIdControllerShouldItTestCase extends ArticleInfrastructu
     void shouldGetById() throws Exception {
         final Article expected = data.get(0);
 
-        final ArticleResponse response = shouldgetById(expected.id().value(), ArticleResponse.class);
+        final ArticleResponse response = shouldGetById(expected.id().value(), ArticleResponse.class);
 
         assertEquals(ArticleResponse.fromArticle(expected), response);
     }

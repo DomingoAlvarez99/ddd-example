@@ -1,15 +1,12 @@
 package org.dalvarez.ddd_example.article.infrastructure.rest_api.put;
 
 import org.dalvarez.ddd_example.article.application.ArticleRequest;
-import org.dalvarez.ddd_example.article.application.ArticleResponse;
 import org.dalvarez.ddd_example.article.domain.model.Article;
 import org.dalvarez.ddd_example.article.domain.repository.ArticleRepository;
 import org.dalvarez.ddd_example.article.infrastructure.ArticleInfrastructureRestApiModuleTestCase;
 import org.dalvarez.ddd_example.shared.domain.IdMother;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 final class ArticlePutControllerShouldItTestCase extends ArticleInfrastructureRestApiModuleTestCase {
 
@@ -38,11 +35,7 @@ final class ArticlePutControllerShouldItTestCase extends ArticleInfrastructureRe
                 null
         );
 
-        final ArticleResponse expected = shouldPut(request, ArticleResponse.class, article.id().value());
-
-        final ArticleResponse actual = shouldgetById(expected.id(), ArticleResponse.class);
-
-        assertEquals(expected.id(), actual.id());
+        shouldPut(request, article.id().value());
     }
 
     @Test

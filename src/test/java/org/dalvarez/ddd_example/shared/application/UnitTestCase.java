@@ -30,7 +30,7 @@ public abstract class UnitTestCase<T, R extends GenericRepository<T>> {
     }
 
     protected void shouldHaveCreated(final T model) {
-        verify(repository, atLeastOnce()).create(refEq(model, "id"));
+        verify(repository, atLeastOnce()).createOrUpdate(refEq(model, "id"));
     }
 
     protected void shouldHaveErased(final Identifier id) {
@@ -38,7 +38,7 @@ public abstract class UnitTestCase<T, R extends GenericRepository<T>> {
     }
 
     protected void shouldHaveUpdated(final T model) {
-        verify(repository, atLeastOnce()).update(model);
+        verify(repository, atLeastOnce()).createOrUpdate(model);
     }
 
     protected void shouldHaveFoundByCriteria(final Criteria criteria) {

@@ -3,7 +3,6 @@ package org.dalvarez.ddd_example.shared.infrastructure.rest_api.exception_handle
 import org.dalvarez.ddd_example.shared.domain.criteria.NonUniqueResultException;
 import org.dalvarez.ddd_example.shared.domain.criteria.filter.WrongFilterException;
 import org.dalvarez.ddd_example.shared.domain.log.Logger;
-import org.dalvarez.ddd_example.shared.infrastructure.shared.exception.ConflictException;
 import org.dalvarez.ddd_example.shared.infrastructure.shared.exception.NotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -47,7 +46,6 @@ public class ApiGlobalExceptionHandler {
     }
 
     @ExceptionHandler({
-            ConflictException.class,
             PersistenceException.class,
             NonUniqueResultException.class
     })

@@ -15,7 +15,6 @@ import org.dalvarez.ddd_example.shared.domain.criteria.filter.FiltersBooleanOper
 import org.dalvarez.ddd_example.shared.domain.criteria.order.Order;
 import org.dalvarez.ddd_example.shared.domain.criteria.order.OrderType;
 import org.dalvarez.ddd_example.shared.domain.criteria.page.Page;
-import org.dalvarez.ddd_example.shared.infrastructure.shared.exception.NotFoundException;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
@@ -24,7 +23,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
@@ -48,20 +47,22 @@ final class HibernateArticleRepositoryShouldItTestCase extends ArticleInfrastruc
     void shouldCreateTheArticle() {
         final Article newArticle = ArticleMother.random(null);
 
-        final Article expected = articleRepository.create(newArticle);
+        articleRepository.createOrUpdate(newArticle);
 
-        final Article actual = articleRepository.getById(expected.id());
+        final Article articleCreated = articleRepository.getById(newArticle.id()).orElse(null);
 
-        assertEquals(expected, actual);
+        assertEquals(newArticle, articleCreated);
     }
 
     @Test
     void shouldUpdateTheArticle() {
-        final Article actual = data.get(0);
+        final Article articleToUpdate = data.get(0);
 
-        final Article expected = articleRepository.update(actual);
+        articleRepository.createOrUpdate(articleToUpdate);
 
-        assertEquals(expected, actual);
+        final Article articleUpdated = articleRepository.getById(articleToUpdate.id()).orElse(null);
+
+        assertEquals(articleToUpdate, articleUpdated);
     }
 
     @Test
@@ -69,7 +70,10 @@ final class HibernateArticleRepositoryShouldItTestCase extends ArticleInfrastruc
         final ArticleId idExpected = data.get(1)
                                          .id();
 
-        final Article actual = articleRepository.getById(idExpected);
+        final Article actual = articleRepository.getById(idExpected)
+                                                .orElse(null);
+
+        assertNotNull(actual);
 
         assertEquals(idExpected, actual.id());
     }
@@ -78,14 +82,10 @@ final class HibernateArticleRepositoryShouldItTestCase extends ArticleInfrastruc
     void shouldNotGetTheArticleById() {
         final ArticleId id = ArticleId.random();
 
-        final NotFoundException notFoundException = assertThrows(
-                NotFoundException.class,
-                () -> articleRepository.getById(id)
-        );
+        final boolean expected = true;
+        final boolean actual = articleRepository.getById(id).isEmpty();
 
-        final String expectedMessage = NotFoundException.getIdMessage(Article.class, id);
-
-        assertEquals(expectedMessage, notFoundException.getMessage());
+        assertEquals(expected, actual);
     }
 
     @Test
@@ -94,7 +94,10 @@ final class HibernateArticleRepositoryShouldItTestCase extends ArticleInfrastruc
 
         articleRepository.deleteById(id);
 
-        assertThrows(NotFoundException.class, () -> articleRepository.getById(id));
+        final boolean expected = true;
+        final boolean actual = articleRepository.getById(id).isEmpty();
+
+        assertEquals(expected, actual);
     }
 
     @Test
@@ -113,7 +116,7 @@ final class HibernateArticleRepositoryShouldItTestCase extends ArticleInfrastruc
     }
 
     @Test
-    void shouldGetNotGetAnything() {
+    void shouldNotGetAnything() {
         final Criteria criteria = Criteria.builder()
                                           .withFilter(new Filter<>(
                                                   Article.FieldNames.NAME,
@@ -122,14 +125,10 @@ final class HibernateArticleRepositoryShouldItTestCase extends ArticleInfrastruc
                                           ))
                                           .build();
 
-        final NotFoundException notFoundException = assertThrows(
-                NotFoundException.class,
-                () -> articleRepository.getByCriteria(criteria)
-        );
+        final boolean expected = true;
+        final boolean actual = articleRepository.getByCriteria(criteria).result().isEmpty();
 
-        final String expectedMessage = NotFoundException.getDefaultMessage(Article.class);
-
-        assertEquals(expectedMessage, notFoundException.getMessage());
+        assertEquals(expected, actual);
     }
 
     @Test

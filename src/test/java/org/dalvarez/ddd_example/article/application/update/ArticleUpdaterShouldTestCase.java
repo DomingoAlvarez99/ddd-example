@@ -10,7 +10,10 @@ import org.dalvarez.ddd_example.shared.domain.value_object.id.Identifier;
 import org.dalvarez.ddd_example.shared.infrastructure.shared.TestConfig;
 import org.junit.jupiter.api.Test;
 
+import java.util.Optional;
+
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -39,9 +42,9 @@ final class ArticleUpdaterShouldTestCase extends ArticleApplicationModuleTestCas
                 null
         );
 
-        when(repository.getById(any())).thenReturn(random);
+        when(repository.getById(any())).thenReturn(Optional.of(random));
 
-        when(repository.update(any())).thenReturn(random);
+        doNothing().when(repository).createOrUpdate(any());
 
         articleUpdater.update(id, randomRequest);
 
