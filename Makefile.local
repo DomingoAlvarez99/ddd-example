@@ -1,0 +1,24 @@
+.DEFAULT_GOAL := build
+
+.PHONY: build
+build: ## Package the app
+	@mvn package -DskipTests
+
+.PHONY: deps
+deps: ## Download and install dependencies
+	@mvn clean install -DskipTests
+
+.PHONY: install
+install: ## Move the binary into the deployment dir
+
+.PHONY: start
+start: ## Start the app
+	@java -jar ./target/*.jar
+
+.PHONY: unit-test
+unit-test: ## Run unit tests
+	@mvn test
+
+.PHONY: test
+test: ## Run tests
+	@mvn verify

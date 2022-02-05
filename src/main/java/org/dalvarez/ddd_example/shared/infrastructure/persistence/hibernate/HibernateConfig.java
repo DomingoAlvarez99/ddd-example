@@ -54,7 +54,7 @@ public class HibernateConfig {
     }
 
     private String getResource(String path) {
-        return ClassLoader.getSystemClassLoader()
+        return this.getClass().getClassLoader()
                           .getResource(path)
                           .getFile();
     }

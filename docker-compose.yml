@@ -116,6 +116,7 @@ services:
     hostname: zookeeper
     networks:
       - kafkanet
+    restart: unless-stopped
   kafka:
     image: "confluentinc/cp-kafka:4.1.2"
     container_name: ${KAFKA_CONTAINER_NAME}
@@ -130,10 +131,16 @@ services:
       KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9092,PLAINTEXT_HOST://kafka:29092
       LISTENERS: PLAINTEXT://0.0.0.0:9092
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+    volumes:
+      - ./kafka_scripts/docker_entrypoint.sh:/tmp/entrypoint.sh
     depends_on:
       - zookeeper
     networks:
       - kafkanet
+    entrypoint:
+      - /bin/bash
+      - /tmp/entrypoint.sh
+    restart: unless-stopped
 networks:
   sonarnet:
   elknet:

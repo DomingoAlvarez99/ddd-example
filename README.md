@@ -83,14 +83,14 @@ Example of a Java application using the *Ports and Adapters* Architecture ([Hexa
       - Run the common script replacing the variables.
     - Create the database tables:
       - Find the tables: `> find . -path '*/migration/*' -type f` 
-      - Access to te database: `> docker exec -it postgres -U ${username} ${db}`
+      - Access to the database: `> docker exec -it postgres -U ${username} ${db}`
       - Copy and paste the definition of the tables.
   - SonarQube
     - Create the user, the database and the schema:
       - Access to the root db replacing the variables: `> docker exec -it postgres -U ${root_username} ${root_db}`
         - Run the above script replacing the variables.
-4. Bring up the other containers: `> docker-compose up -d sonarqube elasticsearch logstash kibana minio kafka`
-5. Create the topics to publish and consume domain events: `> bash ./scripts/create-topics.sh domain_events,dead_letter-domain_events`
+4. Bring up the other containers: `> make infrastructure`
+5. Create the topics to publish and consume domain events: `> bash ./kafka_scripts/create-topics.sh domain_events,dead_letter-domain_events`
 6. Add the index pattern `logstash*` in the [kibana config](http://localhost:5601/app/logs/settings).
 
 ### Run the tests
@@ -98,13 +98,13 @@ Example of a Java application using the *Ports and Adapters* Architecture ([Hexa
 - Integration (*The name must follow the following pattern `*ItTestCase`*)
 - Acceptance: Must have a .feature file linked with a .java file
 
-Before all install the dependencies: `> mvn clean install`
+Before all install the dependencies: `> make deps`
 
-- Execute the unit tests: `> mvn test`
-- Execute all the tests: `> mvn verify`
+- Execute the unit tests: `> make unit-test`
+- Execute all the tests: `> make test`
   
 ### Start the app
-Backend: `mvn spring-boot:run`
+Backend: `> make start`
 
 ## 4. Entrypoint
 
@@ -132,7 +132,7 @@ SonarQube inspects and evaluates everything that affects our codebase, from mino
 
 SonarQube and JaCoCo are two tools that can be used together:
 
-- Generate the metrics: `> mvn verify`
+- Generate the metrics: `> make test`
 - Send metrics to SonarQube:
   ```
     mvn sonar:sonar \
@@ -171,6 +171,4 @@ After that you can import the client:
 ## 8. Deploy
 The project uses [Maven](https://maven.apache.org/) in order to package the app in a single Jar file that you can execute.
 
-1. Create the package: `> mvn package`.
-2. Copy the generated binary to the destination folder: `> mkdir -p /var/www/ddd-example && cp target/*.jar /var/www/ddd-example/app.jar`
-3. Run the app binary:  `> java -jar /var/www/ddd-example/app.jar`
+To do this `> make deploy`.
