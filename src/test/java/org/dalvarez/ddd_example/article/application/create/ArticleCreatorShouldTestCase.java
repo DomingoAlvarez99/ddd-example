@@ -5,26 +5,27 @@ import org.dalvarez.ddd_example.article.application.ArticleRequest;
 import org.dalvarez.ddd_example.article.domain.ArticleMother;
 import org.dalvarez.ddd_example.article.domain.model.Article;
 import org.dalvarez.ddd_example.category.domain.repository.CategoryRepository;
-import org.dalvarez.ddd_example.shared.domain.bus.DomainEvent;
 import org.dalvarez.ddd_example.shared.domain.category.DomainCategoryByIdFinder;
+import org.dalvarez.ddd_example.shared.domain.transaction_handler.TransactionHandler;
 import org.junit.jupiter.api.Test;
 
-import java.util.List;
-import java.util.Optional;
-
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.atLeastOnce;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.verify;
 
 final class ArticleCreatorShouldTestCase extends ArticleApplicationModuleTestCase {
 
     private final ArticleCreator articleCreator;
 
+    private final TransactionHandler transactionHandler;
+
     ArticleCreatorShouldTestCase() {
         final CategoryRepository categoryRepository = mock(CategoryRepository.class);
         final DomainCategoryByIdFinder categoryByIdFinder = new DomainCategoryByIdFinder(categoryRepository);
-        articleCreator = new ArticleCreator(repository, categoryByIdFinder, eventBus);
+        transactionHandler = mock(TransactionHandler.class);
+        articleCreator = new ArticleCreator(repository, categoryByIdFinder, eventBus, transactionHandler);
     }
 
     @Test
@@ -39,19 +40,15 @@ final class ArticleCreatorShouldTestCase extends ArticleApplicationModuleTestCas
                 null
         );
 
-        when(repository.getById(any())).thenReturn(Optional.of(random));
-
-        doNothing().when(repository).createOrUpdate(any());
-
-        final List<DomainEvent> domainEvents = random.pullDomainEvents();
-
-        doNothing().when(eventBus).publish(domainEvents);
+        doNothing().when(transactionHandler).runInNewTransaction(any(Runnable.class));
 
         articleCreator.create(randomRequest);
 
-        shouldHaveCreated(random);
+        shouldHaveExecutedInNewTransaction();
+    }
 
-        shouldHavePublishedDomainEvents(domainEvents);
+    private void shouldHaveExecutedInNewTransaction() {
+        verify(transactionHandler, atLeastOnce()).runInNewTransaction(any(Runnable.class));
     }
 
 }

@@ -55,8 +55,8 @@ public class HibernateConfig {
 
     private String getResource(String path) {
         return this.getClass().getClassLoader()
-                          .getResource(path)
-                          .getFile();
+                   .getResource(path)
+                   .getFile();
     }
 
     private List<File> getFilesRecursively(File root,

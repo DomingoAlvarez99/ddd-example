@@ -17,6 +17,7 @@ import org.dalvarez.ddd_example.shared.domain.bus.EventBus;
 import org.dalvarez.ddd_example.shared.domain.category.DomainCategoryByIdFinder;
 import org.dalvarez.ddd_example.shared.domain.criteria.CriteriaConverter;
 import org.dalvarez.ddd_example.shared.domain.log.Logger;
+import org.dalvarez.ddd_example.shared.domain.transaction_handler.TransactionHandler;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -39,11 +40,13 @@ public class ArticleModuleDependencyContainer {
     @Bean
     public ArticleCreator articleCreator(final ArticleRepository articleRepository,
                                          final DomainCategoryByIdFinder categoryByIdFinder,
-                                         final EventBus eventBus) {
+                                         final EventBus eventBus,
+                                         final TransactionHandler transactionHandler) {
         return new ArticleCreator(
                 articleRepository,
                 categoryByIdFinder,
-                eventBus
+                eventBus,
+                transactionHandler
         );
     }
 

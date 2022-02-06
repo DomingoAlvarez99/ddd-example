@@ -11,6 +11,7 @@ import org.dalvarez.ddd_example.article.domain.repository.ArticleRepository;
 import org.dalvarez.ddd_example.shared.domain.bus.EventBus;
 import org.dalvarez.ddd_example.shared.domain.category.CategoryId;
 import org.dalvarez.ddd_example.shared.domain.category.DomainCategoryByIdFinder;
+import org.dalvarez.ddd_example.shared.domain.transaction_handler.TransactionHandler;
 
 import java.util.Objects;
 
@@ -22,12 +23,16 @@ public final class ArticleCreator {
 
     private final EventBus eventBus;
 
+    private final TransactionHandler transactionHandler;
+
     public ArticleCreator(final ArticleRepository articleRepository,
                           final DomainCategoryByIdFinder categoryByIdFinder,
-                          final EventBus eventBus) {
+                          final EventBus eventBus,
+                          final TransactionHandler transactionHandler) {
         this.articleRepository = articleRepository;
         this.categoryByIdFinder = categoryByIdFinder;
         this.eventBus = eventBus;
+        this.transactionHandler = transactionHandler;
     }
 
     public void create(final ArticleRequest request) {
@@ -50,9 +55,11 @@ public final class ArticleCreator {
         if (Objects.nonNull(article.categoryId()))
             categoryByIdFinder.find(article.categoryId());
 
-        articleRepository.createOrUpdate(article);
+        transactionHandler.runInNewTransaction(() -> {
+            articleRepository.createOrUpdate(article);
 
-        eventBus.publish(article.pullDomainEvents());
+            eventBus.publish(article.pullDomainEvents());
+        });
     }
 
 }

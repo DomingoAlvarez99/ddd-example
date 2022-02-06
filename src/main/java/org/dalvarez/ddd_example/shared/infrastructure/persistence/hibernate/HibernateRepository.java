@@ -7,12 +7,12 @@ import org.dalvarez.ddd_example.shared.domain.criteria.QueryResult;
 import org.dalvarez.ddd_example.shared.domain.criteria.filter.Filter;
 import org.dalvarez.ddd_example.shared.domain.criteria.filter.FilterOperator;
 import org.dalvarez.ddd_example.shared.domain.value_object.id.Identifier;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaDelete;
 import javax.persistence.criteria.CriteriaQuery;
-import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
