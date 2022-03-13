@@ -27,3 +27,10 @@ logstash:
 kafka:
     host: localhost
     port: 9092
+#Elastic apm
+elastic.apm:
+    enabled: true
+    server-url: http://localhost:8200
+    secret-token: 99a4149d7fc04196ba0e25f067dde9cd
+    environment: local
+    log-level: INFO

@@ -7,7 +7,7 @@ help: ## Show make targets
 
 .PHONY: infrastructure
 infrastructure: ## Run infrastructure services
-	@docker-compose up -d postgres sonarqube elasticsearch logstash kibana minio kafka
+	@docker-compose up -d postgres sonarqube elasticsearch logstash kibana apm minio kafka
 
 .PHONY: build
 build: ## Package the app

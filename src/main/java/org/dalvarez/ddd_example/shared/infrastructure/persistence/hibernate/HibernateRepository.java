@@ -36,7 +36,14 @@ public abstract class HibernateRepository<T> {
         this.aggregateClass = aggregateClass;
     }
 
-    protected void saveOrUpdated(final T entity) {
+    protected void save(final T entity) {
+        entityManager.persist(entity);
+
+        entityManager.flush();
+        entityManager.clear();
+    }
+
+    protected void update(final T entity) {
         entityManager.merge(entity);
 
         entityManager.flush();

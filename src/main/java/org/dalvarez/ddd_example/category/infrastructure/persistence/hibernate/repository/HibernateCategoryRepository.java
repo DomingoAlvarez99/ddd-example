@@ -36,7 +36,12 @@ public class HibernateCategoryRepository extends HibernateRepository<Category> i
 
     @Override
     public void createOrUpdate(final Category category) {
-        saveOrUpdated(category);
+        if (category.id().isNullOrBlank()) {
+            save(category);
+            return;
+        }
+
+        update(category);
     }
 
     @Override

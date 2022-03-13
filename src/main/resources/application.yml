@@ -24,3 +24,7 @@ app:
     version: @project.version@
     groupId: @project.groupId@
     artifactId: @project.artifactId@
+#Elastic apm
+elastic.apm:
+    service-name: ddd_example
+    application-packages: org.dalvarez.ddd_example

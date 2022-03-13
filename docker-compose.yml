@@ -91,6 +91,18 @@ services:
       - elasticsearch
       - logstash
     restart: unless-stopped
+  apm:
+    image: elastic/apm-server:7.10.1
+    container_name: ${APM_CONTAINER_NAME}
+    volumes:
+      - ${APM_DATA}:/usr/share/apm-server/apm-server.yml
+    ports:
+      - ${APM_EXTERNAL_PORT}:8200
+    depends_on:
+      - elasticsearch
+      - kibana
+    networks:
+      - elknet
   minio:
     image: minio/minio
     container_name: ${MINIO_CONTAINER_NAME}

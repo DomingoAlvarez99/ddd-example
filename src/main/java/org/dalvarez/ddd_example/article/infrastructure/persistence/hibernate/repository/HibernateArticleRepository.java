@@ -36,7 +36,12 @@ public class HibernateArticleRepository extends HibernateRepository<Article> imp
 
     @Override
     public void createOrUpdate(final Article article) {
-        saveOrUpdated(article);
+        if (article.id().isNullOrBlank()) {
+            save(article);
+            return;
+        }
+
+        update(article);
     }
 
     @Override
